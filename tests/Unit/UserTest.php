@@ -5,9 +5,12 @@ namespace Tests\Unit;
 use App\Models\User;
 use GuzzleHttp\Promise\Create;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * all,getが配列を返すか、必要なフィールドを返すか
      * ユーザー登録、更新、削除が出来るか
@@ -19,23 +22,27 @@ class UserTest extends TestCase
     public function testCanCreate()
     {
         $user = User::factory()->create();
-        $this->assertDatabaseHas('users', $user);
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id,
+        ]);
     }
 
     public function testCanUpdate()
     {
-        $user = User::factory()->create(['name' => '山田']);
-        $user->update(['user_name' => '山本']);
+        $user = User::factory()->create(['user_name' => '山田']);
+        $user->where('id', $user->id)->update(['user_name' => '山本']);
         $this->assertDatabaseHas('users', [
-            'name' => '山本',
+            'id' => $user->id,
+            'user_name' => '山本',
         ]);
     }
 
     public function testCanDelete()
     {
         $user = User::factory()->create();
+        $deletedUser = User::find($user->id)->toArray();
         $user->delete();
-        $this->assertDatabaseMissing('users', $user);
+        $this->assertDatabaseMissing('users', $deletedUser);
     }
 
 }

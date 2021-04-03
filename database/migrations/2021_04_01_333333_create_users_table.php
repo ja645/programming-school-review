@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->integer('sex');
             $table->string('former_job')->nullable();
             $table->string('job')->nullable();
-            $table->foreignId('school_id')->constrained();
-            $table->string('email:strict,dns,spoof')->unique();
+            $table->integer('school_id');
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
