@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function create(UserFormRequest $request)
+    public function create()
     {
-
+        return view('auth.user.create');
     }
 }

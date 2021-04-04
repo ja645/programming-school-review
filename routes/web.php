@@ -14,8 +14,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/user/create', [UserController::class, 'create'])->name('create');
-
+Route::get('/signup', [UserController::class, 'create'])->name('create');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
