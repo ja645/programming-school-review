@@ -32,7 +32,7 @@ class UserFormRequest extends FormRequest
             'former_job' => 'nullable',
             'job' => 'nullable',
             'school_id' => 'required|integer',
-            'email' => 'required|email:strict,dns,spoof|max:256',
+            'email' => 'required|email:strict,dns,spoof|max:256|unique:users',
             //パスワードの正規表現は半角英数字をそれぞれ1つ以上使い8字以上100字以下
             'password' => 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed',
         ];
