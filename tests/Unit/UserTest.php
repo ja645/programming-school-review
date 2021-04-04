@@ -46,5 +46,4 @@ class UserTest extends TestCase
             'id' => $user->id,
         ]);
     }
-
 }

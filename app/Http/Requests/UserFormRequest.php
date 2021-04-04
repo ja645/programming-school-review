@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Auth;
 
 class UserFormRequest extends FormRequest
@@ -25,14 +26,15 @@ class UserFormRequest extends FormRequest
     public function rules() :array
     {
         return [
-            'user_name' => 'required',
-            'birthday' => 'required',
-            'sex'=> 'required',
+            'user_name' => 'required|string|max:30',
+            'birthday' => 'required|date|before:today',
+            'sex'=> 'required|integer|min:0|max:2',
             'former_job' => 'nullable',
             'job' => 'nullable',
-            'school_id' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'school_id' => 'required|integer',
+            'email' => 'required|email:strict,dns,spoof|max:256',
+            //パスワードの正規表現は半角英数字をそれぞれ1つ以上使い8字以上100字以下
+            'password' => 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed',
         ];
     }
 }
