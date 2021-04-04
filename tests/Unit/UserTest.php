@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class UserTest extends TestCase
 {
     use RefreshDatabase;
-
+    
     /**
      * all,getが配列を返すか、必要なフィールドを返すか
      * ユーザー登録、更新、削除が出来るか
@@ -22,6 +22,7 @@ class UserTest extends TestCase
     public function testCanCreate()
     {
         $user = User::factory()->create();
+
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
         ]);
@@ -40,9 +41,10 @@ class UserTest extends TestCase
     public function testCanDelete()
     {
         $user = User::factory()->create();
-        $deletedUser = User::find($user->id)->toArray();
-        $user->delete();
-        $this->assertDatabaseMissing('users', $deletedUser);
+        $user->where('id', $user->id)->delete();
+        $this->assertDatabaseMissing('users', [
+            'id' => $user->id,
+        ]);
     }
 
 }

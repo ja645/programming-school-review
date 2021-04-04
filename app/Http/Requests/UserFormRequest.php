@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+
+class UserFormRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return false;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules() :array
+    {
+        return [
+            'user_name' => 'required',
+            'birthday' => 'required',
+            'sex'=> 'required',
+            'former_job' => 'nullable',
+            'job' => 'nullable',
+            'school_id' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ];
+    }
+}
