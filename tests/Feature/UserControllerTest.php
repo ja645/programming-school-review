@@ -47,6 +47,6 @@ class UserControllerTest extends TestCase
         $response = $this->post('/users', $user);
 
         $this->assertAuthenticated();
-        // $response->assertRedirect('top');
+        $response->assertRedirect('top');
     }
 }

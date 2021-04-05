@@ -21,8 +21,6 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        //$validated = $request->validated();
-
         Auth::login($user = User::create([
             'user_name' => $request->user_name,
             'birthday' => $request->birthday,
@@ -34,7 +32,6 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]));
         
-
-        //return redirect('top');
+        return redirect('top');
     }
 }
