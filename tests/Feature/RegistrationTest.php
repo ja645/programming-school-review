@@ -19,12 +19,26 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register()
     {
-        $response = $this->post('/register', [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        // $response = $this->post('/register', [
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        //     'password' => 'password',
+        //     'password_confirmation' => 'password',
+        // ]);
+
+        $user = [
+            'user_name' => '田中 太郎',
+            'birthday' => '2013-5-30 00:00:00.000000',
+            'sex' => 2,
+            'former_job' => '公務員',
+            'job' => 'エンジニア',
+            'school_id' => 1,
+            'email' => 'test@gmail.com',
+            'password' => 'password1',
+            'password_confirmation' => 'password1',
+        ];
+
+        $response = $this->post('/register', $user);
 
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);

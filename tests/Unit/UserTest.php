@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTest extends TestCase
 {
-    use RefreshDatabase;
+    //use RefreshDatabase;
     
     /**
      * all,getが配列を返すか、必要なフィールドを返すか

@@ -13,8 +13,10 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Route::get('/', [HomeController::class, 'index'])->name('top');
+Route::get('/signup', [UserController::class, 'add'])->middleware('guest')->name('add');
+Route::post('/users', [UserController::class, 'create'])->middleware('guest')->name('create');
 
-Route::get('/signup', [UserController::class, 'create'])->name('create');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
