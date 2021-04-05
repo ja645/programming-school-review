@@ -9,13 +9,10 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
-use Illuminate\Support\Facades\Auth;
-
 class UserControllerTest extends TestCase
 {
     use RefreshDatabase;
-    //CSRFトークンを無効に
-    //use WithoutMiddleware;
+    
     /**
      * 
      *
@@ -35,8 +32,6 @@ class UserControllerTest extends TestCase
      */
     public function testCreate()
     {
-        //$this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
-
         $user = [
             'user_name' => '田中 太郎',
             'birthday' => '2013-5-30 00:00:00.000000',
@@ -49,19 +44,8 @@ class UserControllerTest extends TestCase
             'password_confirmation' => 'password1',
         ];
 
-        // Auth::login($user = User::create([
-        //     'user_name' => '田中 太郎',
-        //     'birthday' => '2013-5-30 00:00:00.000000',
-        //     'sex' => 2,
-        //     'former_job' => '公務員',
-        //     'job' => 'エンジニア',
-        //     'school_id' => 1,
-        //     'email' => 'test@gmail.com',
-        //     'password' => 'password1',
-        //     'password_confirmation' => 'password1',
-        // ]));
         $response = $this->post('/users', $user);
-        //$response->assertStatus(200);
+
         $this->assertAuthenticated();
         // $response->assertRedirect('top');
     }
