@@ -45,7 +45,7 @@ class UserControllerTest extends TestCase
         ];
 
         $response = $this->post('/users', $user);
-        //var_dump($response->json());
+
         $this->assertAuthenticated();
         $response->assertRedirect('top');
     }

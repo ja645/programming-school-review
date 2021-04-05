@@ -21,8 +21,6 @@ class UserController extends Controller
      */
     public function create(UserFormRequest $request)
     {        
-        //$validated = $request->validated();
-        //var_dump($request);
         Auth::login($user = User::create([
             'user_name' => $request->user_name,
             'birthday' => $request->birthday,

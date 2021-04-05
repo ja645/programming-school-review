@@ -5,8 +5,6 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-
 
 class UserFormRequest extends FormRequest
 {
