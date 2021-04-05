@@ -16,11 +16,13 @@ class UserController extends Controller
     }
 
     /**
-     * 
+     * @param \App\Http\Requests\UserFormRequest $request
      * @return Illuminate\Http\Response
      */
-    public function create(Request $request)
-    {
+    public function create(UserFormRequest $request)
+    {        
+        //$validated = $request->validated();
+        //var_dump($request);
         Auth::login($user = User::create([
             'user_name' => $request->user_name,
             'birthday' => $request->birthday,
