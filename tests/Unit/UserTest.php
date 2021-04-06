@@ -9,7 +9,19 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTest extends TestCase
 {
-    //use RefreshDatabase;
+    use RefreshDatabase;
+    
+    public $userData = [
+                'user_name' => '田中 太郎',
+                'birthday' => '2013-5-30 00:00:00.000000',
+                'sex' => 2,
+                'former_job' => '公務員',
+                'job' => 'エンジニア',
+                'school_id' => 1,
+                'email' => 'test@gmail.com',
+                'password' => 'password1',
+                'password_confirmation' => 'password1',
+            ];
     
     /**
      * all,getが配列を返すか、必要なフィールドを返すか
@@ -21,7 +33,7 @@ class UserTest extends TestCase
      */
     public function testCanCreate()
     {
-        $user = User::factory()->create();
+        $user = User::create($this->userData);
 
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
@@ -30,8 +42,10 @@ class UserTest extends TestCase
 
     public function testCanUpdate()
     {
-        $user = User::factory()->create(['user_name' => '山田']);
+        $user = User::create($this->userData);
+
         $user->where('id', $user->id)->update(['user_name' => '山本']);
+
         $this->assertDatabaseHas('users', [
             'id' => $user->id,
             'user_name' => '山本',
@@ -40,8 +54,14 @@ class UserTest extends TestCase
 
     public function testCanDelete()
     {
-        $user = User::factory()->create();
+        $user = User::create($this->userData);
+
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id,
+        ]);
+
         $user->where('id', $user->id)->delete();
+
         $this->assertDatabaseMissing('users', [
             'id' => $user->id,
         ]);
