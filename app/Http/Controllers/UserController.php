@@ -34,4 +34,9 @@ class UserController extends Controller
         
         return redirect('top');
     }
+
+    public function edit()
+    {
+        
+    }
 }

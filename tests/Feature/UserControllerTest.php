@@ -14,7 +14,7 @@ class UserControllerTest extends TestCase
     use RefreshDatabase;
     
     /**
-     * 
+     * ユーザー登録フォームにアクセス出来るかテスト
      *
      * @return void
      */
@@ -26,8 +26,8 @@ class UserControllerTest extends TestCase
     }
 
     /**
-     *ユーザーの新規作成をテスト
-     * 
+     * ユーザーの新規作成をテスト
+     * データプロバイダを使って成功時と失敗時を検証するようにしたい
      * @return void
      */
     public function testCreate()
@@ -43,10 +43,24 @@ class UserControllerTest extends TestCase
             'password' => 'password1',
             'password_confirmation' => 'password1',
         ];
-
+        
         $response = $this->post('/users', $user);
 
         $this->assertAuthenticated();
         $response->assertRedirect('top');
+    }
+
+    /**
+     * ユーザー編集フォームにアクセス出来るかテスト
+     * これもデータプロバイダ使いたい
+     * @return void
+     */
+    public function testEdit()
+    {   
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/users/edit');
+
+        $response->assertStatus(200);
     }
 }
