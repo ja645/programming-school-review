@@ -17,7 +17,7 @@ class UserController extends Controller
 
     /**
      * @param \App\Http\Requests\UserFormRequest $request
-     * @return Illuminate\Http\Response
+     * @return \Illuminate\Http\Response
      */
     public function create(UserFormRequest $request)
     {        
@@ -37,6 +37,19 @@ class UserController extends Controller
 
     public function edit()
     {
+
+    }
+
+    /**
+     * @param \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response 
+     */
+    public function update(Request $request)
+    {
+        $user = User::find($request->id);
+        $editedUser = $request->all();
+        $user->fill($editedUser)->save();
         
+        return redirect('users');
     }
 }

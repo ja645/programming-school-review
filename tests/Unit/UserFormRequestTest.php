@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class UserFormRequestTest extends TestCase
 {
     /**
-     * @test
+     * 
      * @param array
      * @param array
      * @param boolean

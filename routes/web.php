@@ -17,11 +17,12 @@ use App\Http\Controllers\HomeController;
 Route::middleware(['guest'])->group(function() {
   Route::get('/', [HomeController::class, 'index'])->name('top');
   Route::get('/signup', [UserController::class, 'add'])->name('add');
-  Route::post('/users', [UserController::class, 'create'])->name('create');
+  Route::post('/users/create', [UserController::class, 'create'])->name('create');
 });
 
 Route::middleware(['auth'])->group(function() {
   Route::get('/users/edit', [UserController::class, 'edit'])->name('edit');
+  Route::patch('/users/update', [UserController::class, 'update'])->name('update'); 
 });
 
 require __DIR__.'/auth.php';

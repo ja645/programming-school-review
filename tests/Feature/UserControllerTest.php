@@ -43,8 +43,8 @@ class UserControllerTest extends TestCase
             'password' => 'password1',
             'password_confirmation' => 'password1',
         ];
-        
-        $response = $this->post('/users', $user);
+
+        $response = $this->post('/users/create', $user);
 
         $this->assertAuthenticated();
         $response->assertRedirect('top');
@@ -52,7 +52,7 @@ class UserControllerTest extends TestCase
 
     /**
      * ユーザー編集フォームにアクセス出来るかテスト
-     * これもデータプロバイダ使いたい
+     * 
      * @return void
      */
     public function testEdit()
@@ -62,5 +62,28 @@ class UserControllerTest extends TestCase
         $response = $this->actingAs($user)->get('/users/edit');
 
         $response->assertStatus(200);
+    }
+
+    public function testUpdate()
+    {
+        $user = User::factory()->create();
+
+        $userId = $user->id;
+
+        $editedUser = [
+            'id' => $userId,
+            'user_name' => '山本 次郎',
+            'birthday' => '2004-9-30 00:00:00.000000',
+            'sex' => 1,
+            'former_job' => 'ニート',
+            'job' => 'フリーター',
+            'school_id' => 2,
+        ];
+
+        $response = $this->actingAs($user)->patch('/users/update', $editedUser);
+
+        $this->assertDatabaseHas('users', $editedUser);
+
+        $response->assertRedirect('users');
     }
 }
