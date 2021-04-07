@@ -41,10 +41,10 @@ class UserController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request
-     * @return \Illuminate\Http\Response 
-     */
-    public function update(Request $request)
+    * @param \App\Http\Requests\UserFormRequest $request
+    * @return \Illuminate\Http\Response 
+    */
+    public function update(UserFormRequest $request)
     {
         $user = User::find($request->id);
         $editedUser = $request->all();

@@ -25,16 +25,26 @@ class UserFormRequest extends FormRequest
      */
     public function rules() :array
     {
-        return [
+        $route = $this->route()->getName();
+
+        $rules = [
             'user_name' => 'required|string|max:30',
             'birthday' => 'required|date|before:today',
             'sex'=> 'required|integer|min:0|max:2',
             'former_job' => 'nullable',
             'job' => 'nullable',
             'school_id' => 'required|integer',
-            'email' => 'required|email:strict,dns,spoof|max:256|unique:users',
-            //パスワードの正規表現は半角英数字をそれぞれ1つ以上使い8字以上100字以下
-            'password' => 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed',
         ];
+        
+        switch ($route) {
+            case 'create' :
+                $rules['email'] = 'required|email:strict,dns,spoof|max:256|unique:users';
+                //パスワードの正規表現は半角英数字をそれぞれ1つ以上使い8字以上100字以下
+                $rules['password'] = 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed';
+                break;
+        }
+
+        dump($rules);
+        return $rules;
     }
 }
