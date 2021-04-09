@@ -9,12 +9,12 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('create') }}">
             @csrf
 
             <!-- Name -->
             <div>
-                <x-label for="user_name" :value="__('Name')" />
+                <x-label for="user_name" :value="__('User_name')" />
 
                 <x-input id="user_name" class="block mt-1 w-full" type="text" name="user_name" required autofocus />
             </div>

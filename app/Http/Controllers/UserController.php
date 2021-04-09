@@ -17,7 +17,7 @@ class UserController extends Controller
 
     /**
      * @param \App\Http\Requests\UserFormRequest $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create(UserFormRequest $request)
     {        

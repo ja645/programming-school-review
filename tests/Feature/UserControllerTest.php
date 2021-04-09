@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use App\Http\Requests\UserFormRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -12,7 +11,7 @@ use Tests\TestCase;
 class UserControllerTest extends TestCase
 {
     use RefreshDatabase;
-    
+    //use WithoutMiddleware;
     /**
      * ユーザー登録フォームにアクセス出来るかテスト
      *
@@ -27,11 +26,12 @@ class UserControllerTest extends TestCase
 
     /**
      * ユーザーの新規作成をテスト
-     * データプロバイダを使って成功時と失敗時を検証するようにしたい
      * @return void
      */
     public function testCreate()
     {
+        $this->withoutMiddleware();
+
         $user = [
             'user_name' => '田中 太郎',
             'birthday' => '2013-5-30 00:00:00.000000',
@@ -66,6 +66,8 @@ class UserControllerTest extends TestCase
 
     public function testUpdate()
     {
+        $this->withoutMiddleware();
+        
         $user = User::factory()->create();
 
         $userId = $user->id;
