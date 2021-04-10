@@ -45,7 +45,6 @@ class UserControllerTest extends TestCase
         ];
 
         $response = $this->post('/users/create', $user);
-
         $this->assertAuthenticated();
         $response->assertRedirect('top');
     }
@@ -67,7 +66,7 @@ class UserControllerTest extends TestCase
     public function testUpdate()
     {
         $this->withoutMiddleware();
-        
+
         $user = User::factory()->create();
 
         $userId = $user->id;

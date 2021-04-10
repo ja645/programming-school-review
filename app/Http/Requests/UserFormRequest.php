@@ -18,6 +18,7 @@ class UserFormRequest extends FormRequest
         return true;
     }
 
+    
     /**
      * Get the validation rules that apply to the request.
      *
@@ -44,7 +45,6 @@ class UserFormRequest extends FormRequest
                 break;
         }
 
-        dump($rules);
         return $rules;
     }
 }
