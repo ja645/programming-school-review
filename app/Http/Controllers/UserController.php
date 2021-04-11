@@ -32,6 +32,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]));
         
+        dump($request->session()->all());
         return redirect('top');
     }
 

@@ -30,7 +30,7 @@ class UserControllerTest extends TestCase
      */
     public function testCreate()
     {
-        $this->withoutMiddleware();
+        // $this->withoutMiddleware();
 
         $user = [
             'user_name' => '田中 太郎',
@@ -63,9 +63,9 @@ class UserControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testUpdate()
+    public function testUpdate_正常系()
     {
-        $this->withoutMiddleware();
+        // $this->withoutMiddleware();
 
         $user = User::factory()->create();
 
@@ -87,4 +87,29 @@ class UserControllerTest extends TestCase
 
         $response->assertRedirect('users');
     }
+
+    // public function testUpdate_異常系()
+    // {
+    //     $this->withoutMiddleware();
+
+    //     $user = User::factory()->create();
+
+    //     $userId = $user->id;
+
+    //     $editedUser = [
+    //         'id' => $userId,
+    //         'user_name' => '山本 次郎',
+    //         'birthday' => '2004-9-30 00:00:00.000000',
+    //         'sex' => 1,
+    //         'former_job' => 'ニート',
+    //         'job' => 'フリーター',
+    //         'school_id' => 2,
+    //     ];
+
+    //     $response = $this->actingAs($user)->patch('/users/update', $editedUser);
+
+    //     $this->assertDatabaseHas('users', $editedUser);
+
+    //     $response->assertRedirect($redirect);
+    // }
 }
