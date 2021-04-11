@@ -32,7 +32,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]));
         
-        dump($request->session()->all());
+        // dump($request->session()->get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
         return redirect('top');
     }
 
@@ -47,10 +47,15 @@ class UserController extends Controller
     */
     public function update(UserFormRequest $request)
     {
-        $user = User::find($request->id);
-        $editedUser = $request->all();
-        $user->fill($editedUser)->save();
+        $currentUserId = $request->session()->get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d');
+
+        if (Auth::id() === $currentUserId) {
+            $user = User::find($currentUserId);
+            $editedUser = $request->all();
+            $user->fill($editedUser)->save();
+        }
         
+        dump($request->session()->all());
         return redirect('users');
     }
 }
