@@ -49,7 +49,7 @@ class UserControllerTest extends TestCase
     }
 
     /**
-     * ユーザー編集フォームにアクセス出来るかテスト
+     * ユーザー編集フォームにアクセスし、編集ページがユーザー情報と共に返ってくるかテスト
      * 
      * @return void
      */
@@ -64,16 +64,12 @@ class UserControllerTest extends TestCase
         $response->assertSee($user->user_name, $user->birthday, $user->sex, $user->former_job, $user->job, $user->school_id);
     }
 
+    /**
+     * ログイン前のユーザーのアクセスに対してログインページにリダイレクトすることをテスト
+     * 
+     * @return void
+     */
     public function testEdit_異常系_未ログイン()
-    {   
-        $user = User::factory()->make();
-
-        $response = $this->get('/users/edit');
-
-        $response->assertRedirect('login');
-    }
-
-    public function testEdit_異常系_()
     {   
         $user = User::factory()->make();
 
@@ -87,81 +83,81 @@ class UserControllerTest extends TestCase
      * 
      * @return void
      */
-    // public function testUpdate_正常系()
-    // {
-    //     Auth::login($user = User::factory()->create());
+    public function testUpdate_正常系()
+    {
+        Auth::login($user = User::factory()->create());
 
-    //     $editedForm = [
-    //         'user_name' => '山本 次郎',
-    //         'birthday' => '2004-9-30 00:00:00.000000',
-    //         'sex' => 1,
-    //         'former_job' => 'ニート',
-    //         'job' => 'フリーター',
-    //         'school_id' => 2,
-    //     ];
+        $editedForm = [
+            'user_name' => '山本 次郎',
+            'birthday' => '2004-9-30 00:00:00.000000',
+            'sex' => 1,
+            'former_job' => 'ニート',
+            'job' => 'フリーター',
+            'school_id' => 2,
+        ];
 
-    //     $response = $this->actingAs($user)->patch('/users/update', $editedForm);
+        $response = $this->actingAs($user)->patch('/users/update', $editedForm);
 
-    //     $this->assertDatabaseHas('users', $editedForm);
+        $this->assertDatabaseHas('users', $editedForm);
 
-    //     $response->assertRedirect('users');
-    // }
+        $response->assertRedirect('users');
+    }
 
     /**
      * ログイン前のユーザーのアクセスに対してログインページにリダイレクトすることをテスト
      * 
      * @return void
      */
-    // public function testUpdate_異常系_未ログイン()
-    // {
-    //     $editedForm = [
-    //         'user_name' => '山本 次郎',
-    //         'birthday' => '2004-9-30 00:00:00.000000',
-    //         'sex' => 1,
-    //         'former_job' => 'ニート',
-    //         'job' => 'フリーター',
-    //         'school_id' => 2,
-    //     ];
+    public function testUpdate_異常系_未ログイン()
+    {
+        $editedForm = [
+            'user_name' => '山本 次郎',
+            'birthday' => '2004-9-30 00:00:00.000000',
+            'sex' => 1,
+            'former_job' => 'ニート',
+            'job' => 'フリーター',
+            'school_id' => 2,
+        ];
 
-    //     $response = $this->patch('/users/update', $editedForm);
+        $response = $this->patch('/users/update', $editedForm);
 
-    //     $this->assertDatabaseMissing('users', $editedForm);
+        $this->assertDatabaseMissing('users', $editedForm);
 
-    //     $response->assertRedirect('login');
-    // }
+        $response->assertRedirect('login');
+    }
 
     /**
      * リクエストに不適切なフィールドがあれば403を返すことをテスト
      * 
      * @return void
      */
-    // public function testUpdate_異常系_不適切なリクエスト()
-    // {
-    //     Auth::login($user = User::factory()->create());
+    public function testUpdate_異常系_不適切なリクエスト()
+    {
+        Auth::login($user = User::factory()->create());
 
-    //     $editedForm = [
-    //         'bad_request' => 'bad',
-    //         'user_name' => '山本 次郎',
-    //         'birthday' => '2004-9-30 00:00:00.000000',
-    //         'sex' => 1,
-    //         'former_job' => 'ニート',
-    //         'job' => 'フリーター',
-    //         'school_id' => 2,
-    //     ];
+        $editedForm = [
+            'bad_request' => 'bad',
+            'user_name' => '山本 次郎',
+            'birthday' => '2004-9-30 00:00:00.000000',
+            'sex' => 1,
+            'former_job' => 'ニート',
+            'job' => 'フリーター',
+            'school_id' => 2,
+        ];
 
-    //     $resultForm = [
-    //         'user_name' => '山本 次郎',
-    //         'birthday' => '2004-9-30 00:00:00.000000',
-    //         'sex' => 1,
-    //         'former_job' => 'ニート',
-    //         'job' => 'フリーター',
-    //         'school_id' => 2,
-    //     ];
+        $resultForm = [
+            'user_name' => '山本 次郎',
+            'birthday' => '2004-9-30 00:00:00.000000',
+            'sex' => 1,
+            'former_job' => 'ニート',
+            'job' => 'フリーター',
+            'school_id' => 2,
+        ];
 
-    //     $response = $this->actingAs($user)->patch('/users/update', $editedForm);
+        $response = $this->actingAs($user)->patch('/users/update', $editedForm);
 
-    //     $this->assertDatabaseMissing('users', $resultForm);
+        $this->assertDatabaseMissing('users', $resultForm);
 
-    //     $response->assertRedirect(403);
-    // }
+        $response->assertRedirect(403);
+    }
 }
