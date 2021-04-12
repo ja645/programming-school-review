@@ -31,8 +31,6 @@ class UserControllerTest extends TestCase
      */
     public function testCreate()
     {
-        // $this->withoutMiddleware();
-
         $user = [
             'user_name' => '田中 太郎',
             'birthday' => '2013-5-30 00:00:00.000000',
@@ -64,11 +62,74 @@ class UserControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testUpdate_正常系()
+    /**
+     * ユーザーの更新が成功することをテスト
+     * 
+     * @return void
+     */
+    // public function testUpdate_正常系()
+    // {
+    //     Auth::login($user = User::factory()->create());
+
+    //     $editedForm = [
+    //         'user_name' => '山本 次郎',
+    //         'birthday' => '2004-9-30 00:00:00.000000',
+    //         'sex' => 1,
+    //         'former_job' => 'ニート',
+    //         'job' => 'フリーター',
+    //         'school_id' => 2,
+    //     ];
+
+    //     $response = $this->actingAs($user)->patch('/users/update', $editedForm);
+
+    //     $this->assertDatabaseHas('users', $editedForm);
+
+    //     $response->assertRedirect('users');
+    // }
+
+    /**
+     * ログイン前のユーザーのアクセスに対してログインページにリダイレクトすることをテスト
+     * 
+     * @return void
+     */
+    // public function testUpdate_異常系_未ログイン()
+    // {
+    //     $editedForm = [
+    //         'user_name' => '山本 次郎',
+    //         'birthday' => '2004-9-30 00:00:00.000000',
+    //         'sex' => 1,
+    //         'former_job' => 'ニート',
+    //         'job' => 'フリーター',
+    //         'school_id' => 2,
+    //     ];
+
+    //     $response = $this->patch('/users/update', $editedForm);
+
+    //     $this->assertDatabaseMissing('users', $editedForm);
+
+    //     $response->assertRedirect('login');
+    // }
+
+    /**
+     * リクエストに不適切なフィールドがあれば403を返すことをテスト
+     * 
+     * @return void
+     */
+    public function testUpdate_異常系_不適切なリクエスト()
     {
         Auth::login($user = User::factory()->create());
 
         $editedForm = [
+            'bad_request' => 'bad',
+            'user_name' => '山本 次郎',
+            'birthday' => '2004-9-30 00:00:00.000000',
+            'sex' => 1,
+            'former_job' => 'ニート',
+            'job' => 'フリーター',
+            'school_id' => 2,
+        ];
+
+        $resultForm = [
             'user_name' => '山本 次郎',
             'birthday' => '2004-9-30 00:00:00.000000',
             'sex' => 1,
@@ -79,33 +140,8 @@ class UserControllerTest extends TestCase
 
         $response = $this->actingAs($user)->patch('/users/update', $editedForm);
 
-        $this->assertDatabaseHas('users', $editedForm);
+        $this->assertDatabaseMissing('users', $resultForm);
 
-        $response->assertRedirect('users');
+        $response->assertRedirect(403);
     }
-
-    // public function testUpdate_異常系()
-    // {
-    //     $this->withoutMiddleware();
-
-    //     $user = User::factory()->create();
-
-    //     $userId = $user->id;
-
-    //     $editedUser = [
-    //         'id' => $userId,
-    //         'user_name' => '山本 次郎',
-    //         'birthday' => '2004-9-30 00:00:00.000000',
-    //         'sex' => 1,
-    //         'former_job' => 'ニート',
-    //         'job' => 'フリーター',
-    //         'school_id' => 2,
-    //     ];
-
-    //     $response = $this->actingAs($user)->patch('/users/update', $editedUser);
-
-    //     $this->assertDatabaseHas('users', $editedUser);
-
-    //     $response->assertRedirect($redirect);
-    // }
 }

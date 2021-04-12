@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Requests\UserFormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -47,13 +48,25 @@ class UserController extends Controller
     */
     public function update(UserFormRequest $request)
     {
+        //セッションから、リクエストしてきたユーザーのidを取り出す
         $session = config('hideSessionId.session-id');
         $sessionId = $request->session()->get($session);
 
-        $user = User::find($sessionId);
-        $editedUser = $request->all();
-        $user->fill($editedUser)->save();
-        
-        return redirect('users');
+        //リクエストの中身に受け付けないフィールドが含まれるか調べる
+        $correctFields = ['user_name', 'birthday', 'sex', 'former_job', 'job', 'school_id'];
+        $requestFields = $request->all();
+        $exceptFields = Arr::except($requestFields, $correctFields);
+
+        if (Auth::id() !== $sessionId) {
+            return redirect(403);
+        } elseif (empty($exceptFields) === false) {
+            return redirect(403);
+        } else {
+            $user = User::find($sessionId);
+            $editedUser = $request->all();
+            $user->fill($editedUser)->save();
+
+            return redirect('users');
+        }
     }
 }
