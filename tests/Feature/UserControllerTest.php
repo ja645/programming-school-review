@@ -53,13 +53,33 @@ class UserControllerTest extends TestCase
      * 
      * @return void
      */
-    public function testEdit()
+    public function testEdit_正常系()
     {   
-        $user = User::factory()->create();
-
+        Auth::login($user = User::factory()->create());
+        
         $response = $this->actingAs($user)->get('/users/edit');
 
-        $response->assertStatus(200);
+        $response->assertStatus(200)->assertViewIs('auth.user.edit');
+
+        $response->assertSee($user->user_name, $user->birthday, $user->sex, $user->former_job, $user->job, $user->school_id);
+    }
+
+    public function testEdit_異常系_未ログイン()
+    {   
+        $user = User::factory()->make();
+
+        $response = $this->get('/users/edit');
+
+        $response->assertRedirect('login');
+    }
+
+    public function testEdit_異常系_()
+    {   
+        $user = User::factory()->make();
+
+        $response = $this->get('/users/edit');
+
+        $response->assertRedirect('login');
     }
 
     /**
@@ -115,33 +135,33 @@ class UserControllerTest extends TestCase
      * 
      * @return void
      */
-    public function testUpdate_異常系_不適切なリクエスト()
-    {
-        Auth::login($user = User::factory()->create());
+    // public function testUpdate_異常系_不適切なリクエスト()
+    // {
+    //     Auth::login($user = User::factory()->create());
 
-        $editedForm = [
-            'bad_request' => 'bad',
-            'user_name' => '山本 次郎',
-            'birthday' => '2004-9-30 00:00:00.000000',
-            'sex' => 1,
-            'former_job' => 'ニート',
-            'job' => 'フリーター',
-            'school_id' => 2,
-        ];
+    //     $editedForm = [
+    //         'bad_request' => 'bad',
+    //         'user_name' => '山本 次郎',
+    //         'birthday' => '2004-9-30 00:00:00.000000',
+    //         'sex' => 1,
+    //         'former_job' => 'ニート',
+    //         'job' => 'フリーター',
+    //         'school_id' => 2,
+    //     ];
 
-        $resultForm = [
-            'user_name' => '山本 次郎',
-            'birthday' => '2004-9-30 00:00:00.000000',
-            'sex' => 1,
-            'former_job' => 'ニート',
-            'job' => 'フリーター',
-            'school_id' => 2,
-        ];
+    //     $resultForm = [
+    //         'user_name' => '山本 次郎',
+    //         'birthday' => '2004-9-30 00:00:00.000000',
+    //         'sex' => 1,
+    //         'former_job' => 'ニート',
+    //         'job' => 'フリーター',
+    //         'school_id' => 2,
+    //     ];
 
-        $response = $this->actingAs($user)->patch('/users/update', $editedForm);
+    //     $response = $this->actingAs($user)->patch('/users/update', $editedForm);
 
-        $this->assertDatabaseMissing('users', $resultForm);
+    //     $this->assertDatabaseMissing('users', $resultForm);
 
-        $response->assertRedirect(403);
-    }
+    //     $response->assertRedirect(403);
+    // }
 }

@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function add()
     {
-        return view('auth.user.create');
+        return view('user.create');
     }
 
     /**
@@ -33,13 +33,26 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]));
         
-        // dump($request->session()->all());
         return redirect('top');
     }
 
-    public function edit()
+    /**
+     * @param \Illuminate\Http\Request $request
+     */
+    public function edit(Request $request)
     {
+        //セッションから、リクエストしてきたユーザーのidを取り出す
+        $session = config('hideSessionId.session-id');
+        $sessionId = $request->session()->get($session);
 
+        $profile = User::find($sessionId);
+
+        if (Auth::id() !== $sessionId) {
+            return redirect(403);
+        } else {
+            return view('auth.user.edit', ['profile_form' => $profile]);
+        }
+        
     }
 
     /**
