@@ -32,7 +32,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]));
         
-        dump($request->session()->all());
+        // dump($request->session()->all());
         return redirect('top');
     }
 
@@ -47,7 +47,10 @@ class UserController extends Controller
     */
     public function update(UserFormRequest $request)
     {
-        $user = User::find($request->id);
+        $session = config('hideSessionId.session-id');
+        $sessionId = $request->session()->get($session);
+
+        $user = User::find($sessionId);
         $editedUser = $request->all();
         $user->fill($editedUser)->save();
         

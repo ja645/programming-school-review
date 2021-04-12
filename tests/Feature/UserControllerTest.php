@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -65,14 +66,9 @@ class UserControllerTest extends TestCase
 
     public function testUpdate_正常系()
     {
-        // $this->withoutMiddleware();
+        Auth::login($user = User::factory()->create());
 
-        $user = User::factory()->create();
-
-        $userId = $user->id;
-
-        $editedUser = [
-            'id' => $userId,
+        $editedForm = [
             'user_name' => '山本 次郎',
             'birthday' => '2004-9-30 00:00:00.000000',
             'sex' => 1,
@@ -81,9 +77,9 @@ class UserControllerTest extends TestCase
             'school_id' => 2,
         ];
 
-        $response = $this->actingAs($user)->patch('/users/update', $editedUser);
+        $response = $this->actingAs($user)->patch('/users/update', $editedForm);
 
-        $this->assertDatabaseHas('users', $editedUser);
+        $this->assertDatabaseHas('users', $editedForm);
 
         $response->assertRedirect('users');
     }
