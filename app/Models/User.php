@@ -12,7 +12,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass nonassignable.
      *
      * @var array
      */
@@ -38,4 +38,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * ユーザーの投稿したレビューを取得
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
