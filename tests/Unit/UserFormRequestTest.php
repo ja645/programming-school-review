@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Validator;
 class UserFormRequestTest extends TestCase
 {
     /**
-     * 
+     * UserFormRequestが正しく機能するかテスト
      * @param array
      * @param array
      * @param boolean
-     * @dataProvider dataUserRegistration
+     * @dataProvider dataUserForm
      */
-    public function testUserRegistration(array $keys, array $values, bool $expected) :void
-    {
+    public function testWorkUserFormRequest(array $keys, array $values, bool $expected) :void
+    {        
         $dataList = array_combine($keys, $values);
         
         $request = new UserFormRequest();
@@ -29,16 +29,16 @@ class UserFormRequestTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function dataUserRegistration()
+    public function dataUserForm()
     {
         return [
-            'OK' => [
+            '正常_nullableがnull' => [
                 ['user_name', 'birthday', 'sex', 'former_job', 'job', 'school_id', 'email', 'password', 'password_confirmation'],                        
                 ['田中 太郎', "2013-5-30 00:00:00.000000", 1, null, null, 1, 'test@gmail.com', 'password1', 'password1'],
                 true
             ],
-            'OK2' => [
-                ['user_name', 'birthday', 'sex', 'former_job', 'job', 'school_id', 'email', 'password', 'password_confirmation'],                        
+            '正常' => [
+                ['users_name', 'birthday', 'sex', 'former_job', 'job', 'school_id', 'email', 'password', 'password_confirmation'],                        
                 ['田中 太郎', "2013-5-30 00:00:00.000000", 1, '公務員', 'エンジニア', 1, 'test@gmail.com', 'password1', 'password1'],
                 true
             ],

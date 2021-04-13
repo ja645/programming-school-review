@@ -17,6 +17,7 @@ class ReviewsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('school_id')->constrained();
+            $table->integer('course_id');
             $table->integer('purpose');
             $table->boolean('result');
             $table->string('language');
