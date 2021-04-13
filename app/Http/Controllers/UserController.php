@@ -38,6 +38,7 @@ class UserController extends Controller
 
     /**
      * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function edit(Request $request)
     {

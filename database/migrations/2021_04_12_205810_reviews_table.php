@@ -16,7 +16,7 @@ class ReviewsTable extends Migration
         Schema::create('reviews', function(Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('school_id')->constrained();
+            $table->integer('school_id');
             $table->integer('course_id');
             $table->integer('purpose');
             $table->boolean('result');

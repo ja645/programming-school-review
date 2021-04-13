@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,10 @@ Route::middleware(['guest'])->group(function() {
 Route::middleware(['auth'])->group(function() {
   Route::get('/', [HomeController::class, 'index'])->name('top');
   Route::get('/users/edit', [UserController::class, 'edit'])->name('edit');
-  Route::patch('/users/update', [UserController::class, 'update'])->name('update'); 
+  Route::patch('/users/update', [UserController::class, 'update'])->name('update');
+
+  Route::get('/reviews/add', [ReviewController::class, 'add']);
+  Route::post('/reviews/create', [ReviewController::class, 'create']);
 });
 
 require __DIR__.'/auth.php';
