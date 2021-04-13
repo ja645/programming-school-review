@@ -63,8 +63,8 @@ class UserController extends Controller
     public function update(UserFormRequest $request)
     {
         //セッションから、リクエストしてきたユーザーのidを取り出す
-        $session = config('hideSessionId.session-id');
-        $sessionId = $request->session()->get($session);
+        $sessionKey = config('hideSessionId.session-id');
+        $sessionId = $request->session()->get($sessionKey);
 
         //リクエストの中身に受け付けないフィールドが含まれるか調べる
         $correctFields = ['user_name', 'birthday', 'sex', 'former_job', 'job', 'school_id'];

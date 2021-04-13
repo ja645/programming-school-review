@@ -28,8 +28,8 @@ class ReviewController extends Controller
     public function create(ReviewFormRequest $request)
     {
         //セッションから、リクエストしてきたユーザーのidを取り出す
-        $session = config('hideSessionId.session-id');
-        $sessionId = $request->session()->get($session);
+        $sessionKey = config('hideSessionId.session-id');
+        $sessionId = $request->session()->get($sessionKey);
 
         //リクエストの中身に受け付けないフィールドが含まれるか調べる
         $correctFields = [
@@ -41,10 +41,15 @@ class ReviewController extends Controller
         $exceptFields = Arr::except($requestFields, $correctFields);
 
         if (Auth::id() !== $sessionId) {
+
             return redirect(403);
+
         } elseif (empty($exceptFields) === false) {
+            
             return redirect(403);
+
         } else {
+            
             $requestFields['user_id'] = $sessionId;
             Review::create($requestFields);
 

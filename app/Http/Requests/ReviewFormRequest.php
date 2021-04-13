@@ -24,7 +24,6 @@ class ReviewFormRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'user_id' => 'required|integer',
             'school_id' => 'required|integer',
             'course_id' => 'required|integer',
             'purpose' => 'required|integer|between:0,4',
