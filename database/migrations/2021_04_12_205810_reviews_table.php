@@ -20,7 +20,8 @@ class ReviewsTable extends Migration
             $table->string('course');
             $table->integer('tuition');
             $table->integer('purpose');
-            $table->integer('when_did');
+            $table->date('when_start');
+            $table->date('when_end');
             $table->boolean('at_school');
             $table->integer('achievement');
             //st = satisfactionの意
