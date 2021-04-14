@@ -32,38 +32,38 @@ class ReviewControllerTest extends TestCase
      * 
      * @return void
      */
-    public function testCreate_正常系()
-    {
-        //認証済みユーザーつくる
-        Auth::login($user = User::factory()->create());
+    // public function testCreate_正常系()
+    // {
+    //     //認証済みユーザーつくる
+    //     Auth::login($user = User::factory()->create());
 
-        //サンプルレビューデータ作る
-        $review = [
-            'school_id' => rand(0,20),
-            'course_id' => rand(0,4),
-            'purpose' => rand(0,4),
-            'result' => true,
-            'language' => 'PHP Laravel',
-            'title' => str_repeat('a test title', 2),
-            'tuition' => rand(0,4),
-            'term' => rand(0,4),
-            'curriculum' => rand(0,4),
-            'mentor' => rand(0,4),
-            'support' => rand(0,4),
-            'staff' => rand(0,4),
-            'judgment' => rand(0,4),
-            'report' => str_repeat('a test', 20),
-        ];
+    //     //サンプルレビューデータ作る
+    //     $review = [
+    //         'school_id' => rand(0,20),
+    //         'course_id' => rand(0,4),
+    //         'purpose' => rand(0,4),
+    //         'result' => true,
+    //         'language' => 'PHP Laravel',
+    //         'title' => str_repeat('a test title', 2),
+    //         'tuition' => rand(0,4),
+    //         'term' => rand(0,4),
+    //         'curriculum' => rand(0,4),
+    //         'mentor' => rand(0,4),
+    //         'support' => rand(0,4),
+    //         'staff' => rand(0,4),
+    //         'judgment' => rand(0,4),
+    //         'report' => str_repeat('a test', 20),
+    //     ];
 
-        //ユーザーとしてpostで送る
-        $response = $this->actingAs($user)->post('/reviews/create', $review);
+    //     //ユーザーとしてpostで送る
+    //     $response = $this->actingAs($user)->post('/reviews/create', $review);
 
-        //dbにあるか確認
-        $this->assertDatabaseHas('reviews', $review);
+    //     //dbにあるか確認
+    //     $this->assertDatabaseHas('reviews', $review);
 
-        //リダイレクトを確認
-        $response->assertStatus(200)->assertViewIs('auth.review.done');
-    }
+    //     //リダイレクトを確認
+    //     $response->assertStatus(200)->assertViewIs('auth.review.done');
+    // }
 
     /**
      * レビューの削除が成功することをテスト
@@ -71,7 +71,16 @@ class ReviewControllerTest extends TestCase
      */
     public function testDelete()
     {
-        
+        Auth::login($user = User::factory()->create());
+
+        $response = $this->actingAs($user)->delete('/reviews/delete', ['id' => 1,]);
+
+        $hisReview = Review::find($user->id);
+
+        //dbに存在しないことを確認
+        $this->assertDatabaseHas('reviews', []);
+
+        $response->assertStatus(200)->assertViewIs('auth.review.deleted');
     }
 
 }

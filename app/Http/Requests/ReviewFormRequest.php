@@ -29,7 +29,7 @@ class ReviewFormRequest extends FormRequest
             'course' => 'required|string',
             'tuition' => 'required|integer',
             'purpose' => 'required|integer|between:0,4',
-            'when_did' => 'required|integer',
+            'when_did' => 'required|integer|digits:16',
             'at_school' => 'required|boolean',
             'achievement' => 'required|integer|between:0,4',
             'st_tuition' => 'required|integer|between:0,4',

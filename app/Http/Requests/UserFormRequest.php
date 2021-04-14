@@ -34,7 +34,6 @@ class UserFormRequest extends FormRequest
             'sex'=> 'required|integer|min:0|max:2',
             'former_job' => 'nullable',
             'job' => 'nullable',
-            'school_id' => 'required|integer',
         ];
         
         switch ($route) {

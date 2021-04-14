@@ -62,6 +62,17 @@ class ReviewFormRequestTest extends TestCase
                 false,
             ],
 
+            'when_didが指定桁数外でエラー' => [
+                [
+                    'user_id' => 1, 'school_id' => 1, 'course' => 'test Ex course', 'tuition' => 560,000,
+                    'purpose' => 1, 'when_did' => 123456789012345, 'at_school' => true, 'achievement' => 1,
+                    'st_tuition' => 1, 'st_term' => 1, 'st_curriculum' => 1, 'st_mentor' => 1, 'st_support' => 1, 'st_staff' => 1, 'total_judg' => 1,
+                    'title' => 'a test title a test title',
+                    'report' => str_repeat('a　test', 20), //全角スペース
+                ],
+                false,
+            ],
+
             'at_schoolが論理値以外でエラー' => [
                 [
                     'user_id' => 1, 'school_id' => 1, 'course' => 'test Ex course', 'tuition' => 560,000,
