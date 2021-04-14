@@ -31,68 +31,68 @@ class ReviewFormRequestTest extends TestCase
         return [
             '正常' => [
                 [
-                    'user_id' => 1, 'school_id' => 1, 'course_id' => 1,
-                    'purpose' => 1, 'result' => true, 'language' => 'PHP Laravel',
+                    'user_id' => 1, 'school_id' => 1, 'course' => 'test Ex course', 'tuition' => 560,000,
+                    'purpose' => 1, 'when_did' => 2018040120180630, 'at_school' => true, 'achievement' => 1,
+                    'st_tuition' => 1, 'st_term' => 1, 'st_curriculum' => 1, 'st_mentor' => 1, 'st_support' => 1, 'st_staff' => 1, 'total_judg' => 1,
                     'title' => 'a test title a test title',
-                    'tuition' => 1, 'term' => 1, 'curriculum' => 1, 'mentor' => 1, 'support' => 1, 'staff' => 1, 'judgment' => 1,
                     'report' => str_repeat('a　test', 20), //全角スペース
                 ],
-                true
+                true,
             ],
 
             'user_idがnullでエラー' => [
                 [
-                    'user_id' => null, 'school_id' => 1, 'course_id' => 1,
-                    'purpose' => 1, 'result' => true, 'language' => 'PHP Laravel',
+                    'user_id' => null, 'school_id' => 1, 'course' => 'test Ex course', 'tuition' => 560,000,
+                    'purpose' => 1, 'when_did' => 2018040120180630, 'at_school' => true, 'achievement' => 1,
+                    'st_tuition' => 1, 'st_term' => 1, 'st_curriculum' => 1, 'st_mentor' => 1, 'st_support' => 1, 'st_staff' => 1, 'total_judg' => 1,
                     'title' => 'a test title a test title',
-                    'tuition' => 1, 'term' => 1, 'curriculum' => 1, 'mentor' => 1, 'support' => 1, 'staff' => 1, 'judgment' => 1,
-                    'report' => str_repeat('a　test', 20),
+                    'report' => str_repeat('a　test', 20), //全角スペース
                 ],
-                false
+                false,
             ],
 
             'purposeが範囲外でエラー' => [
                 [
-                    'user_id' => 1, 'school_id' => 1, 'course_id' => 1,
-                    'purpose' => 5, 'result' => true, 'language' => 'PHP Laravel',
+                    'user_id' => 1, 'school_id' => 1, 'course' => 'test Ex course', 'tuition' => 560,000,
+                    'purpose' => 5, 'when_did' => 2018040120180630, 'at_school' => true, 'achievement' => 1,
+                    'st_tuition' => 1, 'st_term' => 1, 'st_curriculum' => 1, 'st_mentor' => 1, 'st_support' => 1, 'st_staff' => 1, 'total_judg' => 1,
                     'title' => 'a test title a test title',
-                    'tuition' => 1, 'term' => 1, 'curriculum' => 1, 'mentor' => 1, 'support' => 1, 'staff' => 1, 'judgment' => 1,
-                    'report' => str_repeat('a　test', 20),
+                    'report' => str_repeat('a　test', 20), //全角スペース
                 ],
-                false
+                false,
             ],
 
-            'resultが論理値以外でエラー' => [
+            'at_schoolが論理値以外でエラー' => [
                 [
-                    'user_id' => 1, 'school_id' => 1, 'course_id' => 1,
-                    'purpose' => 1, 'result' => 2, 'language' => 'PHP Laravel',
+                    'user_id' => 1, 'school_id' => 1, 'course' => 'test Ex course', 'tuition' => 560,000,
+                    'purpose' => 1, 'when_did' => 2018040120180630, 'at_school' => 2, 'achievement' => 1,
+                    'st_tuition' => 1, 'st_term' => 1, 'st_curriculum' => 1, 'st_mentor' => 1, 'st_support' => 1, 'st_staff' => 1, 'total_judg' => 1,
                     'title' => 'a test title a test title',
-                    'tuition' => 1, 'term' => 1, 'curriculum' => 1, 'mentor' => 1, 'support' => 1, 'staff' => 1, 'judgment' => 1,
-                    'report' => str_repeat('a　test', 20),
+                    'report' => str_repeat('a　test', 20), //全角スペース
                 ],
-                false
+                false,
             ],
 
-            'titleが文字数制限外でエラー' => [
+            'titleが20文字以上でエラー' => [
                 [
-                    'user_id' => 1, 'school_id' => 1, 'course_id' => 1,
-                    'purpose' => 1, 'result' => true, 'language' => 'PHP Laravel',
+                    'user_id' => 1, 'school_id' => 1, 'course' => 'test Ex course', 'tuition' => 560,000,
+                    'purpose' => 1, 'when_did' => 2018040120180630, 'at_school' => true, 'achievement' => 1,
+                    'st_tuition' => 1, 'st_term' => 1, 'st_curriculum' => 1, 'st_mentor' => 1, 'st_support' => 1, 'st_staff' => 1, 'total_judg' => 1,
                     'title' => 'a test title a test title a',
-                    'tuition' => 1, 'term' => 1, 'curriculum' => 1, 'mentor' => 1, 'support' => 1, 'staff' => 1, 'judgment' => 1,
-                    'report' => str_repeat('a　test', 20),
+                    'report' => str_repeat('a　test', 20), //全角スペース
                 ],
-                false
+                false,
             ],
 
-            'reportが文字数制限外でエラー' => [
+            'reportが100文字以下でエラー' => [
                 [
-                    'user_id' => 1, 'school_id' => 1, 'course_id' => 1,
-                    'purpose' => 1, 'result' => true, 'language' => 'PHP Laravel',
+                    'user_id' => 1, 'school_id' => 1, 'course' => 'test Ex course', 'tuition' => 560,000,
+                    'purpose' => 1, 'when_did' => 2018040120180630, 'at_school' => true, 'achievement' => 1,
+                    'st_tuition' => 1, 'st_term' => 1, 'st_curriculum' => 1, 'st_mentor' => 1, 'st_support' => 1, 'st_staff' => 1, 'total_judg' => 1,
                     'title' => 'a test title a test title',
-                    'tuition' => 1, 'term' => 1, 'curriculum' => 1, 'mentor' => 1, 'support' => 1, 'staff' => 1, 'judgment' => 1,
-                    'report' => str_repeat('a　te', 33),
+                    'report' => str_repeat('a　te', 33), //全角スペース
                 ],
-                false
+                false,
             ],
         ];
     }

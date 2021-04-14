@@ -64,4 +64,14 @@ class ReviewControllerTest extends TestCase
         //リダイレクトを確認
         $response->assertStatus(200)->assertViewIs('auth.review.done');
     }
+
+    /**
+     * レビューの削除が成功することをテスト
+     * @return void
+     */
+    public function testDelete()
+    {
+        
+    }
+
 }

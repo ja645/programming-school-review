@@ -16,19 +16,22 @@ class ReviewsTable extends Migration
         Schema::create('reviews', function(Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->integer('school_id');
-            $table->integer('course_id');
-            $table->integer('purpose');
-            $table->boolean('result');
-            $table->string('language');
-            $table->string('title');
+            $table->foreignId('school_id')->constrained();
+            $table->string('course');
             $table->integer('tuition');
-            $table->integer('term');
-            $table->integer('curriculum');
-            $table->integer('mentor');
-            $table->integer('support');
-            $table->integer('staff');
-            $table->integer('judgment');
+            $table->integer('purpose');
+            $table->integer('when_did');
+            $table->boolean('at_school');
+            $table->integer('achievement');
+            //st = satisfactionの意
+            $table->integer('st_tuition');
+            $table->integer('st_term');
+            $table->integer('st_curriculum');
+            $table->integer('st_mentor');
+            $table->integer('st_support');
+            $table->integer('st_staff');
+            $table->integer('total_judg');
+            $table->string('title');
             $table->string('report');
             $table->timestamp('created_at');
             $table->timestamp('updated_at');

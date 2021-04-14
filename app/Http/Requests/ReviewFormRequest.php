@@ -24,11 +24,21 @@ class ReviewFormRequest extends FormRequest
     public function rules()
     {
         $rules = [
+            'user_id' => 'required|integer',
             'school_id' => 'required|integer',
-            'course_id' => 'required|integer',
+            'course' => 'required|string',
+            'tuition' => 'required|integer',
             'purpose' => 'required|integer|between:0,4',
-            'result' => 'required|boolean',
-            'language' => 'required|string',
+            'when_did' => 'required|integer',
+            'at_school' => 'required|boolean',
+            'achievement' => 'required|integer|between:0,4',
+            'st_tuition' => 'required|integer|between:0,4',
+            'st_term' => 'required|integer|between:0,4',
+            'st_curriculum' => 'required|integer|between:0,4',
+            'st_mentor' => 'required|integer|between:0,4',
+            'st_support' => 'required|integer|between:0,4',
+            'st_staff' => 'required|integer|between:0,4',
+            'total_judg' => 'required|integer|between:0,4',
             'title' => [
                 'required',
                 'string',
@@ -40,13 +50,6 @@ class ReviewFormRequest extends FormRequest
                     }
                 },
             ],
-            'tuition' => 'required|integer|between:0,4',
-            'term' => 'required|integer|between:0,4',
-            'curriculum' => 'required|integer|between:0,4',
-            'mentor' => 'required|integer|between:0,4',
-            'support' => 'required|integer|between:0,4',
-            'staff' => 'required|integer|between:0,4',
-            'judgment' => 'required|integer|between:0,4',
             'report' => [
                 'required',
                 'string',
