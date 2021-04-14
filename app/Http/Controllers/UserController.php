@@ -11,12 +11,17 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    /**
+     * 新規ユーザー登録ページを表示
+     * @return view
+     */
     public function add()
     {
         return view('user.create');
     }
 
     /**
+     * 新規ユーザーを保存
      * @param \App\Http\Requests\UserFormRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -37,6 +42,7 @@ class UserController extends Controller
     }
 
     /**
+     * ユーザー情報の編集ページを表示
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -57,8 +63,9 @@ class UserController extends Controller
     }
 
     /**
+    * ユーザー情報を更新
     * @param \App\Http\Requests\UserFormRequest $request
-    * @return \Illuminate\Http\Response 
+    * @return \Illuminate\Http\RedirectResponse 
     */
     public function update(UserFormRequest $request)
     {

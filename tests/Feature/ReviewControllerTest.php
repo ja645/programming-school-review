@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Review;
+use App\Models\School;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -40,18 +41,21 @@ class ReviewControllerTest extends TestCase
     //     //サンプルレビューデータ作る
     //     $review = [
     //         'school_id' => rand(0,20),
-    //         'course_id' => rand(0,4),
+    //         'course' => 'hogehoge',
+    //         'tuition' => 560000,
     //         'purpose' => rand(0,4),
-    //         'result' => true,
-    //         'language' => 'PHP Laravel',
+    //         'when_start' => '2018-04-01',
+    //         'when_end' => '2018-06-30',
+    //         'at_school' => true,
+    //         'achievement' => rand(0,4),
+    //         'st_tuition' => rand(0,4),
+    //         'st_term' => rand(0,4),
+    //         'st_curriculum' => rand(0,4),
+    //         'st_mentor' => rand(0,4),
+    //         'st_support' => rand(0,4),
+    //         'st_staff' => rand(0,4),
+    //         'total_judg' => rand(0,4),
     //         'title' => str_repeat('a test title', 2),
-    //         'tuition' => rand(0,4),
-    //         'term' => rand(0,4),
-    //         'curriculum' => rand(0,4),
-    //         'mentor' => rand(0,4),
-    //         'support' => rand(0,4),
-    //         'staff' => rand(0,4),
-    //         'judgment' => rand(0,4),
     //         'report' => str_repeat('a test', 20),
     //     ];
 
@@ -62,7 +66,7 @@ class ReviewControllerTest extends TestCase
     //     $this->assertDatabaseHas('reviews', $review);
 
     //     //リダイレクトを確認
-    //     $response->assertStatus(200)->assertViewIs('auth.review.done');
+    //     $response->assertStatus(200)->assertViewIs('auth.review.review');
     // }
 
     /**
@@ -71,16 +75,49 @@ class ReviewControllerTest extends TestCase
      */
     public function testDelete()
     {
+        //認証済みのユーザーを作成
         Auth::login($user = User::factory()->create());
 
-        $response = $this->actingAs($user)->delete('/reviews/delete', ['id' => 1,]);
+        //schoolsテーブルにデータを作る
+        School::create([
+            'name' => 'hogehoge',
+            'image_path' => 'hogehoge',
+            'school_url' => 'Hogehoge', 
+            'address' => 'hogehoge',
+            'learning_style' => 0,
+            'features' => 'hogehoge'
+        ]);
 
-        $hisReview = Review::find($user->id);
+        //作成したユーザーに紐付くサンプルレビューデータ作る
+        $reviewForm = [
+            'user_id' => $user->id,
+            'school_id' => 1,
+            'course' => 'hogehoge',
+            'tuition' => 560000,
+            'purpose' => rand(0,4),
+            'when_start' => '2018-04-01',
+            'when_end' => '2018-06-30',
+            'at_school' => true,
+            'achievement' => rand(0,4),
+            'st_tuition' => rand(0,4),
+            'st_term' => rand(0,4),
+            'st_curriculum' => rand(0,4),
+            'st_mentor' => rand(0,4),
+            'st_support' => rand(0,4),
+            'st_staff' => rand(0,4),
+            'total_judg' => rand(0,4),
+            'title' => str_repeat('a test title', 2),
+            'report' => str_repeat('a test', 20),
+        ];
+
+        $review = Review::create($reviewForm);
+
+        $response = $this->actingAs($user)->delete('/reviews/delete', ['id' => $review->id]);
 
         //dbに存在しないことを確認
-        $this->assertDatabaseHas('reviews', []);
+        $this->assertDatabaseMissing('reviews', $reviewForm);
 
-        $response->assertStatus(200)->assertViewIs('auth.review.deleted');
+        $response->assertStatus(200)->assertViewIs('auth.review.review');
     }
 
 }

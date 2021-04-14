@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function() {
 
   Route::get('/reviews/add', [ReviewController::class, 'add']);
   Route::post('/reviews/create', [ReviewController::class, 'create']);
+  Route::delete('/reviews/delete', [ReviewController::class, 'delete']);
 });
 
 require __DIR__.'/auth.php';

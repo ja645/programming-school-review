@@ -14,6 +14,7 @@ class ReviewController extends Controller
 {
     /**
      * 新規レビュー作成フォームを返す
+     * @return view
      */
     public function add()
     {
@@ -23,7 +24,7 @@ class ReviewController extends Controller
     /**
      * 新規レビューを作成
      * @param \App\Http\Requests\ReviewFormRequest $request
-     * @return 
+     * @return view | RedirectResponse
      */
     public function create(ReviewFormRequest $request)
     {
@@ -49,11 +50,37 @@ class ReviewController extends Controller
             return redirect(403);
 
         } else {
-            
+
             $requestFields['user_id'] = $sessionId;
             Review::create($requestFields);
 
-            return view('auth.review.done');
+            return view('auth.review.review');
         }
+    }
+
+    
+    /**
+     * レビューを削除
+     * @param \Illuminate\Http\Request $request
+     * @return view | RedirectResponse
+     */
+    public function delete(Request $request)
+    {
+        //リクエストからレビューのidを取得
+        $reviewId = $request->id;
+
+        //セッションから、リクエストしてきたユーザーのidを取り出す
+        $sessionKey = config('hideSessionId.session-id');
+        $sessionId = $request->session()->get($sessionKey);
+        
+        //ユーザーの指定したレビューをユーザーが持っているか確認
+        if (Review::find($reviewId)->user_id !== $sessionId) {
+            return redirect(403);
+        } else {
+            Review::find($reviewId)->delete();
+
+            return view('auth.review.review');
+        }
+        
     }
 }
