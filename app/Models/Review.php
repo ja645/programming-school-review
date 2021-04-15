@@ -25,4 +25,12 @@ class Review extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * レビューと、フォローしているユーザーを紐付けるfollowingを取得
+     */
+    public function followed()
+    {
+        return $this->hasMany(Following::class);
+    }
 }

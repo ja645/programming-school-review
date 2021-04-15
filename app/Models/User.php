@@ -46,4 +46,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class);
     }
+
+    /**
+     * ユーザーとフォローしているレビューを紐付けるfollowingを取得
+     */
+    public function follow()
+    {
+        return $this->hasMany(Following::class);
+    }
 }
