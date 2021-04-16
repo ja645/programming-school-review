@@ -29,6 +29,9 @@ class UserFormRequestTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    /**
+     * @return array
+     */
     public function dataUserForm()
     {
         return [

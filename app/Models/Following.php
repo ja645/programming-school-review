@@ -9,6 +9,9 @@ class Following extends Model
 {
     use HasFactory;
 
+    //updated_atカラムが存在しないことを指定
+    const UPDATED_AT = null;
+
     /**
      * The attributes that are mass assignable.
      *

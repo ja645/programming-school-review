@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule; //追記
 use Illuminate\Foundation\Http\FormRequest;
 
 class FollowRequest extends FormRequest
@@ -23,9 +24,38 @@ class FollowRequest extends FormRequest
      */
     public function rules()
     {
+        dump($this->input('follower_user_id'));
         return [
-            'follower_user_id' => 'required|integer',
-            'followed_review_id' => 'required|integer',
+            'follower_user_id' => [
+                'required',
+                'integer',
+                function ($attrubutes, $value, $fail) {
+                    $removeSpace = preg_replace("/( |　)/", "", $value);
+                    if (strlen($removeSpace) > 20) {
+                        return $fail('タイトルは20文字以内で入力してください。');
+                    }
+                },
+            ],
+
+            'poster_id' => [
+                'required',
+                'integer',
+                function ($attrubutes, $value, $fail) {
+                    if ($value === $this->input('follower_user_id')) {
+                        return $fail('自分のレビューは評価出来ません。');
+                    }
+                },
+            ],
+
+            'followed_review_id' => [
+                'required',
+                'integer',
+                /*'follow_user_id'との複合キーにunique制約を持たせる
+                  'follower_user_id'が一致するレコードにuniqueを適用する*/
+                Rule::unique('followings')->where(function($query) {
+                    $query->where('follower_user_id', $this->input('follower_user_id'));
+                }),
+            ],
         ];
     }
 }

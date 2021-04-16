@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
@@ -19,6 +20,8 @@ Route::middleware(['guest'])->group(function() {
   Route::get('/signup', [UserController::class, 'add'])->name('add');
   Route::post('/users/create', [UserController::class, 'create'])->name('create');
 });
+
+Route::post('/follow', [FollowController::class, 'followReview']);
 
 Route::middleware(['auth'])->group(function() {
   Route::get('/', [HomeController::class, 'index'])->name('top');

@@ -26,6 +26,9 @@ class ReviewFormRequestTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    /**
+     * @return array
+     */
     public function dataReviewForm()
     {
         return [
