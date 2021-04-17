@@ -22,7 +22,7 @@ class ReviewFactory extends Factory
     public function definition()
     {
         return [
-            'school_id' => rand(0,20),
+            'school_id' => 1,
             'course' => $this->faker->name,
             'tuition' => rand(100000, 999999),
             'purpose' => rand(0,4),

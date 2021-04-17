@@ -19,6 +19,7 @@ class Following extends Model
      */
     protected $fillable = [
         'follower_user_id',
+        'poster_id',
         'followed_review_id',
     ];
 

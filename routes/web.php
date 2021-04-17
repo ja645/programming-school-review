@@ -21,16 +21,17 @@ Route::middleware(['guest'])->group(function() {
   Route::post('/users/create', [UserController::class, 'create'])->name('create');
 });
 
-Route::post('/follow', [FollowController::class, 'followReview']);
 
 Route::middleware(['auth'])->group(function() {
   Route::get('/', [HomeController::class, 'index'])->name('top');
   Route::get('/users/edit', [UserController::class, 'edit'])->name('edit');
   Route::patch('/users/update', [UserController::class, 'update'])->name('update');
-
+  
   Route::get('/reviews/add', [ReviewController::class, 'add']);
   Route::post('/reviews/create', [ReviewController::class, 'create']);
   Route::delete('/reviews/delete', [ReviewController::class, 'delete']);
+  
+  Route::post('/follow', [FollowController::class, 'followReview']);
 });
 
 require __DIR__.'/auth.php';

@@ -26,16 +26,10 @@ class FollowRequest extends FormRequest
     {
         dump($this->input('follower_user_id'));
         return [
-            'follower_user_id' => [
-                'required',
-                'integer',
-                function ($attrubutes, $value, $fail) {
-                    $removeSpace = preg_replace("/( |　)/", "", $value);
-                    if (strlen($removeSpace) > 20) {
-                        return $fail('タイトルは20文字以内で入力してください。');
-                    }
-                },
-            ],
+            // 'follower_user_id' => [
+            //     'required',
+            //     'integer',
+            // ],
 
             'poster_id' => [
                 'required',
