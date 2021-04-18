@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function() {
   Route::delete('/reviews/delete', [ReviewController::class, 'delete']);
   
   Route::post('/follow', [FollowController::class, 'followReview']);
+  Route::delete('/follow/delete', [FollowController::class, 'unFollowReview']);
 });
 
 require __DIR__.'/auth.php';

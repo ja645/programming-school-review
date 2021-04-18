@@ -83,64 +83,86 @@ class FollowControllerTest extends TestCase
         $response->assertRedirect('login');
     }
 
-    /**
-     * 存在しないレビューをフォローしようとしてエラー
-     * @return void
-     */
-    public function testFollow_異常系_存在しないレビューをフォロー(): void
-    {
-        Auth::login($this->myself);
+    // /**
+    //  * 存在しないレビューをフォローしようとしてエラー
+    //  * @return void
+    //  */
+    // public function testFollow_異常系_存在しないレビューをフォロー(): void
+    // {
+    //     Auth::login($this->myself);
 
-        $reviewNoExists = $this->review->id + 1;
+    //     $reviewNoExists = $this->review->id + 1;
        
-        dump($reviewNoExists);
-        $response = $this->actingAs($this->myself)->post('/follow', [
-            'followed_review_id' => $reviewNoExists
-        ]);
+    //     dump($reviewNoExists);
+    //     $response = $this->actingAs($this->myself)->post('/follow', [
+    //         'followed_review_id' => $reviewNoExists
+    //     ]);
 
-        $this->assertDatabaseMissing('followings', [
-            'follower_user_id' => $this->myself->id, 'poster_id' => $this->myself->id, 'followed_review_id' => $reviewNoExists,
-        ]);
+    //     $this->assertDatabaseMissing('followings', [
+    //         'follower_user_id' => $this->myself->id, 'poster_id' => $this->myself->id, 'followed_review_id' => $reviewNoExists,
+    //     ]);
 
-        $response->assertStatus(200);
-    }
+    //     $response->assertStatus(200);
+    // }
+
+    // /**
+    //  * 自分の投稿をフォローしようとしてエラー
+    //  * @return void
+    //  */
+    // public function testFollow_異常系_自分のレビューをフォロー(): void
+    // {
+    //     Auth::login($this->user);
+
+    //     $response = $this->actingAs($this->user)->post('/follow', [
+    //         'followed_review_id' => $this->review->id
+    //     ]);
+
+    //     $this->assertDatabaseMissing('followings', [
+    //         'follower_user_id' => $this->user->id, 'poster_id' => $this->myself->id, 'followed_review_id' => $this->review->id,
+    //     ]);
+
+    //     $response->assertStatus(200);
+    // }
+
+    // /**
+    //  * 同じレビューへのフォローでエラー
+    //  * @return void
+    //  */
+    // public function testFollow_異常系_同じレビューをフォロー(): void
+    // {
+    //     //既に$myselfが$userの投稿をフォローしている状況を設定
+    //     $following = Following::create(['follower_user_id' => $this->myself->id, 'poster_id' => $this->user->id, 'followed_review_id' => $this->review->id]);
+
+    //     Auth::login($this->myself);
+
+    //     $response = $this->actingAs($this->myself)->post('/follow', [
+    //         'followed_review_id' => $this->review->id
+    //     ]);
+
+    //     $this->assertDatabaseMissing('followings', [
+    //         'follower_user_id' => $this->myself->id, 'poster_id' => $this->myself->id, 'followed_review_id' => $this->review->id,
+    //     ]);
+
+    //     $response->assertStatus(200);
+    // }
 
     /**
-     * 自分の投稿をフォローしようとしてエラー
+     * フォーロー解除が成功することをテスト
      * @return void
      */
-    public function testFollow_異常系_自分のレビューをフォロー(): void
-    {
-        Auth::login($this->user);
-
-        $response = $this->actingAs($this->user)->post('/follow', [
-            'followed_review_id' => $this->review->id
-        ]);
-
-        $this->assertDatabaseMissing('followings', [
-            'follower_user_id' => $this->user->id, 'poster_id' => $this->myself->id, 'followed_review_id' => $this->review->id,
-        ]);
-
-        $response->assertStatus(200);
-    }
-
-    /**
-     * 同じレビューへのフォローでエラー
-     * @return void
-     */
-    public function testFollow_異常系_同じレビューをフォロー(): void
+    public function testUnFollow_正常系()
     {
         //既に$myselfが$userの投稿をフォローしている状況を設定
         $following = Following::create(['follower_user_id' => $this->myself->id, 'poster_id' => $this->user->id, 'followed_review_id' => $this->review->id]);
 
         Auth::login($this->myself);
 
-        $response = $this->actingAs($this->myself)->post('/follow', [
+        $response = $this->actingAs($this->myself)->delete('/follow/delete', [
             'followed_review_id' => $this->review->id
         ]);
 
         $this->assertDatabaseMissing('followings', [
-            'follower_user_id' => $this->myself->id, 'poster_id' => $this->myself->id, 'followed_review_id' => $this->review->id,
+            'follower_user_id' => $this->myself->id, 'poster_id' => $this->user->id, 'followed_review_id' => $this->review->id,
         ]);
 
         $response->assertStatus(200);
