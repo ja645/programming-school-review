@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use App\Models\Following;
-use App\Http\Requests\FollowRequest;
 use Illuminate\Http\Request;
 
 class FollowController extends Controller
@@ -12,6 +11,7 @@ class FollowController extends Controller
     /**
      * 他のユーザーのレビューをフォロー
      * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
      */
     public function followReview(Request $request)
     {

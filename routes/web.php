@@ -4,6 +4,7 @@ use App\Http\Controllers\FollowController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReviewController;
 
 /*
@@ -33,6 +34,9 @@ Route::middleware(['auth'])->group(function() {
   
   Route::post('/follow', [FollowController::class, 'followReview']);
   Route::delete('/follow/delete', [FollowController::class, 'unFollowReview']);
+
+  Route::post('/like', [LikeController::class, 'like']);
+  Route::delete('/like/delete', [LikeController::class, 'unLike']);
 });
 
 require __DIR__.'/auth.php';
