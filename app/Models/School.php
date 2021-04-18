@@ -25,4 +25,12 @@ class School extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    /**
+     * スクールとお気に入りしたユーザーを紐付けるfollowingを取得
+     */
+    public function like()
+    {
+        return $this->hasMany(Like::class);
+    }
 }

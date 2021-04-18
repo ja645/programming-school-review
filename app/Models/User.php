@@ -54,4 +54,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Following::class);
     }
+
+    /**
+     * ユーザーとお気に入りしているスクールを紐付けるfollowingを取得
+     */
+    public function like()
+    {
+        return $this->hasMany(Like::class);
+    }
 }
