@@ -41,6 +41,8 @@ Route::middleware(['auth'])->group(function() {
 
   Route::get('/password/edit', [ChangePasswordController::class, 'showChangePasswordView']);
   Route::patch('/password', [ChangePasswordController::class, 'changePassword']);
+
+  Route::post('/email', [ChangeEmailController::class, 'sendChangeEmailLink']);
 });
 
 require __DIR__.'/auth.php';
