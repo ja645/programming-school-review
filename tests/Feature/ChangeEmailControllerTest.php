@@ -47,7 +47,7 @@ class ChangeEmailControllerTest extends TestCase
 
         Auth::login($this->user);
 
-        $response = $this->actingAs($this->user)->post('/email/update', ['new_email' => 'testtest@gmail.com']);
+        $response = $this->actingAs($this->user)->post('/email', ['new_email' => 'testtest@gmail.com']);
 
         $response->assertRedirect('/')->assertSee('確認メールを送信しました。');
         Mail::assertSent(OrderShipped::class);

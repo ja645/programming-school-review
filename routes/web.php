@@ -27,7 +27,7 @@ Route::middleware(['guest'])->group(function() {
 
 Route::middleware(['auth'])->group(function() {
   Route::get('/', [HomeController::class, 'index'])->name('top');
-  
+
   Route::get('/users/edit', [UserController::class, 'edit'])->name('edit');
   Route::patch('/users/update', [UserController::class, 'update'])->name('update');
   
@@ -45,7 +45,8 @@ Route::middleware(['auth'])->group(function() {
   Route::patch('/password', [ChangePasswordController::class, 'changePassword']);
 
   Route::get('/email/edit', [ChangeEmailController::class, 'showChangeEmailForm'])->name('email');
-  Route::post('/email/update', [ChangeEmailController::class, 'sendChangeEmailLink']);
+  Route::post('/email', [ChangeEmailController::class, 'sendChangeEmailLink']);
+  Route::get('/email/reset')
 });
 
 require __DIR__.'/auth.php';
