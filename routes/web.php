@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function() {
   Route::post('/like', [LikeController::class, 'like']);
   Route::delete('/like/delete', [LikeController::class, 'unLike']);
 
-  Route::get('/password/edit', [ChangePasswordController::class, 'edit']);
+  Route::get('/password/edit', [ChangePasswordController::class, 'showChangePasswordView']);
   Route::patch('/password', [ChangePasswordController::class, 'changePassword']);
 });
 

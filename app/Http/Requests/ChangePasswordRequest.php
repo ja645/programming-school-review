@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
+// use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Dotenv\Validator;
+// use Dotenv\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Symfony\Component\Console\Input\Input;
 
 class ChangePasswordRequest extends FormRequest
 {
@@ -48,6 +51,7 @@ class ChangePasswordRequest extends FormRequest
             //Hash::check()で平文で入力された'current_password'とDBのハッシュ化されたpasswordを比較している
             if (!(Hash::check($this->input('current_password'), $auth->password))) {
                 //比較して合わなければエラーメッセージを返す
+                dump(Hash::check($this->input('current_password'), $auth->password));
                 $validator->errors()->add('current_password', __('現在のパスワードが間違っています。'));
             }
         });

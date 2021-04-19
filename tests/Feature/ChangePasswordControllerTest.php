@@ -18,7 +18,7 @@ class ChangePasswordControllerTest extends TestCase
     {
         parent::setUp();
 
-        $this->user = Auth::login(User::factory()->create());
+        $this->user = User::factory()->create();
     }
 
     /**
@@ -27,9 +27,11 @@ class ChangePasswordControllerTest extends TestCase
      */
     public function testCanRedirectPasswordEdit()
     {
+        Auth::login($this->user);
+
         $response = $this->actingAs($this->user)->get('/password/edit');
 
-        $response->assertRedirct('auth.password.edit');
+        $response->assertStatus(200)->assertViewIs('auth.user.editPassword');
     }
 
     /**
@@ -50,12 +52,14 @@ class ChangePasswordControllerTest extends TestCase
      */
     public function testUpdatePassword_正常系()
     {
+        Auth::login($this->user);
+
         $response = $this->actingAs($this->user)->patch('/password', [
-            'password' => 'password2', 'new_password_confirmation' => 'password2'
+            'current_password' => $this->user->password, 'new_password' => 'password2', 'new_password_confirmation' => 'password2'
         ]);
 
         $this->assertDatabaseHas('users', ['id' => $this->user->id, 'password' => 'password2']);
 
-        $response->assertRedirect('auth.users');
+        $response->assertStatus(20)->assertViewIs('auth.users.mypage');
     }
 }
