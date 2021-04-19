@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\FollowController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -37,6 +38,9 @@ Route::middleware(['auth'])->group(function() {
 
   Route::post('/like', [LikeController::class, 'like']);
   Route::delete('/like/delete', [LikeController::class, 'unLike']);
+
+  Route::get('/password/edit', [ChangePasswordController::class, 'edit']);
+  Route::patch('/password', [ChangePasswordController::class, 'changePassword']);
 });
 
 require __DIR__.'/auth.php';
