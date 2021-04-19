@@ -25,7 +25,6 @@ class ChangePasswordController extends Controller
      */
     public function changePassword(ChangePasswordRequest $request)
     {
-        dump($request);
         $user = Auth::user();
         $user->password = Hash::make($request->new_password);
         $user->save();

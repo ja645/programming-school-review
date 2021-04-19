@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -47,7 +48,6 @@ class ChangePasswordControllerTest extends TestCase
 
     /**
      * パスワードの変更が成功することをテスト
-     * @test
      * @return void
      */
     public function testUpdatePassword_正常系()
@@ -55,11 +55,49 @@ class ChangePasswordControllerTest extends TestCase
         Auth::login($this->user);
 
         $response = $this->actingAs($this->user)->patch('/password', [
-            'current_password' => $this->user->password, 'new_password' => 'password2', 'new_password_confirmation' => 'password2'
+            //factoryで作られたユーザーはパスワードの値が'password1'
+            'current_password' => 'password1', 'new_password' => 'password2', 'new_password_confirmation' => 'password2'
         ]);
 
-        $this->assertDatabaseHas('users', ['id' => $this->user->id, 'password' => 'password2']);
+        //ユーザーのパスワードが指定の値に変更されているか検証
+        $this->assertTrue(Hash::check('password2', User::find($this->user->id)->password));
 
-        $response->assertStatus(20)->assertViewIs('auth.users.mypage');
+        $response->assertStatus(200)->assertViewIs('auth.user.mypage');
+    }
+
+    /**
+     * 認証されていないユーザーのアクセスでログインページにリダイレクトされることをテスト
+     * @return void
+     */
+    public function testUpdatePassword_異常系_認証されていないユーザー()
+    {
+        $response = $this->patch('/password', [
+            //factoryで作られたユーザーはパスワードの値が'password1'
+            'current_password' => 'password1', 'new_password' => 'password2', 'new_password_confirmation' => 'password2'
+        ]);
+
+        //ユーザーのパスワードが指定の値に変更されていないことを検証
+        $this->assertFalse(Hash::check('password2', User::find($this->user->id)->password));
+
+        $response->assertRedirect('login');
+    }
+
+    /**
+     * 確認用のパスワードが一致せず、パスワードの更新が失敗することをテスト
+     * @return void
+     */
+    public function testUpdatePassword_異常系_確認用パスワードの不一致()
+    {
+        Auth::login($this->user);
+
+        $response = $this->actingAs($this->user)->patch('/password', [
+            //factoryで作られたユーザーはパスワードの値が'password1'
+            'current_password' => 'password1', 'new_password' => 'password2', 'new_password_confirmation' => 'password3'
+        ]);
+
+        //ユーザーのパスワードが指定の値に変更されていないことを検証
+        $this->assertFalse(Hash::check('password2', User::find($this->user->id)->password));
+        
+        $response->assertStatus(302);
     }
 }

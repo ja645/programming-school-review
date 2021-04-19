@@ -47,11 +47,10 @@ class ChangePasswordRequest extends FormRequest
         $validator->after(function($validator) {
             //現在認証しているユーザーを取得
             $auth = Auth::user();
-
+            
             //Hash::check()で平文で入力された'current_password'とDBのハッシュ化されたpasswordを比較している
             if (!(Hash::check($this->input('current_password'), $auth->password))) {
                 //比較して合わなければエラーメッセージを返す
-                dump(Hash::check($this->input('current_password'), $auth->password));
                 $validator->errors()->add('current_password', __('現在のパスワードが間違っています。'));
             }
         });
