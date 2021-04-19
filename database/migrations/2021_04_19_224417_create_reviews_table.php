@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ReviewsTable extends Migration
+class CreateReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class ReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function(Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('school_id')->constrained();
@@ -37,8 +37,6 @@ class ReviewsTable extends Migration
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
         });
-
-
     }
 
     /**

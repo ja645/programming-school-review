@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Likes extends Migration
+class CreateLikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class Likes extends Migration
      */
     public function up()
     {
-        Schema::create('likes', function(Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             //複合主キーとして設定
             $table->primary(['user_id', 'school_id'])->unique();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
