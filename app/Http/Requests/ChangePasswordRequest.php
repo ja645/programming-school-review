@@ -28,6 +28,7 @@ class ChangePasswordRequest extends FormRequest
     {
         //現在のパスワードと新しいパスワードが正しい形式か検証
         return [
+            //パスワードの正規表現は半角英数字をそれぞれ1つ以上使い8字以上100字以下
             'current_password' => 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i',
             'new_password' => 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed'
         ];

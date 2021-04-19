@@ -51,7 +51,7 @@ class ChangePasswordControllerTest extends TestCase
     public function testUpdatePassword_正常系()
     {
         $response = $this->actingAs($this->user)->patch('/password', [
-            'password' => 'password2', 'password_confirmed' => 'password2'
+            'password' => 'password2', 'new_password_confirmation' => 'password2'
         ]);
 
         $this->assertDatabaseHas('users', ['id' => $this->user->id, 'password' => 'password2']);
