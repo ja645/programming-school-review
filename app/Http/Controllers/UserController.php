@@ -12,6 +12,17 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
+     * マイページを表示
+     * @return view
+     */
+    public function index()
+    {
+        $user = Auth::user();
+
+        return view('auth.user.mypage', ['user' => $user]);
+    }
+
+    /**
      * 新規ユーザー登録ページを表示
      * @return view
      */

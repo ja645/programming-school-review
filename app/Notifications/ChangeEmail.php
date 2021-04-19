@@ -44,7 +44,7 @@ class ChangeEmail extends Notification
     {
         return (new MailMessage)
                     ->subject('メールアドレス変更') //件名
-                    ->view('auth.email.changeEmailLink') //メールテンプレートを指定
+                    ->view('auth.email.changeEmail') //メールテンプレートを指定
                     ->action(
                         'メールアドレス変更',
                         url('/email/reset', $this->token) //アクセスするURL
