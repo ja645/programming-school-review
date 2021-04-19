@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChangeEmailController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\FollowController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ Route::middleware(['guest'])->group(function() {
 
 Route::middleware(['auth'])->group(function() {
   Route::get('/', [HomeController::class, 'index'])->name('top');
+  
   Route::get('/users/edit', [UserController::class, 'edit'])->name('edit');
   Route::patch('/users/update', [UserController::class, 'update'])->name('update');
   
@@ -42,7 +44,8 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/password/edit', [ChangePasswordController::class, 'showChangePasswordView']);
   Route::patch('/password', [ChangePasswordController::class, 'changePassword']);
 
-  Route::post('/email', [ChangeEmailController::class, 'sendChangeEmailLink']);
+  Route::get('/email/edit', [ChangeEmailController::class, 'showChangeEmailForm'])->name('email');
+  Route::post('/email/update', [ChangeEmailController::class, 'sendChangeEmailLink']);
 });
 
 require __DIR__.'/auth.php';
