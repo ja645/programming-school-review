@@ -47,7 +47,7 @@ Route::middleware(['auth'])->group(function() {
 
   Route::get('/email/edit', [ChangeEmailController::class, 'showChangeEmailForm'])->name('email');
   Route::post('/email', [ChangeEmailController::class, 'sendChangeEmailLink']);
-  Route::get('/email/reset', [ChangeEmailController::class, 'reset']);
+  Route::delete('/email/reset', [ChangeEmailController::class, 'reset']);
 });
 
 require __DIR__.'/auth.php';

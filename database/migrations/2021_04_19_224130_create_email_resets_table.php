@@ -16,7 +16,7 @@ class CreateEmailResetsTable extends Migration
         Schema::create('email_resets', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('new_email');
+            $table->string('new_email');
             $table->string('token');
             $table->timestamps();
         });

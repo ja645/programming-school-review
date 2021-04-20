@@ -60,7 +60,7 @@ class FollowController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function unFollowReview(Request $request)
+    public function unfollowReview(Request $request)
     {
         //セッションから、リクエストしてきたユーザーのidを取り出す
         $sessionKey = config('hideSessionId.session-id');

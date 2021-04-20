@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\ChangeEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -33,7 +34,7 @@ class EmailReset extends Model
     }
 
     /**
-     * new_emailをメールの送信先に指定する
+     * EmailResetモデルのnew_emailをメールの送信先に指定する
      * @param \Illuminate\Notifications\Notification $notification
      * @return string
      */

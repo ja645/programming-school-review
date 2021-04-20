@@ -6,12 +6,17 @@ use App\Models\EmailReset;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Notifications\ChangeEmail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+// use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class ChangeEmailControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     private $user;
 
     /**
@@ -38,38 +43,38 @@ class ChangeEmailControllerTest extends TestCase
     }
 
     /**
-     * メールアドレス変更用リンクがメール送信されることをテスト
+     * メールアドレス変更用リンクがメール送信され、
+     * メール内のリンクにアクセスするとメールアドレスが更新されることをテスト
      * @return void
      */
-    public function testSendChangeEmailLink_正常系()
+    public function testChangeEmail_正常系()
     {
-        Mail::fake();
+        Notification::fake();
 
         Auth::login($this->user);
+
+        $new_email = 'testtest@gmail.com';
 
         $response = $this->actingAs($this->user)->post('/email', ['new_email' => 'testtest@gmail.com']);
 
-        $response->assertRedirect('/')->assertSee('確認メールを送信しました。');
-        Mail::assertSent(OrderShipped::class);
-    }
+        $this->assertDatabaseHas('email_resets', ['user_id' => $this->user->id, 'new_email' => $new_email]);
 
-    /**
-     * 送信されたメール内のリンクからメールアドレスの変更に成功することをテスト
-     * @return void
-     */
-    public function testResetEmail_正常系()
-    {
-        Auth::login($this->user);
+        $response->assertRedirect('/users')->assertSessionHas('flash_message', '確認メールを送信しました。');
+        
+        // 指定するユーザーに通知が送信されたことをアサート
+        Notification::assertSentTo(
+            EmailReset::latest()->first(), ChangeEmail::class
+        );
 
         //データベースからユーザーのメールアドレス変更用トークンを取得
-        $token = EmailReset::where('user_id', $this->user->id)->select('token')->first()->toArray()['token'];
+        $token = EmailReset::latest()->first()->toArray()['token'];
 
         //送信されたメール内のリンクにトークンを渡してアクセス
-        $response = $this->actingAs($this->user)->get('/email/reset/' . $token);
+        $response = $this->actingAs($this->user)->delete('/email/reset', ['token' =>$token]);
 
         //メールアドレスが変更されたかデータベースを確認
         $this->assertDatabaseHas('users', ['id' => $this->user->id, 'email' =>  'testtest@gmail.com']);
 
-        $response->assertStatus(200)->assertRedirect('auth.user.mypage');
+        $response->assertRedirect('/users')->assertSessionHas('flash_message', 'メールアドレスを更新しました！');
     }
 }

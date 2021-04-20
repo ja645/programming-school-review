@@ -30,14 +30,13 @@ class ChangeEmailController extends Controller
     public function sendChangeEmailLink(Request $request)
     {
         $new_email = $request->new_email;
-
         //トークンを生成
         $token = hash_hmac(
             'sha256',
             Str::random(40) . $new_email,
             config('app.key')
         );
-
+        
         //トークンをデータベースに保存
         DB::beginTransaction();
         try {
@@ -46,33 +45,35 @@ class ChangeEmailController extends Controller
             $param['new_email'] = $new_email;
             $param['token'] = $token;
             $email_reset = EmailReset::create($param);
-
+            
             DB::commit();
 
             $email_reset->sendEmailResetNotification($token);
 
-            return redirect('/')->with('flash_message', '確認メールを送信しました。');
+            return redirect('/users')->with('flash_message', '確認メールを送信しました。');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect('/')->with('flash_message', 'メール更新に失敗しました。');
+            echo 'catch';
+            return redirect('/users')->with('flash_message', 'メール更新に失敗しました。');
         }
     }
 
     /**
      * 新しいメールアドレスでDBを更新
      * @param Request $request
-     * @param [type] $token
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function reset(Request $request, $token)
+    public function reset(Request $request)
     {
+        $token = $request->token;
+        echo 'hoge';
         $email_resets = DB::table('email_resets')
             ->where('token', $token)
             ->first();
 
         //トークンが存在し、かつ有効期限が切れていないかチェック
         if ($email_resets && !$this->tokenExpired($email_resets->created_at)) {
-
+            echo 'if';
             //ユーザーのメールアドレスを更新
             $user = User::find($email_resets->user_id);
             $user->email = $email_resets->new_email;
@@ -83,8 +84,9 @@ class ChangeEmailController extends Controller
                 ->where('token', $token)
                 ->delete();
 
-            return redirect('/')->with('flash_message', 'メールアドレスを更新しました！');
+            return redirect('/users')->with('flash_message', 'メールアドレスを更新しました！');
         } else {
+            echo 'else';
             //レコードが存在していた場合削除
             if ($email_resets) {
                 DB::table('email_resets')
@@ -92,7 +94,7 @@ class ChangeEmailController extends Controller
                     ->delete();
             }
 
-            return redirect('/')->with('flash_message', 'メールアドレスの更新に失敗しました。');
+            return redirect('/users')->with('flash_message', 'メールアドレスの更新に失敗しました。');
         }
     }
 
