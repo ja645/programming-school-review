@@ -53,9 +53,9 @@ class ChangeEmailControllerTest extends TestCase
 
         Auth::login($this->user);
 
-        $new_email = 'testtest@gmail.com';
+        $new_email = 'example@gmail.com';
 
-        $response = $this->actingAs($this->user)->post('/email', ['new_email' => 'testtest@gmail.com']);
+        $response = $this->actingAs($this->user)->post('/email', ['new_email' => $new_email]);
 
         $this->assertDatabaseHas('email_resets', ['user_id' => $this->user->id, 'new_email' => $new_email]);
 
@@ -70,11 +70,27 @@ class ChangeEmailControllerTest extends TestCase
         $token = EmailReset::latest()->first()->toArray()['token'];
 
         //送信されたメール内のリンクにトークンを渡してアクセス
-        $response = $this->actingAs($this->user)->delete('/email/reset', ['token' =>$token]);
+        $response = $this->actingAs($this->user)->post('/email/reset', ['token' =>$token]);
 
         //メールアドレスが変更されたかデータベースを確認
-        $this->assertDatabaseHas('users', ['id' => $this->user->id, 'email' =>  'testtest@gmail.com']);
+        $this->assertDatabaseHas('users', ['id' => $this->user->id, 'email' =>  $new_email]);
 
         $response->assertRedirect('/users')->assertSessionHas('flash_message', 'メールアドレスを更新しました！');
     }
+
+    /**
+     * 新しいメールアドレスがバリデーションエラーでリダイレクトされることをテスト
+     */
+
+     /**
+      * DBのトランザクション中にエラーが起きてエラーメッセージが表示されることをテスト
+      */
+
+    /**
+     * email_resetsに存在しないトークンを送信してエラーになることをテスト
+     */
+
+    /**
+     * トークンの有効期限が切れてエラーになることをテスト
+     */
 }

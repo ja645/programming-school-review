@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserFormRequest;
 use App\Models\User;
 use App\Models\EmailReset;
 use Carbon\Carbon;
@@ -27,7 +28,7 @@ class ChangeEmailController extends Controller
      * @param \App\Http\Requests\UserFormRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function sendChangeEmailLink(Request $request)
+    public function sendChangeEmailLink(UserFormRequest $request)
     {
         $new_email = $request->new_email;
         //トークンを生成
