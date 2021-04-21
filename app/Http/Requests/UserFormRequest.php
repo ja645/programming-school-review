@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -18,10 +19,8 @@ class UserFormRequest extends FormRequest
         return true;
     }
 
-    
     /**
      * Get the validation rules that apply to the request.
-     *
      * @return array
      */
     public function rules() :array
@@ -51,5 +50,22 @@ class UserFormRequest extends FormRequest
         }
 
         return $rules;
+    }
+    
+    /**
+     * バリデーションに対応したエラーメッセージを定義
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'user_name' => 'required|string|max:30',
+            'birthday' => 'required|date|before:today',
+            'sex'=> 'required|integer|min:0|max:2',
+            'former_job' => 'nullable',
+            'job' => 'nullable',
+            'email' => 'required|email:strict,dns,spoof|max:256|unique:users,email',
+            'password' => 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed',
+        ];
     }
 }

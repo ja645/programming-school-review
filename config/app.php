@@ -80,8 +80,8 @@ return [
     |
     */
 
-    'locale' => 'en',
-
+    // 'locale' => 'en',
+    'locale' => 'ja',
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -93,8 +93,8 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
-
+    // 'fallback_locale' => 'en',
+    'fallback_locale' => 'ja',
     /*
     |--------------------------------------------------------------------------
     | Faker Locale

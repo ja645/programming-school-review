@@ -4,24 +4,35 @@ namespace Tests\Unit;
 
 use Tests\TestCase; //変更
 use App\Http\Requests\UserFormRequest;
-//use Illuminate\Database\Console\DumpCommand;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class UserFormRequestTest extends TestCase
 {
     /**
-     * UserFormRequestが正しく機能するかテスト
+     * UserFormRequestのバリデーションが正しく機能するかテスト
      * @param array
      * @param array
      * @param boolean
      * @dataProvider dataUserForm
      */
     public function testWorkUserFormRequest(array $keys, array $values, bool $expected) :void
-    {        
+    {   
+        $rules = [
+            'user_name' => 'required|string|max:30',
+            'birthday' => 'required|date|before:today',
+            'sex'=> 'required|integer|min:0|max:2',
+            'former_job' => 'nullable',
+            'job' => 'nullable',
+            'email' => 'required|email:strict,dns,spoof|max:256|unique:users,email',
+            'password' => 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed',
+        ];
+
         $dataList = array_combine($keys, $values);
-        
-        $request = new UserFormRequest();
-        $rules = $request->rules();
+
+        // $request = new UserFormRequest();
+
+        // $rules = $request->rules();
 
         $validator = Validator::make($dataList, $rules);
         $result = $validator->passes();
@@ -41,7 +52,7 @@ class UserFormRequestTest extends TestCase
                 true
             ],
             '正常' => [
-                ['users_name', 'birthday', 'sex', 'former_job', 'job', 'email', 'password', 'password_confirmation'],                        
+                ['user_name', 'birthday', 'sex', 'former_job', 'job', 'email', 'password', 'password_confirmation'],                        
                 ['田中 太郎', "2013-5-30 00:00:00.000000", 1, '公務員', 'エンジニア', 'test@gmail.com', 'password1', 'password1'],
                 true
             ],

@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\EmailReset;
+use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +19,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             EmailReset::class, function ($app) {
                 return new EmailReset();
+            }
+        );
+
+        $this->app->bind(
+            \Illuminate\Http\Request::class, function ($app) {
+                return new HttpRequest();
             }
         );
     }
