@@ -31,18 +31,18 @@ class UserControllerTest extends TestCase
      *
      * @return void
      */
-    public function testAdd()
+    public function testAdd_正常系()
     {
         $response = $this->get('/signup');
 
-        $response->assertStatus(200);
+        $response->assertViewIs('user.create');
     }
 
     /**
      * ユーザーの新規作成をテスト
      * @return void
      */
-    public function testCreate()
+    public function testCreate_正常系()
     {
         $user = [
             'user_name' => '田中 太郎',
@@ -57,8 +57,12 @@ class UserControllerTest extends TestCase
         ];
 
         $response = $this->post('/users/create', $user);
+
         $this->assertAuthenticated();
-        $response->assertRedirect('top');
+
+        $this->assertDatabaseHas('users', ['email' => 'test@gmail.com']);
+
+        $response->assertViewIs('auth.user.mypage')->assertSessionHas('flash_message', '会員登録が完了しました！');
     }
 
     /**
@@ -74,7 +78,7 @@ class UserControllerTest extends TestCase
 
         $response->assertStatus(200)->assertViewIs('auth.user.edit');
 
-        $response->assertSee($user->user_name, $user->birthday, $user->sex, $user->former_job, $user->job, $user->school_id);
+        // $response->assertSee($user->user_name, $user->birthday, $user->sex, $user->former_job, $user->job, $user->school_id);
     }
 
     /**
@@ -112,7 +116,7 @@ class UserControllerTest extends TestCase
 
         $this->assertDatabaseHas('users', $editedForm);
 
-        $response->assertRedirect('users');
+        $response->assertViewIs('auth.user.mypage')->assertSessionHas('flash_message', '会員情報の変更が完了しました！');
     }
 
     /**

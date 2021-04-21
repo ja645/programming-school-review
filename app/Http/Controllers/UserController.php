@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use App\Http\Requests\UserFormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return view('auth.user.mypage', ['user' => $user]);
+        return view('auth.user.mypage', ['profile_form' => $user]);
     }
 
     /**
@@ -34,7 +35,7 @@ class UserController extends Controller
     /**
      * 新規ユーザーを保存
      * @param \App\Http\Requests\UserFormRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return view
      */
     public function create(UserFormRequest $request)
     {        
@@ -48,57 +49,38 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]));
+
+        Session::flash('flash_message', '会員登録が完了しました！');
         
-        return redirect('top');
+        return view('auth.user.mypage', ['profile_form' => $user]);
     }
 
     /**
      * ユーザー情報の編集ページを表示
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return view
      */
-    public function edit(Request $request)
+    public function edit()
     {
-        //セッションから、リクエストしてきたユーザーのidを取り出す
-        $session = config('hideSessionId.session-id');
-        $sessionId = $request->session()->get($session);
-
-        $profile = User::find($sessionId);
-
-        if (Auth::id() !== $sessionId) {
-            return redirect(403);
-        } else {
-            return view('auth.user.edit', ['profile_form' => $profile]);
-        }
-        
+        //現在認証されているユーザーの情報を取得
+        $user = Auth::user();
+       
+       return view('auth.user.edit', ['profile_form' => $user]); 
     }
 
     /**
     * ユーザー情報を更新
     * @param \App\Http\Requests\UserFormRequest $request
-    * @return \Illuminate\Http\RedirectResponse 
+    * @return view
     */
     public function update(UserFormRequest $request)
     {
-        //セッションから、リクエストしてきたユーザーのidを取り出す
-        $sessionKey = config('hideSessionId.session-id');
-        $sessionId = $request->session()->get($sessionKey);
+        $user = Auth::user();
 
-        //リクエストの中身に受け付けないフィールドが含まれるか調べる
-        $correctFields = ['user_name', 'birthday', 'sex', 'former_job', 'job', 'school_id'];
-        $requestFields = $request->all();
-        $exceptFields = Arr::except($requestFields, $correctFields);
+        $editedField = $request->all();
+        $user->fill($editedField)->save();
 
-        if (Auth::id() !== $sessionId) {
-            return redirect(403);
-        } elseif (empty($exceptFields) === false) {
-            return redirect(403);
-        } else {
-            $user = User::find($sessionId);
-            $editedUser = $request->all();
-            $user->fill($editedUser)->save();
+        Session::flash('flash_message', '会員情報の変更が完了しました！');
 
-            return redirect('users');
-        }
+        return view('auth.user.mypage', ['profile_form' => $user]);
     }
 }
