@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class ChangeEmailController extends Controller
 {
+    public function __construct(EmailReset $emailReset)
+    {
+        $this->emailReset = $emailReset;
+    }
+
     /**
      * メール変更フォームを返す
      * @return view
@@ -45,16 +50,17 @@ class ChangeEmailController extends Controller
             $param['user_id'] = Auth::id();
             $param['new_email'] = $new_email;
             $param['token'] = $token;
-            $email_reset = EmailReset::create($param);
-            
+            // $email_reset = EmailReset::create($param);
+            $email_reset = $this->emailReset::create($param);
+      
             DB::commit();
-
+      
             $email_reset->sendEmailResetNotification($token);
-
+      
             return redirect('/users')->with('flash_message', '確認メールを送信しました。');
         } catch (\Exception $e) {
             DB::rollBack();
-            echo 'catch';
+
             return redirect('/users')->with('flash_message', 'メール更新に失敗しました。');
         }
     }
@@ -67,14 +73,14 @@ class ChangeEmailController extends Controller
     public function reset(Request $request)
     {
         $token = $request->token;
-        echo 'hoge';
+
         $email_resets = DB::table('email_resets')
             ->where('token', $token)
             ->first();
 
         //トークンが存在し、かつ有効期限が切れていないかチェック
         if ($email_resets && !$this->tokenExpired($email_resets->created_at)) {
-            echo 'if';
+
             //ユーザーのメールアドレスを更新
             $user = User::find($email_resets->user_id);
             $user->email = $email_resets->new_email;
@@ -87,7 +93,7 @@ class ChangeEmailController extends Controller
 
             return redirect('/users')->with('flash_message', 'メールアドレスを更新しました！');
         } else {
-            echo 'else';
+
             //レコードが存在していた場合削除
             if ($email_resets) {
                 DB::table('email_resets')
