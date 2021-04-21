@@ -29,7 +29,7 @@ class UserController extends Controller
      */
     public function add()
     {
-        return view('user.create');
+        return view('layouts.user.create');
     }
 
     /**
@@ -82,5 +82,20 @@ class UserController extends Controller
         Session::flash('flash_message', '会員情報の変更が完了しました！');
 
         return view('auth.user.mypage', ['profile_form' => $user]);
+    }
+
+    /**
+     * ユーザーの退会処理
+     * @return view
+     */
+    public function delete()
+    {
+        $user_id = Auth::id();
+        dump($user_id);
+        User::find($user_id)->delete();
+
+        Session::flash('flash_message', '退会手続きが完了しました！');
+
+        return view('layouts.top');
     }
 }

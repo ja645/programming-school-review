@@ -59,13 +59,7 @@ class UserFormRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'user_name' => 'required|string|max:30',
-            'birthday' => 'required|date|before:today',
-            'sex'=> 'required|integer|min:0|max:2',
-            'former_job' => 'nullable',
-            'job' => 'nullable',
-            'email' => 'required|email:strict,dns,spoof|max:256|unique:users,email',
-            'password' => 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed',
+            'password.regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i' => 'パスワードは半角英数字をそれぞれ1文字以上使用し、8文字以上100文字以内で入力してください。'
         ];
     }
 }

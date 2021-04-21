@@ -35,7 +35,7 @@ class UserControllerTest extends TestCase
     {
         $response = $this->get('/signup');
 
-        $response->assertViewIs('user.create');
+        $response->assertStatus(200)->assertViewIs('layouts.user.create');
     }
 
     /**
@@ -142,37 +142,17 @@ class UserControllerTest extends TestCase
     }
 
     /**
-     * リクエストに不適切なフィールドがあれば403を返すことをテスト
-     * 
+     * 退会処理が成功することをテスト
      * @return void
      */
-    // public function testUpdate_異常系_不適切なリクエスト()
-    // {
-    //     Auth::login($user = User::factory()->create());
+    public function testDelete_正常系()
+    {
+        Auth::login($user = User::factory()->create());
 
-    //     $editedForm = [
-    //         'bad_request' => 'bad',
-    //         'user_name' => '山本 次郎',
-    //         'birthday' => '2004-9-30 00:00:00.000000',
-    //         'sex' => 1,
-    //         'former_job' => 'ニート',
-    //         'job' => 'フリーター',
-    //         'school_id' => 2,
-    //     ];
+        $response = $this->actingAs($user)->delete('/users/delete');
 
-    //     $resultForm = [
-    //         'user_name' => '山本 次郎',
-    //         'birthday' => '2004-9-30 00:00:00.000000',
-    //         'sex' => 1,
-    //         'former_job' => 'ニート',
-    //         'job' => 'フリーター',
-    //         'school_id' => 2,
-    //     ];
+        $this->assertDatabaseMissing('users', ['id' => $user->id]);
 
-    //     $response = $this->actingAs($user)->patch('/users/update', $editedForm);
-
-    //     $this->assertDatabaseMissing('users', $resultForm);
-
-    //     $response->assertRedirect(403);
-    // }
+        $response->assertViewIs('layouts.top')->assertSessionHas('flash_message', '退会手続きが完了しました！');
+    }
 }

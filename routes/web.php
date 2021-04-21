@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/users', [UserController::class, 'index'])->name('mypage');
   Route::get('/users/edit', [UserController::class, 'edit'])->name('edit');
   Route::patch('/users/update', [UserController::class, 'update'])->name('update');
+  Route::delete('/users/delete', [UserController::class, 'delete']);
   
   Route::get('/reviews/add', [ReviewController::class, 'add']);
   Route::post('/reviews/create', [ReviewController::class, 'create']);
