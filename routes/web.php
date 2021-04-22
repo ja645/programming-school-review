@@ -24,9 +24,9 @@ Route::middleware(['guest'])->group(function() {
   Route::post('/users/create', [UserController::class, 'create'])->name('create');
 });
 
+Route::get('/', [HomeController::class, 'index'])->name('top');
 
 Route::middleware(['auth'])->group(function() {
-  Route::get('/', [HomeController::class, 'index'])->name('top');
   
   Route::get('/users', [UserController::class, 'index'])->name('mypage');
   Route::get('/users/edit', [UserController::class, 'edit'])->name('edit');
