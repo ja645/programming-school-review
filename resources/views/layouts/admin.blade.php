@@ -25,25 +25,27 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">ロゴ</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light py-4">
+    <div class="container-xl">
+      <a class="navbar-brand me-5" href="#">ロゴ</a>
 
       <!-- 画面幅が小さいときハンバーガーメニュー -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
           <li class="nav-item my-auto">
             <a class="nav-link active" aria-current="page" href="#">ランキングを見る</a>
           </li>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="キーワード" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">ここを虫眼鏡</button>
+        </ul>
+          <form id="s-form" class="d-flex">
+            <input id="s-box" class="form-control me-2" type="search" placeholder="キーワードで検索" aria-label="Search">
+            <button id="s-btn" type="submit"><i class="fas fa-search fa-lg"></i></button>
           </form>
 
+        <ul class="navbar-nav ms-auto">
           <!-- ログイン後 -->
           @if(Auth::check())
           <li class="nav-item my-auto">

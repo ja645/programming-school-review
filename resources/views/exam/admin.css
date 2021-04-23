@@ -1,0 +1,78 @@
+/* 共通のレイアウト */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
+/* 文字サイズのレスポンシブ */
+* {
+  font-size: calc(1.2rem + 0.6vw);
+}
+/* 文字サイズここまで */
+
+#s-form {
+  position: relative;
+  width: 60rem;
+  margin-left: 10rem;
+}
+
+#s-box {
+  font-size: calc(1.2rem + 0.6vw);
+}
+
+#s-btn {
+  position: absolute;
+  left: 56rem;
+  top: 0.4rem;
+  background: none;
+  border: none;
+}
+
+.list-group li {
+  padding-top: 3.0rem;
+}
+
+.user-nav li {
+  padding-top: 2.0rem;
+  padding-bottom: 2.0rem;
+  text-align: center;
+}
+
+.user-nav a {
+  color: black;
+  text-decoration: none;
+}
+
+.user-nav i {
+  margin-right: 1rem;
+}
+
+.user-info li, .user-prof li {
+  position: relative;
+}
+
+.user-info span, .user-prof span {
+  color: black;
+  position: absolute;
+  left: 15rem;
+  top: 3.0rem;  
+}
+
+.user-info a, .user-prof a {
+  float: right;
+  text-decoration: none;
+  color: cadetblue;
+}
+
+.user-prof li:last-child {
+  display: inline-block;
+  margin: 0 auto;
+}
