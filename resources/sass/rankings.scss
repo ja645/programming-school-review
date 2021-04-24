@@ -1,0 +1,91 @@
+/*------------------------------
+--------ランキングページ--------
+--------------------------- */
+@media screen and (min-width: 991px) {
+  .ranking {
+    width: 70vw;
+    margin: 50px auto;
+  }
+}
+
+.ranking {
+  margin-top: 100px;
+  margin-bottom: 70px;
+}
+
+/* ----並べ替えボタン---------- */
+.ranking-order .form-select {
+  width: 130px;
+  font-size: 16px;
+}
+
+.ranking-order label {
+  padding: 3.75px 0;
+}
+/* --並べ替えボタンここまで----- */
+
+
+.ranking-list {
+  margin: 20px 0 40px;
+}
+
+.ranking-list .list-group-item {
+  padding: 15px 10px;
+  border: solid 2px #003366;
+  border-top: none;
+  opacity: 0.6;
+}
+
+.ranking-list .list-group-item:hover {
+  background-color: #CCCCCC;
+}
+
+/* -----------リストのタブ----------------- */
+.nav-tabs {
+  border-bottom: solid 2px #003366;
+  opacity: 0.8;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: white;
+  background-color: #003366;
+  border-color: #003366;
+  border-radius: 0;
+}
+
+.nav-tabs .nav-link {
+  color: #003366;
+  border-radius: 0;
+}
+/* ----リストのタブここまで---------- */
+
+
+/* -------ページネーション-------- */
+.page-item {
+  border-radius: none;
+  margin: 0 10px;
+}
+
+.page-item a {
+  color: white;
+  background-color: #003366;
+}
+
+.page-chevron {
+  color: white;
+}
+
+.page-item a:hover {
+  color: #003366;
+  background: none;
+  border: none;
+}
+
+.page-item a:hover .page-chevron {
+  color: #003366;
+}
+/* ----ページネーションここまで------ */
+
+/* ----------------------------------
+ ----ランキングページここまで--------
+----------------------------------- */

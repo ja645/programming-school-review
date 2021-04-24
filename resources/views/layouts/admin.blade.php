@@ -34,7 +34,7 @@
       
       <!-- 画面幅lg以下で表示される -->
       <form id="s-form" class="d-flex d-lg-none">
-        <input id="s-box" class="form-control me-2" type="search" placeholder="キーワードで検索" aria-label="Search">
+        <input id="s-box" class="form-control me-2" placeholder="キーワードで検索" aria-label="Search">
         <button id="s-btn" type="submit"><i class="fas fa-search fa-lg"></i></button>
       </form>
 
@@ -53,7 +53,7 @@
         </ul>
           <!-- 画面幅xl以上で表示される -->
           <form id="s-form" class="d-flex d-lg-block d-none ms-lg-5">
-            <input id="s-box" class="form-control me-2" type="search" placeholder="キーワードで検索" aria-label="Search">
+            <input id="s-box" class="form-control me-2" placeholder="キーワードで検索" aria-label="Search">
             <button id="s-btn" type="submit"><i class="fas fa-search fa-lg"></i></button>
           </form>
 
