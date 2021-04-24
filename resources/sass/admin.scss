@@ -14,14 +14,89 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /* 文字サイズのレスポンシブ */
 * {
-  font-size: calc(1.2rem + 0.6vw);
+  font-size: calc(1.4rem + 0.1vw);
 }
-/* 文字サイズここまで */
+/*--------------------------------
+ ------- 共通部分ここまで--------
+------------------------------*/
 
+
+/*---------------------------------
+ ----------- フッター ------------
+-------------------------------*/
+footer {
+  padding: 10px 0;
+}
+
+footer a{
+  font-size: calc(1.2rem + 0.3vw);
+  color: black;
+  text-decoration: none;
+  margin-right: 20vw;
+}
+
+footer a:hover {
+  color: cadetblue;
+}
+
+/* --------------------------------
+ -----ヘッダーのアイコンのcss------
+--------------------------------- */
+.navbar {
+  background-color: #EEEEEE;
+}
+.fa-bars {
+  color: white;
+}
+
+.navbar-toggler {
+  color: white;
+}
+
+.nav-icon {
+  width: 65px;
+  text-align: center;
+  margin-left: 30px;
+}
+
+.nav-icon span {
+  font-size: 1.3rem;
+  display: inline-block;
+}
+
+.nav-icon a{
+  color: #003366;
+}
+
+.nav-icon a:hover {
+  color: cadetblue;
+}
+
+@media screen and (max-width: 991px) {
+  /* 画面幅991px以下に適用される */
+  .nav-icon {
+    display: inline;
+    text-align: center;
+  }
+  
+  .nav-icon span {
+    font-size: 2.0rem;
+    display: inline-block;
+    margin: 20px 0 20px 20px;
+  }
+
+}
+/* ----------------------------
+ --ヘッダーのアイコンここまで--
+-------------------------- */
+
+/* --------------------------
+------検索ボックスのcss------- 
+----------------------------*/
 #s-form {
   position: relative;
-  width: 60rem;
-  margin-left: 10rem;
+  width: 50vw;
+  margin: 0 auto;
 }
 
 #s-box {
@@ -30,49 +105,37 @@ p, h1, h2, h3, h4, h5, h6 {
 
 #s-btn {
   position: absolute;
-  left: 56rem;
-  top: 0.4rem;
+  right: 10px;
+  top: 20%;
   background: none;
   border: none;
+  outline: none;
 }
 
-.list-group li {
-  padding-top: 3.0rem;
-}
-
-.user-nav li {
-  padding-top: 2.0rem;
-  padding-bottom: 2.0rem;
-  text-align: center;
-}
-
-.user-nav a {
-  color: black;
-  text-decoration: none;
-}
-
-.user-nav i {
-  margin-right: 1rem;
-}
-
-.user-info li, .user-prof li {
-  position: relative;
-}
-
-.user-info span, .user-prof span {
-  color: black;
-  position: absolute;
-  left: 15rem;
-  top: 3.0rem;  
-}
-
-.user-info a, .user-prof a {
-  float: right;
-  text-decoration: none;
+#s-btn:hover {
   color: cadetblue;
 }
 
-.user-prof li:last-child {
-  display: inline-block;
-  margin: 0 auto;
+/* 画面幅766px以下で適用される */
+@media screen and (max-width: 766px) {
+  #s-form {
+    position: relative;
+    width: 70vw;
+    margin: 0 auto;
+  }
+  
+  #s-box {
+    font-size: calc(1.2rem + 0.6vw);
+  }
+  
+  #s-btn {
+    position: absolute;
+    right: 10px;
+    top: 15%;
+    background: none;
+    border: none;
+  }
 }
+/*-----------------------------
+ ------検索ボックスここまで 
+ ------------------------------*/

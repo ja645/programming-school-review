@@ -14,14 +14,89 @@ p, h1, h2, h3, h4, h5, h6 {
 
 /* 文字サイズのレスポンシブ */
 * {
-  font-size: calc(1.2rem + 0.6vw);
+  font-size: calc(1.4rem + 0.1vw);
 }
-/* 文字サイズここまで */
+/*--------------------------------
+ ------- 共通部分ここまで--------
+------------------------------*/
 
+
+/*---------------------------------
+ ----------- フッター ------------
+-------------------------------*/
+footer {
+  padding: 10px 0;
+}
+
+footer a{
+  font-size: calc(1.2rem + 0.3vw);
+  color: black;
+  text-decoration: none;
+  margin-right: 20vw;
+}
+
+footer a:hover {
+  color: cadetblue;
+}
+
+/* --------------------------------
+ -----ヘッダーのアイコンのcss------
+--------------------------------- */
+.navbar {
+  background-color: #EEEEEE;
+}
+.fa-bars {
+  color: white;
+}
+
+.navbar-toggler {
+  color: white;
+}
+
+.nav-icon {
+  width: 65px;
+  text-align: center;
+  margin-left: 30px;
+}
+
+.nav-icon span {
+  font-size: 1.3rem;
+  display: inline-block;
+}
+
+.nav-icon a{
+  color: #003366;
+}
+
+.nav-icon a:hover {
+  color: cadetblue;
+}
+
+@media screen and (max-width: 991px) {
+  /* 画面幅991px以下に適用される */
+  .nav-icon {
+    display: inline;
+    text-align: center;
+  }
+  
+  .nav-icon span {
+    font-size: 2.0rem;
+    display: inline-block;
+    margin: 20px 0 20px 20px;
+  }
+
+}
+/* ----------------------------
+ --ヘッダーのアイコンここまで--
+-------------------------- */
+
+/* --------------------------
+------検索ボックスのcss------- 
+----------------------------*/
 #s-form {
   position: relative;
-  width: 60rem;
-  margin-left: 10rem;
+  width: 50vw;
+  margin: 0 auto;
 }
 
 #s-box {
@@ -30,12 +105,46 @@ p, h1, h2, h3, h4, h5, h6 {
 
 #s-btn {
   position: absolute;
-  left: 56rem;
-  top: 0.4rem;
+  right: 10px;
+  top: 20%;
   background: none;
   border: none;
+  outline: none;
 }
 
+#s-btn:hover {
+  color: cadetblue;
+}
+
+/* 画面幅766px以下で適用される */
+@media screen and (max-width: 766px) {
+  #s-form {
+    position: relative;
+    width: 70vw;
+    margin: 0 auto;
+  }
+  
+  #s-box {
+    font-size: calc(1.2rem + 0.6vw);
+  }
+  
+  #s-btn {
+    position: absolute;
+    right: 10px;
+    top: 15%;
+    background: none;
+    border: none;
+  }
+}
+/*-----------------------------
+ ------検索ボックスここまで 
+ ------------------------------*/
+
+
+
+/*------------------------------
+ -------マイページ-------------
+----------------------------*/
 .list-group li {
   padding-top: 3.0rem;
 }
@@ -74,5 +183,111 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .user-prof li:last-child {
   display: inline-block;
+  padding: 25px 0 15px 0;
   margin: 0 auto;
 }
+/*------------------------------
+ -------マイページここまで------
+----------------------------*/
+
+
+
+
+/*------------------------------
+ -------トップページ-----------
+----------------------------*/
+#top-screen h1, #top-screen p {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#top-screen {
+  height: 56vw;
+  position: relative;
+  background-color: white;
+}
+
+#gray {
+  width: 70%;
+  height: 60%;
+  position: absolute;
+  right: 5%;
+  top: 8%;
+  background-color: #003366;
+}
+
+#navy {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  right: 5%;
+  top: 8%;
+  background-color: #CCCCCC;
+}
+
+#white {
+  width: 20%;
+  height: 20%;
+  position: absolute;
+  right: 8%;
+  top: 10%;
+  background-color: white;
+}
+
+.box-w p, .box-b p {
+  margin: 0 auto;
+}
+
+.column {
+  width: 25%;
+  opacity: 0.8;
+}
+
+.col {
+  position: relative;
+}
+
+.feature {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.carousel-btn {
+  display: block;
+  height: 32%;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.prev {
+  width: 50px;
+  margin-left: 7vw;
+}
+
+.next {
+  width: 50px;
+  margin-right: 7vw;
+}
+
+.dummy {
+  height: 34%;
+}
+
+.fa-chevron-right {
+  color: #003366;
+}
+
+#carouselExampleControls {
+  margin: 10vw 0;
+}
+
+.recruit {
+  text-align: center;
+}
+/* -----------------------------
+-----トップページここまで-----
+---------------------------- */
