@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* 共通のレイアウト */
 html {
   font-size: 62.5%;
@@ -16,11 +17,10 @@ p, h1, h2, h3, h4, h5, h6 {
 * {
   font-size: calc(1.4rem + 0.1vw);
 }
+
 /*--------------------------------
  ------- 共通部分ここまで--------
 ------------------------------*/
-
-
 /*---------------------------------
  ----------- フッター ------------
 -------------------------------*/
@@ -28,7 +28,7 @@ footer {
   padding: 10px 0;
 }
 
-footer a{
+footer a {
   font-size: calc(1.2rem + 0.3vw);
   color: black;
   text-decoration: none;
@@ -56,11 +56,10 @@ footer a:hover {
   width: 290px;
   height: 74px;
 } */
-
-
 .navbar {
   background-color: #EEEEEE;
 }
+
 .fa-bars {
   color: white;
 }
@@ -80,7 +79,7 @@ footer a:hover {
   display: inline-block;
 }
 
-.nav-icon a{
+.nav-icon a {
   color: #003366;
 }
 
@@ -94,18 +93,16 @@ footer a:hover {
     display: inline;
     text-align: center;
   }
-  
+
   .nav-icon span {
-    font-size: 2.0rem;
+    font-size: 2rem;
     display: inline-block;
     margin: 20px 0 20px 20px;
   }
-
 }
 /* ----------------------------
  --ヘッダーのアイコンここまで--
 -------------------------- */
-
 /* --------------------------
 ------検索ボックスのcss------- 
 ----------------------------*/
@@ -139,11 +136,11 @@ footer a:hover {
     width: 70vw;
     margin: 0 auto;
   }
-  
+
   #s-box {
     font-size: calc(1.2rem + 0.6vw);
   }
-  
+
   #s-btn {
     position: absolute;
     right: 10px;
@@ -155,19 +152,16 @@ footer a:hover {
 /*-----------------------------
  ------検索ボックスここまで 
  ------------------------------*/
-
-
-
 /*------------------------------
  -------マイページ-------------
 ----------------------------*/
 .list-group li {
-  padding-top: 3.0rem;
+  padding-top: 3rem;
 }
 
 .user-nav li {
-  padding-top: 2.0rem;
-  padding-bottom: 2.0rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   text-align: center;
 }
 
@@ -188,7 +182,7 @@ footer a:hover {
   color: black;
   position: absolute;
   left: 15rem;
-  top: 3.0rem;  
+  top: 3rem;
 }
 
 .user-info a, .user-prof a {
@@ -202,13 +196,10 @@ footer a:hover {
   padding: 25px 0 15px 0;
   margin: 0 auto;
 }
+
 /*------------------------------
  -------マイページここまで------
 ----------------------------*/
-
-
-
-
 /*------------------------------
  -------トップページ-----------
 ----------------------------*/
@@ -304,11 +295,10 @@ footer a:hover {
 .recruit {
   text-align: center;
 }
+
 /* -----------------------------
 -----トップページここまで-----
 ---------------------------- */
-
-
 /*------------------------------
 --------ランキングページ--------
 --------------------------- */
@@ -318,7 +308,6 @@ footer a:hover {
     margin: 50px auto;
   }
 }
-
 .ranking {
   margin-top: 100px;
   margin-bottom: 70px;
@@ -333,9 +322,8 @@ footer a:hover {
 .ranking-order label {
   padding: 3.75px 0;
 }
+
 /* --並べ替えボタンここまで----- */
-
-
 .ranking-list {
   margin: 20px 0 40px;
 }
@@ -368,9 +356,8 @@ footer a:hover {
   color: #003366;
   border-radius: 0;
 }
+
 /* ----リストのタブここまで---------- */
-
-
 /* -------ページネーション-------- */
 .page-item {
   border-radius: none;
@@ -395,32 +382,22 @@ footer a:hover {
 .page-item a:hover .page-chevron {
   color: #003366;
 }
-/* ----ページネーションここまで------ */
 
+/* ----ページネーションここまで------ */
 /* ----------------------------------
  ----ランキングページここまで--------
 ----------------------------------- */
-
-
 /* ---------------------------------
 --------スクールページここから------
 ------------------------------- */
 .school-name {
-  font-size: calc(2.5rem + 2vw);
-}
-
-.school-name i {
-  height: 30.67px;
-  margin: auto 0;
-}
-
-.school-follow {
-  margin: auto 0;
+  font-size: calc(2.0rem + 2vw);
 }
 
 .school-image {
   height: 170px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .center-image {
@@ -430,7 +407,8 @@ footer a:hover {
 .center-image {
   width: 100%;
   height: 400px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .left-contents {
@@ -463,12 +441,12 @@ footer a:hover {
 
 .front {
   position: absolute;
-  top: -1;
+  top: 0;
   left: 0;
   display: inline-block;
-  background-color: yellow;
+  color: yellow;
   overflow: hidden;
-  width: 50%;
+  width: 2em;
   height: 100%;
 }
 

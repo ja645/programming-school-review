@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReviewController;
+use App\Models\Review;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ use App\Http\Controllers\ReviewController;
 Route::middleware(['guest'])->group(function() {
   Route::get('/signup', [UserController::class, 'add'])->name('add');
   Route::post('/users/create', [UserController::class, 'create'])->name('create');
+
+  Route::get('/rankings', [Review::class, 'index']);
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('top');

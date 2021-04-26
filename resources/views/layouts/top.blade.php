@@ -2,6 +2,10 @@
 
 @section('title', 'top')
 
+<!-- @push('css')
+  <link href="{{ secure_asset('css/top.css') }}" rel="stylesheet">
+@endpush -->
+
 @section('content')
 <div class="container-fluid p-0">
 

@@ -16,15 +16,24 @@
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
-  <!-- Styles -->
-  <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-  <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
-  <!-- 個別のcssを読み込む -->
-  @stack('css')
-
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
+  <!-- Styles -->
+  <!-- ローカルではsecure_assetを使わない -->
+  @if(app('env')=='local')
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+  @endif
+  @if(app('env')=='production')
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
+  @endif
+  <!-- 個別のcssを読み込む -->
+  @stack('css')
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
 <body>
 
@@ -40,7 +49,7 @@
 
       <!-- 画面幅が小さいときハンバーガーメニュー -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fas fa-bars fa-3x"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
