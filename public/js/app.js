@@ -3836,6 +3836,9 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   cluster: "ap3",
   forceTLS: true
 });
+window.Echo.channel('comment-sent-channel').listen('CommentSent', function (e) {
+  console.log(e);
+});
 
 /***/ }),
 
