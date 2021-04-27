@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\CommentSent;
 use App\Http\Controllers\ChangeEmailController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\FollowController;
@@ -28,6 +29,10 @@ Route::middleware(['guest'])->group(function() {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('top');
+Route::get('/reviews/comment', function() {
+  $comment = ['id' => 1, 'name' => 'たなか'];
+  event(new CommentSent($comment));
+});
 
 Route::middleware(['auth'])->group(function() {
   
