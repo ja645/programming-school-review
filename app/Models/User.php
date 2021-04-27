@@ -50,7 +50,7 @@ class User extends Authenticatable
     /**
      * ユーザーとフォローしているレビューを紐付けるfollowingを取得
      */
-    public function follow()
+    public function follows()
     {
         return $this->hasMany(Following::class);
     }
@@ -58,12 +58,12 @@ class User extends Authenticatable
     /**
      * ユーザーとお気に入りしているスクールを紐付けるfollowingを取得
      */
-    public function like()
+    public function likes()
     {
         return $this->hasMany(Like::class);
     }
 
-    public function message()
+    public function messages()
     {
         return $this->hasMany(Message::class);
     }

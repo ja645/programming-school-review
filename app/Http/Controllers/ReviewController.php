@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\Review;
 use App\Models\User;
 use App\Http\Requests\ReviewFormRequest;
@@ -82,5 +83,23 @@ class ReviewController extends Controller
             return view('auth.review.review');
         }
         
+    }
+
+    /**
+     * コメント欄にメッセージを送信
+     * @param \Illuminate\Http\Request $request
+     * @return void
+     */
+    public function sendMessage(Request $request)
+    {
+        $user = Auth::user();
+
+        $message = $user->messages()->create([
+            'message' => $request->message
+        ]);
+        
+        event(new MessageSent($user, $message));
+
+        session()->flash('flash_message', 'メッセージを送りました！');
     }
 }
