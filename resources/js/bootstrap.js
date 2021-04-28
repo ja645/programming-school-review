@@ -27,7 +27,7 @@ window.Echo = new Echo({
     forceTLS: true
 });
 
-window.Echo.channel('comment-sent-channel')
-  .listen('CommentSent', (e) => {
-  console.log(e);
+window.Echo.channel('chat').listen('MessageSent', (e) => {
+    console.log(e);
 });
+  

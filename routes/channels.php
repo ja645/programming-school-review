@@ -19,5 +19,5 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 
 //ログインしているユーザーにのみチャンネルのリッスンを許可する
 Broadcast::channel('chat', function ($user) {
-    return Auth::check();
+    return true;
 });

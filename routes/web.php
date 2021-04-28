@@ -29,8 +29,11 @@ Route::middleware(['guest'])->group(function() {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('top');
-// Route::get('/reviews/comment', function() {
-//   $comment = ['id' => 1, 'name' => 'たなか'];
+
+Route::get('/reviews', [ReviewController::class, 'index']);
+Route::post('/reviews/message', [ReviewController::class, 'sendMessage']);
+// Route::get('/reviews/message', function() {
+//   $comment = ['id' => 1, 'name' => 'こんにちは'];
 //   event(new CommentSent($comment));
 // });
 
@@ -44,7 +47,7 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/reviews/add', [ReviewController::class, 'add']);
   Route::post('/reviews/create', [ReviewController::class, 'create']);
   Route::delete('/reviews/delete', [ReviewController::class, 'delete']);
-  Route::post('/reviews/message', [ReviewController::class, 'sendMessage']);
+//   Route::post('/reviews/message', [ReviewController::class, 'sendMessage']);
   
   Route::post('/follow', [FollowController::class, 'followReview']);
   Route::delete('/follow/delete', [FollowController::class, 'unFollowReview']);

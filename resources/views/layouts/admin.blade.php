@@ -9,14 +9,6 @@
 
   <title>@yield('title')</title>
 
-  <!-- Scripts -->
-  @if(app('env')=='local')
-  <script src="{{ asset('js/app.js') }}" defer></script>
-  @endif
-  @if(app('env')=='production')
-  <script src="{{ secure_asset('js/app.js') }}" defer></script>
-  @endif
-
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -115,6 +107,14 @@
       <a href="#">お問い合わせ</a>
     </div>
   </footer>
+  
+  <!-- Scripts -->
+  @if(app('env')=='local')
+  <script src="{{ asset('js/app.js') }}" defer></script>
+  @endif
+  @if(app('env')=='production')
+  <script src="{{ secure_asset('js/app.js') }}" defer></script>
+  @endif
   <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>

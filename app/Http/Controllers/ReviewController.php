@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageSent;
 use App\Models\Message;
 use App\Models\Review;
 use App\Models\User;
@@ -13,6 +14,15 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
+    /**
+     * ユーザーのレビューを表示
+     * @return view
+     */
+    public function index()
+    {
+        return view('auth.review.review');
+    }
+
     /**
      * 新規レビュー作成フォームを返す
      * @return view
