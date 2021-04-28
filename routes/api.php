@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MessageSent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,8 @@ Route::middleware('api')->get('/reviews', function() {
 
 Route::middleware('api')->post('/reviews/message', function() {
     $message = \App\Models\Message::create(['user_id' => 1, 'review_id' => 2, 'message' => request()->message]);
+
+    event((new MessageSent($message))->dontBroadcastToCurrentUser());
 
     return $message;
 });

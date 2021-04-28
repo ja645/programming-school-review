@@ -14,23 +14,26 @@
 
 <script>
 export default {
- data() {
-   return {
-     messages : [],
-     newMessage : ''
-   }
- },
- mounted() {
+  data() {
+    return {
+      messages : [],
+      newMessage : ''
+    }
+  },
+  mounted() {
    axios.get('/api/reviews').then(response => (this.messages = response.data));
- },
- methods: {
-   addMessage() {
-     axios.post('/api/reviews/message', {
-       message : this.newMessage
-     })
-     .then(response => this.messages.push(response.data));
-     this.newMessage = '';
-   }
- }
+    window.Echo.channel('chat').listen('MessageSent', response => {
+      this.messages.push(response.message);
+    });
+  },
+  methods: {
+    addMessage() {
+      axios.post('/api/reviews/message', {
+        message : this.newMessage
+      })
+      .then(response => this.messages.push(response.data));
+      this.newMessage = '';
+    }
+  }
 }
 </script>
