@@ -17,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('api')->get('/reviews', function() {
+    return \App\Models\Message::all();
+});
+
+Route::middleware('api')->post('/reviews/message', function() {
+    $message = \App\Models\Message::create(['user_id' => 1, 'review_id' => 2, 'message' => request()->message]);
+
+    return $message;
+});
