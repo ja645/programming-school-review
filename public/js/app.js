@@ -18542,6 +18542,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      //データを保持
       messages: [],
       newMessage: ''
     };
@@ -18549,10 +18550,11 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
+    //htmlリクエストを送り、レスポンスであるresponse.dataをthis.messageに代入
     axios.get('/api/reviews').then(function (response) {
       return _this.messages = response.data;
     });
-    window.Echo.channel('chat').listen('MessageSent', function (response) {
+    window.Echo["private"]('chat').listen('MessageSent', function (response) {
       _this.messages.push(response.message);
     });
   },

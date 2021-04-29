@@ -31,11 +31,7 @@ Route::middleware(['guest'])->group(function() {
 Route::get('/', [HomeController::class, 'index'])->name('top');
 
 Route::get('/reviews', [ReviewController::class, 'index']);
-Route::post('/reviews/message', [ReviewController::class, 'sendMessage']);
-// Route::get('/reviews/message', function() {
-//   $comment = ['id' => 1, 'name' => 'こんにちは'];
-//   event(new CommentSent($comment));
-// });
+// Route::post('/reviews/message', [ReviewController::class, 'sendMessage']);
 
 Route::middleware(['auth'])->group(function() {
   

@@ -14,16 +14,11 @@ class CreateFollowingsTable extends Migration
     public function up()
     {
         Schema::create('followings', function (Blueprint $table) {
-            $table->unsignedBigInteger('follower_user_id');
-            $table->unsignedBigInteger('poster_id');
-            $table->unsignedBigInteger('followed_review_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('review_id')->constrained()->onDelete('cascade');
             $table->timestamp('created_at');
-            //外部キー制約
-            $table->foreign('follower_user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('poster_id')->references('id')->on('users')->onDolete('cascade');
-            $table->foreign('followed_review_id')->references('id')->on('reviews')->onDelete('cascade');
             //複合主キーとして設定
-            $table->primary(['follower_user_id', 'followed_review_id'])->unique();
+            $table->primary(['user_id', 'review_id'])->unique();
         });
     }
 

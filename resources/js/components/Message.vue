@@ -16,13 +16,16 @@
 export default {
   data() {
     return {
+      //データを保持
       messages : [],
       newMessage : ''
     }
   },
   mounted() {
-   axios.get('/api/reviews').then(response => (this.messages = response.data));
-    window.Echo.channel('chat').listen('MessageSent', response => {
+    //htmlリクエストを送り、レスポンスであるresponse.dataをthis.messageに代入
+    axios.get('/api/reviews').then(response => (this.messages = response.data));
+
+    window.Echo.private('chat').listen('MessageSent', response => {
       this.messages.push(response.message);
     });
   },
