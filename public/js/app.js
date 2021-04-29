@@ -18612,13 +18612,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.newMessage = $event;
-    }),
-    onBlur: _cache[2] || (_cache[2] = function () {
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newMessage]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    onClick: _cache[2] || (_cache[2] = function () {
       return $options.addMessage && $options.addMessage.apply($options, arguments);
     })
-  }, null, 544
-  /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.newMessage]])])])]);
+  }, "送信")])])]);
 }
 
 /***/ }),

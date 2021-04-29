@@ -6,7 +6,8 @@
         <ul>
           <li v-for="message in messages">{{ message['message'] }}</li>
         </ul>
-        <input type="text" v-model="newMessage" @blur="addMessage">
+        <input type="text" v-model="newMessage">
+        <button @click="addMessage">送信</button>
       </div>
     </div>
   </div>

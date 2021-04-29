@@ -91,7 +91,7 @@ class UserController extends Controller
     public function delete()
     {
         $user_id = Auth::id();
-        dump($user_id);
+
         User::find($user_id)->delete();
 
         Session::flash('flash_message', '退会手続きが完了しました！');

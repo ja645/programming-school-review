@@ -24,15 +24,13 @@ use App\Models\Review;
 Route::middleware(['guest'])->group(function() {
   Route::get('/signup', [UserController::class, 'add'])->name('add');
   Route::post('/users/create', [UserController::class, 'create'])->name('create');
-
-  Route::get('/rankings', [Review::class, 'index']);
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('top');
+Route::get('/rankings', [HomeController::class, 'showRankings']);
+Route::get('/school', [HomeController::class, 'showSchool']);
 
 Route::get('/reviews', [ReviewController::class, 'index']);
-// Route::post('/reviews/message', [ReviewController::class, 'sendMessage']);
-
 Route::middleware(['auth'])->group(function() {
   
   Route::get('/users', [UserController::class, 'index'])->name('mypage');

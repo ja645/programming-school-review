@@ -1,9 +1,5 @@
 @extends('layouts.admin')
 
-@push
-
-@endpush
-
 @section('title', 'rankings')
 
 @section('content')
