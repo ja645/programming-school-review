@@ -1,90 +1,73 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.admin')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+@section('title', 'create-user')
 
-        <form method="POST" action="{{ route('create') }}">
-            @csrf
+@section('content')
+<div class="container-xl">
 
-            <!-- Name -->
-            <div>
-                <x-label for="user_name" :value="__('User_name')" />
+<div class="row d-flex justify-content-center">
 
-                <x-input id="user_name" class="block mt-1 w-full" type="text" name="user_name" required autofocus />
-            </div>
+  <div class="col-md-8">
+    <div id="user-info" class="card p-0" style="margin-top: 6.0rem;">
+      <div class="card-header">会員情報登録</div>
+      <div class="card-body text-secondary">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+              <label for="email">メールアドレス</label>
+              <input type="email" name="email" placeholder="メールアドレスを入力してください。">
+          </li>
+          <li class="list-group-item">
+            <label for="password">パスワード</label>
+            <input type="password" name="password" placeholder="半角英数字をそれぞれ1字使い、8~100字で入力してください。">
+          </li>
+          <li class="list-group-item">
+            <label for="password_confirm">パスワード(※確認用)</label>
+            <input type="password" name="password" placeholder="入力したパスワードと同じものを入力してください。">
+          </li>
+        </ul>
+      </div>
+    </div>
 
-            <!-- Birthday -->
-            <div>
-                <x-label for="birthday" :value="__('Birthday')" />
+    <div id="user-prof" class="card" style="margin: 10.0rem 0;">
+      <div class="card-header">プロフィール登録</div>
+      <div class="card-body text-secondary">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+              <label for="user_name">ニックネーム</label>
+              <input type="text" name="user_name" placeholder="ニックネームを入力してください。">
+          </li>
+          <li id="birthday" class="list-group-item">
+              <label for="birthday">生年月日</label>
+              <input type="date">
+          </li>
+          <li id="sex" class="list-group-item">
+              <label for="sex">性別</label>
+              <select name="sex">
+                  <option value=0>男性</option>
+                  <option value=1>女性</option>
+                  <option value=2>その他</option>
+              </select>
+          </li>
+          <li class="list-group-item">
+              <label for="former_job">以前のご職業</label>
+              <input type="text" name="former_job" placeholder="以前のお仕事を入力してください。">
+          </li>
+          <li class="list-group-item">
+              <label for="job">現在のご職業</label>
+              <input type="text" name="job" placeholder="現在のお仕事を入力してください。">
+          </li>
+          <li class="list-group-item">
+             <button type="button" class="btn btn-success" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                この内容で登録する
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-                <x-input id="birthday" class="block mt-1 w-full" type="text" name="birthday" required autofocus />
-            </div>
+  </div>
 
-            <!-- Sex -->
-            <div>
-                <x-label for="sex" :value="__('Sex')" />
+</div>
 
-                <x-input id="sex" class="block mt-1 w-full" type="text" name="sex" required autofocus />
-            </div>
-
-            <!-- Former_job -->
-            <div>
-                <x-label for="former_job" :value="__('Former_job')" />
-
-                <x-input id="former_job" class="block mt-1 w-full" type="text" name="former_job" required autofocus />
-            </div>
-
-            <!-- Job -->
-            <div>
-                <x-label for="job" :value="__('Job')" />
-
-                <x-input id="job" class="block mt-1 w-full" type="text" name="job" required autofocus />
-            </div>
-
-            <!-- School_id -->
-            <div>
-                <x-label for="school_id" :value="__('School_id')" />
-
-                <x-input id="school_id" class="block mt-1 w-full" type="text" name="school_id" required autofocus />
-            </div>
-
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" required />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+</div>
+@endsection

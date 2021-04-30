@@ -45,7 +45,7 @@
       <div class="card-header">プロフィール</div>
       <div class="card-body text-secondary">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">ユーザー名<span>hogehoge</span></li>
+          <li class="list-group-item">ニックネーム<span>hogehoge</span></li>
           <li class="list-group-item">生年月日<span></span></li>
           <li class="list-group-item">性別<span>hoge</span></li>
           <li class="list-group-item">以前のご職業<span>hoge</span></li>

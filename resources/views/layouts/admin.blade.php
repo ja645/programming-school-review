@@ -13,9 +13,17 @@
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
+  <!-- popovers -->
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
+  <script>
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+      return new bootstrap.Popover(popoverTriggerEl)
+    })
+  </script>
   <!-- Styles -->
   <!-- ローカルではsecure_assetを使わない -->
   @if(app('env')=='local')
@@ -101,10 +109,10 @@
   </main>
 
   <footer class="mt-auto bg-light">
-    <div class="container-fluid">
+    <div class="container-fluid d-flex justify-content-sm-start justify-content-center">
       <a class="footer-logo" href="#">ロゴ</a>  
-      <a href="#">サイト概要</a>
-      <a href="#">お問い合わせ</a>
+      <a class="ms-5" href="#">サイト概要</a>
+      <a class="ms-5" href="#">お問い合わせ</a>
     </div>
   </footer>
   
@@ -115,6 +123,7 @@
   @if(app('env')=='production')
   <script src="{{ secure_asset('js/app.js') }}" defer></script>
   @endif
+  
   <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
