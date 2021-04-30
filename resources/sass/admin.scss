@@ -123,6 +123,8 @@ footer a:hover {
   position: absolute;
   right: 10px;
   top: 20%;
+  color: #003366;
+  opacity: 0.8;
   background: none;
   border: none;
   outline: none;
@@ -165,6 +167,30 @@ footer a:hover {
   padding-top: 3.0rem;
 }
 
+.user-nav .card {
+  border-color: white;
+  border-radius: 0;
+}
+
+.user-nav .list-group-item {
+  background-color: #EEEEEE;
+  border-color: white;
+  border-radius: 0;
+}
+
+.user-nav .list-group-item .fa-user {
+  color: #003366;
+}
+.user-nav .list-group-item .fa-file-alt {
+  color: green;
+}
+.user-nav .list-group-item .fa-heart {
+  color: red;
+}
+.user-nav .list-group-item .fa-thumbs-up {
+  color: orange;
+}
+
 .user-nav li {
   padding-top: 2.0rem;
   padding-bottom: 2.0rem;
@@ -172,7 +198,7 @@ footer a:hover {
 }
 
 .user-nav a {
-  color: black;
+  color: rgba($color: #003366, $alpha: 0.8);
   text-decoration: none;
 }
 
@@ -180,24 +206,50 @@ footer a:hover {
   margin-right: 1rem;
 }
 
-.user-info li, .user-prof li {
+#user-info, #user-prof {
+  border: solid 2px rgba($color: #003366, $alpha: 0.8);
+  border-radius: 0;
+}
+
+#user-info .card-header, #user-prof .card-header {
+  color: white;
+  background-color: #003366;
+  border-radius: 0;
+  opacity: 0.8;
+}
+
+#user-info .list-group-item, #user-prof .list-group-item {
+  color: rgba($color: #003366, $alpha: 0.6);
+  border: none;
+  border-bottom: 1px solid rgba($color: #003366, $alpha: 0.8);
+}
+
+#user-info .list-group-item:last-child {
+  border-bottom: none;
+}
+
+#user-prof .list-group-item:last-child {
+  border-bottom: none;
+}
+
+#user-info li, #user-prof li {
   position: relative;
 }
 
-.user-info span, .user-prof span {
+#user-info span, #user-prof span {
   color: black;
   position: absolute;
   left: 15rem;
   top: 3.0rem;  
 }
 
-.user-info a, .user-prof a {
+#user-info a, #user-prof a {
   float: right;
   text-decoration: none;
   color: cadetblue;
 }
 
-.user-prof li:last-child {
+#user-prof li:last-child {
   display: inline-block;
   padding: 25px 0 15px 0;
   margin: 0 auto;

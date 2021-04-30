@@ -19,8 +19,8 @@
   <!-- Styles -->
   <!-- ローカルではsecure_assetを使わない -->
   @if(app('env')=='local')
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/admin.css') }}" rel="stylesheet">
   @endif
   @if(app('env')=='production')
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
