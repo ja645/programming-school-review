@@ -108,7 +108,7 @@
     @yield('content')
   </main>
 
-  <footer class="mt-auto bg-light">
+  <footer class="mt-auto">
     <div class="container-fluid d-flex justify-content-sm-start justify-content-center">
       <a class="footer-logo" href="#">ロゴ</a>  
       <a class="ms-5" href="#">サイト概要</a>

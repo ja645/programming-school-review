@@ -25,7 +25,7 @@ Route::middleware('api')->get('/reviews', function() {
 });
 
 Route::middleware('api')->post('/reviews/message', function() {
-    $message = \App\Models\Message::create(['user_id' => 1, 'review_id' => 2, 'message' => request()->message]);
+    $message = \App\Models\Message::create(['user_id' => 2, 'review_id' => 4, 'message' => request()->message]);
 
     event((new MessageSent($message))->dontBroadcastToCurrentUser());
 

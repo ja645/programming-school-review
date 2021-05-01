@@ -18554,7 +18554,7 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/reviews').then(function (response) {
       return _this.messages = response.data;
     });
-    window.Echo["private"]('chat').listen('MessageSent', function (response) {
+    window.Echo.channel('chat').listen('MessageSent', function (response) {
       _this.messages.push(response.message);
     });
   },
