@@ -212,53 +212,121 @@ footer a:hover {
 /*------------------------------
  -------トップページ-----------
 ----------------------------*/
-#top-screen h1, #top-screen p {
+.top-text {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 20%;
+  left: 5%;
   z-index: 1;
+}
+.catch {
+  font-size: calc(1.0rem + 6.0vw);
+  color: #ff0033;
+}
+
+.sub-text {
+  font-size: calc(1.0rem + 1.0vw);
+}
+
+.canoe {
+  width: 40%;
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  filter: drop-shadow(20px 15px 5px black);
+}
+
+.paddle {
+  width: 40%;
+  position: absolute;
+  top: 40%;
+  left: 13%;
+  filter: drop-shadow(20px 15px 5px black);
 }
 
 #top-screen {
-  height: 56vw;
+  height: 80vw;
   position: relative;
-  background-color: white;
-}
-
-#gray {
-  width: 70%;
-  height: 60%;
-  position: absolute;
-  right: 5%;
-  top: 8%;
   background-color: #003366;
+  box-shadow: 0 10px 5px 0 rgba(0, 0, 0, .5);
 }
 
 #navy {
-  width: 50%;
-  height: 50%;
+  width: 75%;
+  height: 40%;
   position: absolute;
   right: 5%;
-  top: 8%;
+  top: 20%;
   background-color: #CCCCCC;
+  box-shadow: inset 10px 10px 5px 0 rgba(0, 0, 0, .5);
 }
 
 #white {
-  width: 20%;
-  height: 20%;
+  width: 40%;
+  height: 40%;
   position: absolute;
-  right: 8%;
-  top: 10%;
+  right: 4%;
+  top: 12%;
   background-color: white;
+  box-shadow: inset 10px 10px 5px 0 rgba(0, 0, 0, .5);
 }
 
 .box-w p, .box-b p {
   margin: 0 auto;
 }
 
+.pattern-niagara {
+  position: relative;
+}
+
+.No2 {
+  position: relative;
+  top: -5%;
+}
+.No4 {
+  position: relative;
+  top: -25%;
+  box-shadow: none;
+}
+.No6 {
+  position: relative;
+  top: -10%;
+}
+.No8 {
+  position: relative;
+  top: -35%;
+}
+
+.No11 {
+  position: relative;
+  top: 0%;
+}
+.No12 {
+  position: relative;
+  top: -15%;
+}
+.No14 {
+  position: relative;
+  top: 0%;
+}
+.No15 {
+  position: relative;
+  top: -10%;
+}
+
+.No4, .No10, .No14, .No20, .No24, .No26, .No30 {
+  visibility: hidden;
+}
+
 .column {
   width: 25%;
-  opacity: 0.8;
+}
+
+.pattern-niagara .column{
+  box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, .5);
+}
+
+.pattern-niagara-bottom .column {
+  box-shadow: 10px 0 5px 0 rgba(0, 0, 0, .5);
 }
 
 .col {
@@ -279,6 +347,11 @@ footer a:hover {
   border-radius: 20px;
 }
 
+.card-body {
+  border: solid 2px #003366;
+  border-radius: 0;
+  box-shadow: 10px 10px  5px 0 rgba(0, 0, 0, .5);
+}
 .prev {
   width: 50px;
   margin-left: 7vw;
@@ -406,78 +479,38 @@ footer a:hover {
 --------スクールページここから------
 ------------------------------- */
 .school-name {
-  font-size: calc(2.5rem + 2vw);
+  font-size: calc(3.0rem + 2.0vw);
+  margin: 2vw 0;
 }
 
-.school-name i {
-  height: 30.67px;
-  margin: auto 0;
-}
-
-.school-follow {
-  margin: auto 0;
-}
-
-.school-image {
-  height: 170px;
-  object-fit: cover;
-}
-
-.center-image {
-  padding: 0;
-}
-
-.center-image {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-}
-
-.left-contents {
-  border: solid 5px #003366;
-}
-
-.radar-chart {
-  width: 70%;
-  margin: 0 auto;
-}
-
-.radar-chart {
-  padding: 20px 0;
-}
-
-.right-contents {
-  background-color: #003366;
-}
-
-.tuition, .term, .overall-satisfaction {
-  color: #EEEEEE;
-  text-align: center;
-}
-
-.star-rate {
+.star {
   position: relative;
   display: inline-block;
+  font-size: 5rem;
+}
+
+.star::before, .star::after {
+  content: "★★★★★";
+}
+
+.star::before {
   color: #CCCCCC;
 }
 
-.front {
+.star::after {
   position: absolute;
-  top: -1;
+  top: 0;
   left: 0;
-  display: inline-block;
-  background-color: yellow;
+  color: yellow;
   overflow: hidden;
-  width: 50%;
-  height: 100%;
+  width: 15rem;
 }
 
-.review-list .list-group-item {
-  border: solid 2px #003366;
-  border-top: none;
-  opacity: 0.8;
+.right-contents {
+  height: 305px;
+  margin: auto 0;
 }
 
-.review-list .list-group-item:first-of-type {
-  border-top: solid 2px #003366;
+.school-statistics {
+  padding: 50px 0;
 }
