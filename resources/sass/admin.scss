@@ -158,8 +158,6 @@ footer a:hover {
  ------検索ボックスここまで 
  ------------------------------*/
 
-
-
 /*------------------------------
  -------マイページ-------------
 ----------------------------*/
@@ -257,8 +255,6 @@ footer a:hover {
 /*------------------------------
  -------マイページここまで------
 ----------------------------*/
-
-
 
 
 /*------------------------------
@@ -453,82 +449,6 @@ footer a:hover {
  ----ランキングページここまで--------
 ----------------------------------- */
 
-
-/* ---------------------------------
---------スクールページここから------
-------------------------------- */
-.school-name {
-  font-size: calc(2.0rem + 2vw);
-}
-
-.school-image {
-  height: 170px;
-  object-fit: cover;
-}
-
-.center-image {
-  padding: 0;
-}
-
-.center-image {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-}
-
-.left-contents {
-  border: solid 5px #003366;
-}
-
-.radar-chart {
-  width: 70%;
-  margin: 0 auto;
-}
-
-.radar-chart {
-  padding: 20px 0;
-}
-
-.right-contents {
-  background-color: #003366;
-}
-
-.tuition, .term, .overall-satisfaction {
-  color: #EEEEEE;
-  text-align: center;
-}
-
-.star-rate {
-  position: relative;
-  display: inline-block;
-  color: #CCCCCC;
-}
-
-.front {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: inline-block;
-  color: yellow;
-  overflow: hidden;
-  width: 2em;
-  height: 100%;
-}
-
-.review-list .list-group-item {
-  border: solid 2px #003366;
-  border-top: none;
-  opacity: 0.8;
-}
-
-.review-list .list-group-item:first-of-type {
-  border-top: solid 2px #003366;
-}
-/*---------------------------------------------
-----------スクールページここまで---------------
---------------------------------------------*/
-
-
 /*-------------------------------------------
 ---------ユーザー登録ページここから-----------
 -------------------------------------------*/
@@ -615,4 +535,147 @@ footer a:hover {
 ---------レビュー作成ページここまで---------
 ----------------------------------------*/
 
+/* ---------------------------------
+--------スクールページここから------
+------------------------------- */
+.school-name {
+  font-size: calc(3.0rem + 2.0vw);
+  margin: 2vw 0;
+}
 
+.total-rank p {
+  margin-bottom: 2vw;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: calc(1.6rem + 2.0rem);
+}
+
+.star-rate {
+  font-size: calc(1.6rem + 2.0rem);
+}
+
+.star::before, .star::after {
+  content: "★★★★★";
+}
+
+.star::before {
+  color: #CCCCCC;
+}
+
+.star::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: yellow;
+  overflow: hidden;
+  width: 15rem;
+}
+
+
+.school-statistics {
+  padding: 50px 0;
+}
+
+.left-contents {
+  width: 40vw;
+  height: 40vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(238, 238, 238, 1);
+  box-shadow: 10px 10px 5px 0 black;
+  outline: solid 2px #003366;
+  outline-offset: -10px;
+  border-radius: 2px;
+}
+
+.left-contents-inner {
+  width: 90%;
+}
+
+.right-contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  height: 40vw;
+  color: white;
+  outline: solid 2px white;
+  outline-offset: -10px;
+  background-color: #003366;
+  box-shadow: 10px 10px 5px 0 black;
+  border-radius: 2px;
+}
+
+@media screen and (max-width: 767px) {
+  .left-contents, .right-contents {
+    width: 80vw;
+    height: 80vw;
+  }
+}
+
+.school-head-card, .school-info-card {
+  background-color: rgba(238, 238, 238, 1);
+  box-shadow: 10px 10px 5px 0 black;
+  outline: solid 2px #FFD700;
+  outline-offset: -10px;
+  border-radius: 2px;
+}
+
+.school-reviews-card {
+  background-color: rgba(238, 238, 238, 1);
+  box-shadow: 10px 10px 5px 0 black;
+  margin-top: 40px;
+  border-radius: 2px;
+}
+
+.review-list .list-group-item {
+  padding: 15px 10px;
+  border: solid 2px #003366;
+  border-top: none;
+  opacity: 0.6;
+}
+
+.review-list .list-group-item:first-child {
+  border-top: solid 2px #003366;
+}
+
+.school-container {
+  padding: 40px 0;
+  background-color: #FFD700;
+}
+
+/* ---------------------------------------------
+-----------スクールページここまで---------------
+------------------------------------------- */
+
+/* --------------------------------------------
+----------レビューページここから---------------
+------------------------------------------- */
+.message-text {
+  width: 100%;
+  border:rgba(#003366, 0.6);
+  background-color: #fff;
+}
+
+.message-send {
+  display: block;
+  margin-top: 30px;
+  margin-left: auto;
+  width: 150px;
+  height: 40px;
+}
+
+.review-text-card {
+  background-color: rgba(238, 238, 238, 1);
+  box-shadow: 10px 10px 5px 0 black;
+  border-radius: 2px;
+}
+
+.review-title {
+  font-size: calc(1.0rem + 3.0vw);
+  margin: 2vw 0;
+}

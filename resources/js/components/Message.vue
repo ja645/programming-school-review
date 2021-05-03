@@ -1,14 +1,15 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <h1>メッセージ</h1>
-        <ul>
-          <li v-for="message in messages">{{ message['message'] }}</li>
-        </ul>
-        <input type="text" v-model="newMessage">
-        <button @click="addMessage">送信</button>
-      </div>
+  <div class="col-11 mx-auto school-reviews-card p-5">
+    <p>コメント</p>
+    <div class="review-list">
+      <p class="list-group-item" v-for="message in messages">{{ message['message'] }}</p>
+    </div>
+  </div>
+  <div class="col-11 mx-auto school-reviews-card p-5">
+    <p>hoge太郎さんに質問してみましょう！</p>
+    <div class="review-list">
+      <textarea type="text" class="message-text" style="border: solid 2px rgba(#003366, 0.6); padding: 15px 10px; background-color: #fff;border: solid 2px rgba(0, 51, 102, 0.6); outline: none" v-model="newMessage"></textarea>
+      <button type="button" class="btn btn-success message-send" @click="addMessage">送信</button>
     </div>
   </div>
 </template>
