@@ -212,39 +212,92 @@ footer a:hover {
 /*------------------------------
  -------トップページ-----------
 ----------------------------*/
+.top-icons {
+  background-color: #003366;
+}
+
+.top-signup, .top-login {
+  margin-top: 5%;
+  margin-right: 5rem;
+  margin-left: 5rem;
+}
+
+.top-signup a, .top-login a {
+  text-decoration: none;
+}
+
+.top-signup:hover  i {
+  color: rgba(0, 0, 0, .5);
+  text-shadow: 2px 2px 1px #eee, 0 0 #000;
+}
+
+.top-login:hover i {
+  color: rgba(0, 0, 0, .5);
+  text-shadow: -2px 2px 1px #eee, 0 0 #000;
+}
+
+.top-signup:hover  span, .top-login:hover span {
+  color: rgba(0, 0, 0, .5);
+  text-shadow: 2px 2px 1px #eee, 0 0 #000;
+}
+
+.top-signup i {
+  color: rgba(255, 255, 255, .5);
+  text-shadow: 2px 2px 1px #eee, 0 0 #000;
+}
+
+.top-login i {
+  color: rgba(255, 255, 255, .5);
+  text-shadow: -2px 2px 1px #eee, 0 0 #000;
+}
+
+.top-login span, .top-signup span {
+  color: rgba(255, 255, 255, .5);
+  font-size: calc(1.4rem + 0.1vw);
+  text-shadow: 1px 1px 1px #eee, 0 0 #000;
+  text-decoration: none;
+  text-align: center;
+  list-style: none;
+}
+
 .top-text {
   position: absolute;
-  top: 20%;
+  top: 13%;
   left: 5%;
   z-index: 1;
 }
+
 .catch {
   font-size: calc(1.0rem + 6.0vw);
   color: #ff0033;
+  display: inline-block;
+  width: 90vw;
 }
 
 .sub-text {
   font-size: calc(1.0rem + 1.0vw);
+  display: inline-block;
+  width: 90vw;
 }
 
 .canoe {
   width: 40%;
   position: absolute;
-  top: 50%;
-  left: 10%;
+  top: 43%;
+  left: 6%;
   filter: drop-shadow(20px 15px 5px black);
 }
 
 .paddle {
   width: 40%;
   position: absolute;
-  top: 40%;
-  left: 13%;
+  top: 33%;
+  left: 7%;
   filter: drop-shadow(20px 15px 5px black);
 }
 
 #top-screen {
-  height: 80vw;
+  height: 100vw;
   position: relative;
   background-color: #003366;
   box-shadow: 0 10px 5px 0 rgba(0, 0, 0, .5);
@@ -255,7 +308,7 @@ footer a:hover {
   height: 40%;
   position: absolute;
   right: 5%;
-  top: 20%;
+  top: 13%;
   background-color: #CCCCCC;
   box-shadow: inset 10px 10px 5px 0 rgba(0, 0, 0, .5);
 }
@@ -377,6 +430,28 @@ footer a:hover {
 .recruit {
   text-align: center;
 }
+
+.btn-signup p, .btn-login p {
+  color: white;
+  font-size: calc(1.2rem + 0.8vw);
+  margin: 0;
+}
+
+.top-buttons {
+  position: absolute;
+  top: 60%;
+  right: 15%;
+  width: 30%;
+  text-align: center;
+}
+
+.top-buttons .btn {
+  box-shadow: 10px 10px 5px 0 black;
+  width: calc(100px + 10.0vw);
+  height: 40px;
+  margin: 5% 0;
+}
+
 /* -----------------------------
 -----トップページここまで-----
 ---------------------------- */
@@ -508,7 +583,10 @@ footer a:hover {
 
 .right-contents {
   height: 305px;
-  margin: auto 0;
+}
+
+.right-contents-inner {
+  padding-top: 20%;
 }
 
 .school-statistics {
