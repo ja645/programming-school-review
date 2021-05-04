@@ -5,5 +5,5 @@ namespace App\Services;
 
 interface ReviewDataAccess
 {
-  public function getRanking(String $column);
+  public function getColumnSums(String $column);
 }
