@@ -22,26 +22,27 @@ use App\Models\Review;
 |
 */
 Route::middleware(['guest'])->group(function() {
-  Route::get('/signup', [UserController::class, 'add'])->name('add');
-  Route::post('/users/create', [UserController::class, 'create'])->name('create');
+  Route::get('/signup', [UserController::class, 'add'])->name('signup');
+  Route::post('/users/create', [UserController::class, 'create']);
+  Route::get('/', [HomeController::class, 'index'])->name('top');
 });
 
-Route::get('/', [HomeController::class, 'index'])->name('top');
-Route::get('/rankings', [HomeController::class, 'showRankings']);
-Route::get('/school', [HomeController::class, 'showSchool']);
 
-Route::get('/reviews/add', [ReviewController::class, 'add']);
-Route::get('/reviews', [ReviewController::class, 'index']);
-
-Route::get('/users', [UserController::class, 'index'])->name('mypage');
 Route::middleware(['auth'])->group(function() {
   
-  Route::get('/users/edit', [UserController::class, 'edit'])->name('edit');
-  Route::patch('/users/update', [UserController::class, 'update'])->name('update');
+  Route::get('/users', [UserController::class, 'index'])->name('mypage');
+  Route::get('/users/edit', [UserController::class, 'edit'])->name('user-edit');
+  Route::patch('/users/update', [UserController::class, 'update'])->name('user-update');
   Route::delete('/users/delete', [UserController::class, 'delete']);
+
+  Route::get('/reviews', [ReviewController::class, 'index']);
+  Route::get('/reviews/add', [ReviewController::class, 'add']);
   Route::post('/reviews/create', [ReviewController::class, 'create']);
   Route::delete('/reviews/delete', [ReviewController::class, 'delete']);
-//   Route::post('/reviews/message', [ReviewController::class, 'sendMessage']);
+  
+  Route::get('/school', [HomeController::class, 'showSchool'])->name('school');
+  
+  Route::get('/rankings', [HomeController::class, 'showRankings'])->name('ranking');
   
   Route::post('/follow', [FollowController::class, 'followReview']);
   Route::delete('/follow/delete', [FollowController::class, 'unFollowReview']);
@@ -49,7 +50,7 @@ Route::middleware(['auth'])->group(function() {
   Route::post('/like', [LikeController::class, 'like']);
   Route::delete('/like/delete', [LikeController::class, 'unLike']);
 
-  Route::get('/password/edit', [ChangePasswordController::class, 'showChangePasswordView']);
+  Route::get('/password/change', [ChangePasswordController::class, 'showChangePasswordView']);
   Route::patch('/password', [ChangePasswordController::class, 'changePassword']);
 
   Route::get('/email/edit', [ChangeEmailController::class, 'showChangeEmailForm']);

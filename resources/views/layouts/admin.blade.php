@@ -44,7 +44,7 @@
 
   <nav class="navbar navbar-expand-lg py-3">
     <div class="container-xl">
-      <a class="navbar-brand me-5" href="#">ロゴ</a>
+      <a class="navbar-brand me-5" href="{{ route('top') }}">ロゴ</a>
       
       <!-- 画面幅lg以下で表示される -->
       <form id="s-form" class="d-flex d-lg-none">
@@ -61,7 +61,7 @@
         <ul class="navbar-nav">
           <li class="nav-item my-auto">
             <div class="nav-icon">
-              <a href="#"><i class="fas fa-crown fa-2x"></i><span>ランキング</span></a>
+              <a href="{{ route('ranking') }}"><i class="fas fa-crown fa-2x"></i><span>ランキング</span></a>
             </div>
           </li>
         </ul>
@@ -76,12 +76,12 @@
           @if (Auth::check())
           <li class="nav-item my-auto">
             <div class="nav-icon">
-              <a href="#"><i class="fas fa-user fa-2x"></i><span>マイページ</span></a>
+              <a href="{{ route('mypage') }}"><i class="fas fa-user fa-2x"></i><span>マイページ</span></a>
             </div>
           </li>
           <li class="nav-item my-auto">
             <div class="nav-icon">
-              <a href="#"><i class="fas fa-door-open fa-2x"></i><span>ログアウト</span></a>
+              <a href="{{ route('logout') }}"><i class="fas fa-door-open fa-2x"></i><span>ログアウト</span></a>
             </div>
           </li>
 
@@ -89,12 +89,12 @@
           @else
           <li class="nav-item my-auto">
             <div class="nav-icon d-lg-block d-inline">
-              <a href="#"><i class="fas fa-user-plus fa-2x"></i><span>新規登録</span></a>
+              <a href="{{ route('signup') }}"><i class="fas fa-user-plus fa-2x"></i><span>新規登録</span></a>
             </div>
           </li>
           <li class="nav-item my-auto">
             <div class="nav-icon">
-              <a href="#"><i class="fas fa-door-open fa-2x fa-flip-horizontal"></i><span>ログイン</span></a>
+              <a href="{{ route('login') }}"><i class="fas fa-door-open fa-2x fa-flip-horizontal"></i><span>ログイン</span></a>
             </div>
           </li>
           @endif
@@ -110,7 +110,7 @@
 
   <footer class="mt-auto">
     <div class="container-fluid d-flex justify-content-sm-start justify-content-center">
-      <a class="footer-logo" href="#">ロゴ</a>  
+      <a class="footer-logo" href="{{ route('top') }}">ロゴ</a>  
       <a class="ms-5" href="#">サイト概要</a>
       <a class="ms-5" href="#">お問い合わせ</a>
     </div>

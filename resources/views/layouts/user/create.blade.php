@@ -8,6 +8,16 @@
     <div class="row d-flex justify-content-center">
 
         <div class="col-md-8">
+        
+        <form action="/users/create" method="post" enctype="multipart/form-data">
+        @if (count($errors) > 0)
+        <ul>
+        @foreach($errors->all() as $e)
+        <li>{{ $e }}</li>
+        @endforeach
+        </ul>
+        @endif
+        @csrf
             <div id="user-info" class="card p-0" style="margin-top: 6.0rem;">
             <div class="card-header">会員情報登録</div>
             <div class="card-body text-secondary">
@@ -38,7 +48,7 @@
                 </li>
                 <li id="birthday" class="list-group-item">
                     <label for="birthday">生年月日</label>
-                    <input type="date">
+                    <input type="date" name="birthday">
                 </li>
                 <li id="sex" class="list-group-item">
                     <label for="sex">性別</label>
@@ -57,7 +67,7 @@
                     <input type="text" name="job" placeholder="現在のお仕事を入力してください。">
                 </li>
                 <li class="list-group-item">
-                    <button type="button" class="btn btn-success" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+                    <button type="submit" class="btn btn-success" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
                         この内容で登録する
                     </button>
                 </li>
@@ -65,6 +75,7 @@
             </div>
             </div>
 
+        </form>
         </div>
 
     </div>

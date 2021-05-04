@@ -8,51 +8,67 @@
 
 @section('content')
 <div class="container-fluid p-0">
-
+  
   <div id="top-screen">
-    <div id="gray">
-      <div id="navy">
-        <div id="white"></div>
+  
+    <div id="navy">
+      <div id="white"></div>
+    </div>
+    
+    <div class="top-text">
+      <h1 class="catch">HOGE!Hogehoge?<span class="d-block d-"></span>Hogehogehogeh</h1>
+      <p class="sub-text">hogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehogehoge</p>
+    </div>
+    <img class="canoe" src="{{ asset('/images/カヌー.svg') }}" alt="">
+    <img class="paddle" src="{{ asset('/images/パドル.svg') }}" alt="">
+
+    <div class="top-buttons">
+      <div class="btn-signup">
+        <p class="d-none d-sm-inline">さあ、使ってみましょう！</p>
+        <button onclick="window.location='{{ route("signup") }}'" type="button" class="btn btn-danger btn-lg">アカウント作成</button>
+      </div>
+      <div class="btn-login">
+        <p class="d-none d-sm-inline">アカウントをお持ちの方は</p>
+        <button onclick="window.location='{{ route("login") }}'" type="button" class="btn btn-success btn-lg">ログイン</button>
       </div>
     </div>
-    <h1>HOGE!Hogehoge?Hogehogehogehoge,hogehogefugafuga.</h1>
-    <p>hogehogehogehogehogehogehogehogehogehogehogehogehoge.</p>
+
   </div>
 
   <!-- 滝状パターン -->
   <div class="row pattern-niagara m-0">
     <div class="col d-flex p-0">
       <div class="feature d-none d-xl-block">hogehogefugafuga</div>
-      <div class="column" style="height: 35vw; background-color: #003366;"></div>
-      <div class="column" style="height: 30vw; background-color: #CCCCCC;"></div>
-      <div class="column" style="height: 20vw; background-color: #003366;"></div>
-      <div class="column" style="height: 20vw; background-color: white;"></div>
-    </div>
-    <div class="col d-flex p-0">
-      <div class="feature d-none d-xl-block">hogehogefugafuga</div>
-      <div class="column" style="height: 15vw; background-color: #003366;"></div>
-      <div class="column" style="height: 5vw; background-color: #CCCCCC;"></div>
-      <div class="column" style="height: 20vw; background-color: #003366;"></div>
-      <div class="column" style="height: 20vw; background-color: white;"></div>
-    </div>
-    <div class="col d-flex p-0">
-      <div class="feature d-none d-xl-block">hogehogefugafuga</div>
-      <div class="column" style="height: 35vw; background-color: #CCCCCC;"></div>
-      <div class="column" style="height: 20vw; background-color: #003366;"></div>
-      <div class="column" style="height: 20vw; background-color: white;"></div>
-      <div class="column" style="height: 10vw; background-color: #CCCCCC;"></div>
-    </div>
-    <div class="col d-flex p-0">
-      <div class="feature d-none d-xl-block">hogehogefugafuga</div>
-      <div class="column" style="height: 15vw; background-color: #003366;"></div>
-      <div class="column" style="height: 20vw; background-color: #CCCCCC;"></div>
-      <div class="column" style="height: 20vw; background-color: white;"></div>
       <div class="column" style="height: 30vw; background-color: #003366;"></div>
+      <div class="column No2" style="height: 25vw; background-color: #CCCCCC;"></div>
+      <div class="column" style="height: 15vw; background-color: #003366;"></div>
+      <div class="column No4" style="height: 20vw; background-color: white;"></div>
+    </div>
+    <div class="col d-flex p-0">
+      <div class="feature d-none d-xl-block">hogehogefugafuga</div>
+      <div class="column" style="height: 10vw; background-color: #003366;"></div>
+      <div class="column No6" style="height: 20vw; background-color: #CCCCCC;"></div>
+      <div class="column" style="height: 20vw; background-color: #003366;"></div>
+      <div class="column No8" style="height: 20vw; background-color: #CCCCCC;"></div>
+    </div>
+    <div class="col d-flex p-0">
+      <div class="feature d-none d-xl-block">hogehogefugafuga</div>
+      <div class="column No9" style="height: 15vw; background-color: #003366;"></div>
+      <div class="column No10" style="height: 20vw; background-color: white;"></div>
+      <div class="column No11" style="height: 10vw; background-color: #003366;"></div>
+      <div class="column No12" style="height: 30vw; background-color: #CCCCCC;"></div>
+    </div>
+    <div class="col d-flex p-0">
+      <div class="feature d-none d-xl-block">hogehogefugafuga</div>
+      <div class="column" style="height: 15vw; background-color: #003366;"></div>
+      <div class="column No14" style="height: 20vw; background-color: white;"></div>
+      <div class="column No15" style="height: 20vw; background-color: #CCCCCC;"></div>
+      <div class="column" style="height: 15vw; background-color: #003366;"></div>
     </div>
   </div>
 
   <!-- レスポンシブ用特徴説明 -->
-  <div class="row d-xl-none d-flex">
+  <div class="row d-xl-none d-flex m-0">
     <div class="col-md-6 col-12">
       <div>hogehoge</div>
     </div>
@@ -60,7 +76,7 @@
       <div>hogehoge</div>
     </div>
   </div>
-  <div class="row d-xl-none d-flex">
+  <div class="row d-xl-none d-flex m-0">
     <div class="col-md-6 col-12">
       <div>hogehoge</div>
     </div>
@@ -178,33 +194,32 @@
     <h1>あなたの体験を聞きたがっている人がいます。</h1>
     <p>共有することで貴重な</p>
   </div>
-  <div class="row pattern-niagara m-0">
+  <div class="row pattern-niagara-bottom m-0">
     <div class="col d-flex p-0">
       <div class="column align-self-end" style="height: 35vw; background-color: #003366;"></div>
       <div class="column align-self-end" style="height: 30vw; background-color: #CCCCCC;"></div>
       <div class="column align-self-end" style="height: 20vw; background-color: #003366;"></div>
-      <div class="column align-self-end" style="height: 20vw; background-color: white;"></div>
+      <div class="column No20 align-self-end" style="height: 20vw; background-color: white;"></div>
     </div>
     <div class="col d-flex p-0">
       <div class="column align-self-end" style="height: 15vw; background-color: #003366;"></div>
       <div class="column align-self-end" style="height: 5vw; background-color: #CCCCCC;"></div>
       <div class="column align-self-end" style="height: 20vw; background-color: #003366;"></div>
-      <div class="column align-self-end" style="height: 20vw; background-color: white;"></div>
+      <div class="column No24 align-self-end" style="height: 20vw; background-color: white;"></div>
     </div>
     <div class="col d-flex p-0">
       <div class="column align-self-end" style="height: 35vw; background-color: #CCCCCC;"></div>
       <div class="column align-self-end" style="height: 20vw; background-color: #003366;"></div>
-      <div class="column align-self-end" style="height: 20vw; background-color: white;"></div>
+      <div class="column No26 align-self-end" style="height: 20vw; background-color: white;"></div>
       <div class="column align-self-end" style="height: 10vw; background-color: #CCCCCC;"></div>
     </div>
     <div class="col d-flex p-0">
       <div class="column align-self-end" style="height: 15vw; background-color: #003366;"></div>
       <div class="column align-self-end" style="height: 20vw; background-color: #CCCCCC;"></div>
-      <div class="column align-self-end" style="height: 20vw; background-color: white;"></div>
+      <div class="column No30 align-self-end" style="height: 20vw; background-color: white;"></div>
       <div class="column align-self-end" style="height: 30vw; background-color: #003366;"></div>
     </div>
   </div>
 
 </div>
-
 @endsection

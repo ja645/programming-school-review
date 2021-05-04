@@ -11,7 +11,7 @@
     <div class="card px-0">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <a href="#"><i class="fas fa-user"></i>hogehoge</a>
+          <a href="#"><i class="fas fa-user"></i>{{ $profile_form->user_name }}</a>
         </li>
         <li class="list-group-item">
           <a href="#"><i class="far fa-file-alt"></i>投稿したレビュー</a>
@@ -32,10 +32,10 @@
       <div class="card-body text-secondary">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            メールアドレス<span>hogehoge@hoge.com</span><a href="#">メールアドレスを変更</a>
+            メールアドレス<span>{{ $profile_form->email }}</span><a href="{{ url('/email/edit') }}">メールアドレスを変更</a>
           </li>
           <li class="list-group-item">
-            パスワード<span>password</span><a href="#">パスワードを変更</a>
+            パスワード<span>パスワードは表示出来ません。</span><a href="{{ url('/password/change') }}">パスワードを変更</a>
           </li>
         </ul>
       </div>
@@ -45,16 +45,28 @@
       <div class="card-header">プロフィール</div>
       <div class="card-body text-secondary">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">ニックネーム<span>hogehoge</span></li>
-          <li class="list-group-item">生年月日<span></span></li>
-          <li class="list-group-item">性別<span>hoge</span></li>
-          <li class="list-group-item">以前のご職業<span>hoge</span></li>
-          <li class="list-group-item">現在のご職業<span>hoge</span></li>
-          <li class="list-group-item"><a href="#">プロフィールを変更</a></li>
-        </ul>
-      </div>
-    </div>
 
+        <form action="{{ url('/users/edit') }}" method="get">
+        @csrf
+          <li class="list-group-item">ニックネーム<span>{{ $profile_form->user_name }}</span></li>
+          <li class="list-group-item">生年月日<span>{{ $profile_form->birthday }}</span></li>
+          
+          @if ($profile_form->sex === 0)
+          <li class="list-group-item">性別<span>男性</span></li>
+          @elseif ($profile_form->sex === 1)
+          <li class="list-group-item">性別<span>女性</span></li>
+          @else
+          <li class="list-group-item">性別<span>その他</span></li>
+          @endif
+          
+          <li class="list-group-item">以前のご職業<span>{{ $profile_form->former_job }}</span></li>
+          <li class="list-group-item">現在のご職業<span>{{ $profile_form->job }}</span></li>
+          <li class="list-group-item"><a type="submit">プロフィールを変更</a></li>
+        </form>
+      </ul>
+    </div>
+  </div>
+  
   </div>
 
 </div>

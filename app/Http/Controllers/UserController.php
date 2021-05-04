@@ -39,6 +39,8 @@ class UserController extends Controller
      */
     public function create(UserFormRequest $request)
     {        
+
+        // 保存処理のトランザクションとエラーメッセージが必要では？
         Auth::login($user = User::create([
             'user_name' => $request->user_name,
             'birthday' => $request->birthday,
