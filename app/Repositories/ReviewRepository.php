@@ -5,25 +5,43 @@ namespace App\Repositories;
 
 use App\Services\ReviewDataAccess;
 use App\Models\Review;
+use App\Models\School;
 use PhpParser\Node\Expr\Cast\Double;
 
 class ReviewRepository implements ReviewDataAccess
 {
     protected $Review;
 
-    public function __construct(Review $Review)
+    protected $School;
+
+    public function __construct(Review $Review, School $School)
     {
       $this->Review = $Review;
+
+      $this->School = $School;
     }
 
-    public function getAverageOfColumnSum(Int $school_id, String $column): float
+
+    /**
+     * @param String $column
+     * @return array
+     */
+    public function getSchoolList(String $column): array
     {
-      $total_reviews = Review::where('school_id', $school_id)->count();
+      $number_of_schools = $this->School::all()->count();
+      
+      $SchoolList = [];
 
-      $columnSum = (int)Review::where('school_id', $school_id)->sum($column);
-
-      $average = $columnSum / $total_reviews;
-
-      return round($average, 1);
+      for ($i = 1; $i <= $number_of_schools; $i ++) {
+        $number_of_reviews = Review::where('school_id', $i)->count();
+  
+        $columnSum = (int)Review::where('school_id', $i)->sum($column);
+  
+        $average = round($columnSum / $number_of_reviews, 1);
+  
+        $SchoolList[$i] = $average;
+      }
+      
+      return $SchoolList;
     }
 }

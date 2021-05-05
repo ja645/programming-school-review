@@ -5,5 +5,5 @@ namespace App\Services;
 
 interface ReviewDataAccess
 {
-  public function getAverageOfColumnSum(Int $school_id, String $column);
+  public function getSchoolList(String $column);
 }
