@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ReviewRepository;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,7 +22,9 @@ class HomeController extends Controller
      */
     public function showRankings()
     {
-        return view('auth.rankings');
+        $arr_schools = app(ReviewRepository::class);
+
+        return view('auth.rankings', ['arr_schools' => $arr_schools]);
     }
 
     /**

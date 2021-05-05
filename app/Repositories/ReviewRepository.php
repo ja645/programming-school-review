@@ -28,18 +28,20 @@ class ReviewRepository implements ReviewDataAccess
      */
     public function getSchoolList(String $column): array
     {
-      $number_of_schools = $this->School::all()->count();
+      $numberOfSchools = $this->School::all()->count();
       
       $SchoolList = [];
 
-      for ($i = 1; $i <= $number_of_schools; $i ++) {
-        $number_of_reviews = Review::where('school_id', $i)->count();
+      for ($i = 1; $i <= $numberOfSchools; $i ++) {
+        $numberOfReviews = Review::where('school_id', $i)->count();
   
+        $schoolName = $this->School::where('id', $i)->value('school_name');
+
         $columnSum = (int)Review::where('school_id', $i)->sum($column);
   
-        $average = round($columnSum / $number_of_reviews, 1);
+        $average = round($columnSum / $numberOfReviews, 1);
   
-        $SchoolList[$i] = $average;
+        $SchoolList[$schoolName] = $average;
       }
       
       return $SchoolList;

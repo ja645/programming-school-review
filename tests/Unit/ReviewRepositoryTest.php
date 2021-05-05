@@ -23,10 +23,6 @@ class ReviewRepositoryTest extends ReviewDataAccessTest
     {
         parent::setUp();
 
-        // $this->app->bind(ReviewDataAccess::class, function($app) {
-        //     return new ReviewRepository(new Review);
-        // });
-
         $this->Review = app(ReviewRepository::class);
     }
 
