@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\EmailReset;
+use App\Repositories\ReviewRepository;
+use App\Services\ReviewDataAccess;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\ServiceProvider;
@@ -27,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
                 return new HttpRequest();
             }
         );
+
+        $this->app->bind(ReviewDataAccess::class, ReviewRepository::class);
     }
 
     /**
