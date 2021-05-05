@@ -20,10 +20,7 @@
 
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <a class="nav-link active" id="number-of-reviews-tab" data-bs-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="true">レビュー数</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link" id="total-tab" data-bs-toggle="tab" href="#total" role="tab" aria-controls="total" aria-selected="false">総合評価</a>
+          <a class="nav-link active" id="total-tab" data-bs-toggle="tab" href="#review" role="tab" aria-controls="total" aria-selected="true">総合評価</a>
         </li>
         <li class="nav-item" role="presentation">
           <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">料金</a>
@@ -33,19 +30,10 @@
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="number-of-reviews-tab">
-          @foreach ()
-          <a href="#" class="list-group-item list-group-item-action">The current link item</a>
+        <div class="tab-pane fade show active" id="total" role="tabpanel" aria-labelledby="total-tab">
+          @foreach ($arr_schools as $key => $value)
+          <a href="#" class="list-group-item list-group-item-action">{{ $key }}</a>
           @endforeach
-          <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-          <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-          <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-          <a href="#" class="list-group-item list-group-item-action">A fifth link item</a>
-          <a href="#" class="list-group-item list-group-item-action">The current link item</a>
-          <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-          <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-          <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-          <a href="#" class="list-group-item list-group-item-action">A fifth link item</a>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"></div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"></div>

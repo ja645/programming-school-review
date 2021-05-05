@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\ReviewRepository;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,17 +13,6 @@ class HomeController extends Controller
     public function index()
     {
         return view('layouts.top');
-    }
-
-    /**
-     * ランキング一覧を表示
-     * @return view
-     */
-    public function showRankings()
-    {
-        $arr_schools = app(ReviewRepository::class);
-
-        return view('auth.rankings', ['arr_schools' => $arr_schools]);
     }
 
     /**

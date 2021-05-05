@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\RankingController;
 use App\Models\Review;
 
 /*
@@ -42,7 +43,7 @@ Route::middleware(['auth'])->group(function() {
   
   Route::get('/school', [HomeController::class, 'showSchool'])->name('school');
   
-  Route::get('/rankings', [HomeController::class, 'showRankings'])->name('ranking');
+  Route::get('/rankings', [RankingController::class, 'showRankings'])->name('ranking');
   
   Route::post('/follow', [FollowController::class, 'followReview']);
   Route::delete('/follow/delete', [FollowController::class, 'unFollowReview']);
