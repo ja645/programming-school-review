@@ -18589,18 +18589,43 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //データを保持
-      schools: ''
+      schools: [],
+      toggle: true
     };
+  },
+  computed: {
+    sortSchoolsDesc: function sortSchoolsDesc() {
+      return this.schools.sort(function (a, b) {
+        return b.column_average - a.column_average;
+      });
+    },
+    sortSchoolsAsc: function sortSchoolsAsc() {
+      return this.schools.sort(function (a, b) {
+        return a.column_average - b.column_average;
+      });
+    }
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.post('/api/rankings', {
+      'columnName': 'total_judg'
+    }).then(function (response) {
+      return _this.schools = response.data;
+    });
   },
   methods: {
     showSchoolList: function showSchoolList(columnName) {
-      var _this = this;
+      var _this2 = this;
 
       axios.post('/api/rankings', {
         'columnName': columnName
       }).then(function (response) {
-        return _this.schools = response.data;
+        return _this2.schools = response.data;
       });
+    },
+    changeToggle: function changeToggle() {
+      this.toggle == true ? this.toggle = false : this.toggle = true;
     }
   }
 });
@@ -18693,41 +18718,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
+  "class": "ranking-order d-flex justify-content-end"
+};
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "並べ替え"
+}, "並べ替え：", -1
+/* HOISTED */
+);
+
+var _hoisted_3 = {
+  "class": "form-select",
+  "aria-label": "並べ替え"
+};
+var _hoisted_4 = {
   "class": "ranking-list"
 };
-var _hoisted_2 = {
+var _hoisted_5 = {
   "class": "nav nav-tabs",
   id: "myTab",
   role: "tablist"
 };
-var _hoisted_3 = {
-  "class": "nav-item",
-  role: "presentation"
-};
-var _hoisted_4 = {
-  "class": "nav-item",
-  role: "presentation"
-};
-var _hoisted_5 = {
-  "class": "nav-item",
-  role: "presentation"
-};
 var _hoisted_6 = {
+  "class": "nav-item",
+  role: "presentation"
+};
+var _hoisted_7 = {
+  "class": "nav-item",
+  role: "presentation"
+};
+var _hoisted_8 = {
+  "class": "nav-item",
+  role: "presentation"
+};
+var _hoisted_9 = {
   "class": "tab-content",
   id: "myTabContent"
 };
-var _hoisted_7 = {
+var _hoisted_10 = {
+  key: 0,
   "class": "tab-pane fade show active",
   id: "total_judg",
   role: "tabpanel",
   "aria-labelledby": "total_judg"
 };
-var _hoisted_8 = {
-  href: "#",
-  "class": "list-group-item list-group-item-action"
+var _hoisted_11 = {
+  key: 1,
+  "class": "tab-pane fade show active",
+  id: "total_judg",
+  role: "tabpanel",
+  "aria-labelledby": "total_judg"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("option", {
+    selected: "",
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $options.changeToggle();
+    })
+  }, "評価の高い順"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("option", {
+    value: "1",
+    onClick: _cache[2] || (_cache[2] = function ($event) {
+      return $options.changeToggle();
+    })
+  }, "評価の低い順")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     "class": "nav-link active",
     id: "total_judg",
     "data-bs-toggle": "tab",
@@ -18735,10 +18788,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     role: "tab",
     "aria-controls": "total_judg",
     "aria-selected": "true",
-    onClick: _cache[1] || (_cache[1] = function ($event) {
+    onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.showSchoolList('total_judg');
     })
-  }, "総合評価")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+  }, "総合評価")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     "class": "nav-link",
     id: "st_tuition",
     "data-bs-toggle": "tab",
@@ -18746,10 +18799,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     role: "tab",
     "aria-controls": "st_tuition",
     "aria-selected": "false",
-    onClick: _cache[2] || (_cache[2] = function ($event) {
+    onClick: _cache[4] || (_cache[4] = function ($event) {
       return $options.showSchoolList('st_tuition');
     })
-  }, "料金")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+  }, "料金")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     "class": "nav-link",
     id: "st_curriculum",
     "data-bs-toggle": "tab",
@@ -18757,16 +18810,30 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     role: "tab",
     "aria-controls": "st_curriculum",
     "aria-selected": "false",
-    onClick: _cache[3] || (_cache[3] = function ($event) {
+    onClick: _cache[5] || (_cache[5] = function ($event) {
       return $options.showSchoolList('st_curriculum');
     })
-  }, "カリキュラム")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.schools, function (school) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(school), 1
-    /* TEXT */
-    );
+  }, "カリキュラム")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [$data.toggle ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.sortSchoolsDesc, function (school) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", {
+      href: '/schools/' + school.school_id,
+      "class": "list-group-item list-group-item-action"
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(school), 9
+    /* TEXT, PROPS */
+    , ["href"]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])])]);
+  ))])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.sortSchoolsAsc, function (school) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", {
+      href: '/schools/' + school.school_id,
+      "class": "list-group-item list-group-item-action"
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(school), 9
+    /* TEXT, PROPS */
+    , ["href"]);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))]))])])], 64
+  /* STABLE_FRAGMENT */
+  );
 }
 
 /***/ }),

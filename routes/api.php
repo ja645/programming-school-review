@@ -33,10 +33,13 @@ Route::middleware('api')->post('/reviews/message', function() {
     return $message;
 });
 
+
 Route::middleware('api')->post('/rankings', function() {
-    // $columnName = (string)request()->columnName;
     logger(request()->columnName);
     $school = app(ReviewRepository::class)->getSchoolList(request()->columnName);
+    // 昇順にソート
+    // asort($school);
+    
     logger($school);
     return $school;
 });

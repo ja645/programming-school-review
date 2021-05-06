@@ -1,4 +1,12 @@
 <template>
+  <div class="ranking-order d-flex justify-content-end">
+    <label for="並べ替え">並べ替え：</label>
+    <select class="form-select" aria-label="並べ替え">
+      <option selected @click="changeToggle()">評価の高い順</option>
+      <option value="1" @click="changeToggle()">評価の低い順</option>
+    </select>
+  </div>
+
   <div class="ranking-list">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
@@ -12,8 +20,12 @@
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="total_judg" role="tabpanel" aria-labelledby="total_judg">
-        <a href="{{ url('/schools/') }}" class="list-group-item list-group-item-action" v-for="school in schools">{{ school['school_name'] }}</a>
+      <div v-if="toggle" class="tab-pane fade show active" id="total_judg" role="tabpanel" aria-labelledby="total_judg">
+        <a v-bind:href="'/schools/' +school.school_id" class="list-group-item list-group-item-action" v-for="school in sortSchoolsDesc">{{ school }}</a>
+      </div>
+
+      <div v-else class="tab-pane fade show active" id="total_judg" role="tabpanel" aria-labelledby="total_judg">
+        <a v-bind:href="'/schools/' +school.school_id" class="list-group-item list-group-item-action" v-for="school in sortSchoolsAsc">{{ school }}</a>
       </div>
     </div>
   </div>
@@ -24,8 +36,27 @@ export default {
   data() {
     return {
       //データを保持
-      schools : '',
+      schools : [],
+      toggle : true
     }
+  },
+  computed: {
+    sortSchoolsDesc: function () {
+      return this.schools.sort((a, b) => {
+        return b.column_average - a.column_average;
+      });
+    },
+    sortSchoolsAsc: function () {
+      return this.schools.sort((a, b) => {
+        return a.column_average - b.column_average;
+      });
+    }
+  },
+  mounted() {
+    axios.post('/api/rankings', {
+      'columnName' : 'total_judg'
+    })
+    .then(response => this.schools = response.data);
   },
   methods: {
     showSchoolList(columnName) {
@@ -33,7 +64,10 @@ export default {
         'columnName' : columnName
       })
       .then(response => this.schools = response.data);
-    }
+    },
+    changeToggle() {
+      this.toggle == true ? this.toggle = false : this.toggle = true
+    },
   }
 }
 </script>

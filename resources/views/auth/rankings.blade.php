@@ -6,15 +6,6 @@
 <div class="container-md">
        
   <div class="ranking">
-    <div class="ranking-order d-flex justify-content-end">
-      <label for="並べ替え">並べ替え：</label>
-      <select class="form-select" aria-label="並べ替え">
-        <option selected>評価の高い順</option>
-        <option value="1">評価の低い順</option>
-        <option value="2">新しい順</option>
-        <option value="3">古い順</option>
-      </select>
-    </div>
 
     <div id="app2">
       <ranking-Component></ranking-Component>
