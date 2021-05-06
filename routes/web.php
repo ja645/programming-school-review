@@ -28,6 +28,8 @@ Route::middleware(['guest'])->group(function() {
   Route::get('/', [HomeController::class, 'index'])->name('top');
 });
 
+Route::get('/contacts', [HomeController::class, 'showContactForm']);
+Route::post('/contacts/send', [HomeController::class, 'receiveContact']);
 
 Route::middleware(['auth'])->group(function() {
   
