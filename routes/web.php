@@ -33,7 +33,7 @@ Route::middleware(['auth'])->group(function() {
   
   Route::get('/users', [UserController::class, 'index'])->name('mypage');
   Route::get('/users/edit', [UserController::class, 'edit'])->name('user-edit');
-  Route::patch('/users/update', [UserController::class, 'update'])->name('user-update');
+  Route::post('/users/update', [UserController::class, 'update'])->name('user-update');
   Route::delete('/users/delete', [UserController::class, 'delete']);
 
   Route::get('/reviews', [ReviewController::class, 'index']);
@@ -52,7 +52,7 @@ Route::middleware(['auth'])->group(function() {
   Route::delete('/like/delete', [LikeController::class, 'unLike']);
 
   Route::get('/password/change', [ChangePasswordController::class, 'showChangePasswordView']);
-  Route::patch('/password', [ChangePasswordController::class, 'changePassword']);
+  Route::post('/password', [ChangePasswordController::class, 'changePassword']);
 
   Route::get('/email/edit', [ChangeEmailController::class, 'showChangeEmailForm']);
   Route::post('/email', [ChangeEmailController::class, 'sendChangeEmailLink'])->name('email');
