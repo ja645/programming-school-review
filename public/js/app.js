@@ -18766,7 +18766,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     );
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"tab-pane fade\" id=\"st_tuition\" role=\"tabpanel\" aria-labelledby=\"st_tuition\">\r\n        <a href=\"#\" class=\"list-group-item list-group-item-action\" v-for=\"school in schools\"></a>\r\n      </div>\r\n      <div class=\"tab-pane fade\" id=\"st_curriculum\" role=\"tabpanel\" aria-labelledby=\"st_curriculum\">\r\n        <a href=\"#\" class=\"list-group-item list-group-item-action\" v-for=\"school in schools\">{{ school['school'] }}</a>\r\n      </div> ")])]);
+  ))])])]);
 }
 
 /***/ }),

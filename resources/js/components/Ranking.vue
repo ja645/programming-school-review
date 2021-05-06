@@ -13,7 +13,7 @@
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="total_judg" role="tabpanel" aria-labelledby="total_judg">
-        <a href="#" class="list-group-item list-group-item-action" v-for="school in schools">{{ school }}</a>
+        <a href="{{ url('/schools/') }}" class="list-group-item list-group-item-action" v-for="school in schools">{{ school['school_name'] }}</a>
       </div>
     </div>
   </div>

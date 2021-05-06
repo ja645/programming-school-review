@@ -14,14 +14,4 @@ class HomeController extends Controller
     {
         return view('layouts.top');
     }
-
-    /**
-     * スクールページを表示
-     * @return
-     */
-    public function showSchool()
-    {
-        //総合評価のランキングとレビュー総数を表示
-        return view('auth.school');
-    }
 }
