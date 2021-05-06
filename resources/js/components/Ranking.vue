@@ -15,12 +15,6 @@
       <div class="tab-pane fade show active" id="total_judg" role="tabpanel" aria-labelledby="total_judg">
         <a href="#" class="list-group-item list-group-item-action" v-for="school in schools">{{ school }}</a>
       </div>
-      <!-- <div class="tab-pane fade" id="st_tuition" role="tabpanel" aria-labelledby="st_tuition">
-        <a href="#" class="list-group-item list-group-item-action" v-for="school in schools"></a>
-      </div>
-      <div class="tab-pane fade" id="st_curriculum" role="tabpanel" aria-labelledby="st_curriculum">
-        <a href="#" class="list-group-item list-group-item-action" v-for="school in schools">{{ school['school'] }}</a>
-      </div> -->
     </div>
   </div>
 </template>
@@ -30,7 +24,7 @@ export default {
   data() {
     return {
       //データを保持
-      schools : [],
+      schools : '',
     }
   },
   methods: {
@@ -38,7 +32,7 @@ export default {
       axios.post('/api/rankings', {
         'columnName' : columnName
       })
-      .then(response => this.schools.push(response.data));
+      .then(response => this.schools = response.data);
     }
   }
 }

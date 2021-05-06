@@ -18589,7 +18589,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //データを保持
-      schools: []
+      schools: ''
     };
   },
   methods: {
@@ -18599,7 +18599,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/api/rankings', {
         'columnName': columnName
       }).then(function (response) {
-        return _this.schools.push(response.data);
+        return _this.schools = response.data;
       });
     }
   }
