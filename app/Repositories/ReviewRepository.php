@@ -41,7 +41,7 @@ class ReviewRepository implements ReviewDataAccess
   
         $average = round($columnSum / $numberOfReviews, 1);
   
-        $SchoolList[$schoolName] = $average;
+        $SchoolList[] = ['school_id' => $i, 'school_name' => $schoolName, 'column_average' => $average];
       }
       
       return $SchoolList;

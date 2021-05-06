@@ -16,7 +16,11 @@
       </select>
     </div>
 
-    <div class="ranking-list">
+    <div id="app2">
+      <ranking-Component></ranking-Component>
+    </div>
+
+    <!-- <div class="ranking-list">
 
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -38,7 +42,7 @@
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"></div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab"></div>
       </div>
-    </div>
+    </div> -->
 
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">

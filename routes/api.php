@@ -1,5 +1,6 @@
 <?php
 
+use App\Repositories\ReviewRepository;
 use App\Events\MessageSent;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
@@ -30,4 +31,12 @@ Route::middleware('api')->post('/reviews/message', function() {
     event((new MessageSent($message))->dontBroadcastToCurrentUser());
 
     return $message;
+});
+
+Route::middleware('api')->post('/rankings', function() {
+    // $columnName = (string)request()->columnName;
+    logger(request()->columnName);
+    $school = app(ReviewRepository::class)->getSchoolList(request()->columnName);
+    logger($school);
+    return $school;
 });

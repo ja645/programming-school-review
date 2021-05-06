@@ -30,7 +30,10 @@ class ReviewDataAccessTest extends TestCase
         Review::factory(['user_id' => $user->id, 'school_id' => $school2->id, 'st_tuition' => 3])->create();
         Review::factory(['user_id' => $user->id, 'school_id' => $school2->id, 'st_tuition' => 4])->create();
 
-        $expected = [$school->school_name => 2.7, $school2->school_name => 3.7];
+        $expected = [
+            ['school_id' => $school->id, 'school_name' => 'test', 'column_average' => 2.7],
+            ['school_id' => $school2->id, 'school_name' => 'test2', 'column_average' => 3.7],
+        ];
 
         // $this->ReviewはReviewRepositoryTestでインスタンス化されたReviewRepository
         $SchoolList = $this->Review->getSchoolList('st_tuition');

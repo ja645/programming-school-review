@@ -11,7 +11,7 @@ class RankingController extends Controller
      * ランキング一覧を表示
      * @return view
      */
-    public function showRankings()
+    public function showRankings(Request $request)
     {
         $arr_schools = app(ReviewRepository::class)->getSchoolList('total_judg');
         
