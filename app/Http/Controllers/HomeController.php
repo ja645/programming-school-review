@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Contact;
 
 class HomeController extends Controller
 {
@@ -31,6 +32,12 @@ class HomeController extends Controller
      */
     public function receiveContact(Request $request)
     {
-        
+        $contact_form = $request->all();
+
+        $contact = new Contact;
+
+        $contact->fill($contact_form)->save();
+
+        return view('layouts.contact.success');
     }
 }
