@@ -78,7 +78,10 @@
           </li>
           <li class="nav-item my-auto">
             <div class="nav-icon">
-              <a href="{{ route('logout') }}"><i class="fas fa-door-open fa-2x"></i><span>ログアウト</span></a>
+              <form method="POST" action="{{ route('logout') }}">
+                <a href="{{ route('logout') }}"  onclick="event.preventDefault();this.closest('form').submit();"><i class="fas fa-door-open fa-2x"></i><span>ログアウト</span></a>
+                @csrf
+              </form>
             </div>
           </li>
 
