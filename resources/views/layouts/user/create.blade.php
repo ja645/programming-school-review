@@ -24,7 +24,7 @@
                 <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <label for="email">メールアドレス</label>
-                    <input type="email" name="email" placeholder="メールアドレスを入力してください。">
+                    <input type="email" name="email" value="{{ old('email') }}" placeholder="メールアドレスを入力してください。">
                 </li>
                 <li class="list-group-item">
                     <label for="password">パスワード</label>
@@ -44,15 +44,15 @@
                 <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <label for="user_name">ニックネーム</label>
-                    <input type="text" name="user_name" placeholder="ニックネームを入力してください。">
+                    <input type="text" name="user_name" value="{{ old('user_name') }}" placeholder="ニックネームを入力してください。">
                 </li>
                 <li id="birthday" class="list-group-item">
                     <label for="birthday">生年月日</label>
-                    <input type="date" name="birthday">
+                    <input type="date" name="birthday" value="{{ old('birthday') }}">
                 </li>
                 <li id="sex" class="list-group-item">
                     <label for="sex">性別</label>
-                    <select name="sex">
+                    <select name="sex" value="{{ old('sex') }}">
                         <option value=0>男性</option>
                         <option value=1>女性</option>
                         <option value=2>その他</option>
@@ -60,11 +60,11 @@
                 </li>
                 <li class="list-group-item">
                     <label for="former_job">以前のご職業</label>
-                    <input type="text" name="former_job" placeholder="以前のお仕事を入力してください。">
+                    <input type="text" name="former_job" value="{{ old('former_job') }}" placeholder="以前のお仕事を入力してください。">
                 </li>
                 <li class="list-group-item">
                     <label for="job">現在のご職業</label>
-                    <input type="text" name="job" placeholder="現在のお仕事を入力してください。">
+                    <input type="text" name="job" value="{{ old('job') }}" placeholder="現在のお仕事を入力してください。">
                 </li>
                 <li class="list-group-item">
                     <button type="submit" class="btn btn-success" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
