@@ -3,6 +3,7 @@ require('alpinejs');
 import {createApp} from 'vue/dist/vue.esm-bundler.js';
 import MessageComponent from './components/Message.vue';
 import RankingComponent from './components/Ranking.vue';
+import ReviewsComponent from './components/Reviews.vue';
 
 createApp({
   components: {
@@ -14,4 +15,10 @@ createApp({
   components: {
     RankingComponent
   }
-}).mount('#app2');
+}).mount('rankings');
+
+createApp({
+  components: {
+    ReviewsComponent
+  }
+}).mount('reviews');

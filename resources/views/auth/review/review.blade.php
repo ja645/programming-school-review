@@ -7,12 +7,12 @@
       <div class="col-11 mx-auto py-3 school-head-card">
         <div class="row school-head">
           <div class="col-sm-1 d-none d-sm-block"></div>
-          <div class="review-title col text-sm-start text-center px-0">受講料は高めだと思う、、<span class="school-follow ms-sm-5 ms-2"><a href="#"><i class="far fa-2x fa-thumbs-up"></i></a>23</span></div>
+          <div class="review-title col text-sm-start text-center px-0">{{ $review->title }}<span class="school-follow ms-sm-5 ms-2"><a href="#"><i class="far fa-2x fa-thumbs-up"></i></a>23</span></div>
         </div>
         <div class="row">
           <div class="col-sm-1 col-2"></div>
           <div class="col-sm-11 col-10 total-rank">
-            <p>投稿したユーザー&emsp;<i class="fas fa-user"></i>太郎</p>
+            <p>投稿したユーザー&emsp;<i class="fas fa-user"></i>{{ $poster }}</p>
           </div>
         </div>
       </div>
@@ -74,17 +74,17 @@
         <div class="right-contents mt-md-0 mt-5 mx-auto">
           <div class="right-contents-inner">
             <div class="tuition text-center pb-5">
-                <p>hoge太郎さんの受講料</p>
+                <p>{{ $poster }}さんの受講料</p>
                 <h1>￥</h1>
             </div>
       
             <div class="term text-center pb-5">
-              <p>hoge太郎さんの平均受講時期</p>
-              <h1>X年X月～X年X月</h1>
+              <p>{{ $poster }}太郎さんの平均受講時期</p>
+              <h1>{{ $review->term }}</h1>
             </div>
       
             <div class="overall-satisfaction text-center">
-              <p>hoge太郎サンの総合満足度</p>
+              <p>{{ $poster }}さんの総合満足度</p>
               <div class="star-rating">
                 <div class="star"></div><span class="star-rate">3.0</span>
               </div>
@@ -95,10 +95,10 @@
       </div>
 
       <div class="review-text-card col-11 mx-auto p-5">
-          <p>hoge太郎さんの感想</p>
+          <p>{{ $poster }}さんの感想</p>
         <div class="row">
           <div class="col-12 col-md review-text">
-            <p>あああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
+            <p>{{ $review->report }}</p>
           </div>
         </div>
       </div>

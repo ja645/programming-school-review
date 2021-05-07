@@ -119,11 +119,9 @@
     <div class="col-11 mx-auto school-reviews-card p-5">
       <p>このスクールに寄せられたレビュー</p>
       <div class="review-list">
-        <a href="#" class="list-group-item list-group-item-action">The current link item</a>
-        <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-        <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-        <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-        <a href="#" class="list-group-item list-group-item-action">A fifth link item</a>
+        @foreach ($reviews as $review)
+        <a href="{{ url('/reviews/' . $review->id) }}"  class="list-group-item list-group-item-action">{{ $review->title }}</a>
+        @endforeach
       </div>
       <a href="#">他のレビューを見る<i class="fas fa-angle-double-right"></i></a>
     </div>

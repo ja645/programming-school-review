@@ -11,16 +11,31 @@ use Database\Factories\ReviewFactory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Type\Integer;
 
 class ReviewController extends Controller
 {
     /**
-     * ユーザーのレビューを表示
+     * レビューリストを表示
      * @return view
      */
-    public function index()
+    public function showList()
     {
-        return view('auth.review.review');
+
+    }
+
+    /**
+     * 指定したユーザーのレビューを表示
+     * @param integer $id
+     * @return view
+     */
+    public function showReview($id)
+    {
+        $review = Review::find($id);
+
+        $poster = User::where('id', $review->user_id)->value('user_name');
+
+        return view('auth.review.review', ['review' => $review, 'poster' => $poster]);
     }
 
     /**
