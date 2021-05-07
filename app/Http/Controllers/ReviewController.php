@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\MessageSent;
 use App\Models\Message;
 use App\Models\Review;
+use App\Models\School;
 use App\Models\User;
 use App\Http\Requests\ReviewFormRequest;
 use Database\Factories\ReviewFactory;
@@ -24,7 +25,9 @@ class ReviewController extends Controller
     {
         $reviews = Review::where('school_id', $school_id)->get();
 
-        return view('auth.review.review-list', ['reviews' => $reviews]);
+        $school_name = School::find($school_id)->value('school_name');
+
+        return view('auth.review.review-list', ['school_name' => $school_name, 'reviews' => $reviews]);
     }
 
     /**
