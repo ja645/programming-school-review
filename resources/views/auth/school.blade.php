@@ -120,10 +120,10 @@
       <p>このスクールに寄せられたレビュー</p>
       <div class="review-list">
         @foreach ($reviews as $review)
-        <a href="{{ url('/reviews/' . $review->id) }}"  class="list-group-item list-group-item-action">{{ $review->title }}</a>
+        <a href="{{ url('/review/' . $review->id) }}"  class="list-group-item list-group-item-action">{{ $review->title }}</a>
         @endforeach
       </div>
-      <a href="#">他のレビューを見る<i class="fas fa-angle-double-right"></i></a>
+      <a href="{{ url('/reviews/' . $school->id) }}">他のレビューを見る<i class="fas fa-angle-double-right"></i></a>
     </div>
   </div>
 </div>

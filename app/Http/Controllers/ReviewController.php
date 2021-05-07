@@ -16,12 +16,15 @@ use Ramsey\Uuid\Type\Integer;
 class ReviewController extends Controller
 {
     /**
-     * レビューリストを表示
+     * スクールに紐付くレビューリストを表示
+     * @param integer $school_id
      * @return view
      */
-    public function showList()
+    public function showList($school_id)
     {
+        $reviews = Review::where('school_id', $school_id)->get();
 
+        return view('auth.review.review-list', ['reviews' => $reviews]);
     }
 
     /**

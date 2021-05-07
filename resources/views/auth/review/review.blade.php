@@ -79,7 +79,7 @@
             </div>
       
             <div class="term text-center pb-5">
-              <p>{{ $poster }}太郎さんの平均受講時期</p>
+              <p>{{ $poster }}さんの平均受講時期</p>
               <h1>{{ $review->term }}</h1>
             </div>
       
