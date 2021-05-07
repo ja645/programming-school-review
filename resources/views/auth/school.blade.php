@@ -13,7 +13,10 @@
       <div class="row">
         <div class="col-sm-1 col-2"></div>
         <div class="col-sm-11 col-10 total-rank">
-          <p>総合ランキング位&emsp;レビュー件数34件</p>
+          <p>総合ランキング
+          ]
+          
+          位&emsp;レビュー件数34件</p>
         </div>
       </div>
     </div>
@@ -26,6 +29,7 @@
             <!-- Chart.js -->
             <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.0/dist/chart.min.js"></script>
             <script>
+            var tuition = @json($school->tuition);
             var ctx = document.getElementById('radar');
             var myChart = new Chart(ctx, {
               type: 'radar',
@@ -40,7 +44,7 @@
                 ],
                 datasets: [{
                   label: 'このスクールの満足度',
-                  data: [5, 3, 2, 4, 0, 1],
+                  data: [this.tuition, 3, 2, 4, 0, 5],
                   fill: true,
                   backgroundColor: 'rgba(255, 99, 132, 0.2)',
                   borderColor: 'rgb(255, 99, 132)',

@@ -13,9 +13,9 @@ class SchoolController extends Controller
      */
     public function showSchool($id)
     {
-        $school = School::find($id)->toArray();
+        $school = School::find($id);
 
         //総合評価のランキングとレビュー総数を表示
-        return view('auth.school', ['school_form' => $school]);
+        return view('auth.school', ['school' => $school]);
     }
 }

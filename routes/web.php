@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RankingController;
+use App\Http\Controllers\SchoolController;
 use App\Models\Review;
 
 /*
@@ -22,17 +23,15 @@ use App\Models\Review;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware(['guest'])->group(function() {
-  Route::get('/signup', [UserController::class, 'add'])->name('signup');
-  Route::post('/users/create', [UserController::class, 'create']);
-  Route::get('/', [HomeController::class, 'index'])->name('top');
-});
+Route::get('/', [HomeController::class, 'index'])->name('top');
+
+Route::get('/signup', [UserController::class, 'add'])->name('signup');
+Route::post('/users/create', [UserController::class, 'create']);
 
 Route::get('/contacts', [HomeController::class, 'showContactForm']);
 Route::post('/contacts/send', [HomeController::class, 'receiveContact']);
 
 Route::middleware(['auth'])->group(function() {
-  
   Route::get('/users', [UserController::class, 'index'])->name('mypage');
   Route::get('/users/edit', [UserController::class, 'edit'])->name('user-edit');
   Route::post('/users/update', [UserController::class, 'update'])->name('user-update');
@@ -43,7 +42,7 @@ Route::middleware(['auth'])->group(function() {
   Route::post('/reviews/create', [ReviewController::class, 'create']);
   Route::delete('/reviews/delete', [ReviewController::class, 'delete']);
   
-  Route::get('/schools/{$id}', [SchoolController::class, 'showSchool'])->name('school');
+  Route::get('/schools/{id}', [SchoolController::class, 'showSchool'])->name('school');
   
   Route::get('/rankings', [RankingController::class, 'showRankings'])->name('ranking');
   
