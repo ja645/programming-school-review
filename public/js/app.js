@@ -18541,7 +18541,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    propSchoolLikes: {}
+    propSchoolLikes: {},
+    propUserId: {}
+  },
+  method: {
+    likeOrUnlike: function likeOrUnlike() {
+      axios.post('/api/like', {
+        userId: this.propUserId
+      });
+    }
   }
 });
 
@@ -18724,32 +18732,15 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 /* HOISTED */
 );
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" @if($school->is_liked_by_auth_user()) @else ");
-
-var _hoisted_4 = {
-  "class": "school-follow ms-sm-5 ms-2"
-};
-
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
-  "class": "far fa-heart fa-2x"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" @endif ");
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     href: "#",
-    onClick: _cache[1] || (_cache[1] = function () {})
-  }, [_hoisted_2]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.propSchoolLikes), 1
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return _ctx.likeOrUnlike($props.propUserId);
+    })
+  }, [_hoisted_2]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.propSchoolLikes) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.propUserId), 1
   /* TEXT */
-  )]), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-    href: "#",
-    onClick: _cache[2] || (_cache[2] = function () {})
-  }, [_hoisted_5]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.propSchoolLikes), 1
-  /* TEXT */
-  )]), _hoisted_6]);
+  )])]);
 }
 
 /***/ }),

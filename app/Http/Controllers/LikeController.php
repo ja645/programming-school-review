@@ -38,14 +38,12 @@ class LikeController extends Controller
      */
     public function unLike(Request $request)
     {
-        //セッションから、リクエストしてきたユーザーのidを取り出す
-        $sessionKey = config('hideSessionId.session-id');
-        $sessionId = $request->session()->get($sessionKey);
+        $userId = Auth::id();
 
         //フォローするレビューのidを取得
         $schoolId = $request->school_id;
 
-        Like::where('user_id', $sessionId)->where('school_id', $schoolId)->delete();
+        Like::where('user_id', $userId)->where('school_id', $schoolId)->delete();
 
         return response()->json(['result' => false]);
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class School extends Model
 {
@@ -32,5 +33,29 @@ class School extends Model
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    /**
+     * 現在認証中のユーザーが
+     * スクールをいいねしているか判定する
+     */
+    public function is_liked_by_auth_user()
+    {
+        // 現在認証されているユーザーのidを取得
+        $id = Auth::id();
+
+        $likers = [];
+
+        // 配列にレビューをlikeしているユーザーのidを格納
+        foreach ($this->likers as $like) {
+            array_push($likers, $like->user_id);
+        }
+
+        // 配列に認証中のユーザーidがあればtrueを返す
+        if (in_array($id, $likers)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

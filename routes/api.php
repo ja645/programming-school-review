@@ -2,6 +2,7 @@
 
 use App\Repositories\ReviewRepository;
 use App\Events\MessageSent;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,3 +44,5 @@ Route::middleware('api')->post('/rankings', function() {
     logger($school);
     return $school;
 });
+
+Route::middleware('api')->post('/likes', [LikeController::class, 'switchLike']);
