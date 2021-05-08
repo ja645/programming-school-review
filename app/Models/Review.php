@@ -30,29 +30,29 @@ class Review extends Model
     /**
      * レビューと、フォローしているユーザーを紐付けるfollowingを取得
      */
-    public function followed()
+    public function follows()
     {
         return $this->hasMany(Following::class);
     }
 
     /**
      * 現在認証中のユーザーが
-     * レビューにlikeを付けているか判定する
+     * レビューをフォローしているか判定する
      */
-    public function is_liked_by_auth_user()
+    public function is_followed_by_auth_user()
     {
         // 現在認証されているユーザーのidを取得
         $id = Auth::id();
 
-        $likers = [];
+        $followers = [];
 
         // 配列にレビューをlikeしているユーザーのidを格納
-        foreach ($this->likes as $like) {
-            array_push($likers, $like->user_id);
+        foreach ($this->follows as $follow) {
+            array_push($followers, $follow->user_id);
         }
 
         // 配列に認証中のユーザーidがあればtrueを返す
-        if (in_array($id, $likers)) {
+        if (in_array($id, $followers)) {
             return true;
         } else {
             return false;
