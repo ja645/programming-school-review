@@ -23,6 +23,7 @@ export default {
       newMessage : ''
     }
   },
+  props: ['review'],
   mounted() {
     //htmlリクエストを送り、レスポンスであるresponse.dataをthis.messageに代入
     axios.get('/reviews').then(response => (this.messages = response.data));
@@ -34,9 +35,11 @@ export default {
   methods: {
     addMessage() {
       axios.post('/reviews/message', {
+        reviewId : this.review.id,
         message : this.newMessage
       })
       .then(response => this.messages.push(response.data));
+      console.log(this.review.id);
       this.newMessage = '';
     }
   }

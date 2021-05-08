@@ -18594,6 +18594,7 @@ __webpack_require__.r(__webpack_exports__);
       newMessage: ''
     };
   },
+  props: ['review'],
   mounted: function mounted() {
     var _this = this;
 
@@ -18610,10 +18611,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.post('/reviews/message', {
+        reviewId: this.review.id,
         message: this.newMessage
       }).then(function (response) {
         return _this2.messages.push(response.data);
       });
+      console.log(this.review.id);
       this.newMessage = '';
     }
   }

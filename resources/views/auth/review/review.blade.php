@@ -104,7 +104,7 @@
       </div>
 
         <div id="app">
-            <message-component></message-component>
+            <message-component :review="{{ json_encode($review) }}">></message-component>
         </div>
     </div>
 @endsection

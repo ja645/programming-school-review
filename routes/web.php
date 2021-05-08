@@ -13,6 +13,7 @@ use App\Http\Controllers\RankingController;
 use App\Http\Controllers\SchoolController;
 use App\Models\Review;
 use App\Events\MessageSent;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,8 +51,9 @@ Route::middleware(['auth'])->group(function() {
   });
 
   Route::post('/reviews/message', function() {
-    $message = \App\Models\Message::create(['user_id' => 1, 'review_id' => 1, 'message' => request()->message]);
-
+    logger(request());
+    $message = \App\Models\Message::create(['user_id' => Auth::id(), 'review_id' => request()->reviewId, 'message' => request()->message]);
+    
     event((new MessageSent($message))->dontBroadcastToCurrentUser());
 
     return $message;
@@ -62,6 +64,13 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/schools/{id}', [SchoolController::class, 'showSchool'])->name('school');
   
   Route::get('/rankings', [RankingController::class, 'showRankings'])->name('ranking');
+
+  Route::post('/rankings', function() {
+    $school = app(ReviewRepository::class)->getSchoolList(request()->columnName);
+    // 昇順にソート
+    // asort($school);
+    return $school;
+  });
   
   Route::post('/follow', [FollowController::class, 'followReview']);
   Route::delete('/follow/delete', [FollowController::class, 'unFollowReview']);
