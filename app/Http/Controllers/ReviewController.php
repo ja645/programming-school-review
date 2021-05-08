@@ -23,7 +23,7 @@ class ReviewController extends Controller
      */
     public function showList($school_id)
     {
-        $reviews = Review::where('school_id', $school_id)->get();
+        $reviews = Review::where('school_id', $school_id)->paginate(10);
 
         $school_name = School::find($school_id)->value('school_name');
 
