@@ -29,7 +29,7 @@ class School extends Model
     /**
      * スクールとお気に入りしたユーザーを紐付けるfollowingを取得
      */
-    public function like()
+    public function likes()
     {
         return $this->hasMany(Like::class);
     }

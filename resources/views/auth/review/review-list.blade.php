@@ -5,7 +5,7 @@
 @section('content')
 <div class="container-md">
        
-  <div>{{ $reviews->school->school_name }}に寄せられたレビュー</div>
+  <div>{{ $reviews->first()->school->school_name }}に寄せられたレビュー</div>
   <div class="ranking">
 
     <div class="ranking-order d-flex justify-content-end">

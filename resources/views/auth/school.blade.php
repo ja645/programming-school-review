@@ -8,7 +8,7 @@
     <div class="col-11 mx-auto school-head-card">
       <div class="row school-head">
         <div class="col-sm-1 d-none d-sm-block"></div>
-        <div class="school-name col text-sm-start text-center px-0">{{ $school->school_name }}<span class="school-follow ms-sm-5 ms-2"><a href="#"><i class="far fa-heart fa-2x"></i></a>{{ $school->follow }}</span></div>
+        <div class="school-name col text-sm-start text-center px-0">{{ $school->school_name }}<span id="like"><like-component :prop-school-likes="@json($school->likes->count())"></like-component></span></div>
       </div>
       <div class="row">
         <div class="col-sm-1 col-2"></div>

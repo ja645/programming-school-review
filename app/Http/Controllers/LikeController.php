@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Like;
 use Illuminate\Http\Request;
+use App\Models\Like;
+use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
@@ -14,17 +15,18 @@ class LikeController extends Controller
      */
     public function like(Request $request)
     {
-        //セッションから、リクエストしてきたユーザーのidを取り出す
-        $sessionKey = config('hideSessionId.session-id');
-        $sessionId = $request->session()->get($sessionKey);
+        //現在認証されているユーザーのidを取り出す
+        $userId = Auth::id();
 
-        //フォローするレビューのidを取得
+        //いいねするレビューのidを取得
         $schoolId = $request->school_id;
 
         Like::create([
-            'user_id' => $sessionId,
+            'user_id' => $userId,
             'school_id' => $schoolId,
         ]);
+
+        session()->flash('flash_message', 'スクールをいいねしました！');
 
         return response()->json(['result' => true]);
     }

@@ -28,6 +28,14 @@ class Review extends Model
     }
 
     /**
+     * レビューの対象のスクールを取得
+     */
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
+    
+    /**
      * レビューと、フォローしているユーザーを紐付けるfollowingを取得
      */
     public function follows()
