@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Like;
+use App\Models\School;
 use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
@@ -46,5 +47,31 @@ class LikeController extends Controller
         Like::where('user_id', $userId)->where('school_id', $schoolId)->delete();
 
         return response()->json(['result' => false]);
+    }
+
+    public function switchLike(Request $request)
+    {   
+        logger($request->session()->all());
+        $school_id = request()->schoolId;
+
+        $school = app(School::class);
+        $school = $school::find($school_id);
+        $is_user_liked = $school->is_liked_by_auth_user();
+
+        if (!$is_user_liked) {
+
+            Like::create([
+                'user_id' => auth()->id(),
+                'school_id' => $school_id,
+            ]);
+    
+            session()->flash('flash_message', 'スクールをいいねしました！');
+    
+            return response()->json(['bool' => true]);
+        } else {
+            Like::where('user_id', Auth::id())->where('school_id', $school_id)->delete();
+
+            return response()->json(['bool' => false]);
+        }
     }
 }

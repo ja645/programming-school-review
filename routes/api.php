@@ -40,9 +40,7 @@ Route::middleware('api')->post('/rankings', function() {
     $school = app(ReviewRepository::class)->getSchoolList(request()->columnName);
     // 昇順にソート
     // asort($school);
-    
-    logger($school);
     return $school;
 });
 
-Route::middleware('api')->post('/likes', [LikeController::class, 'switchLike']);
+Route::middleware('api')->post('/like', [LikeController::class, 'switchLike']);

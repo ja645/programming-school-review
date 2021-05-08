@@ -18540,14 +18540,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: {
-    propSchoolLikes: {},
-    propUserId: {}
+  data: function data() {
+    return {
+      //データを保持
+      count: '',
+      bool: '',
+      styleTrue: {
+        color: "red"
+      },
+      styleFalse: {
+        color: "gray"
+      }
+    };
   },
-  method: {
-    likeOrUnlike: function likeOrUnlike() {
-      axios.post('/api/like', {
-        userId: this.propUserId
+  props: ['school'],
+  mounted: function mounted() {
+    console.log(this.school.id);
+    console.log(this.bool);
+  },
+  methods: {
+    switchLike: function switchLike() {
+      var _this = this;
+
+      axios.post('/like', {
+        schoolId: this.school.id
+      }).then(function (response) {
+        _this.bool = response.data.bool;
+      })["catch"](function (error) {
+        console.log(error);
       });
     }
   }
@@ -18725,20 +18745,18 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "school-follow ms-sm-5 ms-2"
 };
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
-  "class": "far fa-heart fa-2x"
-}, null, -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     href: "#",
     onClick: _cache[1] || (_cache[1] = function ($event) {
-      return _ctx.likeOrUnlike($props.propUserId);
+      return $options.switchLike();
     })
-  }, [_hoisted_2]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.propSchoolLikes) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.propUserId), 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("i", {
+    "class": "far fa-heart fa-2x",
+    style: [$data.bool === true ? $data.styleTrue : $data.styleFalse]
+  }, null, 4
+  /* STYLE */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.count), 1
   /* TEXT */
   )])]);
 }

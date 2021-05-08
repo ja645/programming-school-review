@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\Review;
+
+use function Psy\debug;
 
 class HomeController extends Controller
 {
@@ -39,5 +42,10 @@ class HomeController extends Controller
         $contact->fill($contact_form)->save();
 
         return view('layouts.contact.success');
+    }
+
+    public function why()
+    {
+        return view('layouts.why');
     }
 }

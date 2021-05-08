@@ -47,7 +47,7 @@ class School extends Model
         $likers = [];
 
         // 配列にレビューをlikeしているユーザーのidを格納
-        foreach ($this->likers as $like) {
+        foreach ($this->likes as $like) {
             array_push($likers, $like->user_id);
         }
 

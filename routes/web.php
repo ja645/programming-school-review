@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/reviews/add', [ReviewController::class, 'add']);
   Route::post('/reviews/create', [ReviewController::class, 'create']);
   Route::delete('/reviews/delete', [ReviewController::class, 'delete']);
+  Route::post('/like', [LikeController::class, 'switchLike']);
   
   Route::get('/schools/{id}', [SchoolController::class, 'showSchool'])->name('school');
   
