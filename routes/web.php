@@ -12,6 +12,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RankingController;
 use App\Http\Controllers\SchoolController;
 use App\Models\Review;
+use App\Events\MessageSent;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,20 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/reviews/add', [ReviewController::class, 'add']);
   Route::post('/reviews/create', [ReviewController::class, 'create']);
   Route::delete('/reviews/delete', [ReviewController::class, 'delete']);
+
+
+  Route::get('/reviews', function() {
+    return \App\Models\Message::all();
+  });
+
+  Route::post('/reviews/message', function() {
+    $message = \App\Models\Message::create(['user_id' => 1, 'review_id' => 1, 'message' => request()->message]);
+
+    event((new MessageSent($message))->dontBroadcastToCurrentUser());
+
+    return $message;
+  });
+
   Route::post('/like', [LikeController::class, 'switchLike']);
   
   Route::get('/schools/{id}', [SchoolController::class, 'showSchool'])->name('school');

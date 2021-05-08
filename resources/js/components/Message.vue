@@ -25,7 +25,7 @@ export default {
   },
   mounted() {
     //htmlリクエストを送り、レスポンスであるresponse.dataをthis.messageに代入
-    axios.get('/api/reviews').then(response => (this.messages = response.data));
+    axios.get('/reviews').then(response => (this.messages = response.data));
 
     window.Echo.channel('chat').listen('MessageSent', response => {
       this.messages.push(response.message);
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     addMessage() {
-      axios.post('/api/reviews/message', {
+      axios.post('/reviews/message', {
         message : this.newMessage
       })
       .then(response => this.messages.push(response.data));

@@ -22,25 +22,25 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('api')->get('/reviews', function() {
-    return \App\Models\Message::all();
-});
+// Route::middleware('api')->get('/reviews', function() {
+//     return \App\Models\Message::all();
+// });
 
-Route::middleware('api')->post('/reviews/message', function() {
-    $message = \App\Models\Message::create(['user_id' => 2, 'review_id' => 4, 'message' => request()->message]);
+// Route::middleware('api')->post('/reviews/message', function() {
+//     $message = \App\Models\Message::create(['user_id' => 2, 'review_id' => 4, 'message' => request()->message]);
 
-    event((new MessageSent($message))->dontBroadcastToCurrentUser());
+//     event((new MessageSent($message))->dontBroadcastToCurrentUser());
 
-    return $message;
-});
+//     return $message;
+// });
 
 
-Route::middleware('api')->post('/rankings', function() {
-    logger(request()->columnName);
-    $school = app(ReviewRepository::class)->getSchoolList(request()->columnName);
-    // 昇順にソート
-    // asort($school);
-    return $school;
-});
+// Route::middleware('api')->post('/rankings', function() {
+//     logger(request()->columnName);
+//     $school = app(ReviewRepository::class)->getSchoolList(request()->columnName);
+//     // 昇順にソート
+//     // asort($school);
+//     return $school;
+// });
 
-Route::middleware('api')->post('/like', [LikeController::class, 'switchLike']);
+// Route::middleware('api')->post('/like', [LikeController::class, 'switchLike']);

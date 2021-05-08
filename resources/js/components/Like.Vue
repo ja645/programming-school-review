@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     switchLike() {
-      axios.post('/like', {
+      axios.post('/web/like', {
         schoolId : this.school.id
       })
       .then(response => {

@@ -18562,7 +18562,7 @@ __webpack_require__.r(__webpack_exports__);
     switchLike: function switchLike() {
       var _this = this;
 
-      axios.post('/like', {
+      axios.post('/web/like', {
         schoolId: this.school.id
       }).then(function (response) {
         _this.bool = response.data.bool;
@@ -18598,7 +18598,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //htmlリクエストを送り、レスポンスであるresponse.dataをthis.messageに代入
-    axios.get('/api/reviews').then(function (response) {
+    axios.get('/reviews').then(function (response) {
       return _this.messages = response.data;
     });
     window.Echo.channel('chat').listen('MessageSent', function (response) {
@@ -18609,7 +18609,7 @@ __webpack_require__.r(__webpack_exports__);
     addMessage: function addMessage() {
       var _this2 = this;
 
-      axios.post('/api/reviews/message', {
+      axios.post('/reviews/message', {
         message: this.newMessage
       }).then(function (response) {
         return _this2.messages.push(response.data);

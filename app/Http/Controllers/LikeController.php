@@ -51,7 +51,7 @@ class LikeController extends Controller
 
     public function switchLike(Request $request)
     {   
-        logger($request->session()->all());
+        logger(Auth::id());
         $school_id = request()->schoolId;
 
         $school = app(School::class);

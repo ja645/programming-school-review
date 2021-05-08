@@ -39,57 +39,66 @@ class LikeControllerTest extends TestCase
     }
 
     /**
-     * 認証済みのユーザーがスクールをお気に入りできることをテスト
-     * @return void
+     * switchLike()メソッドが機能するかテスト
      */
-    public function testLike_正常系(): void
+    public function testSwitchLike()
     {
-        Auth::login($this->myself);
-
-        $response = $this->actingAs($this->myself)->post('/like', [
-            'school_id' => $this->school->id
-        ]);
-
-        $this->assertDatabaseHas('likes', [
-            'user_id' => $this->myself->id, 'school_id' => $this->school->id,
-        ]);
-
-        $response->assertStatus(200);
+        
     }
 
-    /**
-     * ログイン前のユーザーでエラー
-     * @return void
-     */
-    public function testLike_異常系_未ログイン(): void
-    {
-        $response = $this->post('/like', [
-            'school_id' => $this->school->id
-        ]);
 
-        $this->assertDatabaseMissing('likes', [
-            'user_id' => $this->myself->id, 'school_id' => $this->school->id,
-        ]);
+    // /**
+    //  * 認証済みのユーザーがスクールをお気に入りできることをテスト
+    //  * @return void
+    //  */
+    // public function testLike_正常系(): void
+    // {
+    //     Auth::login($this->myself);
 
-        $response->assertRedirect('login');
-    }
+    //     $response = $this->actingAs($this->myself)->post('/like', [
+    //         'school_id' => $this->school->id
+    //     ]);
 
-    /**
-     * ユーザーがスクールのお気に入りを解除できることをテスト
-     * @return void
-     */
-    public function testUnLike_正常系(): void
-    {
-        Auth::login($this->myself);
+    //     $this->assertDatabaseHas('likes', [
+    //         'user_id' => $this->myself->id, 'school_id' => $this->school->id,
+    //     ]);
 
-        $response = $this->delete('/like/delete', [
-            'school_id' => $this->school->id
-        ]);
+    //     $response->assertStatus(200);
+    // }
 
-        $this->assertDatabaseMissing('likes', [
-            'user_id' => $this->myself->id, 'school_id' => $this->school->id,
-        ]);
+    // /**
+    //  * ログイン前のユーザーでエラー
+    //  * @return void
+    //  */
+    // public function testLike_異常系_未ログイン(): void
+    // {
+    //     $response = $this->post('/like', [
+    //         'school_id' => $this->school->id
+    //     ]);
 
-        $response->assertStatus(200);
-    }
+    //     $this->assertDatabaseMissing('likes', [
+    //         'user_id' => $this->myself->id, 'school_id' => $this->school->id,
+    //     ]);
+
+    //     $response->assertRedirect('login');
+    // }
+
+    // /**
+    //  * ユーザーがスクールのお気に入りを解除できることをテスト
+    //  * @return void
+    //  */
+    // public function testUnLike_正常系(): void
+    // {
+    //     Auth::login($this->myself);
+
+    //     $response = $this->delete('/like/delete', [
+    //         'school_id' => $this->school->id
+    //     ]);
+
+    //     $this->assertDatabaseMissing('likes', [
+    //         'user_id' => $this->myself->id, 'school_id' => $this->school->id,
+    //     ]);
+
+    //     $response->assertStatus(200);
+    // }
 }
