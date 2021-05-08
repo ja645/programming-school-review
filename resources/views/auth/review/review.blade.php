@@ -12,7 +12,7 @@
         <div class="row">
           <div class="col-sm-1 col-2"></div>
           <div class="col-sm-11 col-10 total-rank">
-            <p>投稿したユーザー&emsp;<i class="fas fa-user"></i>{{ $poster }}</p>
+            <p>投稿したユーザー&emsp;<i class="fas fa-user"></i>{{ $review->user->user_name }}</p>
           </div>
         </div>
       </div>
@@ -74,17 +74,17 @@
         <div class="right-contents mt-md-0 mt-5 mx-auto">
           <div class="right-contents-inner">
             <div class="tuition text-center pb-5">
-                <p>{{ $poster }}さんの受講料</p>
+                <p>{{ $review->user->user_name }}さんの受講料</p>
                 <h1>￥</h1>
             </div>
       
             <div class="term text-center pb-5">
-              <p>{{ $poster }}さんの平均受講時期</p>
+              <p>{{ $review->user->user_name }}さんの平均受講時期</p>
               <h1>{{ $review->term }}</h1>
             </div>
       
             <div class="overall-satisfaction text-center">
-              <p>{{ $poster }}さんの総合満足度</p>
+              <p>{{ $review->user->user_name }}さんの総合満足度</p>
               <div class="star-rating">
                 <div class="star"></div><span class="star-rate">3.0</span>
               </div>
@@ -95,7 +95,7 @@
       </div>
 
       <div class="review-text-card col-11 mx-auto p-5">
-          <p>{{ $poster }}さんの感想</p>
+          <p>{{ $review->user->user_name }}さんの感想</p>
         <div class="row">
           <div class="col-12 col-md review-text">
             <p>{{ $review->report }}</p>

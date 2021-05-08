@@ -76,17 +76,17 @@
       <div class="right-contents mt-md-0 mt-5 mx-auto">
         <div class="right-contents-inner">
           <div class="tuition text-center pb-5">
-              <p>このスクールの平均受講料</p>
+              <p>{{ $school->school_name }}の平均受講料</p>
               <h1>￥</h1>
           </div>
     
           <div class="term text-center pb-5">
-            <p>このスクールの平均受講期間</p>
+            <p>{{ $school->school_name }}の平均受講期間</p>
             <h1>ヶ月</h1>
           </div>
     
           <div class="overall-satisfaction text-center">
-            <p>このスクールの平均満足度</p>
+            <p>{{ $school->school_name }}の平均満足度</p>
             <div class="star-rating">
               <div class="star">3.0</div>
             </div>
@@ -114,7 +114,7 @@
     </div>
       
     <div class="col-11 mx-auto school-reviews-card p-5">
-      <p>このスクールに寄せられたレビュー</p>
+      <p>{{ $school->school_name }}に寄せられたレビュー</p>
       <div class="review-list">
         @foreach ($reviews as $review)
         <a href="{{ url('/review/' . $review->id) }}"  class="list-group-item list-group-item-action">{{ $review->title }}</a>

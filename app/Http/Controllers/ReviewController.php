@@ -25,9 +25,7 @@ class ReviewController extends Controller
     {
         $reviews = Review::where('school_id', $school_id)->paginate(10);
 
-        $school_name = School::find($school_id)->value('school_name');
-
-        return view('auth.review.review-list', ['school_name' => $school_name, 'reviews' => $reviews]);
+        return view('auth.review.review-list', ['reviews' => $reviews]);
     }
 
     /**
@@ -39,9 +37,7 @@ class ReviewController extends Controller
     {
         $review = Review::find($id);
 
-        $poster = User::where('id', $review->user_id)->value('user_name');
-
-        return view('auth.review.review', ['review' => $review, 'poster' => $poster]);
+        return view('auth.review.review', ['review' => $review]);
     }
 
     /**
