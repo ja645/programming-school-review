@@ -13,10 +13,7 @@
       <div class="row">
         <div class="col-sm-1 col-2"></div>
         <div class="col-sm-11 col-10 total-rank">
-          <p>総合ランキング
-          ]
-          
-          位&emsp;レビュー件数34件</p>
+          <p>総合ランキング位&emsp;レビュー件数{{ $school->reviews->count() }}件</p>
         </div>
       </div>
     </div>
