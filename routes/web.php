@@ -74,7 +74,7 @@ Route::middleware(['auth'])->group(function() {
   Route::post('/follow', [FollowController::class, 'followReview']);
   Route::delete('/follow/delete', [FollowController::class, 'unFollowReview']);
   
-  Route::post('/like/{id}', [LikeController::class, 'current']);
+  Route::get('/like/{id}', [LikeController::class, 'current']);
   Route::post('/like', [LikeController::class, 'switchLike']);
   Route::delete('/like/delete', [LikeController::class, 'unLike']);
 

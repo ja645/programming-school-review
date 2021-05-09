@@ -18557,12 +18557,13 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/like/'["this"].school.id).then(function (response) {
+    axios.get('/like/' + this.school.id).then(function (response) {
       _this.bool = response.data.bool;
       _this.count = response.data.count;
     })["catch"](function (error) {
       console.log(error);
     });
+    console.log(this.count);
   },
   methods: {
     switchLike: function switchLike() {
@@ -18576,6 +18577,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
+      console.log(this.count);
     }
   }
 });

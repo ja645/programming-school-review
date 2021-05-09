@@ -54,9 +54,19 @@ class LikeController extends Controller
      * そのスクールをいいねしているか、と
      * そのスクールの現在のいいね数を返す
      */
-    public function showCurrentLike()
+    public function current($id)
     {
-        
+        // 現在のユーザーが対象のスクールをいいねしているかを取得
+        $school = app(School::class);
+        $school = $school::find($id);
+        $is_user_liked = $school->is_liked_by_auth_user();
+
+        // logger($school->is_liked_by_auth_user());
+
+        // 対象のスクールの現在のいいね数を取得
+        $count = $school->likes->count();
+
+        return response()->json(['bool' => $is_user_liked, 'count' => $count]);
     }
 
 
@@ -80,6 +90,8 @@ class LikeController extends Controller
                 'school_id' => $school_id,
             ]);
     
+            $school = app(School::class);
+            $school = $school::find($school_id);
             $count = $school->likes->count();
 
             session()->flash('flash_message', 'スクールをいいねしました！');
@@ -88,6 +100,8 @@ class LikeController extends Controller
         } else {
             Like::where('user_id', Auth::id())->where('school_id', $school_id)->delete();
 
+            $school = app(School::class);
+            $school = $school::find($school_id);
             $count = $school->likes->count();
 
             return response()->json(['bool' => false, 'count' => $count]);

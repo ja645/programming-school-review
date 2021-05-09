@@ -20,7 +20,7 @@ export default {
   },
   props: ['school'],
   mounted() {
-      axios.get('/like/' . this.school.id)
+      axios.get('/like/' + this.school.id)
       .then(response => {
         this.bool = response.data.bool;
         this.count = response.data.count;
@@ -28,6 +28,7 @@ export default {
       .catch(function(error){
         console.log(error);
       });
+      console.log(this.count);
   },
   methods: {
     switchLike() {
@@ -41,6 +42,7 @@ export default {
       .catch(function(error){
         console.log(error);
       });
+      console.log(this.count);
     }
   }
 }

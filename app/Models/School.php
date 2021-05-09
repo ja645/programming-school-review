@@ -43,7 +43,7 @@ class School extends Model
     {
         // 現在認証されているユーザーのidを取得
         $id = Auth::id();
-
+        
         $likers = [];
 
         // 配列にレビューをlikeしているユーザーのidを格納
@@ -53,8 +53,10 @@ class School extends Model
 
         // 配列に認証中のユーザーidがあればtrueを返す
         if (in_array($id, $likers)) {
+            
             return true;
         } else {
+            
             return false;
         }
     }
