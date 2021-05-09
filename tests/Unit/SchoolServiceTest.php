@@ -7,7 +7,7 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\School;
 use App\Models\Review;
-use App\Services\SchoolSatisfactionsService;
+use App\Services\SchoolService;
 
 use function PHPUnit\Framework\assertSame;
 
@@ -84,7 +84,7 @@ class SchoolSatisfactionsServiceTest extends TestCase
             'st_staff' => 3.0,
         ];
 
-        $satisfactions = new SchoolSatisfactionsService($school);
+        $satisfactions = new SchoolService($school);
 
         $satisfactions = $satisfactions->getSatisfactions();
 

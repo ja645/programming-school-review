@@ -78,18 +78,28 @@
         <div class="right-contents-inner">
           <div class="tuition text-center pb-5">
               <p>{{ $school->school_name }}の平均受講料</p>
-              <h1>￥</h1>
+              <h1>約{{ $tuition_average }}円</h1>
           </div>
     
           <div class="term text-center pb-5">
             <p>{{ $school->school_name }}の平均受講期間</p>
-            <h1>ヶ月</h1>
+            <h1>{{ $term_average }}ヶ月</h1>
           </div>
     
           <div class="overall-satisfaction text-center">
             <p>{{ $school->school_name }}の平均満足度</p>
             <div class="star-rating">
-              <div class="star">3.0</div>
+              <div class="star">★★★★★
+                <div id="star-after" class="star-after">★★★★★</div>
+                <script type="text/javascript">
+                  const total_judg = @json($satisfactions['total_judg']) * 20;
+                  window.onload = function () {
+                    var star_after = document.getElementById('star-after');
+                    star_after.style.width = total_judg + "%";
+                  };
+                </script>
+              </div>
+              <div class="star-rate">{{ $satisfactions['total_judg'] }}</div>
             </div>
           </div>
         </div>
