@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="col-11 mx-auto school-reviews-card p-5">
-    <p>hoge太郎さんに質問してみましょう！</p>
+    <p>{{ review.user.user_name }}さんに質問してみましょう！</p>
     <div class="review-list">
       <textarea type="text" class="message-text" style="border: solid 2px rgba(#003366, 0.6); padding: 15px 10px; background-color: #fff;border: solid 2px rgba(0, 51, 102, 0.6); outline: none" v-model="newMessage"></textarea>
       <button type="button" class="btn btn-success message-send" @click="addMessage">送信</button>
