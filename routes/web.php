@@ -59,12 +59,11 @@ Route::middleware(['auth'])->group(function() {
     return $message;
   });
 
-  Route::post('/like', [LikeController::class, 'switchLike']);
   
   Route::get('/schools/{id}', [SchoolController::class, 'showSchool'])->name('school');
   
   Route::get('/rankings', [RankingController::class, 'showRankings'])->name('ranking');
-
+  
   Route::post('/rankings', function() {
     $school = app(ReviewRepository::class)->getSchoolList(request()->columnName);
     // 昇順にソート
@@ -74,8 +73,9 @@ Route::middleware(['auth'])->group(function() {
   
   Route::post('/follow', [FollowController::class, 'followReview']);
   Route::delete('/follow/delete', [FollowController::class, 'unFollowReview']);
-
-  Route::post('/like', [LikeController::class, 'like']);
+  
+  Route::post('/like/{id}', [LikeController::class, 'current']);
+  Route::post('/like', [LikeController::class, 'switchLike']);
   Route::delete('/like/delete', [LikeController::class, 'unLike']);
 
   Route::get('/password/change', [ChangePasswordController::class, 'showChangePasswordView']);

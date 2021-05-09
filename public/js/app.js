@@ -18555,17 +18555,24 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ['school'],
   mounted: function mounted() {
-    console.log(this.school.id);
-    console.log(this.bool);
+    var _this = this;
+
+    axios.get('/like/'["this"].school.id).then(function (response) {
+      _this.bool = response.data.bool;
+      _this.count = response.data.count;
+    })["catch"](function (error) {
+      console.log(error);
+    });
   },
   methods: {
     switchLike: function switchLike() {
-      var _this = this;
+      var _this2 = this;
 
-      axios.post('/web/like', {
+      axios.post('/like', {
         schoolId: this.school.id
       }).then(function (response) {
-        _this.bool = response.data.bool;
+        _this2.bool = response.data.bool;
+        _this2.count = response.data.count;
       })["catch"](function (error) {
         console.log(error);
       });

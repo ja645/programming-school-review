@@ -49,29 +49,48 @@ class LikeController extends Controller
         return response()->json(['result' => false]);
     }
 
+    /**
+     * スクールページが表示された際に、現在のユーザーが
+     * そのスクールをいいねしているか、と
+     * そのスクールの現在のいいね数を返す
+     */
+    public function showCurrentLike()
+    {
+        
+    }
+
+
+    /**
+     * いいねボタンによっていいねの登録を解除を切り替える
+     * スクールのいいね数もカウントして返す
+     */
     public function switchLike(Request $request)
     {   
-        logger(Auth::id());
         $school_id = request()->schoolId;
 
         $school = app(School::class);
         $school = $school::find($school_id);
         $is_user_liked = $school->is_liked_by_auth_user();
 
+
         if (!$is_user_liked) {
 
             Like::create([
-                'user_id' => auth()->id(),
+                'user_id' => Auth::id(),
                 'school_id' => $school_id,
             ]);
     
+            $count = $school->likes->count();
+
             session()->flash('flash_message', 'スクールをいいねしました！');
     
-            return response()->json(['bool' => true]);
+            return response()->json(['bool' => true, 'count' => $count]);
         } else {
             Like::where('user_id', Auth::id())->where('school_id', $school_id)->delete();
 
-            return response()->json(['bool' => false]);
+            $count = $school->likes->count();
+
+            return response()->json(['bool' => false, 'count' => $count]);
         }
     }
 }
