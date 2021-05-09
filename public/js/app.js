@@ -18563,7 +18563,6 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (error) {
       console.log(error);
     });
-    console.log(this.count);
   },
   methods: {
     switchFollow: function switchFollow() {
@@ -18577,7 +18576,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
-      console.log(this.count);
     }
   }
 });
@@ -18619,7 +18617,6 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (error) {
       console.log(error);
     });
-    console.log(this.count);
   },
   methods: {
     switchLike: function switchLike() {
@@ -18633,7 +18630,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
-      console.log(this.count);
     }
   }
 });

@@ -28,7 +28,6 @@ export default {
       .catch(function(error){
         console.log(error);
       });
-      console.log(this.count);
   },
   methods: {
     switchLike() {
@@ -42,7 +41,6 @@ export default {
       .catch(function(error){
         console.log(error);
       });
-      console.log(this.count);
     }
   }
 }

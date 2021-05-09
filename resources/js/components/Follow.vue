@@ -28,7 +28,6 @@ export default {
       .catch(function(error){
         console.log(error);
       });
-      console.log(this.count);
   },
   methods: {
     switchFollow() {
@@ -42,7 +41,6 @@ export default {
       .catch(function(error){
         console.log(error);
       });
-      console.log(this.count);
     }
   }
 }
