@@ -7,7 +7,7 @@
       <div class="col-11 mx-auto py-3 school-head-card">
         <div class="row school-head">
           <div class="col-sm-1 d-none d-sm-block"></div>
-          <div class="review-title col text-sm-start text-center px-0">{{ $review->title }}<span class="school-follow ms-sm-5 ms-2"><a href="#"><i class="far fa-2x fa-thumbs-up"></i></a>23</span></div>
+          <div class="review-title col text-sm-start text-center px-0">{{ $review->title }}<span id="follow"><follow-component :review="{{ json_encode($review) }}"  style="display: inline-block;"></follow-component></span></div>
         </div>
         <div class="row">
           <div class="col-sm-1 col-2"></div>
