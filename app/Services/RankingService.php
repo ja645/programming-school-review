@@ -20,7 +20,7 @@ class RankingService
   public function getSchoolList($column): array
   {
     // スクールの総数を取得
-    $schools = $this->school->count();
+    $schools = $this->school->all();
 
     $schoolList = [];
 
@@ -31,9 +31,13 @@ class RankingService
       // スクールに紐付くレビューの総数を取得
       $number_of_reviews = $school->reviews->count();
 
-      $average = round($sum / $number_of_reviews, 1);
+      if ($number_of_reviews !== 0) {
+        $average = round($sum / $number_of_reviews, 1);
+      } else {
+        $average = 0;
+      }
 
-      $schoolList[] = ['school_id' => $school->id, 'school_name' => $school->school_name, $column => $average];
+      $schoolList[] = ['school_id' => $school->id, 'school_name' => $school->school_name, 'column' => $average];
     }
 
     return $schoolList;

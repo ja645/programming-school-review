@@ -18700,24 +18700,20 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       //データを保持
-      schoolList: '',
-      toggle: true
+      schoolList: [],
+      sortType: 'desc',
+      sortOptions: [{
+        text: '高い順',
+        value: 'desc'
+      }, {
+        text: '低い順',
+        value: 'asc'
+      }]
     };
   },
-  computed: {
-    sortSchoolsDesc: function sortSchoolsDesc() {
-      return this.schoolList.sort(function (a, b) {
-        return b.column_average - a.column_average;
-      });
-    },
-    sortSchoolsAsc: function sortSchoolsAsc() {
-      return this.schoolList.sort(function (a, b) {
-        return a.column_average - b.column_average;
-      });
-    }
-  },
   mounted: function mounted() {
-    sortSchoolsDesc();
+    this.showSchoolList('total_judg');
+    this.sortSchools('desc');
   },
   methods: {
     showSchoolList: function showSchoolList(columnName) {
@@ -18729,18 +18725,15 @@ __webpack_require__.r(__webpack_exports__);
         _this.schoolList = response.data.schoolList;
       });
     },
-    sortSchoolsDesc: function sortSchoolsDesc() {
-      return this.schoolList.sort(function (a, b) {
-        return b.column_average - a.column_average;
+    sortSchools: function sortSchools(sortType) {
+      this.schoolList = this.schoolList.sort(function (a, b) {
+        if (sortType == 'desc') {
+          return b.column - a.column;
+        } else {
+          return a.column - b.column;
+        }
       });
-    },
-    sortSchoolsAsc: function sortSchoolsAsc() {
-      return this.schoolList.sort(function (a, b) {
-        return a.column_average - b.column_average;
-      });
-    },
-    changeToggle: function changeToggle() {
-      this.toggle == true ? this.toggle = false : this.toggle = true;
+      console.log('hoge');
     }
   }
 });
@@ -18962,16 +18955,16 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 );
 
 var _hoisted_3 = {
-  "class": "form-select",
-  "aria-label": "並べ替え"
-};
-var _hoisted_4 = {
   "class": "ranking-list"
 };
-var _hoisted_5 = {
+var _hoisted_4 = {
   "class": "nav nav-tabs",
   id: "myTab",
   role: "tablist"
+};
+var _hoisted_5 = {
+  "class": "nav-item",
+  role: "presentation"
 };
 var _hoisted_6 = {
   "class": "nav-item",
@@ -18982,32 +18975,36 @@ var _hoisted_7 = {
   role: "presentation"
 };
 var _hoisted_8 = {
-  "class": "nav-item",
-  role: "presentation"
-};
-var _hoisted_9 = {
   "class": "tab-content",
   id: "myTabContent"
 };
-var _hoisted_10 = {
-  key: 0,
+var _hoisted_9 = {
   "class": "tab-pane fade show active",
   id: "total_judg",
   role: "tabpanel",
   "aria-labelledby": "total_judg"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("option", {
-    selected: "",
-    onClick: _cache[1] || (_cache[1] = function ($event) {
-      return $options.sortSchoolsDesc();
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
+    "class": "form-select",
+    "aria-label": "並べ替え",
+    onChange: _cache[1] || (_cache[1] = function ($event) {
+      return $options.sortSchools($data.sortType);
+    }),
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.sortType = $event;
     })
-  }, "評価の高い順"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("option", {
-    value: "1",
-    onClick: _cache[2] || (_cache[2] = function ($event) {
-      return $options.sortSchoolsAsc();
-    })
-  }, "評価の低い順")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.sortOptions, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
+      value: item.value
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.text), 9
+    /* TEXT, PROPS */
+    , ["value"]);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))], 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.sortType]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     "class": "nav-link active",
     id: "total_judg",
     "data-bs-toggle": "tab",
@@ -19018,7 +19015,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.showSchoolList('total_judg');
     })
-  }, "総合評価")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+  }, "総合評価")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     "class": "nav-link",
     id: "st_tuition",
     "data-bs-toggle": "tab",
@@ -19029,7 +19026,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[4] || (_cache[4] = function ($event) {
       return $options.showSchoolList('st_tuition');
     })
-  }, "料金")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+  }, "料金")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     "class": "nav-link",
     id: "st_curriculum",
     "data-bs-toggle": "tab",
@@ -19040,7 +19037,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[5] || (_cache[5] = function ($event) {
       return $options.showSchoolList('st_curriculum');
     })
-  }, "カリキュラム")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [$data.toggle ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.schoolList, function (school) {
+  }, "カリキュラム")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.schoolList, function (school) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", {
       href: '/schools/' + school.school_id,
       "class": "list-group-item list-group-item-action"
@@ -19049,7 +19046,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["href"]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])], 64
+  ))])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
