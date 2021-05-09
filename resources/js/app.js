@@ -6,6 +6,8 @@ import MessageComponent from './components/Message.vue';
 import RankingComponent from './components/Ranking.vue';
 import ReviewsComponent from './components/Reviews.vue';
 import LikeComponent from './components/Like.vue';
+import FollowComponent from './components/Follow.vue';
+
 
 createApp({
   components: {
@@ -30,3 +32,9 @@ createApp({
     LikeComponent
   }
 }).mount('#like');
+
+createApp({
+  components: {
+    FollowComponent
+  }
+}).mount('#follow');

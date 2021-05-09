@@ -32,7 +32,7 @@ class LikeController extends Controller
 
 
     /**
-     * いいねボタンによっていいねの登録を解除を切り替える
+     * いいねボタンによっていいねの登録と解除を切り替える
      * スクールのいいね数もカウントして返す
      */
     public function switchLike(Request $request)
@@ -64,6 +64,8 @@ class LikeController extends Controller
             $school = app(School::class);
             $school = $school::find($school_id);
             $count = $school->likes->count();
+
+            session()->flash('flash_message', 'いいねを解除しました。');
 
             return response()->json(['bool' => false, 'count' => $count]);
         }

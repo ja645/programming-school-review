@@ -18,9 +18,8 @@ class Following extends Model
      * @var array
      */
     protected $fillable = [
-        'follower_user_id',
-        'poster_id',
-        'followed_review_id',
+        'user_id',
+        'review_id',
     ];
 
 

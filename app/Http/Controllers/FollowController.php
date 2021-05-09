@@ -2,76 +2,69 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Following;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FollowController extends Controller
 {
     /**
-     * 他のユーザーのレビューをフォロー
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * レビューページが表示された際に、現在のユーザーが
+     * そのレビューをフォローしているか、と
+     * そのレビューの現在のフォロワー数を返す
+     * @param integer $id
      */
-    public function followReview(Request $request)
+    public function current($id)
     {
-        //セッションから、リクエストしてきたユーザーのidを取り出す
-        $sessionKey = config('hideSessionId.session-id');
-        $sessionId = $request->session()->get($sessionKey);
+        // 現在のユーザーが対象のレビューをフォローしているかを取得
+        $review = app(Review::class);
+        $review = $review::find($id);
+        $is_user_followed = $review->is_followed_by_auth_user();
 
-        //フォローするレビューのidを取得
-        $followedReviewId = $request->followed_review_id;
+        // 対象のレビューの現在のフォロワー数を取得
+        $count = $review->follows->count();
 
-        //レビューを投稿したユーザーのidを取得
-        $posterId = Review::where('id', $followedReviewId)->select('user_id')->get()->toArray()[0]['user_id'];
-
-        //そのレビューが存在するか
-        // $reviewExists = Review::where('id', $followedReviewId)->exists();
-
-
-        //現在のユーザーが過去に評価したレビューを取得
-        // $reviewOnceFollowed = Following::where('follower_user_id', $sessionId)->select('followed_review_id')->get()->toArray();
-
-        // if (Review::where('id', $followedReviewId)->exists() === false) {
-        //     //存在しないレビューはフォロー出来ない
-        //     echo '存在しないレビューはフォロー出来ない';
-        // } else
-
-        // if ($sessionId === $posterId) {
-        //     //自分のレビューにはフォロー出来ない
-        //     echo '自分のレビューにはフォロー出来ない';
-        // } else {
-        //     echo '正常';
-        Following::create([
-            'follower_user_id' => $sessionId,
-            'poster_id' => $posterId,
-            'followed_review_id' => $followedReviewId,
-        ]);
-        
-        return response()->json(['result' => true]);
-            
-        // } elseif (empty(Following::where('follower_user_id', $sessionId)->select('followed_review_id')->get()->toArray()) === false) {
-        //     //同じレビューにフォロー出来ない
-        //     echo '同じレビューにフォロー出来ない';
+        return response()->json(['bool' => $is_user_followed, 'count' => $count]);
     }
 
+
     /**
-     * レビューへのフォローを解除する
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * フォローボタンによってフォローの登録と解除を切り替える
+     * レビューのフォロワー数もカウントして返す
      */
-    public function unfollowReview(Request $request)
-    {
-        //セッションから、リクエストしてきたユーザーのidを取り出す
-        $sessionKey = config('hideSessionId.session-id');
-        $sessionId = $request->session()->get($sessionKey);
+    public function switchFollow(Request $request)
+    {   
+        $review_id = request()->reviewId;
 
-        //フォローするレビューのidを取得
-        $followedReviewId = $request->followed_review_id;
+        $review = app(Review::class);
+        $review = $review::find($review_id);
+        $is_user_followed = $review->is_followed_by_auth_user();
 
-       
-        Following::where('follower_user_id', $sessionId)->where('followed_review_id', $followedReviewId)->delete();
+        if (!$is_user_followed) {
 
-        return response()->json(['result' => false]);
+            Following::create([
+                'user_id' => Auth::id(),
+                'review_id' => $review_id,
+            ]);
+    
+            $review = app(Review::class);
+            $review = $review::find($review_id);
+            $count = $review->follows->count();
+
+            session()->flash('flash_message', 'レビューをフォローしました！');
+    
+            return response()->json(['bool' => true, 'count' => $count]);
+        } else {
+            Following::where('user_id', Auth::id())->where('review_id', $review_id)->delete();
+
+            $review = app(Review::class);
+            $review = $review::find($review_id);
+            $count = $review->follows->count();
+
+            session()->flash('flash_message', 'フォローを解除しました。');
+
+            return response()->json(['bool' => false, 'count' => $count]);
+        }
     }
 }
