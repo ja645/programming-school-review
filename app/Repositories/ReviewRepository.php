@@ -23,27 +23,24 @@ class ReviewRepository implements ReviewDataAccess
 
 
     /**
-     * @param String $column
-     * @return array
+     * レビューの満足度のフィールドの1つを指定し、
+     * そのフィールドの平均値を返す
      */
-    public function getSchoolList(String $column): array
+    /**
+     * @param String $column
+     * @return float
+     */
+    public function getSchoolList(String $column): float
     {
-      $numberOfSchools = $this->School::all()->count();
-      
-      $SchoolList = [];
+      // レビューの総数を取得
+      $number_of_reviews = $this->Review->count();
 
-      for ($i = 1; $i <= $numberOfSchools; $i ++) {
-        $numberOfReviews = Review::where('school_id', $i)->count();
-  
-        $schoolName = $this->School::where('id', $i)->value('school_name');
-
-        $columnSum = (int)Review::where('school_id', $i)->sum($column);
-  
-        $average = round($columnSum / $numberOfReviews, 1);
-  
-        $SchoolList[] = ['school_id' => $i, 'school_name' => $schoolName, 'column_average' => $average];
-      }
+      // レビューの指定したカラムについて、その合計を取得
+      $column_sum = $this->Review->sum($column);
       
-      return $SchoolList;
+      // 小数点第2位を四捨五入する
+      $column_average = round($column_sum / $number_of_reviews, 1);
+
+      return $column_average;
     }
 }

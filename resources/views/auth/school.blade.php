@@ -26,7 +26,8 @@
             <!-- Chart.js -->
             <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.0/dist/chart.min.js"></script>
             <script>
-            var tuition = @json($school->tuition);
+            var school = @json($school);
+            var st = @json($satisfactions);
             var ctx = document.getElementById('radar');
             var myChart = new Chart(ctx, {
               type: 'radar',
@@ -40,8 +41,8 @@
                   'スタッフ',
                 ],
                 datasets: [{
-                  label: 'このスクールの満足度',
-                  data: [this.tuition, 3, 2, 4, 0, 5],
+                  label: school.school_name + 'の満足度',
+                  data: [st['st_tuition'], st['st_term'], st['st_curriculum'], st['st_mentor'], st['st_support'], st['st_staff']],
                   fill: true,
                   backgroundColor: 'rgba(255, 99, 132, 0.2)',
                   borderColor: 'rgb(255, 99, 132)',
@@ -116,7 +117,7 @@
     <div class="col-11 mx-auto school-reviews-card p-5">
       <p>{{ $school->school_name }}に寄せられたレビュー</p>
       <div class="review-list">
-        @foreach ($reviews as $review)
+        @foreach ($school->reviews as $review)
         <a href="{{ url('/review/' . $review->id) }}"  class="list-group-item list-group-item-action">{{ $review->title }}</a>
         @endforeach
       </div>
