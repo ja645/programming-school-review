@@ -71,12 +71,11 @@ Route::middleware(['auth'])->group(function() {
     return $school;
   });
   
-  Route::post('/follow', [FollowController::class, 'followReview']);
-  Route::delete('/follow/delete', [FollowController::class, 'unFollowReview']);
+  Route::get('follow/{id}', [FollowController::class, 'current']);
+  Route::post('/follow', [FollowController::class, 'switchFollow']);
   
   Route::get('/like/{id}', [LikeController::class, 'current']);
   Route::post('/like', [LikeController::class, 'switchLike']);
-  Route::delete('/like/delete', [LikeController::class, 'unLike']);
 
   Route::get('/password/change', [ChangePasswordController::class, 'showChangePasswordView']);
   Route::post('/password', [ChangePasswordController::class, 'changePassword']);
