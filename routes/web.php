@@ -62,14 +62,8 @@ Route::middleware(['auth'])->group(function() {
   
   Route::get('/schools/{id}', [SchoolController::class, 'showSchool'])->name('school');
   
-  Route::get('/rankings', [RankingController::class, 'showRankings'])->name('ranking');
-  
-  Route::post('/rankings', function() {
-    $school = app(ReviewRepository::class)->getSchoolList(request()->columnName);
-    // 昇順にソート
-    // asort($school);
-    return $school;
-  });
+  Route::get('/rankings', [RankingController::class, 'index'])->name('ranking');
+  Route::post('/rankings', [RankingController::class, 'showRanking']);
   
   Route::get('follow/{id}', [FollowController::class, 'current']);
   Route::post('/follow', [FollowController::class, 'switchFollow']);

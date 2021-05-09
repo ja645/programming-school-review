@@ -4,17 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ReviewRepository;
+use App\Services\RankingService;
 
 class RankingController extends Controller
 {
     /**
-     * ランキング一覧を表示
+     * GETリクエストによってランキングを表示
+     * 初期状態として'total_judg'によるランキングを返す
      * @return view
      */
-    public function showRankings(Request $request)
+    public function index()
     {
-        $arr_schools = app(ReviewRepository::class)->getSchoolList('total_judg');
+        $schoolList = app(RankingService::class)->getSchoolList('total_judg'); 
         
-        return view('auth.rankings', ['arr_schools' => $arr_schools]);
+        return view('auth.rankings', ['schoolList' => $schoolList]);
+    }
+
+    /**
+     * POSTリクエストによって指定されたカラムによるランキングを表示
+     * @return view
+     */
+    public function showRanking(Request $request)
+    {
+        $column = request()->columnName;
+
+        $schoolList = app(RankingService::class)->getSchoolList($column); 
+        
+        return response()->json(['schoolList' => $schoolList]);
     }
 }

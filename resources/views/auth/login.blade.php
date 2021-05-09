@@ -67,7 +67,7 @@
                 
                 <li class="list-group-item">
                     <label for="email">メールアドレス</label>
-                    <input type="email" name="email" placeholder="メールアドレスを入力してください。">
+                    <input type="email" name="email" value="{{ old('email') }}" placeholder="メールアドレスを入力してください。">
                 </li>
                 
                 <li class="list-group-item">
