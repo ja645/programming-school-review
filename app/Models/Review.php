@@ -19,6 +19,11 @@ class Review extends Model
         'id',
     ];
 
+    protected $dates = [
+        'when_start',
+        'when_end',
+    ];
+
     /**
      * レビューの投稿者を取得
      */

@@ -703,27 +703,20 @@ footer a:hover {
   position: relative;
   display: inline-block;
   font-size: calc(1.6rem + 2.0rem);
+  color: #CCCCCC;
 }
 
 .star-rate {
   font-size: calc(1.6rem + 2.0rem);
 }
 
-.star::before, .star::after {
-  content: "★★★★★";
-}
-
-.star::before {
-  color: #CCCCCC;
-}
-
-.star::after {
+.star-after {
   position: absolute;
   top: 0;
   left: 0;
+  font-size: calc(1.6rem + 2.0rem);
   color: yellow;
   overflow: hidden;
-  width: 15rem;
 }
 
 .school-statistics {

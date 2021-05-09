@@ -25,6 +25,7 @@
               <!-- Chart.js -->
               <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.0/dist/chart.min.js"></script>
               <script>
+              const review = @json($review);
               var ctx = document.getElementById('radar');
               var myChart = new Chart(ctx, {
                 type: 'radar',
@@ -38,8 +39,8 @@
                     'スタッフ',
                   ],
                   datasets: [{
-                    label: 'hoge太郎さんのスクールに対する満足度',
-                    data: [5, 3, 2, 4, 0, 1],
+                    label: review.user.user_name + 'さんのスクールに対する満足度',
+                    data: [review.st_tuition, review.st_term, review.st_curriculum, review.st_mentor, review.st_support, review.st_staff],
                     fill: true,
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgb(255, 99, 132)',
@@ -75,18 +76,28 @@
           <div class="right-contents-inner">
             <div class="tuition text-center pb-5">
                 <p>{{ $review->user->user_name }}さんの受講料</p>
-                <h1>￥</h1>
+                <h1>{{ $review->tuition }}円</h1>
             </div>
       
             <div class="term text-center pb-5">
-              <p>{{ $review->user->user_name }}さんの平均受講時期</p>
-              <h1>{{ $review->term }}</h1>
+              <p>{{ $review->user->user_name }}さんの受講時期</p>
+              <h1>{{ $review->when_start->format('Y年m月d日') }}～{{ $review->when_end->format('Y年m月d日') }}</h1>
             </div>
       
             <div class="overall-satisfaction text-center">
               <p>{{ $review->user->user_name }}さんの総合満足度</p>
               <div class="star-rating">
-                <div class="star"></div><span class="star-rate">3.0</span>
+                <div class="star">★★★★★
+                  <div id="star-after" class="star-after">★★★★★</div>
+                  <script type="text/javascript">
+                    const total_judg = @json($review->total_judg) * 20;
+                    window.onload = function () {
+                      var star_after = document.getElementById('star-after');
+                      star_after.style.width = total_judg + "%";
+                    };
+                  </script>
+                </div>
+                <div class="star-rate">{{ $review->total_judg }}</div>
               </div>
             </div>
           </div>
