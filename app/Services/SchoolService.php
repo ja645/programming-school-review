@@ -82,4 +82,27 @@ class SchoolService
 
     return (int)$average;
   }
+
+  /**
+   * スクールのidを指定し
+   * 総合評価の中での、そのスクールの順位を取得する
+   * @param integer $schoolId
+   * @return integer
+   */
+  public function getRank(int $schoolId)
+  {
+    // 総合評価についてスクールリストを取得する
+    $schoolList = app(RankingService::class)->getSchoolList('total_judg');
+
+    // スクールリストを総合評価で降順に並べ替える
+    foreach ((array) $schoolList as $key => $value) {
+      $sort[$key] = $value['column'];
+    }
+    array_multisort($sort, SORT_DESC, $schoolList);
+
+    // 指定したスクールが配列の何番目かを取得
+    $rank = array_search($schoolId, array_column($schoolList, 'school_id')) + 1;
+
+    return $rank;
+  }
 }

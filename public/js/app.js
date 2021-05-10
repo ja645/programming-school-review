@@ -18734,7 +18734,6 @@ __webpack_require__.r(__webpack_exports__);
           return a.column - b.column;
         }
       });
-      console.log(this.sortType);
     }
   }
 });
