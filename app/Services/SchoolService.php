@@ -31,7 +31,11 @@ class SchoolService
     foreach($coloums as $column) {
         $sum = $reviews->sum($column);
 
-        $average = round($sum / $number_of_reviews, 1);
+        if ($number_of_reviews !== 0) {
+          $average = round($sum / $number_of_reviews, 1);
+        } else {
+          $average = 0;
+        }
 
         $satisfactions[$column] = $average;
     }
@@ -51,7 +55,11 @@ class SchoolService
 
     $sum = $reviews->sum('tuition');
 
-    $average = round($sum / $number_of_reviews);
+    if ($number_of_reviews !== 0) {
+      $average = round($sum / $number_of_reviews, 1);
+    } else {
+      $average = 0;
+    }
 
     return (int)$average;
   }
@@ -78,7 +86,11 @@ class SchoolService
       $sum += $term;
     }
 
-    $average = round($sum / $number_of_reviews);
+    if ($number_of_reviews !== 0) {
+      $average = round($sum / $number_of_reviews);
+    } else {
+      $average = 0;
+    }
 
     return (int)$average;
   }
@@ -86,10 +98,9 @@ class SchoolService
   /**
    * スクールのidを指定し
    * 総合評価の中での、そのスクールの順位を取得する
-   * @param integer $schoolId
    * @return integer
    */
-  public function getRank(int $schoolId)
+  public function getRank()
   {
     // 総合評価についてスクールリストを取得する
     $schoolList = app(RankingService::class)->getSchoolList('total_judg');
@@ -101,7 +112,7 @@ class SchoolService
     array_multisort($sort, SORT_DESC, $schoolList);
 
     // 指定したスクールが配列の何番目かを取得
-    $rank = array_search($schoolId, array_column($schoolList, 'school_id')) + 1;
+    $rank = array_search($this->school->id, array_column($schoolList, 'school_id')) + 1;
 
     return $rank;
   }

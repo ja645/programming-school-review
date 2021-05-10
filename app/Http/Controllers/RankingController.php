@@ -14,10 +14,8 @@ class RankingController extends Controller
      * @return view
      */
     public function index()
-    {
-        $schoolList = app(RankingService::class)->getSchoolList('total_judg'); 
-        
-        return view('auth.rankings', ['schoolList' => $schoolList]);
+    {        
+        return view('auth.rankings');
     }
 
     /**
