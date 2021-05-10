@@ -18713,7 +18713,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.showSchoolList('total_judg');
-    this.sortSchools('desc');
   },
   methods: {
     showSchoolList: function showSchoolList(columnName) {
@@ -18723,6 +18722,8 @@ __webpack_require__.r(__webpack_exports__);
         'columnName': columnName
       }).then(function (response) {
         _this.schoolList = response.data.schoolList;
+
+        _this.sortSchools(_this.sortType);
       });
     },
     sortSchools: function sortSchools(sortType) {
@@ -18733,7 +18734,7 @@ __webpack_require__.r(__webpack_exports__);
           return a.column - b.column;
         }
       });
-      console.log('hoge');
+      console.log(this.sortType);
     }
   }
 });

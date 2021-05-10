@@ -41,7 +41,6 @@ export default {
   },
   mounted() {
     this.showSchoolList('total_judg')
-    this.sortSchools('desc')
   },
   methods: {
     showSchoolList(columnName) {
@@ -50,6 +49,7 @@ export default {
       })
       .then(response => {
         this.schoolList = response.data.schoolList
+        this.sortSchools(this.sortType);
       });
     },
     sortSchools(sortType) {
@@ -60,7 +60,6 @@ export default {
           return a.column - b.column;
         }
       });
-    console.log('hoge');
     },
   }
 }
