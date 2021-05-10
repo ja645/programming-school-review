@@ -31,8 +31,14 @@ class SchoolService
     foreach($coloums as $column) {
         $sum = $reviews->sum($column);
 
+        // 0で割らないようにする
         if ($number_of_reviews !== 0) {
           $average = round($sum / $number_of_reviews, 1);
+
+          // $averageが0の時は整数にキャスト
+          if($average === 0.0) {
+            $average = (int)$average;
+          }
         } else {
           $average = 0;
         }
@@ -77,9 +83,10 @@ class SchoolService
     $sum = 0;
 
     foreach($reviews as $review) {
-      $start = $review->value('when_start');
+      
+      $start = $review->when_start;
 
-      $end = $review->value('when_end');
+      $end = $review->when_end;
 
       $term = $start->diffInDays($end);
 
@@ -88,6 +95,7 @@ class SchoolService
 
     if ($number_of_reviews !== 0) {
       $average = round($sum / $number_of_reviews);
+      
     } else {
       $average = 0;
     }

@@ -18,6 +18,6 @@ class ReviewTest extends TestCase
 
         Auth::login($user);
 
-        $school = School::create('school_name' => 'hogehoge')
+        $school = School::create(['school_name' => 'hogehoge']);
     }
 }
