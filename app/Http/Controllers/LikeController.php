@@ -22,7 +22,6 @@ class LikeController extends Controller
         $school = $school::find($id);
         $is_user_liked = $school->is_liked_by_auth_user();
 
-        // logger($school->is_liked_by_auth_user());
 
         // 対象のスクールの現在のいいね数を取得
         $count = $school->likes->count();

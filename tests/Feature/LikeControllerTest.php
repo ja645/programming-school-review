@@ -2,103 +2,55 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Likes;
 use App\Models\School;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use Mockery\MockInterface;
 
 class LikeControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $myself;
-    private $school;
+    private $user;
 
     /**
-     * テスト前に既存のユーザー、レビュー、およびfollowing関係を設定
+     * @return void
      */
     public function setUp(): void
     {
         parent::setUp();
 
-        //サンプルユーザーを用意
-        $this->myself = User::factory()->create();
-
-        //既存のスクールとして用意
-        $this->school = School::create([
-            'name' => 'hogehoge',
-            'image_path' => 'hogehoge',
-            'school_url' => 'hogehoge',
-            'address' => 'hogehoge',
-            'learning_style' => 1,
-            'features' => 'hogehoge',
-        ]);
+        $this->user = User::factory()->create();
     }
 
     /**
-     * switchLike()メソッドが機能するかテスト
+     * getCurrentStatus()メソッドが機能することをテスト
      */
-    public function testSwitchLike()
+    public function test_canGetCurrentStatus()
     {
-        
-    }
+        // Reviewモデルのfind()メソッドをモック
+        $mock = $this->partialMock(School::class, function (MockInterface $mock) {
 
+            $school = School::factory([
+                'id' => 1,
+                'likes' => collect([
+                    (object)['user_id' => $this->user->id],
+                    (object)['user_id' => $this->user->id + 1],
+                    (object)['user_id' => $this->user->id + 2],
+                ]),
+            ])->make();
 
-    // /**
-    //  * 認証済みのユーザーがスクールをお気に入りできることをテスト
-    //  * @return void
-    //  */
-    // public function testLike_正常系(): void
-    // {
-    //     Auth::login($this->myself);
+            $mock->shouldReceive('find')->once()->andReturn($school);
+        });
 
-    //     $response = $this->actingAs($this->myself)->post('/like', [
-    //         'school_id' => $this->school->id
-    //     ]);
+        Auth::login($this->user);
 
-    //     $this->assertDatabaseHas('likes', [
-    //         'user_id' => $this->myself->id, 'school_id' => $this->school->id,
-    //     ]);
+        $response = $this->actingAs($this->user)->get('/like/1');
 
-    //     $response->assertStatus(200);
-    // }
-
-    // /**
-    //  * ログイン前のユーザーでエラー
-    //  * @return void
-    //  */
-    // public function testLike_異常系_未ログイン(): void
-    // {
-    //     $response = $this->post('/like', [
-    //         'school_id' => $this->school->id
-    //     ]);
-
-    //     $this->assertDatabaseMissing('likes', [
-    //         'user_id' => $this->myself->id, 'school_id' => $this->school->id,
-    //     ]);
-
-    //     $response->assertRedirect('login');
-    // }
-
-    // /**
-    //  * ユーザーがスクールのお気に入りを解除できることをテスト
-    //  * @return void
-    //  */
-    // public function testUnLike_正常系(): void
-    // {
-    //     Auth::login($this->myself);
-
-    //     $response = $this->delete('/like/delete', [
-    //         'school_id' => $this->school->id
-    //     ]);
-
-    //     $this->assertDatabaseMissing('likes', [
-    //         'user_id' => $this->myself->id, 'school_id' => $this->school->id,
-    //     ]);
-
-    //     $response->assertStatus(200);
-    // }
+        $response->assertJson(['bool' => true, 'count' => 3]);
+    }       
 }
