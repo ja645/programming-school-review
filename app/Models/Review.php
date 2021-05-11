@@ -59,7 +59,7 @@ class Review extends Model
 
         $followers = [];
 
-        // 配列にレビューをlikeしているユーザーのidを格納
+        // 配列にレビューをfollowしているユーザーのidを格納
         foreach ($this->follows as $follow) {
             array_push($followers, $follow->user_id);
         }

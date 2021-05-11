@@ -39,9 +39,9 @@ class FollowController extends Controller
 
         $review = app(Review::class);
         $review = $review::find($review_id);
-        $is_user_followed = $review->is_followed_by_auth_user();
+        $is_review_followed = $review->is_followed_by_auth_user();
 
-        if (!$is_user_followed) {
+        if (!$is_review_followed) {
 
             Following::create([
                 'user_id' => Auth::id(),

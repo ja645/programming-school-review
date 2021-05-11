@@ -2,22 +2,57 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\School;
+use App\Models\Review;
+use App\Models\Following;
 
 class ReviewTest extends TestCase
 {
+    private $user;
+    private $review;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = User::factory()->create();
+
+        $school = School::factory()->create();
+
+        $this->review = Review::factory()->for($this->user)->for($school)->create();
+    }
+
     /**
-     * id_liked_by_auth_user()が正しく機能するかテスト
+     * ユーザーがレビューをフォローしている場合に
+     * id_liked_by_auth_user()がtrueを返すことをテスト
      * @test
      */
-    public function  id_liked_by_auth_userが正しく機能する()
+    public function  id_liked_by_auth_userがtrueを返す()
     {
-        $user = User::factory()->create;
+        Auth::login($this->user);
 
-        Auth::login($user);
+        // 現在のユーザーがレビューをフォローしている状態を作る
+        Following::create(['user_id' => $this->user->id, 'review_id' => $this->review->id]);
 
-        $school = School::create(['school_name' => 'hogehoge']);
+        $is_review_followed = $this->review->is_followed_by_auth_user();
+
+        $this->assertTrue($is_review_followed);
+    }
+
+    /**
+     * ユーザーがレビューをフォローしていない場合に
+     * id_liked_by_auth_user()がfalseを返すことをテスト
+     * @test
+     */
+    public function  id_liked_by_auth_userがfalseを返す()
+    {
+        Auth::login($this->user);
+
+        $is_review_followed = $this->review->is_followed_by_auth_user();
+
+        $this->assertFalse($is_review_followed);
     }
 }
