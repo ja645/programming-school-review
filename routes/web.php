@@ -51,7 +51,6 @@ Route::middleware(['auth'])->group(function() {
   });
 
   Route::post('/reviews/message', function() {
-    logger(request());
     $message = \App\Models\Message::create(['user_id' => Auth::id(), 'review_id' => request()->reviewId, 'message' => request()->message]);
     
     event((new MessageSent($message))->dontBroadcastToCurrentUser());
