@@ -21,7 +21,7 @@ class RankingService
   {
     // スクールの総数を取得
     $schools = $this->school->all();
-
+    dump($schools);
     $schoolList = [];
 
     foreach($schools as $school) {
@@ -30,7 +30,7 @@ class RankingService
 
       // スクールに紐付くレビューの総数を取得
       $number_of_reviews = $school->reviews->count();
-
+      
       if ($number_of_reviews !== 0) {
         $average = round($sum / $number_of_reviews, 1);
       } else {
