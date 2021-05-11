@@ -27,7 +27,7 @@ class ReviewTest extends TestCase
 
     /**
      * ユーザーがレビューをフォローしている場合に
-     * id_liked_by_auth_user()がtrueを返すことをテスト
+     * id_followed_by_auth_user()がtrueを返すことをテスト
      * @test
      */
     public function  id_liked_by_auth_userがtrueを返す()
@@ -44,7 +44,7 @@ class ReviewTest extends TestCase
 
     /**
      * ユーザーがレビューをフォローしていない場合に
-     * id_liked_by_auth_user()がfalseを返すことをテスト
+     * id_followed_by_auth_user()がfalseを返すことをテスト
      * @test
      */
     public function  id_liked_by_auth_userがfalseを返す()
