@@ -15,11 +15,12 @@ class FollowController extends Controller
      * そのレビューの現在のフォロワー数を返す
      * @param integer $id
      */
-    public function current($id)
+    public function getCurrentStatus($id)
     {
         // 現在のユーザーが対象のレビューをフォローしているかを取得
         $review = app(Review::class);
-        $review = $review::find($id);
+        $review = $review->find($id);
+        
         $is_user_followed = $review->is_followed_by_auth_user();
 
         // 対象のレビューの現在のフォロワー数を取得
@@ -38,33 +39,39 @@ class FollowController extends Controller
         $review_id = request()->reviewId;
 
         $review = app(Review::class);
-        $review = $review::find($review_id);
-        $is_review_followed = $review->is_followed_by_auth_user();
+        $review = $review->find($review_id);
 
-        if (!$is_review_followed) {
+        // 現在のユーザーがレビューの投稿者であれば更新できない
+        if ($review->id === Auth::id()) {
+            return response()->json(['flash' => '自分のレビューはフォローできません。']);
 
-            Following::create([
-                'user_id' => Auth::id(),
-                'review_id' => $review_id,
-            ]);
-    
-            $review = app(Review::class);
-            $review = $review::find($review_id);
-            $count = $review->follows->count();
-
-            session()->flash('flash_message', 'レビューをフォローしました！');
-    
-            return response()->json(['bool' => true, 'count' => $count]);
         } else {
-            Following::where('user_id', Auth::id())->where('review_id', $review_id)->delete();
-
-            $review = app(Review::class);
-            $review = $review::find($review_id);
-            $count = $review->follows->count();
-
-            session()->flash('flash_message', 'フォローを解除しました。');
-
-            return response()->json(['bool' => false, 'count' => $count]);
+            // レビューが現在のユーザーにフォローされているか確認
+            $is_review_followed = $review->is_followed_by_auth_user();
+        
+            if (!$is_review_followed) {
+                // レビューがフォローされていなければfollowsテーブルにレコードを追加し、フォロワー数を更新
+        
+                Following::create([
+                    'user_id' => Auth::id(),
+                    'review_id' => $review_id,
+                ]);
+        
+                $review = app(Review::class);
+                $review = $review->find($review_id);
+                $count = $review->follows->count();
+        
+                return response()->json(['bool' => true, 'count' => $count, 'flash' => 'レビューをフォローしました！']);
+            } else {
+                // レビューがフォローされていればfollowsテーブルからレコードを削除し、フォロワー数を更新
+                Following::where('user_id', Auth::id())->where('review_id', $review_id)->delete();
+        
+                $review = app(Review::class);
+                $review = $review->find($review_id);
+                $count = $review->follows->count();
+        
+                return response()->json(['bool' => false, 'count' => $count, 'flash' => 'フォローを解除しました。']);
+            }
         }
     }
 }

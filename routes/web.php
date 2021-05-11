@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/rankings', [RankingController::class, 'index'])->name('ranking');
   Route::post('/rankings', [RankingController::class, 'showRanking']);
   
-  Route::get('follow/{id}', [FollowController::class, 'current']);
+  Route::get('follow/{id}', [FollowController::class, 'getCurrentStatus']);
   Route::post('/follow', [FollowController::class, 'switchFollow']);
   
   Route::get('/like/{id}', [LikeController::class, 'current']);

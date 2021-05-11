@@ -18545,6 +18545,8 @@ __webpack_require__.r(__webpack_exports__);
       //データを保持
       count: '',
       bool: '',
+      flash: '',
+      show: false,
       styleTrue: {
         color: "green"
       },
@@ -18573,9 +18575,20 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this2.bool = response.data.bool;
         _this2.count = response.data.count;
+        _this2.flash = response.data.flash;
+
+        _this2.showFlash();
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    showFlash: function showFlash() {
+      var _this3 = this;
+
+      this.show = true;
+      setTimeout(function () {
+        _this3.show = false;
+      }, 3000);
     }
   }
 });
@@ -18599,6 +18612,8 @@ __webpack_require__.r(__webpack_exports__);
       //データを保持
       count: '',
       bool: '',
+      flash: '',
+      show: false,
       styleTrue: {
         color: "red"
       },
@@ -18627,9 +18642,20 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this2.bool = response.data.bool;
         _this2.count = response.data.count;
+        _this2.flash = response.data.flash;
+
+        _this2.showFlash();
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    showFlash: function showFlash() {
+      var _this3 = this;
+
+      this.show = true;
+      setTimeout(function () {
+        _this3.show = false;
+      }, 3000);
     }
   }
 });
@@ -18806,6 +18832,14 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "school-follow ms-sm-5 ms-2"
 };
+var _hoisted_2 = {
+  key: 0,
+  "class": "flash",
+  style: {
+    "color": "green",
+    "display": "inline-block"
+  }
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     style: {
@@ -18821,7 +18855,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* STYLE */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.count), 1
   /* TEXT */
-  )])]);
+  )]), $data.show ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.flash), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
 
 /***/ }),
@@ -18842,6 +18878,14 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "school-follow ms-sm-5 ms-2"
 };
+var _hoisted_2 = {
+  key: 0,
+  "class": "flash",
+  style: {
+    "color": "red",
+    "display": "inline-block"
+  }
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     style: {
@@ -18857,7 +18901,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* STYLE */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.count), 1
   /* TEXT */
-  )])]);
+  )]), $data.show ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.flash), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
 
 /***/ }),

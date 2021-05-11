@@ -54,10 +54,8 @@ class LikeController extends Controller
             $school = app(School::class);
             $school = $school::find($school_id);
             $count = $school->likes->count();
-
-            session()->flash('flash_message', 'スクールをいいねしました！');
     
-            return response()->json(['bool' => true, 'count' => $count]);
+            return response()->json(['bool' => true, 'count' => $count, 'flash' => 'スクールをいいねしました！']);
         } else {
             Like::where('user_id', Auth::id())->where('school_id', $school_id)->delete();
 
@@ -65,9 +63,7 @@ class LikeController extends Controller
             $school = $school::find($school_id);
             $count = $school->likes->count();
 
-            session()->flash('flash_message', 'いいねを解除しました。');
-
-            return response()->json(['bool' => false, 'count' => $count]);
+            return response()->json(['bool' => false, 'count' => $count, 'flash' => 'いいねを解除しました。']);
         }
     }
 }

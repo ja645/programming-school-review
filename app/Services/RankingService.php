@@ -21,7 +21,7 @@ class RankingService
   {
     // スクールの総数を取得
     $schools = $this->school->all();
-    dump($schools);
+    
     $schoolList = [];
 
     foreach($schools as $school) {

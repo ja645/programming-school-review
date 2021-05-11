@@ -2,86 +2,67 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Following;
 use App\Models\School;
 use App\Models\Review;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use Mockery\MockInterface;
 
 class FollowControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $myself;
-    private $school;
     private $user;
-    private $review;
 
     /**
-     * テスト前に既存のユーザー、レビュー、およびfollowing関係を設定
+     * @return void
      */
     public function setUp(): void
     {
         parent::setUp();
 
-        //サンプルユーザーを用意
-        $this->myself = User::factory()->create();
-
-        //既存のスクールとして用意
-        $this->school = School::create([
-            'name' => 'hogehoge',
-            'image_path' => 'hogehoge',
-            'school_url' => 'hogehoge',
-            'address' => 'hogehoge',
-            'learning_style' => 1,
-            'features' => 'hogehoge',
-        ]);
-
-        //他のユーザーを用意
         $this->user = User::factory()->create();
-    
-        //$userが投稿したレビューとして用意
-        $this->review = Review::factory(['user_id' => $this->user->id, 'school_id' => $this->school->id])->create();
     }
 
-    /**
-     * 認証済みのユーザーが他のユーザーのレビューをフォローできることをテスト
-     * @return void
-     */
-    public function testFollow_正常系(): void
-    {
-        Auth::login($this->myself);
+    // /**
+    //  * 認証済みのユーザーが他のユーザーのレビューをフォローできることをテスト
+    //  * @return void
+    //  */
+    // public function testFollow_正常系(): void
+    // {
+    //     Auth::login($this->myself);
 
-        $response = $this->actingAs($this->myself)->post('/follow', [
-            'followed_review_id' => $this->review->id
-        ]);
+    //     $response = $this->actingAs($this->myself)->post('/follow', [
+    //         'followed_review_id' => $this->review->id
+    //     ]);
 
-        $this->assertDatabaseHas('followings', [
-            'follower_user_id' => $this->myself->id, 'poster_id' => $this->user->id, 'followed_review_id' => $this->review->id,
-        ]);
+    //     $this->assertDatabaseHas('followings', [
+    //         'follower_user_id' => $this->myself->id, 'poster_id' => $this->user->id, 'followed_review_id' => $this->review->id,
+    //     ]);
 
-        $response->assertStatus(200);
-    }
+    //     $response->assertStatus(200);
+    // }
 
-    /**
-     * ログイン前のユーザーでエラー
-     * @return void
-     */
-    public function testFollow_異常系_未ログイン(): void
-    {
-        $response = $this->post('/follow', [
-            'followed_review_id' => $this->review->id
-        ]);
+    // /**
+    //  * ログイン前のユーザーでエラー
+    //  * @return void
+    //  */
+    // public function testFollow_異常系_未ログイン(): void
+    // {
+    //     $response = $this->post('/follow', [
+    //         'followed_review_id' => $this->review->id
+    //     ]);
 
-        $this->assertDatabaseMissing('followings', [
-            'follower_user_id' => $this->myself->id, 'poster_id' => $this->user->id, 'followed_review_id' => $this->review->id,
-        ]);
+    //     $this->assertDatabaseMissing('followings', [
+    //         'follower_user_id' => $this->myself->id, 'poster_id' => $this->user->id, 'followed_review_id' => $this->review->id,
+    //     ]);
 
-        $response->assertRedirect('login');
-    }
+    //     $response->assertRedirect('login');
+    // }
 
     // /**
     //  * 存在しないレビューをフォローしようとしてエラー
@@ -146,25 +127,82 @@ class FollowControllerTest extends TestCase
     //     $response->assertStatus(200);
     // }
 
+    // /**
+    //  * フォーロー解除が成功することをテスト
+    //  * @return void
+    //  */
+    // public function testUnFollow_正常系()
+    // {
+    //     //既に$myselfが$userの投稿をフォローしている状況を設定
+    //     $following = Following::create(['follower_user_id' => $this->myself->id, 'poster_id' => $this->user->id, 'followed_review_id' => $this->review->id]);
+
+    //     Auth::login($this->myself);
+
+    //     $response = $this->actingAs($this->myself)->delete('/follow/delete', [
+    //         'followed_review_id' => $this->review->id
+    //     ]);
+
+    //     $this->assertDatabaseMissing('followings', [
+    //         'follower_user_id' => $this->myself->id, 'poster_id' => $this->user->id, 'followed_review_id' => $this->review->id,
+    //     ]);
+
+    //     $response->assertStatus(200);
+    // }
+
     /**
-     * フォーロー解除が成功することをテスト
+     * getCurrentStatus()メソッドが機能することをテスト
+     */
+    public function test_canGetCurrentStatus()
+    {
+        // Reviewモデルのfind()メソッドをモック
+        $mock = $this->partialMock(Review::class, function (MockInterface $mock) {
+
+            $review = Review::factory([
+                'id' => 1,
+                'follows' => collect([
+                    (object)['user_id' => $this->user->id, 'review_id' => 1],
+                    (object)['user_id' => $this->user->id + 1, 'review_id' => 1],
+                    (object)['user_id' => $this->user->id + 2, 'review_id' => 1],
+                ]),
+            ])->make();
+
+            $mock->shouldReceive('find')->once()->andReturn($review);
+        });
+
+        Auth::login($this->user);
+
+        $response = $this->actingAs($this->user)->get('/follow/1');
+
+        $response->assertJson(['bool' => true, 'count' => 3]);
+    }
+
+    /**
+     * フォローしていないレビューをフォロー出来て、
+     * フォロワー数が更新されることをテスト
+     * @test
      * @return void
      */
-    public function testUnFollow_正常系()
+    public function フォロー前のレビューをフォロー出来る()
     {
-        //既に$myselfが$userの投稿をフォローしている状況を設定
-        $following = Following::create(['follower_user_id' => $this->myself->id, 'poster_id' => $this->user->id, 'followed_review_id' => $this->review->id]);
+        // Reviewモデルのfind()メソッドをモック
+        $mock = $this->partialMock(Review::class, function (MockInterface $mock) {
 
-        Auth::login($this->myself);
+            $review = Review::factory([
+                'id' => 1,
+                'follows' => collect([
+                    (object)['user_id' => $this->user->id + 1, 'review_id' => 1],
+                    (object)['user_id' => $this->user->id + 2, 'review_id' => 1],
+                ]),
+            ])->make();
 
-        $response = $this->actingAs($this->myself)->delete('/follow/delete', [
-            'followed_review_id' => $this->review->id
-        ]);
+            $mock->shouldReceive('find')->once()->andReturn($review);
+        });
 
-        $this->assertDatabaseMissing('followings', [
-            'follower_user_id' => $this->myself->id, 'poster_id' => $this->user->id, 'followed_review_id' => $this->review->id,
-        ]);
+        Auth::login($this->user);
 
-        $response->assertStatus(200);
+        $response = $this->actingAs($this->user)->postJson('/follow', ['reviewId' => 1]);
+
+        $this->assertSessionHas('flash_message', 'レビューをフォローしました！');
+        $response->assertJson(['bool' => true, 'count' => 3]);
     }
 }
