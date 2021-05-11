@@ -46,6 +46,13 @@ class RankingServiceTest extends TestCase
                         (object)['st_tuition' => 3],
                     ]),
                 ],
+                (object)[
+                    'id' => 3,
+                    'school_name' => 'hogehoge',
+                    'reviews' => collect([
+                        // レビューが存在しない場合を検証
+                    ]),
+                ],
             ];
 
             $mock->shouldReceive('all')->once()->andReturn($schools);
@@ -56,6 +63,8 @@ class RankingServiceTest extends TestCase
         $expected = [
             ['school_id' => 1, 'school_name' => 'hoge', 'column' => 1.7],
             ['school_id' => 2, 'school_name' => 'fuga', 'column' => 1.5],
+            // レビューが存在しないとき0を返すことをテスト
+            ['school_id' => 3, 'school_name' => 'hogehoge', 'column' => 0],
         ];
 
         $this->assertSame($expected, $schoolList);
