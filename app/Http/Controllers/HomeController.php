@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Review;
 use App\Models\School;
+use App\Http\Requests\ContactFormRequest;
 
 class HomeController extends Controller
 {
@@ -30,12 +31,13 @@ class HomeController extends Controller
 
     /**
      * お問い合わせフォームの内容をcontactsテーブルに保存する
+     * @param \App\Http\Requests\ContactFormRequest $request
      * @return view
      */
-    public function receiveContact(Request $request)
+    public function receiveContact(ContactFormRequest $request)
     {
         logger($request->all());
-        
+
         $contact_form = $request->all();
         $contact = new Contact;
 
