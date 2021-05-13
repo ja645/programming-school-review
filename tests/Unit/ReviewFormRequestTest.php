@@ -97,6 +97,17 @@ class ReviewFormRequestTest extends TestCase
                 ],
                 false,
             ],
+
+            'reportが1万文字以上でエラー' => [
+                [
+                    'school_id' => 1, 'course' => 'test Ex course', 'tuition' => 560,000,
+                    'purpose' => 1, 'when_start' => '2018-04-01', 'when_end' => '2018-06-30', 'at_school' => true,
+                    'st_tuition' => 1, 'st_term' => 1, 'st_curriculum' => 1, 'st_mentor' => 1, 'st_support' => 1, 'st_staff' => 1, 'total_judg' => 1,
+                    'title' => 'a test title a test title',
+                    'report' => str_repeat('a　te', 3334), //全角スペース
+                ],
+                false,
+            ],
         ];
     }
 }

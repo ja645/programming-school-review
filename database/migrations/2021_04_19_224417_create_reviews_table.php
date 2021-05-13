@@ -32,7 +32,7 @@ class CreateReviewsTable extends Migration
             $table->integer('st_staff');
             $table->integer('total_judg');
             $table->string('title');
-            $table->string('report');
+            $table->text('report');
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
         });

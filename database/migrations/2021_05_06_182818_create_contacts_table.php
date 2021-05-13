@@ -19,7 +19,7 @@ class CreateContactsTable extends Migration
             $table->boolean('have_acount');
             $table->string('email');
             $table->string('title');
-            $table->string('inquiry');
+            $table->text('inquiry');
             $table->timestamps();
         });
     }

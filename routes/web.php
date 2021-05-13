@@ -31,9 +31,6 @@ Route::get('/', [HomeController::class, 'index'])->name('top');
 Route::get('/signup', [UserController::class, 'add'])->name('signup');
 Route::post('/users/create', [UserController::class, 'create']);
 
-Route::get('/contacts', [HomeController::class, 'showContactForm']);
-Route::post('/contacts', [HomeController::class, 'receiveContact']);
-
 
 Route::middleware(['auth'])->group(function() {
   Route::get('/users', [UserController::class, 'index'])->name('mypage');
@@ -47,17 +44,16 @@ Route::middleware(['auth'])->group(function() {
   Route::post('/reviews/create', [ReviewController::class, 'create']);
   Route::delete('/reviews/delete', [ReviewController::class, 'delete']);
   
-  
   Route::get('/schools/{id}', [SchoolController::class, 'showSchool'])->name('school');
   
   Route::get('/rankings', [RankingController::class, 'index'])->name('ranking');
-  // Route::post('/rankings', [RankingController::class, 'showRanking']);
+  Route::post('/rankings', [RankingController::class, 'showRanking']);
   
-  // Route::get('/follow/{id}', [FollowController::class, 'getCurrentStatus']);
-  // Route::post('/follow', [FollowController::class, 'switchFollow']);
+  Route::get('/follow/{id}', [FollowController::class, 'getCurrentStatus']);
+  Route::post('/follow', [FollowController::class, 'switchFollow']);
   
-  // Route::get('/like/{id}', [LikeController::class, 'current']);
-  // Route::post('/like', [LikeController::class, 'switchLike']);
+  Route::get('/like/{id}', [LikeController::class, 'current']);
+  Route::post('/like', [LikeController::class, 'switchLike']);
   
   Route::get('/password/change', [ChangePasswordController::class, 'showChangePasswordView']);
   Route::post('/password', [ChangePasswordController::class, 'changePassword']);
@@ -66,5 +62,8 @@ Route::middleware(['auth'])->group(function() {
   Route::post('/email', [ChangeEmailController::class, 'sendChangeEmailLink'])->name('email');
   Route::post('/email/reset', [ChangeEmailController::class, 'reset']);
 });
+
+Route::get('/contact', [HomeController::class, 'showContactForm']);
+Route::post('/contact', [HomeController::class, 'receiveContact']);
 
 require __DIR__.'/auth.php';

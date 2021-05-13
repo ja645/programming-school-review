@@ -57,6 +57,8 @@ class ReviewFormRequest extends FormRequest
                     $removeSpace = preg_replace("/( |　)/", "", $value);
                     if (strlen($removeSpace) < 100) {
                         return $fail('100文字以上で入力してください。');
+                    } elseif (strlen($removeSpace) > 10000) {
+                        return $fail('1万文字以内で入力してください。');
                     }
                 }
             ],
