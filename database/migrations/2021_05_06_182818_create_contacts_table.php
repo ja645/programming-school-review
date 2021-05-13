@@ -16,7 +16,7 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('have_acount');
+            $table->boolean('have_account');
             $table->string('email');
             $table->string('title');
             $table->text('inquiry');
