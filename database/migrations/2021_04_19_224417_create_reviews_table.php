@@ -23,7 +23,6 @@ class CreateReviewsTable extends Migration
             $table->date('when_start');
             $table->date('when_end');
             $table->boolean('at_school');
-            $table->integer('achievement');
             //st = satisfactionの意
             $table->integer('st_tuition');
             $table->integer('st_term');
