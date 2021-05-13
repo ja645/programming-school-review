@@ -31,8 +31,6 @@ class ContactFormRequest extends FormRequest
             'inquiry' => 'required|max:1000',
         ];
 
-        return [
-            
-        ];
+        return $rules;
     }
 }
