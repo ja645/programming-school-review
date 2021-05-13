@@ -59,8 +59,6 @@ class ReviewController extends Controller
         $user_id = Auth::id();
 
         $requestFields = $request->all();
-
-        var_dump($requestFields);
         
         $requestFields['user_id'] = $user_id;
         Review::create($requestFields);
