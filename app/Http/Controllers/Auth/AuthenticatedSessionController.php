@@ -43,8 +43,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
+        dump('hogehoge');
+        logger('request' . $request->session()->all());
         Auth::logout();
-
+        
+        logger('request2' . $request->session()->all());
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();

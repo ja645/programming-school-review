@@ -77,7 +77,9 @@ class FollowControllerTest extends TestCase
         $current_user = User::factory()->create();
         Auth::login($current_user);
 
-        $response = $this->actingAs($current_user)->post('/follow', ['reviewId' => $this->review->id]);
+        // $this->actingAs($current_user)->get('/follow/1');
+
+        $response = $this->actingAs($this->user)->post('/follow', ['reviewId' => $this->review->id]);
 
         $response->assertJson(['bool' => true, 'count' => 1, 'flash' => 'レビューをフォローしました！']);
     }

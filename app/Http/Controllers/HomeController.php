@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Review;
-
-use function Psy\debug;
+use App\Models\School;
 
 class HomeController extends Controller
 {
@@ -16,7 +15,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('layouts.top');
+        $schools = School::all();
+        return view('layouts.top', ['schools' => $schools]);
     }
 
     /**
@@ -30,22 +30,16 @@ class HomeController extends Controller
 
     /**
      * お問い合わせフォームの内容をcontactsテーブルに保存する
-     * @param \Illuminate\Http\Request $request
      * @return view
      */
     public function receiveContact(Request $request)
     {
         $contact_form = $request->all();
-
+        var_dump($request->all());
         $contact = new Contact;
 
         $contact->fill($contact_form)->save();
 
         return view('layouts.contact.success');
-    }
-
-    public function why()
-    {
-        return view('layouts.why');
     }
 }

@@ -46,6 +46,7 @@ class ReviewController extends Controller
      */
     public function add()
     {
+        dump('hoge');
         return view('auth.review.create');
     }
 

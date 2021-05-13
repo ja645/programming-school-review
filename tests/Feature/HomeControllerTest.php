@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeControllerTest extends TestCase
 {
@@ -12,31 +14,59 @@ class HomeControllerTest extends TestCase
      * トップページが表示され、ログイン前後でヘッダーの内容が変わることをテスト
      * @return void
      */
-    public function testIndex_正常系()
+    public function test_CanshowTop_ログイン前()
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200)->assertViewIs('layouts.top');
+        $response->assertStatus(200)->assertViewIs('layouts.top')->assertSee('ログイン');
     }
 
     /**
-     * ランキング一覧が表示されることをテスト
+     * トップページが表示され、ログイン前後でヘッダーの内容が変わることをテスト
      * @return void
      */
-    public function testShowRankings_正常系()
+    public function test_CanshowTop_ログイン後()
     {
-        $response = $this->get('/rankings');
+        $user = User::factory()->create();
 
-        $response->assertStatus(200)->assertViewIs('auth.rankings');
+        Auth::login($user);
+
+        $response = $this->actingAs($user)->get('/');
+
+        $response->assertStatus(200)->assertViewIs('layouts.top')->assertSee('ログアウト');
+    }
+
+
+    /**
+     * お問い合わせページが表示されることをテスト
+     * @return void
+     */
+    public function test_canShowContactForm()
+    {
+        $response = $this->get('/contacts');
+
+        $response->assertStatus(200)->assertViewIs('layouts.contact');
     }
 
     /**
-     * スクールページが表示されることをテスト
+     * お問い合わせ送信後の処理が完了することをテスト
      */
-    public function testShowSchool_正常系()
+    public function test_succeedInReceiveContact()
     {
-        $response = $this->get('/school');
+        $user = User::factory()->create();
 
-        $response->assertStatus(200)->assertViewIs('auth.school');
+        Auth::login($user);
+
+        $contact_form = [
+            'name' => 'test',
+            'have_acount' => 1,
+            'email' => 'sample@example.com',
+            'title' => 'test',
+            'inquiry' => 'test',
+        ];
+
+        $response = $this->actingAs($user)->post('/contacts', $contact_form);
+
+        $response->assertStatus(200)->assertViewIs('layouts.contact.success');
     }
 }
