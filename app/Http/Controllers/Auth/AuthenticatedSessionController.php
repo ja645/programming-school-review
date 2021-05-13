@@ -28,9 +28,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
+        
         $request->authenticate();
 
         $request->session()->regenerate();
+
 
         return redirect('/');
     }
@@ -43,11 +45,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
-        dump('hogehoge');
-        logger('request' . $request->session()->all());
+        logger($request->session()->get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
+        
         Auth::logout();
         
-        logger('request2' . $request->session()->all());
+
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();

@@ -46,7 +46,6 @@ class ReviewController extends Controller
      */
     public function add()
     {
-        dump('hoge');
         return view('auth.review.create');
     }
 
@@ -57,34 +56,43 @@ class ReviewController extends Controller
      */
     public function create(ReviewFormRequest $request)
     {
-        //セッションから、リクエストしてきたユーザーのidを取り出す
-        $sessionKey = config('hideSessionId.session-id');
-        $sessionId = $request->session()->get($sessionKey);
+        // //セッションから、リクエストしてきたユーザーのidを取り出す
+        // $sessionKey = config('hideSessionId.session-id');
+        // $sessionId = $request->session()->get($sessionKey);
 
-        //リクエストの中身に受け付けないフィールドが含まれるか調べる
-        $correctFields = [
-            'school_id', 'course_id', 'purpose', 'result', 'language', 'title', 'tuition',
-            'term', 'curriculum', 'mentor', 'support', 'staff', 'judgment', 'report',
-        ];
+        // //リクエストの中身に受け付けないフィールドが含まれるか調べる
+        // $correctFields = [
+        //     'school_id', 'course_id', 'purpose', 'result', 'language', 'title', 'tuition',
+        //     'term', 'curriculum', 'mentor', 'support', 'staff', 'judgment', 'report',
+        // ];
+
+        $user_id = Auth::id();
 
         $requestFields = $request->all();
-        $exceptFields = Arr::except($requestFields, $correctFields);
 
-        if (Auth::id() !== $sessionId) {
+        var_dump($requestFields);
+        // $exceptFields = Arr::except($requestFields, $correctFields);
 
-            return redirect(403);
+        // if (Auth::id() !== $sessionId) {
 
-        } elseif (empty($exceptFields) === false) {
+        //     return redirect(403);
+
+        // } elseif (empty($exceptFields) === false) {
             
-            return redirect(403);
+        //     return redirect(403);
 
-        } else {
+        // } else {
 
-            $requestFields['user_id'] = $sessionId;
-            Review::create($requestFields);
+        //     $requestFields['user_id'] = $sessionId;
+        //     Review::create($requestFields);
 
-            return view('auth.review.review');
-        }
+        //     return view('auth.review.review');
+        // }
+
+        $requestFields['user_id'] = $user_id;
+        Review::create($requestFields);
+    
+        return view('auth.review.review');
     }
 
     

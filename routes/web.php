@@ -26,11 +26,8 @@ use App\Events\CommentSent;
 | contains the "web" middleware group. Now create something great!
 |
 */
-require __DIR__.'/auth.php';
-
 Route::get('/', [HomeController::class, 'index'])->name('top');
 
-Route::get('/signup', [UserController::class, 'add'])->name('signup');
 Route::post('/users/create', [UserController::class, 'create']);
 
 Route::get('/contacts', [HomeController::class, 'showContactForm']);
@@ -42,26 +39,13 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/users/edit', [UserController::class, 'edit'])->name('user-edit');
   Route::post('/users/update', [UserController::class, 'update'])->name('user-update');
   Route::delete('/users/delete', [UserController::class, 'delete']);
-
+  
   Route::get('/reviews/school/{school_id}', [ReviewController::class, 'showList']);
   Route::get('/reviews/review/{id}', [ReviewController::class, 'showReview']);
   Route::get('/reviews', [ReviewController::class, 'add']);
   Route::post('/reviews/create', [ReviewController::class, 'create']);
   Route::delete('/reviews/delete', [ReviewController::class, 'delete']);
-
-
-  // Route::get('/reviews', function() {
-  //   return \App\Models\Message::all();
-  // });
-
-  // Route::post('/reviews/message', function() {
-  //   $message = \App\Models\Message::create(['user_id' => Auth::id(), 'review_id' => request()->reviewId, 'message' => request()->message]);
-    
-  //   event((new MessageSent($message))->dontBroadcastToCurrentUser());
-
-  //   return $message;
-  // });
-
+  
   
   Route::get('/schools/{id}', [SchoolController::class, 'showSchool'])->name('school');
   
@@ -73,11 +57,14 @@ Route::middleware(['auth'])->group(function() {
   
   // Route::get('/like/{id}', [LikeController::class, 'current']);
   // Route::post('/like', [LikeController::class, 'switchLike']);
-
+  
   Route::get('/password/change', [ChangePasswordController::class, 'showChangePasswordView']);
+  Route::get('/signup', [UserController::class, 'add'])->name('signup');
   Route::post('/password', [ChangePasswordController::class, 'changePassword']);
-
+  
   Route::get('/email/edit', [ChangeEmailController::class, 'showChangeEmailForm']);
   Route::post('/email', [ChangeEmailController::class, 'sendChangeEmailLink'])->name('email');
   Route::post('/email/reset', [ChangeEmailController::class, 'reset']);
 });
+
+require __DIR__.'/auth.php';
