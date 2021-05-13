@@ -15,6 +15,7 @@ use App\Http\Controllers\SchoolController;
 use App\Models\Review;
 use App\Events\MessageSent;
 use App\Events\CommentSent;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,13 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/email/edit', [ChangeEmailController::class, 'showChangeEmailForm']);
   Route::post('/email', [ChangeEmailController::class, 'sendChangeEmailLink'])->name('email');
   Route::post('/email/reset', [ChangeEmailController::class, 'reset']);
+
+  Route::get('/admin', [AdminController::class, 'showSchoolList'])->name('school-list');
+  Route::get('/admin/add', [AdminController::class, 'showAddSchool']);
+  Route::post('/admin/create', [AdminController::class, 'addSchool']);
+  Route::get('/admin/edit', [AdminController::class, 'showEditSchool']);
+  Route::post('/admin/update', [AdminController::class, 'updateSchool']);
+  Route::post('/admin/delete', [AdminController::class, 'deleteSchool']);
 });
 
 require __DIR__.'/auth.php';
