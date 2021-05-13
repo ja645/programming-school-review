@@ -56,39 +56,12 @@ class ReviewController extends Controller
      */
     public function create(ReviewFormRequest $request)
     {
-        // //セッションから、リクエストしてきたユーザーのidを取り出す
-        // $sessionKey = config('hideSessionId.session-id');
-        // $sessionId = $request->session()->get($sessionKey);
-
-        // //リクエストの中身に受け付けないフィールドが含まれるか調べる
-        // $correctFields = [
-        //     'school_id', 'course_id', 'purpose', 'result', 'language', 'title', 'tuition',
-        //     'term', 'curriculum', 'mentor', 'support', 'staff', 'judgment', 'report',
-        // ];
-
         $user_id = Auth::id();
 
         $requestFields = $request->all();
 
         var_dump($requestFields);
-        // $exceptFields = Arr::except($requestFields, $correctFields);
-
-        // if (Auth::id() !== $sessionId) {
-
-        //     return redirect(403);
-
-        // } elseif (empty($exceptFields) === false) {
-            
-        //     return redirect(403);
-
-        // } else {
-
-        //     $requestFields['user_id'] = $sessionId;
-        //     Review::create($requestFields);
-
-        //     return view('auth.review.review');
-        // }
-
+        
         $requestFields['user_id'] = $user_id;
         Review::create($requestFields);
     
@@ -106,12 +79,8 @@ class ReviewController extends Controller
         //リクエストからレビューのidを取得
         $reviewId = $request->id;
 
-        //セッションから、リクエストしてきたユーザーのidを取り出す
-        $sessionKey = config('hideSessionId.session-id');
-        $sessionId = $request->session()->get($sessionKey);
-        
         //ユーザーの指定したレビューをユーザーが持っているか確認
-        if (Review::find($reviewId)->user_id !== $sessionId) {
+        if (Review::find($reviewId)->user_id !== Auth::id()) {
             return redirect(403);
         } else {
             Review::find($reviewId)->delete();

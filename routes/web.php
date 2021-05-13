@@ -28,6 +28,7 @@ use App\Events\CommentSent;
 */
 Route::get('/', [HomeController::class, 'index'])->name('top');
 
+Route::get('/signup', [UserController::class, 'add'])->name('signup');
 Route::post('/users/create', [UserController::class, 'create']);
 
 Route::get('/contacts', [HomeController::class, 'showContactForm']);
@@ -59,7 +60,6 @@ Route::middleware(['auth'])->group(function() {
   // Route::post('/like', [LikeController::class, 'switchLike']);
   
   Route::get('/password/change', [ChangePasswordController::class, 'showChangePasswordView']);
-  Route::get('/signup', [UserController::class, 'add'])->name('signup');
   Route::post('/password', [ChangePasswordController::class, 'changePassword']);
   
   Route::get('/email/edit', [ChangeEmailController::class, 'showChangeEmailForm']);
