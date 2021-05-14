@@ -15,6 +15,11 @@ class AdminController extends Controller
      */
     public function showSchoolList()
     {
+        // 管理者以外のアクセスには403を返す
+        if(! Gate::allows('isAdmin')) {
+            abort(403);
+        }
+
         $schools = School::all();
 
         return view('admin.school_list', ['schools' => $schools]);

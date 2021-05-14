@@ -53,7 +53,7 @@ class UserController extends Controller
 
         Session::flash('flash_message', '会員登録が完了しました！');
         
-        return view('auth.user.mypage', ['profile_form' => $user]);
+        return redirect(route('mypage'));
     }
 
     /**
