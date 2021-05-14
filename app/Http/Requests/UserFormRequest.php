@@ -37,7 +37,7 @@ class UserFormRequest extends FormRequest
         
         switch ($route) {
             case 'create' :
-                $rules['email'] = 'required|email:strict,dns,spoof|max:256|unique:users,email';
+                $rules['email'] = 'required|email:strict,dns,spoof|max:256|unique:connection.users,email';
                 //パスワードの正規表現は半角英数字をそれぞれ1つ以上使い8字以上100字以下
                 $rules['password'] = 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed';
                 break;

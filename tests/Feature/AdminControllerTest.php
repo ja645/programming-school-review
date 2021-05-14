@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\School;
 
 class AdminControllerTest extends TestCase
 {
@@ -34,7 +35,7 @@ class AdminControllerTest extends TestCase
     {
         Auth::login($this->isAdmin);
 
-        $response = $this->actingAs($this->isAdmin)->get('school-list');
+        $response = $this->actingAs($this->isAdmin)->get('/admin');
 
         $response->assertStatus(200)->assertViewIs('admin.school_list');
     }
@@ -48,7 +49,7 @@ class AdminControllerTest extends TestCase
     {
         Auth::login($this->isNotAdmin);
 
-        $response = $this->actingAs($this->isNotAdmin)->get('school-list');
+        $response = $this->actingAs($this->isNotAdmin)->get('/admin');
 
         $response->assertStatus(403);
     }
@@ -90,7 +91,40 @@ class AdminControllerTest extends TestCase
     {
         Auth::login($this->isAdmin);
 
-        
+        $school_form = [
+            'school_name' => 'test',
+            'school_url' => 'test_url',
+            'address' => 'test_address',
+            'features' => 'test_features',
+        ];
+
+        $response = $this->actingAs($this->isAdmin)->post('/admin/create', $school_form);
+
+        $response->assertSee(200);
+        $this->assertDatabaseHas('schools', $school_form);
+
+        $response->assertStatus(200)->assertRedirect(route('school-list'));
+    }
+
+    /**
+     * 管理者以外のユーザーが
+     * 新規スクールを追加しようとすると403にリダイレクトされることをテスト
+     * @return void
+     */
+    public function test_nonAdministoratorCanNotCreateSchool()
+    {
+        Auth::login($this->isNotAdmin);
+
+        $school_form = [
+            'school_name' => 'test',
+            'school_url' => 'test_url',
+            'address' => 'test_address',
+            'features' => 'test_features',
+        ];
+
+        $response = $this->actingAs($this->isNotAdmin)->post('/admin/create', $school_form);
+
+        $response->assertStatus(403);
     }
 
     /**
@@ -128,7 +162,47 @@ class AdminControllerTest extends TestCase
      */
     public function test_canEditSchool()
     {
+        $school = School::factory()->create();
 
+        Auth::login($this->isAdmin);
+
+        $school_form = [
+            'id' => $school->id,
+            'school_name' => 'edited',
+            'school_url' => 'edited_url',
+            'address' => 'edited_address',
+            'features' => 'edited_features',
+        ];
+
+        $response = $this->actingAs($this->isAdmin)->post('/admin/update', $school_form);
+
+        $this->assertDatabaseHas('schools', $school_form);
+
+        $response->assertStatus(200)->assertRedirect(route('school-list'));
+    }
+
+    /**
+     * 管理者以外のユーザーが
+     * スクールデータを更新しようとすると403にリダイレクトされることをテスト
+     * @return void
+     */
+    public function test_nonAdministoratorCanNotUpdateSchool()
+    {
+        $school = School::factory()->create();
+
+        Auth::login($this->isNotAdmin);
+
+        $school_form = [
+            'id' => $school->id,
+            'school_name' => 'edited',
+            'school_url' => 'edited_url',
+            'address' => 'edited_address',
+            'features' => 'edited_features',
+        ];
+
+        $response = $this->actingAs($this->isNotAdmin)->post('/admin/update', $school_form);
+
+        $response->assertStatus(403);
     }
 
     /**
@@ -138,6 +212,30 @@ class AdminControllerTest extends TestCase
      */
     public function test_canDeleteSchool()
     {
+        $school = School::factory()->create();
 
+        Auth::login($this->isAdmin);
+
+        $response = $this->actingAs($this->isAdmin)->post('/admin/delete', ['id' => $school->id]);
+
+        $this->assertDatabaseMissing('schools', ['id' => $school->id]);
+
+        $response->assertStatus(200)->assertRedirect(route('school-list'));
+    }
+
+     /**
+     * 管理者以外のユーザーが
+     * スクールデータを削除しようとすると403にリダイレクトされることをテスト
+     * @return void
+     */
+    public function test_nonAdministoratorCanNotDeleteSchool()
+    {
+        $school = School::factory()->create();
+
+        Auth::login($this->isNotAdmin);
+
+        $response = $this->actingAs($this->isNotAdmin)->post('/admin/delete', ['id' => $school->id]);
+
+        $response->assertStatus(403);
     }
 }

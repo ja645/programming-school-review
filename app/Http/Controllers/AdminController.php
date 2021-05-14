@@ -55,7 +55,7 @@ class AdminController extends Controller
        
        $school = School::create($school_form);
 
-       return redirect('school-list');
+       return redirect(route('school-list'));
    }
 
    /**
@@ -88,7 +88,7 @@ class AdminController extends Controller
 
        $school->fill($request->except('id'))->save();
 
-       return redirect('school-list');
+       return redirect(route('school-list'));
     }
 
     /**
@@ -104,6 +104,6 @@ class AdminController extends Controller
 
         $school = School::find($request->id)->delete();
 
-        return redirect('school-list');
+        return redirect(route('school-list'));
     }
 }

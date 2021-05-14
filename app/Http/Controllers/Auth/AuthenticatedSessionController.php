@@ -47,8 +47,9 @@ class AuthenticatedSessionController extends Controller
     {
         logger($request->session()->get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
         
-        Auth::logout();
-        
+        // Auth::logout();
+        Auth::guard('web')->logout();
+
 
         $request->session()->invalidate();
 
