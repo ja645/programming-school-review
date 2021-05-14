@@ -45,11 +45,9 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
-        logger($request->session()->get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
+        // logger($request->session()->get('login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d'));
         
-        // Auth::logout();
-        Auth::guard('web')->logout();
-
+        Auth::logout();
 
         $request->session()->invalidate();
 
