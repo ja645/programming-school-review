@@ -113,4 +113,14 @@ class UserController extends Controller
 
         return view('auth.user.myreview', ['user' => $user]);
     }
+
+    /**
+     * 自分のフォローしたレビュー一覧を表示
+     */
+    public function showFollowingsList()
+    {
+        $user = Auth::user();
+
+        return view('auth.user.followings-list', ['user' => $user]);
+    }
 }
