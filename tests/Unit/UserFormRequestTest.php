@@ -18,25 +18,15 @@ class UserFormRequestTest extends TestCase
      */
     public function testWorkUserFormRequest(array $keys, array $values, bool $expected) :void
     {   
-        $rules = [
-            'user_name' => 'required|string|max:30',
-            'birthday' => 'required|date|before:today',
-            'sex'=> 'required|integer|min:0|max:2',
-            'former_job' => 'nullable',
-            'job' => 'nullable',
-            'email' => 'required|email:strict,dns,spoof|max:256|unique:users,email',
-            'password' => 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed',
-        ];
-
         $dataList = array_combine($keys, $values);
 
-        // $request = new UserFormRequest();
 
-        // $rules = $request->rules();
+        $request = new UserFormRequest();
+        $rules = $request->rules();
 
         $validator = Validator::make($dataList, $rules);
         $result = $validator->passes();
-        
+
         $this->assertEquals($expected, $result);
     }
 
