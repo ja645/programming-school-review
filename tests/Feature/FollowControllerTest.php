@@ -41,22 +41,22 @@ class FollowControllerTest extends TestCase
         $this->review = Review::factory(['user_id' => $this->poster, 'school_id' => $this->school])->create();
     }
 
-
-
     /**
      * getCurrentStatus()メソッドが機能することをテスト
+     * @return void
      */
     public function test_canGetCurrentStatus()
     {
         // Reviewモデルのfind()メソッドをモック
         $mock = $this->partialMock(Review::class, function (MockInterface $mock) {
 
+            // $this->userがすでにレビューをフォローしていて、フォロワー数が3の状態を作成
             $review = Review::factory([
                 'id' => 1,
                 'follows' => collect([
+                    (object)['user_id' => $this->user->id, 'review_id' => 1],
                     (object)['user_id' => $this->user->id + 1, 'review_id' => 1],
                     (object)['user_id' => $this->user->id + 2, 'review_id' => 1],
-                    (object)['user_id' => $this->user->id + 3, 'review_id' => 1],
                 ]),
             ])->make();
 
@@ -70,8 +70,6 @@ class FollowControllerTest extends TestCase
         $response->assertJson(['bool' => true, 'count' => 3]);
     }
 
-
-
     /**
      * フォローしていないレビューをフォロー出来て、
      * フォロワー数が1増えることをテスト
@@ -80,27 +78,49 @@ class FollowControllerTest extends TestCase
      */
     public function フォロー前のレビューをフォロー出来る()
     {
-        // Reviewモデルのfind()メソッドをモック
-        $mock = $this->partialMock(Review::class, function (MockInterface $mock) {
-
-            $mock->shouldReceive('find')->once()->andReturn($this->review);
-        });
+        $number_of_followers = $this->review->follows->count();
 
         Auth::login($this->user);
 
         $response = $this->actingAs($this->user)->post('/follow', ['reviewId' => $this->review->id]);
 
-        $response->assertJson(['bool' => true, 'count' => 1, 'flash' => 'レビューをフォローしました！']);
+        $response->assertJson(['bool' => true, 'count' => $number_of_followers + 1, 'flash' => 'レビューをフォローしました！']);
     }
 
 
     /**
      * フォロー済みのレビューをフォロー解除出来て、
      * フォロワー数が1減ることをテスト
+     * @test
+     * @return void
      */
+    public function フォロー済みのレビューをフォロー解除出来る()
+    {
+        // $this->userが$this->reviewを既にフォローしている状態を作成
+        Following::create([
+            'user_id' => $this->user->id, 'review_id' => $this->review->id,
+        ]);
 
+        $number_of_followers = $this->review->follows->count();
+
+        Auth::login($this->user);
+
+        $response = $this->actingAs($this->user)->post('/follow', ['reviewId' => $this->review->id]);
+
+        $response->assertJson(['bool' => false, 'count' => $number_of_followers - 1, 'flash' => 'フォローを解除しました。']);
+    }
 
      /**
       * 自分のレビューをフォロー出来ないことをテスト
+      * @test
+      * @return void
       */
+    public function 自分のレビューのフォローに失敗()
+    {
+        Auth::login($this->poster);
+
+        $response = $this->actingAs($this->poster)->post('/follow', ['reviewId' => $this->review->id]);
+
+        $response->assertJson(['flash' => '自分のレビューはフォロー出来ません。']);
+    }
 }

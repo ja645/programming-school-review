@@ -42,7 +42,7 @@ class FollowController extends Controller
         $review = $review->find($review_id);
 
         // 現在のユーザーがレビューの投稿者であれば更新できない
-        if ($review_id === Auth::id()) {
+        if ($review->user_id === Auth::id()) {
             return response()->json(['flash' => '自分のレビューはフォロー出来ません。']);
         } else {
             // レビューが現在のユーザーにフォローされているか確認
@@ -59,7 +59,7 @@ class FollowController extends Controller
                 $review = app(Review::class);
                 $review = $review->find($review_id);
                 $count = $review->follows->count();
-                
+            
                 return response()->json(['bool' => true, 'count' => $count, 'flash' => 'レビューをフォローしました！']);
             } else {
                 // レビューがフォローされていればfollowsテーブルからレコードを削除し、フォロワー数を更新
