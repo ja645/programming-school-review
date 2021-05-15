@@ -13,15 +13,22 @@ class UserControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    private $user;
+
+    public function setUp(): void
+    {
+        $this->user = User::factory()->create();
+    }
     /**
      * マイページが表示されることをテスト
      * @return void
      */
     public function testIndex_正常系()
     {
-        Auth::login($user = User::factory()->create());
+        // Auth::login($user = User::factory()->create());
+        Auth::login($this->user);
 
-        $response = $this->actingAs($user)->get('/users');
+        $response = $this->actingAs($this->user)->get('/users');
 
         $response->assertStatus(200)->assertViewIs('auth.user.mypage');
     }
@@ -72,9 +79,10 @@ class UserControllerTest extends TestCase
      */
     public function testEdit_正常系()
     {   
-        Auth::login($user = User::factory()->create());
+        // Auth::login($user = User::factory()->create());
+        Auth::login($this->user);
         
-        $response = $this->actingAs($user)->get('/users/edit');
+        $response = $this->actingAs($this->user)->get('/users/edit');
 
         $response->assertStatus(200)->assertViewIs('auth.user.edit');
 
@@ -88,8 +96,6 @@ class UserControllerTest extends TestCase
      */
     public function testEdit_異常系_未ログイン()
     {   
-        $user = User::factory()->make();
-
         $response = $this->get('/users/edit');
 
         $response->assertRedirect('login');
@@ -102,7 +108,8 @@ class UserControllerTest extends TestCase
      */
     public function testUpdate_正常系()
     {
-        Auth::login($user = User::factory()->create());
+        // Auth::login($user = User::factory()->create());
+        Auth::login($this->user);
 
         $editedForm = [
             'user_name' => '山本 次郎',
@@ -112,7 +119,7 @@ class UserControllerTest extends TestCase
             'job' => 'フリーター',
         ];
 
-        $response = $this->actingAs($user)->patch('/users/update', $editedForm);
+        $response = $this->actingAs($this->user)->post('/users/update', $editedForm);
 
         $this->assertDatabaseHas('users', $editedForm);
 
@@ -134,7 +141,7 @@ class UserControllerTest extends TestCase
             'job' => 'フリーター',
         ];
 
-        $response = $this->patch('/users/update', $editedForm);
+        $response = $this->post('/users/update', $editedForm);
 
         $this->assertDatabaseMissing('users', $editedForm);
 
@@ -147,12 +154,26 @@ class UserControllerTest extends TestCase
      */
     public function testDelete_正常系()
     {
-        Auth::login($user = User::factory()->create());
+        // Auth::login($user = User::factory()->create());
+        Auth::login($this->user);
 
-        $response = $this->actingAs($user)->delete('/users/delete');
+        $response = $this->actingAs($this->user)->delete('/users/delete');
 
-        $this->assertDatabaseMissing('users', ['id' => $user->id]);
+        $this->assertDatabaseMissing('users', ['id' => $this->user->id]);
 
         $response->assertViewIs('layouts.top')->assertSessionHas('flash_message', '退会手続きが完了しました！');
+    }
+
+    /**
+     * ユーザーの投稿したレビュー一覧が表示されることをテスト
+     * @return void
+     */
+    public function test_canShowMyReview()
+    {
+        Auth::login($this->user);
+
+        $response = $this->get(route('myreview'));
+
+        $response->assertStatus(200)->assertViewIs('auth.user.myreview');
     }
 }

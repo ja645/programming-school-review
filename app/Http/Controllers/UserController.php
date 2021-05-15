@@ -103,4 +103,14 @@ class UserController extends Controller
 
         return view('layouts.top');
     }
+
+    /**
+     * 自分の投稿したレビュー一覧を表示
+     */
+    public function showMyReview()
+    {
+        $user = Auth::user();
+
+        return view('auth.user.myreview', ['user' => $user]);
+    }
 }

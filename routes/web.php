@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/users/edit', [UserController::class, 'edit'])->name('user-edit');
   Route::post('/users/update', [UserController::class, 'update'])->name('user-update');
   Route::delete('/users/delete', [UserController::class, 'delete']);
+  Route::get('/users/reviews', [UserController::class, 'showMyReview'])->name('myreview');
   
   Route::get('/reviews/school/{school_id}', [ReviewController::class, 'showList']);
   Route::get('/reviews/review/{id}', [ReviewController::class, 'showReview']);
