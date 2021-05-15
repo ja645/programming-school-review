@@ -17,6 +17,7 @@ class FollowControllerTest extends TestCase
     use RefreshDatabase;
 
     private $user;
+    private $poster;
     private $school;
     private $review;
 
@@ -27,10 +28,20 @@ class FollowControllerTest extends TestCase
     {
         parent::setUp();
 
+        // レビューの投稿者を用意
+        $this->poster = User::factory()->create();
+
+        // 現在のユーザーを用意
         $this->user = User::factory()->create();
+
+        // レビューの対象のスクールを用意
         $this->school = School::factory()->create();
-        $this->review = Review::factory(['user_id' => $this->user, 'school_id' => $this->school])->create();
+
+        // レビューを用意
+        $this->review = Review::factory(['user_id' => $this->poster, 'school_id' => $this->school])->create();
     }
+
+
 
     /**
      * getCurrentStatus()メソッドが機能することをテスト
@@ -43,9 +54,9 @@ class FollowControllerTest extends TestCase
             $review = Review::factory([
                 'id' => 1,
                 'follows' => collect([
-                    (object)['user_id' => $this->user->id, 'review_id' => 1],
                     (object)['user_id' => $this->user->id + 1, 'review_id' => 1],
                     (object)['user_id' => $this->user->id + 2, 'review_id' => 1],
+                    (object)['user_id' => $this->user->id + 3, 'review_id' => 1],
                 ]),
             ])->make();
 
@@ -59,9 +70,11 @@ class FollowControllerTest extends TestCase
         $response->assertJson(['bool' => true, 'count' => 3]);
     }
 
+
+
     /**
      * フォローしていないレビューをフォロー出来て、
-     * フォロワー数が更新されることをテスト
+     * フォロワー数が1増えることをテスト
      * @test
      * @return void
      */
@@ -73,14 +86,21 @@ class FollowControllerTest extends TestCase
             $mock->shouldReceive('find')->once()->andReturn($this->review);
         });
 
-        // レビュー投稿者とは別のユーザーを作成
-        $current_user = User::factory()->create();
-        Auth::login($current_user);
-
-        // $this->actingAs($current_user)->get('/follow/1');
+        Auth::login($this->user);
 
         $response = $this->actingAs($this->user)->post('/follow', ['reviewId' => $this->review->id]);
 
         $response->assertJson(['bool' => true, 'count' => 1, 'flash' => 'レビューをフォローしました！']);
     }
+
+
+    /**
+     * フォロー済みのレビューをフォロー解除出来て、
+     * フォロワー数が1減ることをテスト
+     */
+
+
+     /**
+      * 自分のレビューをフォロー出来ないことをテスト
+      */
 }

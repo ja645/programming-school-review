@@ -32,7 +32,7 @@
                 </li>
                 <li class="list-group-item">
                     <label for="password_confirm">パスワード(※確認用)</label>
-                    <input type="password" name="password" placeholder="入力したパスワードと同じものを入力してください。">
+                    <input type="password" name="password_confirmation" placeholder="入力したパスワードと同じものを入力してください。">
                 </li>
                 </ul>
             </div>

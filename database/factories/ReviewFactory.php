@@ -29,7 +29,6 @@ class ReviewFactory extends Factory
             'when_start' => $this->faker->date('Y-m-d'),
             'when_end' => $this->faker->date('Y-m-d'),
             'at_school' => $this->faker->boolean,
-            'achievement' => rand(0,4),
             'st_tuition' => rand(0,4),
             'st_term' => rand(0,4),
             'st_curriculum' => rand(0,4),
