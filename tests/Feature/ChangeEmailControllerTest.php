@@ -137,8 +137,6 @@ class ChangeEmailControllerTest extends TestCase
         
         $response = $this->actingAs($this->user)->post('/email', ['new_email' => $new_email]);
         
-        
-
         //データベースにレコードがないことを確認
         $this->assertDatabaseMissing('email_resets', ['user_id' => $this->user->id, 'new_email' => $new_email]);
 

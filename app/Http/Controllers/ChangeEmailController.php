@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserFormRequest;
 use App\Models\User;
 use App\Models\EmailReset;
 use Carbon\Carbon;
@@ -30,12 +29,17 @@ class ChangeEmailController extends Controller
 
     /**
      * メールアドレス確認リンクをメール送信する
-     * @param \App\Http\Requests\UserFormRequest $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function sendChangeEmailLink(UserFormRequest $request)
+    public function sendChangeEmailLink(Request $request)
     {
+        $request->validate([
+            'new_email' => 'required|email:strict,dns,spoof|max:256|unique:users,email',
+        ]);
+
         $new_email = $request->new_email;
+
         //トークンを生成
         $token = hash_hmac(
             'sha256',
