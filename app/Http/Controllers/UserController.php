@@ -123,4 +123,14 @@ class UserController extends Controller
 
         return view('auth.user.followings-list', ['user' => $user]);
     }
+
+    /**
+     * 自分のいいねしたスクール一覧を表示
+     */
+    public function showLikesList()
+    {
+        $user = Auth::user();
+
+        return view('auth.user.likes-list', ['user' => $user]);
+    }
 }

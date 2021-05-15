@@ -12,14 +12,14 @@
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="total" role="tabpanel" aria-labelledby="total-tab">
           @foreach ($user->reviews as $review)
-          <a href="{{ url('/review/' . $review->id) }}" class="list-group-item list-group-item-action">{{ $review->title }}</a>
+          <a href="{{ url('/reviews/review/' . $review->id) }}" class="list-group-item list-group-item-action">{{ $review->title }}</a>
           @endforeach
         </div>
       </div>
     </div>
 
     <nav aria-label="Page navigation example">
-        {{ $reviews->links() }}
+        {{ $user->reviews->links() }}
     </nav>
   </div>
 </div>
