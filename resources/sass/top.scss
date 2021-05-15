@@ -1,0 +1,98 @@
+/*------------------------------
+ -------トップページ-----------
+----------------------------*/
+#top-screen h1, #top-screen p {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#top-screen {
+  height: 56vw;
+  position: relative;
+  background-color: white;
+}
+
+#gray {
+  width: 70%;
+  height: 60%;
+  position: absolute;
+  right: 5%;
+  top: 8%;
+  background-color: #003366;
+}
+
+#navy {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  right: 5%;
+  top: 8%;
+  background-color: #CCCCCC;
+}
+
+#white {
+  width: 20%;
+  height: 20%;
+  position: absolute;
+  right: 8%;
+  top: 10%;
+  background-color: white;
+}
+
+.box-w p, .box-b p {
+  margin: 0 auto;
+}
+
+.column {
+  width: 25%;
+  opacity: 0.8;
+}
+
+.col {
+  position: relative;
+}
+
+.feature {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.carousel-btn {
+  display: block;
+  height: 32%;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.prev {
+  width: 50px;
+  margin-left: 7vw;
+}
+
+.next {
+  width: 50px;
+  margin-right: 7vw;
+}
+
+.dummy {
+  height: 34%;
+}
+
+.fa-chevron-right {
+  color: #003366;
+}
+
+#carouselExampleControls {
+  margin: 10vw 0;
+}
+
+.recruit {
+  text-align: center;
+}
+/* -----------------------------
+-----トップページここまで-----
+---------------------------- */

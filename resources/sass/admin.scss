@@ -1,0 +1,843 @@
+/* 共通のレイアウト */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
+/* 文字サイズのレスポンシブ */
+* {
+  font-size: calc(1.4rem + 0.1vw);
+}
+/*--------------------------------
+ ------- 共通部分ここまで--------
+------------------------------*/
+
+
+/*---------------------------------
+ ----------- フッター ------------
+-------------------------------*/
+footer {
+  padding: 10px 0;
+  background-color: #EEEEEE;
+}
+
+footer a{
+  font-size: calc(1.2rem + 0.3vw);
+  color: #003366;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: cadetblue;
+}
+
+/* --------------------------------
+ -----ヘッダーのアイコンのcss------
+--------------------------------- */
+/* .navbar-brand {
+  display: inline-block;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIgImh0dHA6Ly93d3cudzMub3JnL1RSLzIwMDEvUkVDLVNWRy0yMDAxMDkwNC9EVEQvc3ZnMTAuZHRkIj4KPCEtLSBDcmVhdGVkIHVzaW5nIEtyaXRhOiBodHRwczovL2tyaXRhLm9yZyAtLT4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIAogICAgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiCiAgICB4bWxuczprcml0YT0iaHR0cDovL2tyaXRhLm9yZy9uYW1lc3BhY2VzL3N2Zy9rcml0YSIKICAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgIHdpZHRoPSI2OS42cHQiCiAgICBoZWlnaHQ9IjE3Ljc2cHQiCiAgICB2aWV3Qm94PSIwIDAgNjkuNiAxNy43NiI+CjxkZWZzLz4KPHBhdGggaWQ9InNoYXBlMCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTcuNDY3MDQ3NTQ0NjUyOTUsIDApIiBmaWxsPSIjMDAzMzY2IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0iIzAwMzM2NiIgc3Ryb2tlLXdpZHRoPSIwLjI0MjQiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiIGQ9Ik0wIDBDMTAuNzEzMSAxOS44NTAxIDE4LjgzMDcgMjAuNTU3MiAyNC4zNTI4IDIuMTIxMzJDMjguNzk1OSAxNC41NjE5IDM2LjAwMDYgMTUuOTY5MSA0NS45NjY5IDYuMzQyODVDNDcuNzc4NSA0LjU5MzExIDQ5LjY4MTMgMi40Nzg4MyA1MS42NzU0IDAiLz48cGF0aCBpZD0ic2hhcGUxIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNi4yNzA1MjcxMzcxNjg5LCAzLjA3NTkxNDUxNzQ1Njk2KSIgZmlsbD0iIzAwMzM2NiIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiMwMDMzNjYiIHN0cm9rZS13aWR0aD0iMC4yNDI0IiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49ImJldmVsIiBkPSJNMS4wNjA2NiAwLjE2OTcwNkwxLjU0ODU2IDEuNjc1ODRMMCAxLjEyNDNMMC4zMTgxOTggMEwxLjA2MDY2IDAuMTY5NzA2Ii8+PHBhdGggaWQ9InNoYXBlMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAuMDc2MjcxODgwNDM5NywgMi4wNTc2ODA3ODQwMDU1OSkiIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAzMzY2IiBzdHJva2Utd2lkdGg9IjAuMjQyNCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIgZD0iTTAuMTA2MDY2IDBMNi40MDYzOSAxLjE0NTUxTDYuMTMwNjIgMi4wNzg4OUwwIDAuMjU0NTU4TDAuMTA2MDY2IDAiLz48cGF0aCBpZD0ic2hhcGUzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxOS4xNDAwMDExMDgyNjU2LCA1LjM3MDAwMDMxMDkzOTczKSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAzMzY2IiBzdHJva2Utd2lkdGg9IjAuMjQyNCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIgZD0iTTAuMzMgMEwwIDAuMjRMMC4wOSAwLjk5Ii8+PHBhdGggaWQ9InNoYXBlNCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTcuNDYwMDAxMDEwOTg4NCwgMy4yNzAwMDAxODkzNDMxOSkiIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAzMzY2IiBzdHJva2Utd2lkdGg9IjAuMjQyNCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIgZD0iTTIuMTkgMi4wNEwwLjM5IDEuNUwwIDBMMy4zIDAuNDVMMi4xOSAyLjA0Ii8+PHBhdGggaWQ9InNoYXBlNSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTkuMTQwMDAwODU0MDYxOSwgMy4wNjAwMDAxMzY1NDI4MSkiIGZpbGw9IiNmZmZmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAzMzY2IiBzdHJva2Utd2lkdGg9IjAuMjQyNCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIgZD0iTTAgMi43NkwxLjk4IDBMMTkuNDQgMy4yNEMxOC4xMTc4IDQuMjgyMTggMTYuNDcyNyA1LjY0NzI3IDE0LjcgNy4xNEwwIDIuNzYiLz48cGF0aCBpZD0ic2hhcGU2IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMy44NTYyNzM4NzQwNTY5LCA2LjE5NDI1NTYyMTA2ODA3KSIgZmlsbD0iIzAwMzM2NiIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiMwMDMzNjYiIHN0cm9rZS13aWR0aD0iMC4yNDI0IiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49ImJldmVsIiBkPSJNNC44MzY2MSAwTDM1Ljc0MzcgNS41MTU0M0wyNy41NzcyIDEyLjU1ODJMMCA0LjA3Mjk0TDQuODM2NjEgMCIvPjx0ZXh0IGlkPSJzaGFwZTciIGtyaXRhOnVzZVJpY2hUZXh0PSJ0cnVlIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjg5NDg3NTQ3NTQzMzk0NCAwLjQ0NjMxNTkwMDk3OTE5NyAtMC40NDYzMTU5MDA5NzkxOTcgMC44OTQ4NzU0NzU0MzM5NDQgMzQuNTc5ODM3MTg2MjI2NiAxMC4yNzA2Mjk1MTYzMjE5KSIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utb3BhY2l0eT0iMCIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49ImJldmVsIiBmb250LXNpemU9IjEwIiBmb250LXNpemUtYWRqdXN0PSIwLjQ0OTIxOSIgZm9udC1zdHJldGNoPSJub3JtYWwiIGxldHRlci1zcGFjaW5nPSIwIiB3b3JkLXNwYWNpbmc9IjAiPjx0c3BhbiB4PSIwIj5kPC90c3Bhbj48L3RleHQ+PHRleHQgaWQ9InNoYXBlOCIga3JpdGE6dXNlUmljaFRleHQ9InRydWUiIHRyYW5zZm9ybT0ibWF0cml4KDAuODk0ODg5MDk2OTE3MDQ5IDAuNDQ2Mjg4NTg4NDkyOTA2IC0wLjQ0NjI4ODU4ODQ5MjkwNiAwLjg5NDg4OTA5NjkxNzA0OSA0OC4zMTU3OTQzNzAzMDExIC0yLjExOTIyNTI2ODMxMjQ4KSIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utb3BhY2l0eT0iMCIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49ImJldmVsIiBmb250LXNpemU9IjExIiBmb250LXNpemUtYWRqdXN0PSIwLjQ0OTIxOSIgZm9udC1zdHJldGNoPSJub3JtYWwiIGxldHRlci1zcGFjaW5nPSIwIiB3b3JkLXNwYWNpbmc9IjAiPjx0c3BhbiB4PSIwIj5kPC90c3Bhbj48L3RleHQ+PHRleHQgaWQ9InNoYXBlOSIga3JpdGE6dXNlUmljaFRleHQ9InRydWUiIHRyYW5zZm9ybT0ibWF0cml4KDAuODU2MTgxMDg5MjI5MTg1IDAuNTE2Njc1ODU4MTk5NjM1IC0wLjUxNjY3NTg1ODE5OTYzNSAwLjg1NjE4MTA4OTIyOTE4NSA0Ni42ODAxOTI4OTk2ODA5IDEzLjA5MTk2OTI4NzQzMDkpIiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS1vcGFjaXR5PSIwIiBzdHJva2Utd2lkdGg9IjAiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtc2l6ZS1hZGp1c3Q9IjAuNDQ5MjE5IiBmb250LXN0cmV0Y2g9Im5vcm1hbCIgbGV0dGVyLXNwYWNpbmc9IjAiIHdvcmQtc3BhY2luZz0iMCI+PHRzcGFuIHg9IjAiPmw8L3RzcGFuPjwvdGV4dD48dGV4dCBpZD0ic2hhcGUxMCIga3JpdGE6dXNlUmljaFRleHQ9InRydWUiIHRyYW5zZm9ybT0ibWF0cml4KDAuODc1MzM3MzgxNjM1MjQxIDAuNDgzNTEyNjM1MTEwOTgyIC0wLjQ4MzUxMjYzNTExMDk4MiAwLjg3NTMzNzM4MTYzNTI0MSA1MC40NDcwMDMwMTYyNjc5IDE2LjI0Mjk0Njc5NjI5MTcpIiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS1vcGFjaXR5PSIwIiBzdHJva2Utd2lkdGg9IjAiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtc2l6ZS1hZGp1c3Q9IjAuNDQ5MjE5IiBmb250LXN0cmV0Y2g9Im5vcm1hbCIgbGV0dGVyLXNwYWNpbmc9IjAiIHdvcmQtc3BhY2luZz0iMCI+PHRzcGFuIHg9IjAiPmw8L3RzcGFuPjwvdGV4dD48dGV4dCBpZD0ic2hhcGUxMSIga3JpdGE6dXNlUmljaFRleHQ9InRydWUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUzLjYyNjk3Nzc2MDY2NDgsIDYuOTYzNTMyNDkwMTAxMzQpIiBmaWxsPSIjMDAwMDAwIiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS1vcGFjaXR5PSIwIiBzdHJva2Utd2lkdGg9IjAiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiPjwvdGV4dD48dGV4dCBpZD0ic2hhcGUxMiIga3JpdGE6dXNlUmljaFRleHQ9InRydWUiIHRyYW5zZm9ybT0ibWF0cml4KDAuODc5MzE2MTI2OTQ4MTI4IDAuNDc2MjM4NTQyMDAyNzk2IC0wLjQ3NjIzODU0MjAwMjc5NiAwLjg3OTMxNjEyNjk0ODEyOCA1My40NDI0MDkzNjAxNTI4IDE1LjE0NTAwMzIyNzY0MikiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW9wYWNpdHk9IjAiIHN0cm9rZS13aWR0aD0iMCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIgZm9udC1zaXplPSIxOCIgZm9udC1zaXplLWFkanVzdD0iMC40NDkyMTkiIGZvbnQtc3RyZXRjaD0ibm9ybWFsIiBsZXR0ZXItc3BhY2luZz0iMCIgd29yZC1zcGFjaW5nPSIwIj48dHNwYW4geD0iMCI+ZTwvdHNwYW4+PC90ZXh0Pjx0ZXh0IGlkPSJzaGFwZTEzIiBrcml0YTp1c2VSaWNoVGV4dD0idHJ1ZSIgdHJhbnNmb3JtPSJtYXRyaXgoMC44ODkzNjA1NjMxMjg1ODYgMC40NTcyMDY1MDU1ODc1ODEgLTAuNDU3MjA2NTA1NTg3NTgxIDAuODg5MzYwNTYzMTI4NTg2IDM5LjMwMTA1OTY0MzQ2NjEgMTEuODM0NDYzNjg5MjA0KSIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utb3BhY2l0eT0iMCIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49ImJldmVsIiBmb250LXNpemU9IjEyIiBmb250LXNpemUtYWRqdXN0PSIwLjQ0OTIxOSIgZm9udC1zdHJldGNoPSJub3JtYWwiIGxldHRlci1zcGFjaW5nPSIwIiB3b3JkLXNwYWNpbmc9IjAiPjx0c3BhbiB4PSIwIj5kPC90c3Bhbj48L3RleHQ+PHRleHQgaWQ9InNoYXBlMTQiIGtyaXRhOnVzZVJpY2hUZXh0PSJ0cnVlIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjg3MzcwNjk3ODI0MDY2NSAwLjQ4NjQ1MjU4MzY4NDc0NiAtMC40ODY0NTI1ODM2ODQ3NDYgMC44NzM3MDY5NzgyNDA2NjUgMzAuMjQ5OTMxMTE4MjkzOSA4LjQ2MDc1OTE1NTk5MTA4KSIgZmlsbD0iIzAwMzM2NiIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utb3BhY2l0eT0iMCIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49ImJldmVsIiBmb250LXNpemU9IjEwIiBmb250LXNpemUtYWRqdXN0PSIwLjQ0OTIxOSIgZm9udC1zdHJldGNoPSJub3JtYWwiIGxldHRlci1zcGFjaW5nPSIwIiB3b3JkLXNwYWNpbmc9IjAiPjx0c3BhbiB4PSIwIj5hPC90c3Bhbj48L3RleHQ+PHRleHQgaWQ9InNoYXBlMTUiIGtyaXRhOnVzZVJpY2hUZXh0PSJ0cnVlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNS42MTI5MTc3MzU0NzQyLCAyMS4zNzAyNzcwNDY0ODY3KSIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utb3BhY2l0eT0iMCIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49ImJldmVsIj48L3RleHQ+PHRleHQgaWQ9InNoYXBlMTYiIGtyaXRhOnVzZVJpY2hUZXh0PSJ0cnVlIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjg5NTMxNDA1NzEwMDk1OCAwLjQ0NTQzNTQ0ODkyMzIxMSAtMC40NDU0MzU0NDg5MjMyMTEgMC44OTUzMTQwNTcxMDA5NTggMjYuMDgwMDEwMTYxMjAwNyA2Ljk0ODM1NTAwNzcyMDM3KSIgZmlsbD0iIzAwMzM2NiIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utb3BhY2l0eT0iMCIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49ImJldmVsIiBmb250LXNpemU9IjgiIGZvbnQtc2l6ZS1hZGp1c3Q9IjAuNDQ5MjE5IiBmb250LXN0cmV0Y2g9Im5vcm1hbCIgbGV0dGVyLXNwYWNpbmc9IjAiIHdvcmQtc3BhY2luZz0iMCI+PHRzcGFuIHg9IjAiPnA8L3RzcGFuPjwvdGV4dD4KPC9zdmc+Cg==);
+  background-repeat: no-repeat;
+  width: 145px;
+  height: 37px;
+} */
+/* .navbar-brand {
+  display: inline-block;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIgImh0dHA6Ly93d3cudzMub3JnL1RSLzIwMDEvUkVDLVNWRy0yMDAxMDkwNC9EVEQvc3ZnMTAuZHRkIj4KPCEtLSBDcmVhdGVkIHVzaW5nIEtyaXRhOiBodHRwczovL2tyaXRhLm9yZyAtLT4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIAogICAgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiCiAgICB4bWxuczprcml0YT0iaHR0cDovL2tyaXRhLm9yZy9uYW1lc3BhY2VzL3N2Zy9rcml0YSIKICAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgIHdpZHRoPSIyODhwdCIKICAgIGhlaWdodD0iNzRwdCIKICAgIHZpZXdCb3g9IjAgMCAyODggNzQiPgo8ZGVmcy8+CjxwYXRoIGlkPSJzaGFwZTAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03LjQ2NzA0NzU0NDY1Mjk2LCAwKSIgZmlsbD0iIzAwMzM2NiIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9IiMwMDMzNjYiIHN0cm9rZS13aWR0aD0iMC4yNDI0IiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49ImJldmVsIiBkPSJNMCAwQzEwLjcxMzEgMTkuODUwMSAxOC44MzA3IDIwLjU1NzIgMjQuMzUyOCAyLjEyMTMyQzI4Ljc5NTkgMTQuNTYxOSAzNi4wMDA2IDE1Ljk2OTEgNDUuOTY2OSA2LjM0Mjg1QzQ3Ljc3ODUgNC41OTMxMSA0OS42ODEzIDIuNDc4ODMgNTEuNjc1NCAwIi8+PHBhdGggaWQ9InNoYXBlMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTYuMjcwNTI3MTM3MTY4OSwgMy4wNzU5MTQ1MTc0NTY5NikiIGZpbGw9IiMwMDMzNjYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAzMzY2IiBzdHJva2Utd2lkdGg9IjAuMjQyNCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIgZD0iTTEuMDYwNjYgMC4xNjk3MDZMMS41NDg1NiAxLjY3NTg0TDAgMS4xMjQzTDAuMzE4MTk4IDBMMS4wNjA2NiAwLjE2OTcwNiIvPjxwYXRoIGlkPSJzaGFwZTIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwLjA3NjI3MTg4MDQzOTcsIDIuMDU3NjgwNzg0MDA1NTkpIiBmaWxsPSIjZTZlNmU2IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0iIzAwMzM2NiIgc3Ryb2tlLXdpZHRoPSIwLjI0MjQiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiIGQ9Ik0wLjEwNjA2NiAwTDYuNDA2MzkgMS4xNDU1MUw2LjEzMDYyIDIuMDc4ODlMMCAwLjI1NDU1OEwwLjEwNjA2NiAwIi8+PHBhdGggaWQ9InNoYXBlMyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTkuMTQwMDAxMTA4MjY1NiwgNS4zNzAwMDAzMTA5Mzk3MykiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMzM2NiIgc3Ryb2tlLXdpZHRoPSIwLjI0MjQiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiIGQ9Ik0wLjMzIDBMMCAwLjI0TDAuMDkgMC45OSIvPjxwYXRoIGlkPSJzaGFwZTQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE3LjQ2MDAwMTAxMDk4ODQsIDMuMjcwMDAwMTg5MzQzMTkpIiBmaWxsPSIjZTZlNmU2IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0iIzAwMzM2NiIgc3Ryb2tlLXdpZHRoPSIwLjI0MjQiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiIGQ9Ik0yLjE5IDIuMDRMMC4zOSAxLjVMMCAwTDMuMyAwLjQ1TDIuMTkgMi4wNCIvPjxwYXRoIGlkPSJzaGFwZTUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE5LjE0MDAwMDg1NDA2MTksIDMuMDYwMDAwMTM2NTQyODEpIiBmaWxsPSIjZTZlNmU2IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0iIzAwMzM2NiIgc3Ryb2tlLXdpZHRoPSIwLjI0MjQiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiIGQ9Ik0wIDIuNzZMMS45OCAwTDE5LjQ0IDMuMjRDMTguMTE3OCA0LjI4MjE4IDE2LjQ3MjcgNS42NDcyNyAxNC43IDcuMTRMMCAyLjc2Ii8+PHBhdGggaWQ9InNoYXBlNiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzMuODU2MjczODc0MDU2OSwgNi4xOTQyNTU2MjEwNjgwNykiIGZpbGw9IiMwMDMzNjYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAzMzY2IiBzdHJva2Utd2lkdGg9IjAuMjQyNCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIgZD0iTTQuODM2NjEgMEwzNS43NDM3IDUuNTE1NDNMMjcuNTc3MiAxMi41NTgyTDAgNC4wNzI5NEw0LjgzNjYxIDAiLz48dGV4dCBpZD0ic2hhcGU3IiBrcml0YTp1c2VSaWNoVGV4dD0idHJ1ZSIgdHJhbnNmb3JtPSJtYXRyaXgoMC44OTQ4NzU0NzU0MzM5NDQgMC40NDYzMTU5MDA5NzkxOTcgLTAuNDQ2MzE1OTAwOTc5MTk3IDAuODk0ODc1NDc1NDMzOTQ0IDM0LjU3OTgzNzE4NjIyNjYgMTAuMjcwNjI5NTE2MzIxOSkiIGZpbGw9IiNlNmU2ZTYiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW9wYWNpdHk9IjAiIHN0cm9rZS13aWR0aD0iMCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIgZm9udC1zaXplPSIxMCIgZm9udC1zaXplLWFkanVzdD0iMC40NDkyMTkiIGZvbnQtc3RyZXRjaD0ibm9ybWFsIiBsZXR0ZXItc3BhY2luZz0iMCIgd29yZC1zcGFjaW5nPSIwIj48dHNwYW4geD0iMCI+ZDwvdHNwYW4+PC90ZXh0Pjx0ZXh0IGlkPSJzaGFwZTgiIGtyaXRhOnVzZVJpY2hUZXh0PSJ0cnVlIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjg5NDg4OTA5NjkxNzA0OSAwLjQ0NjI4ODU4ODQ5MjkwNiAtMC40NDYyODg1ODg0OTI5MDYgMC44OTQ4ODkwOTY5MTcwNDkgNDguMzE1Nzk0MzcwMzAxMSAtMi4xMTkyMjUyNjgzMTI0OCkiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW9wYWNpdHk9IjAiIHN0cm9rZS13aWR0aD0iMCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIgZm9udC1zaXplPSIxMSIgZm9udC1zaXplLWFkanVzdD0iMC40NDkyMTkiIGZvbnQtc3RyZXRjaD0ibm9ybWFsIiBsZXR0ZXItc3BhY2luZz0iMCIgd29yZC1zcGFjaW5nPSIwIj48dHNwYW4geD0iMCI+ZDwvdHNwYW4+PC90ZXh0Pjx0ZXh0IGlkPSJzaGFwZTkiIGtyaXRhOnVzZVJpY2hUZXh0PSJ0cnVlIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjg1NjE4MTA4OTIyOTE4NSAwLjUxNjY3NTg1ODE5OTYzNSAtMC41MTY2NzU4NTgxOTk2MzUgMC44NTYxODEwODkyMjkxODUgNDYuNjgwMTkyODk5NjgwOSAxMy4wOTE5NjkyODc0MzA5KSIgZmlsbD0iI2U2ZTZlNiIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utb3BhY2l0eT0iMCIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49ImJldmVsIiBmb250LXNpemU9IjEwIiBmb250LXNpemUtYWRqdXN0PSIwLjQ0OTIxOSIgZm9udC1zdHJldGNoPSJub3JtYWwiIGxldHRlci1zcGFjaW5nPSIwIiB3b3JkLXNwYWNpbmc9IjAiPjx0c3BhbiB4PSIwIj5sPC90c3Bhbj48L3RleHQ+PHRleHQgaWQ9InNoYXBlMTAiIGtyaXRhOnVzZVJpY2hUZXh0PSJ0cnVlIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjg3NTMzNzM4MTYzNTI0MSAwLjQ4MzUxMjYzNTExMDk4MiAtMC40ODM1MTI2MzUxMTA5ODIgMC44NzUzMzczODE2MzUyNDEgNTAuNDQ3MDAzMDE2MjY3OSAxNi4yNDI5NDY3OTYyOTE3KSIgZmlsbD0iI2U2ZTZlNiIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utb3BhY2l0eT0iMCIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49ImJldmVsIiBmb250LXNpemU9IjEyIiBmb250LXNpemUtYWRqdXN0PSIwLjQ0OTIxOSIgZm9udC1zdHJldGNoPSJub3JtYWwiIGxldHRlci1zcGFjaW5nPSIwIiB3b3JkLXNwYWNpbmc9IjAiPjx0c3BhbiB4PSIwIj5sPC90c3Bhbj48L3RleHQ+PHRleHQgaWQ9InNoYXBlMTEiIGtyaXRhOnVzZVJpY2hUZXh0PSJ0cnVlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1My42MjY5Nzc3NjA2NjQ4LCA2Ljk2MzUzMjQ5MDEwMTM0KSIgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utb3BhY2l0eT0iMCIgc3Ryb2tlLXdpZHRoPSIwIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBzdHJva2UtbGluZWpvaW49ImJldmVsIj48L3RleHQ+PHRleHQgaWQ9InNoYXBlMTIiIGtyaXRhOnVzZVJpY2hUZXh0PSJ0cnVlIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjg3OTMxNjEyNjk0ODEyOCAwLjQ3NjIzODU0MjAwMjc5NiAtMC40NzYyMzg1NDIwMDI3OTYgMC44NzkzMTYxMjY5NDgxMjggNTMuNDQyNDA5MzYwMTUyOCAxNS4xNDUwMDMyMjc2NDIpIiBmaWxsPSIjZTZlNmU2IiBzdHJva2U9IiMwMDAwMDAiIHN0cm9rZS1vcGFjaXR5PSIwIiBzdHJva2Utd2lkdGg9IjAiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIHN0cm9rZS1saW5lam9pbj0iYmV2ZWwiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtc2l6ZS1hZGp1c3Q9IjAuNDQ5MjE5IiBmb250LXN0cmV0Y2g9Im5vcm1hbCIgbGV0dGVyLXNwYWNpbmc9IjAiIHdvcmQtc3BhY2luZz0iMCI+PHRzcGFuIHg9IjAiPmU8L3RzcGFuPjwvdGV4dD48dGV4dCBpZD0ic2hhcGUxMyIga3JpdGE6dXNlUmljaFRleHQ9InRydWUiIHRyYW5zZm9ybT0ibWF0cml4KDAuODg5MzYwNTYzMTI4NTg2IDAuNDU3MjA2NTA1NTg3NTgxIC0wLjQ1NzIwNjUwNTU4NzU4MSAwLjg4OTM2MDU2MzEyODU4NiAzOS4zMDEwNTk2NDM0NjYxIDExLjgzNDQ2MzY4OTIwNCkiIGZpbGw9IiNlNmU2ZTYiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW9wYWNpdHk9IjAiIHN0cm9rZS13aWR0aD0iMCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIgZm9udC1zaXplPSIxMiIgZm9udC1zaXplLWFkanVzdD0iMC40NDkyMTkiIGZvbnQtc3RyZXRjaD0ibm9ybWFsIiBsZXR0ZXItc3BhY2luZz0iMCIgd29yZC1zcGFjaW5nPSIwIj48dHNwYW4geD0iMCI+ZDwvdHNwYW4+PC90ZXh0Pjx0ZXh0IGlkPSJzaGFwZTE0IiBrcml0YTp1c2VSaWNoVGV4dD0idHJ1ZSIgdHJhbnNmb3JtPSJtYXRyaXgoMC44NzM3MDY5NzgyNDA2NjUgMC40ODY0NTI1ODM2ODQ3NDYgLTAuNDg2NDUyNTgzNjg0NzQ2IDAuODczNzA2OTc4MjQwNjY1IDMwLjI0OTkzMTExODI5MzkgOC40NjA3NTkxNTU5OTEwOCkiIGZpbGw9IiMwMDMzNjYiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW9wYWNpdHk9IjAiIHN0cm9rZS13aWR0aD0iMCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIgZm9udC1zaXplPSIxMCIgZm9udC1zaXplLWFkanVzdD0iMC40NDkyMTkiIGZvbnQtc3RyZXRjaD0ibm9ybWFsIiBsZXR0ZXItc3BhY2luZz0iMCIgd29yZC1zcGFjaW5nPSIwIj48dHNwYW4geD0iMCI+YTwvdHNwYW4+PC90ZXh0Pjx0ZXh0IGlkPSJzaGFwZTE1IiBrcml0YTp1c2VSaWNoVGV4dD0idHJ1ZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUuNjEyOTE3NzM1NDc0MiwgMjEuMzcwMjc3MDQ2NDg2NykiIGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW9wYWNpdHk9IjAiIHN0cm9rZS13aWR0aD0iMCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCI+PC90ZXh0Pjx0ZXh0IGlkPSJzaGFwZTE2IiBrcml0YTp1c2VSaWNoVGV4dD0idHJ1ZSIgdHJhbnNmb3JtPSJtYXRyaXgoMC44OTUzMTQwNTcxMDA5NTggMC40NDU0MzU0NDg5MjMyMTEgLTAuNDQ1NDM1NDQ4OTIzMjExIDAuODk1MzE0MDU3MTAwOTU4IDI2LjA4MDAxMDE2MTIwMDcgNi45NDgzNTUwMDc3MjAzNykiIGZpbGw9IiMwMDMzNjYiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLW9wYWNpdHk9IjAiIHN0cm9rZS13aWR0aD0iMCIgc3Ryb2tlLWxpbmVjYXA9InNxdWFyZSIgc3Ryb2tlLWxpbmVqb2luPSJiZXZlbCIgZm9udC1zaXplPSI4IiBmb250LXNpemUtYWRqdXN0PSIwLjQ0OTIxOSIgZm9udC1zdHJldGNoPSJub3JtYWwiIGxldHRlci1zcGFjaW5nPSIwIiB3b3JkLXNwYWNpbmc9IjAiPjx0c3BhbiB4PSIwIj5wPC90c3Bhbj48L3RleHQ+Cjwvc3ZnPgo=);
+  background-repeat: no-repeat;
+  width: 290px;
+  height: 74px;
+} */
+
+
+.navbar {
+  background-color: #EEEEEE;
+}
+.fa-bars {
+  color: white;
+}
+
+.navbar-toggler {
+  color: white;
+}
+
+.nav-icon {
+  width: 65px;
+  text-align: center;
+  margin-left: 30px;
+}
+
+.nav-icon span {
+  font-size: 1.3rem;
+  display: inline-block;
+}
+
+.nav-icon a{
+  color: #003366;
+}
+
+.nav-icon a:hover {
+  color: cadetblue;
+}
+
+@media screen and (max-width: 991px) {
+  /* 画面幅991px以下に適用される */
+  .nav-icon {
+    display: inline;
+    text-align: center;
+  }
+  
+  .nav-icon span {
+    font-size: 2.0rem;
+    display: inline-block;
+    margin: 20px 0 20px 20px;
+  }
+
+}
+/* ----------------------------
+ --ヘッダーのアイコンここまで--
+-------------------------- */
+
+/* --------------------------
+------検索ボックスのcss------- 
+----------------------------*/
+#s-form {
+  position: relative;
+  width: 50vw;
+  margin: 0 auto;
+}
+
+#s-box {
+  font-size: calc(1.2rem + 0.6vw);
+}
+
+#s-btn {
+  position: absolute;
+  right: 10px;
+  top: 20%;
+  color: #003366;
+  opacity: 0.8;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+#s-btn:hover {
+  color: cadetblue;
+}
+
+/* 画面幅766px以下で適用される */
+@media screen and (max-width: 766px) {
+  #s-form {
+    position: relative;
+    width: 65vw;
+    margin: 0 auto;
+  }
+  
+  #s-box {
+    font-size: calc(1.2rem + 0.6vw);
+  }
+  
+  #s-btn {
+    position: absolute;
+    right: 10px;
+    top: 15%;
+    background: none;
+    border: none;
+  }
+}
+/*-----------------------------
+ ------検索ボックスここまで 
+ ------------------------------*/
+
+/*------------------------------
+ -------マイページ-------------
+----------------------------*/
+.list-group li {
+  padding-top: 3.0rem;
+}
+
+.user-nav .card {
+  border-color: white;
+  border-radius: 0;
+}
+
+.user-nav .list-group-item {
+  background-color: #EEEEEE;
+  border-color: white;
+  border-radius: 0;
+}
+
+.user-nav .list-group-item .fa-user {
+  color: #003366;
+}
+.user-nav .list-group-item .fa-file-alt {
+  color: green;
+}
+.user-nav .list-group-item .fa-heart {
+  color: red;
+}
+.user-nav .list-group-item .fa-thumbs-up {
+  color: orange;
+}
+
+.user-nav li {
+  padding-top: 2.0rem;
+  padding-bottom: 2.0rem;
+  text-align: center;
+}
+
+.user-nav a {
+  color: rgba($color: #003366, $alpha: 0.8);
+  text-decoration: none;
+}
+
+.user-nav i {
+  margin-right: 1rem;
+}
+
+#user-info, #user-prof {
+  border: solid 2px rgba($color: #003366, $alpha: 0.8);
+  border-radius: 0;
+}
+
+#user-info .card-header, #user-prof .card-header {
+  color: white;
+  background-color: #003366;
+  border-radius: 0;
+  opacity: 0.8;
+}
+
+#user-info .list-group-item, #user-prof .list-group-item {
+  color: rgba($color: #003366, $alpha: 0.6);
+  border: none;
+  border-bottom: 1px solid rgba($color: #003366, $alpha: 0.8);
+}
+
+#user-info .list-group-item:last-child {
+  border-bottom: none;
+}
+
+#user-prof .list-group-item:last-child {
+  border-bottom: none;
+}
+
+#user-info li, #user-prof li {
+  position: relative;
+}
+
+#user-info span, #user-prof span {
+  color: black;
+  position: absolute;
+  left: 15rem;
+  top: 3.0rem;  
+}
+
+#user-info a, #user-prof a {
+  float: right;
+  text-decoration: none;
+  color: cadetblue;
+}
+
+#user-prof li:last-child {
+  display: inline-block;
+  padding: 25px 0 15px 0;
+  margin: 0 auto;
+}
+/*------------------------------
+ -------マイページここまで------
+----------------------------*/
+
+
+/*------------------------------
+ -------トップページ-----------
+----------------------------*/
+.top-icons {
+  background-color: #003366;
+}
+
+.top-signup, .top-login {
+  margin-top: 5%;
+  margin-right: 5rem;
+  margin-left: 5rem;
+}
+
+.top-signup a, .top-login a {
+  text-decoration: none;
+}
+
+.top-signup:hover  i {
+  color: rgba(0, 0, 0, .5);
+  text-shadow: 2px 2px 1px #eee, 0 0 #000;
+}
+
+.top-login:hover i {
+  color: rgba(0, 0, 0, .5);
+  text-shadow: -2px 2px 1px #eee, 0 0 #000;
+}
+
+.top-signup:hover  span, .top-login:hover span {
+  color: rgba(0, 0, 0, .5);
+  text-shadow: 2px 2px 1px #eee, 0 0 #000;
+}
+
+.top-signup i {
+  color: rgba(255, 255, 255, .5);
+  text-shadow: 2px 2px 1px #eee, 0 0 #000;
+}
+
+.top-login i {
+  color: rgba(255, 255, 255, .5);
+  text-shadow: -2px 2px 1px #eee, 0 0 #000;
+}
+
+.top-login span, .top-signup span {
+  color: rgba(255, 255, 255, .5);
+  font-size: calc(1.4rem + 0.1vw);
+  text-shadow: 1px 1px 1px #eee, 0 0 #000;
+  text-decoration: none;
+  text-align: center;
+  list-style: none;
+}
+
+.top-text {
+  position: absolute;
+  top: 13%;
+  left: 5%;
+  z-index: 1;
+}
+
+.catch {
+  font-size: calc(1.0rem + 6.0vw);
+  color: #ff0033;
+  display: inline-block;
+  width: 90vw;
+}
+
+.sub-text {
+  font-size: calc(1.0rem + 1.0vw);
+  display: inline-block;
+  width: 90vw;
+}
+
+.canoe {
+  width: 40%;
+  position: absolute;
+  top: 43%;
+  left: 6%;
+  filter: drop-shadow(20px 15px 5px black);
+}
+
+.paddle {
+  width: 40%;
+  position: absolute;
+  top: 33%;
+  left: 7%;
+  filter: drop-shadow(20px 15px 5px black);
+}
+
+#top-screen {
+  height: 100vw;
+  position: relative;
+  background-color: #003366;
+  box-shadow: 0 10px 5px 0 rgba(0, 0, 0, .5);
+}
+
+#navy {
+  width: 75%;
+  height: 40%;
+  position: absolute;
+  right: 5%;
+  top: 13%;
+  background-color: #CCCCCC;
+  box-shadow: inset 10px 10px 5px 0 rgba(0, 0, 0, .5);
+}
+
+#white {
+  width: 40%;
+  height: 40%;
+  position: absolute;
+  right: 4%;
+  top: 12%;
+  background-color: white;
+  box-shadow: inset 10px 10px 5px 0 rgba(0, 0, 0, .5);
+}
+
+.box-w p, .box-b p {
+  margin: 0 auto;
+}
+
+.pattern-niagara {
+  position: relative;
+}
+
+.No2 {
+  position: relative;
+  top: -5%;
+}
+.No4 {
+  position: relative;
+  top: -25%;
+  box-shadow: none;
+}
+.No6 {
+  position: relative;
+  top: -10%;
+}
+.No8 {
+  position: relative;
+  top: -35%;
+}
+
+.No11 {
+  position: relative;
+  top: 0%;
+}
+.No12 {
+  position: relative;
+  top: -15%;
+}
+.No14 {
+  position: relative;
+  top: 0%;
+}
+.No15 {
+  position: relative;
+  top: -10%;
+}
+
+.No4, .No10, .No14, .No20, .No24, .No26, .No30 {
+  visibility: hidden;
+}
+
+.column {
+  width: 25%;
+}
+
+.pattern-niagara .column{
+  box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, .5);
+}
+
+.pattern-niagara-bottom .column {
+  box-shadow: 10px 0 5px 0 rgba(0, 0, 0, .5);
+}
+
+.col {
+  position: relative;
+}
+
+.feature {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.carousel-btn {
+  display: block;
+  height: 32%;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.card-body {
+  border: solid 2px #003366;
+  border-radius: 0;
+  box-shadow: 10px 10px  5px 0 rgba(0, 0, 0, .5);
+}
+.prev {
+  width: 50px;
+  margin-left: 7vw;
+}
+
+.next {
+  width: 50px;
+  margin-right: 7vw;
+}
+
+.dummy {
+  height: 34%;
+}
+
+.fa-chevron-right {
+  color: #003366;
+}
+
+#carouselExampleControls {
+  margin: 10vw 0;
+}
+
+.recruit {
+  text-align: center;
+}
+
+.btn-signup p, .btn-login p {
+  color: white;
+  font-size: calc(1.2rem + 0.8vw);
+  margin: 0;
+}
+
+.top-buttons {
+  position: absolute;
+  top: 60%;
+  right: 15%;
+  width: 30%;
+  text-align: center;
+}
+
+.top-buttons .btn {
+  box-shadow: 10px 10px 5px 0 black;
+  width: calc(100px + 10.0vw);
+  height: 40px;
+  margin: 5% 0;
+}
+
+/* -----------------------------
+-----トップページここまで-----
+---------------------------- */
+
+
+/*------------------------------
+--------ランキングページ--------
+--------------------------- */
+@media screen and (min-width: 991px) {
+  .ranking {
+    width: 70vw;
+    margin: 50px auto;
+  }
+}
+
+.ranking {
+  margin-top: 100px;
+  margin-bottom: 70px;
+}
+
+/* ----並べ替えボタン---------- */
+.ranking-order .form-select {
+  width: 130px;
+  font-size: 16px;
+}
+
+.ranking-order label {
+  padding: 3.75px 0;
+}
+/* --並べ替えボタンここまで----- */
+
+
+.ranking-list {
+  margin: 20px 0 40px;
+}
+
+.ranking-list .list-group-item {
+  padding: 15px 10px;
+  border: solid 2px #003366;
+  border-top: none;
+  opacity: 0.6;
+}
+
+.ranking-list .list-group-item:hover {
+  background-color: #CCCCCC;
+}
+
+/* -----------リストのタブ----------------- */
+.nav-tabs {
+  border-bottom: solid 2px #003366;
+  opacity: 0.8;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: white;
+  background-color: #003366;
+  border-color: #003366;
+  border-radius: 0;
+}
+
+.nav-tabs .nav-link {
+  color: #003366;
+  border-radius: 0;
+}
+/* ----リストのタブここまで---------- */
+
+
+/* -------ページネーション-------- */
+.page-item {
+  border-radius: none;
+  margin: 0 10px;
+}
+
+.page-item a {
+  color: white;
+  background-color: #003366;
+}
+
+.page-chevron {
+  color: white;
+}
+
+.page-item a:hover {
+  color: #003366;
+  background: none;
+  border-color: #003366;
+}
+
+.page-item a:hover .page-chevron {
+  color: #003366;
+}
+
+.page-item.active .page-link {
+  color: #003366;
+  background: none;
+  border-color: #003366;
+}
+/* ----ページネーションここまで------ */
+
+/* ----------------------------------
+ ----ランキングページここまで--------
+----------------------------------- */
+
+/*-------------------------------------------
+---------ユーザー登録ページここから-----------
+-------------------------------------------*/
+#user-info .list-group-item input, #user-prof .list-group-item input {
+  font-size: calc(1.6rem + 0.1vw);
+  width: 100%;
+  margin-top: 20px;
+  padding-left: 30px;
+  outline: none;
+}
+
+#birthday label, #sex label {
+  width: 100%;
+}
+
+#birthday  input{
+  padding-right: 50%;
+}
+
+#sex select {
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+#user-prof button {
+  width: 150px;
+  height: 40px;
+  font-size: 1.4rem;
+}
+
+/*-----------------------------------------
+---------ユーザー登録ページここまで---------
+----------------------------------------*/
+
+/*-------------------------------------------
+---------レビュー作成ページここから-----------
+-------------------------------------------*/
+.label-school-name, .label-purpose {
+  width: 100%;
+}
+
+.select-school-name, .select-purpose {
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.satisfaction {
+  display: flex;
+  justify-content: space-between;
+}
+
+.satisfaction label {
+  font-size: calc(2.0rem + 0.1vw);
+}
+
+.input-term {
+  width: 100px;
+}
+
+.label-satisfaction {
+  margin-top: 32.667px;
+}
+
+#report {
+  width: 100%;
+  height: 300px;
+  margin-top: 20px;
+  border: 1.4px solid rgba($color: #003366, $alpha: 0.8);
+}
+
+#report:focus {
+  outline: 0;
+  box-shadow: 0 0 0 2px rgb(33, 150, 243) inset;
+}
+
+#user-prof #has-textarea {
+  border-bottom: none;
+}
+
+.at_school {
+  margin-left: 40px;
+}
+/*-----------------------------------------
+---------レビュー作成ページここまで---------
+----------------------------------------*/
+
+/* ---------------------------------
+--------スクールページここから------
+------------------------------- */
+.school-name {
+  font-size: calc(3.0rem + 2.0vw);
+  margin: 2vw 0;
+}
+
+.total-rank p {
+  margin-bottom: 2vw;
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: calc(1.6rem + 2.0rem);
+  color: #CCCCCC;
+}
+
+.star-rate {
+  font-size: calc(1.6rem + 2.0rem);
+}
+
+// .star::before, .star::after {
+//   content: "★★★★★";
+// }
+
+// .star::before {
+//   color: #CCCCCC;
+// }
+
+// .star::after {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   color: yellow;
+//   overflow: hidden;
+// }
+
+.star-after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: calc(1.6rem + 2.0rem);
+  color: yellow;
+  overflow: hidden;
+}
+
+.school-statistics {
+  padding: 50px 0;
+}
+
+.left-contents {
+  width: 40vw;
+  height: 40vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(238, 238, 238, 1);
+  box-shadow: 10px 10px 5px 0 black;
+  outline: solid 2px #003366;
+  outline-offset: -10px;
+  border-radius: 2px;
+}
+
+.left-contents-inner {
+  width: 90%;
+}
+
+.right-contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  height: 40vw;
+  color: white;
+  outline: solid 2px white;
+  outline-offset: -10px;
+  background-color: #003366;
+  box-shadow: 10px 10px 5px 0 black;
+  border-radius: 2px;
+}
+
+@media screen and (max-width: 767px) {
+  .left-contents, .right-contents {
+    width: 80vw;
+    height: 80vw;
+  }
+}
+
+.school-head-card, .school-info-card {
+  background-color: rgba(238, 238, 238, 1);
+  box-shadow: 10px 10px 5px 0 black;
+  outline: solid 2px #FFD700;
+  outline-offset: -10px;
+  border-radius: 2px;
+}
+
+.school-reviews-card {
+  background-color: rgba(238, 238, 238, 1);
+  box-shadow: 10px 10px 5px 0 black;
+  margin-top: 40px;
+  border-radius: 2px;
+}
+
+.review-list .list-group-item {
+  padding: 15px 10px;
+  border: solid 2px #003366;
+  border-top: none;
+  opacity: 0.6;
+}
+
+.review-list .list-group-item:first-child {
+  border-top: solid 2px #003366;
+}
+
+.school-container {
+  padding: 40px 0;
+  background-color: #FFD700;
+}
+
+/* ---------------------------------------------
+-----------スクールページここまで---------------
+------------------------------------------- */
+
+/* --------------------------------------------
+----------レビューページここから---------------
+------------------------------------------- */
+.message-text {
+  width: 100%;
+  border:rgba(#003366, 0.6);
+  background-color: #fff;
+}
+
+.message-send {
+  display: block;
+  margin-top: 30px;
+  margin-left: auto;
+  width: 150px;
+  height: 40px;
+}
+
+.review-text-card {
+  background-color: rgba(238, 238, 238, 1);
+  box-shadow: 10px 10px 5px 0 black;
+  border-radius: 2px;
+}
+
+.review-title {
+  font-size: calc(1.0rem + 3.0vw);
+  margin: 2vw 0;
+}
