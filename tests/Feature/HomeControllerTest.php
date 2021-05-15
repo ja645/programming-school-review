@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * トップページが表示され、ログイン前後でヘッダーの内容が変わることをテスト
      * @return void
@@ -59,13 +61,15 @@ class HomeControllerTest extends TestCase
 
         $contact_form = [
             'name' => 'test',
-            'have_acount' => 1,
-            'email' => 'sample@example.com',
+            'have_account' => 1,
+            'email' => 'testing@gmail.com',
             'title' => 'test',
             'inquiry' => 'test',
         ];
 
         $response = $this->actingAs($user)->post('/contacts', $contact_form);
+
+        $this->assertDatabaseHas('contacts', $contact_form);
 
         $response->assertStatus(200)->assertViewIs('layouts.contact.success');
     }

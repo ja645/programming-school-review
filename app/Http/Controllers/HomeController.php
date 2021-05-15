@@ -36,8 +36,6 @@ class HomeController extends Controller
      */
     public function receiveContact(ContactFormRequest $request)
     {
-        logger($request->all());
-
         $contact_form = $request->all();
         $contact = new Contact;
 
