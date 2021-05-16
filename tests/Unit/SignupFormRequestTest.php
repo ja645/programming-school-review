@@ -9,11 +9,11 @@ use App\Http\Requests\SignupFormRequest;
 class SignupFormRequestTest extends TestCase
 {
     /**
-     * UserFormRequestのバリデーションが正しく機能するかテスト
+     * SignFormRequestのバリデーションが正しく機能するかテスト
      * @param array
      * @param array
      * @param boolean
-     * @dataProvider dataUserForm
+     * @dataProvider dataSignupForm
      */
     public function testWorkUserFormRequest(array $keys, array $values, bool $expected) :void
     {
@@ -30,7 +30,7 @@ class SignupFormRequestTest extends TestCase
     /**
      * @return array
      */
-    public function dataUserForm()
+    public function dataSignupForm()
     {
         return [
             '正常_nullableがnull' => [

@@ -7,7 +7,8 @@ use Illuminate\Auth\Events\Registered;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\UserFormRequest;
+use App\Http\Requests\SignupFormRequest;
+use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Facades\Session;
 use App\Models\Following;
 use App\Models\Review;
@@ -37,10 +38,10 @@ class UserController extends Controller
 
     /**
      * 新規ユーザーを保存
-     * @param \App\Http\Requests\UserFormRequest $request
+     * @param \App\Http\Requests\SignupFormRequest $request
      * @return view
      */
-    public function create(UserFormRequest $request)
+    public function create(SignupFormRequest $request)
     {        
         // 保存処理のトランザクションとエラーメッセージが必要では？
         Auth::login($user = User::create([
@@ -75,10 +76,10 @@ class UserController extends Controller
 
     /**
     * ユーザー情報を更新
-    * @param \App\Http\Requests\UserFormRequest $request
+    * @param \App\Http\Requests\UserUpdateRequest $request
     * @return view
     */
-    public function update(UserFormRequest $request)
+    public function update(UserUpdateRequest $request)
     {
         $user = User::find(Auth::id());
 
