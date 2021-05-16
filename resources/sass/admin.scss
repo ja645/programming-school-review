@@ -441,43 +441,21 @@ footer a:hover {
   z-index: 1;
 }
 
-.carousel-btn {
-  display: block;
-  height: 32%;
-  background-color: white;
-  border-radius: 20px;
-}
-
 .card-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 18rem;
-  height: 20rem;
   border: solid 2px #003366;
   border-radius: 0;
   box-shadow: 10px 10px  5px 0 rgba(0, 0, 0, .5);
 }
-.prev {
-  width: 50px;
-  margin-left: 7vw;
-}
 
-.next {
-  width: 50px;
-  margin-right: 7vw;
-}
-
-.dummy {
-  height: 34%;
+#school-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20rem;
 }
 
 .fa-chevron-right {
   color: #003366;
-}
-
-#carouselExampleControls {
-  margin: 10vw 0;
 }
 
 .recruit {

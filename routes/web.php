@@ -11,6 +11,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RankingController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\AdminController;
+use App\Models\School;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,24 +23,20 @@ use App\Http\Controllers\AdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
 Route::get('/', [HomeController::class, 'index'])->name('top');
 
-Route::get('/signup', [UserController::class, 'add']);
-Route::post('/users/create', [UserController::class, 'create'])->name('signup');
+// アカウント作成
+Route::get('/signup', [UserController::class, 'add'])->name('signup');
+Route::post('/users/create', [UserController::class, 'create']);
 
-Route::get('/contacts', [HomeController::class, 'showContactForm']);
+// お問い合わせ
+Route::get('/contacts', [HomeController::class, 'showContactForm'])->name('contact');
 Route::post('/contacts', [HomeController::class, 'receiveContact']);
 
+
+// ログイン後に閲覧可能
 Route::middleware(['auth'])->group(function() {
+
   Route::get('/users', [UserController::class, 'index'])->name('mypage');
   Route::get('/users/edit', [UserController::class, 'edit'])->name('user.edit');
   Route::post('/users/update', [UserController::class, 'update'])->name('user.update');
@@ -59,7 +56,8 @@ Route::middleware(['auth'])->group(function() {
   Route::delete('/reviews/delete', [ReviewController::class, 'delete']);
   
   Route::get('/schools/{id}', [SchoolController::class, 'showSchool'])->name('school');
-  
+  Route::post('/schools/search', [SchoolController::class, 'search'])->name('search');
+
   Route::get('/rankings', [RankingController::class, 'index'])->name('ranking');
   Route::post('/rankings', [RankingController::class, 'showRanking']);
   
@@ -73,6 +71,7 @@ Route::middleware(['auth'])->group(function() {
   Route::post('/password', [ChangePasswordController::class, 'changePassword']);
   
 
+  // 管理者としてスクールのデータを操作する
   Route::get('/admin', [AdminController::class, 'showSchoolList'])->name('school-list');
   Route::get('/admin/add', [AdminController::class, 'showAddSchool']);
   Route::post('/admin/create', [AdminController::class, 'addSchool']);

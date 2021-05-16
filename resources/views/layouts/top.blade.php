@@ -89,9 +89,9 @@
       <!-- Slides -->
       @foreach ($schools as $school)
       <div class="swiper-slide">
-        <div class="card mx-auto">
-          <a href="#" class="card-link">
-            <div class="card-body">
+        <div class="card mx-auto" style="width: 18rem;">
+          <a href="/schools/ . $shool->id" class="card-link">
+            <div id="school-card" class="card-body">
                 <h1 class="card-title" style="font-size: 20px;">{{ $school->school_name }}</h1>
             </div>
           </a>

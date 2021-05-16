@@ -42,4 +42,27 @@ class SchoolController extends Controller
             'school_rank' => $school_rank,
         ]);
     }
+
+    /**
+     * 検索ボックスに入力されたキーワードと
+     * 名前が部分一致するスクールを表示する
+     * @param \Illuminate\Http\Request $request
+     * @return view
+     */
+    public function search(Request $request)
+    {
+        $school_name = $request->school_name;
+
+        if($school_name != '') {
+            $schools = School::where('school_name', 'like', '%'.$school_name.'%')
+                        ->orderBy('created_at', 'desc')->paginate(10);
+        } else {
+
+            // 検索ボックスに何も入力されなければ全てのスクールを返す
+            $schools = School::orderBy('created_at', 'desc')->paginate(10);
+
+        }
+
+        return view('auth.school.school-list', ['schools' => $schools]);
+    }
 }

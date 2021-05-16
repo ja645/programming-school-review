@@ -36,14 +36,15 @@
 
 </head>
 <body>
-
+  
   <nav class="navbar navbar-expand-lg py-3">
     <div class="container-xl">
       <a class="navbar-brand me-5" href="{{ route('top') }}">ロゴ</a>
       
       <!-- 画面幅lg以下で表示される -->
-      <form id="s-form" class="d-flex d-lg-none">
-        <input id="s-box" class="form-control me-2" placeholder="キーワードで検索" aria-label="Search">
+      <form action="{{ route('search') }}" method="post" id="s-form" class="d-flex d-lg-none">
+        @csrf
+        <input id="s-box" type="text" name="school_name" class="form-control me-2" placeholder="スクールの名前で検索" aria-label="Search">
         <button id="s-btn" type="submit"><i class="fas fa-search fa-lg"></i></button>
       </form>
 
@@ -61,8 +62,9 @@
           </li>
         </ul>
           <!-- 画面幅xl以上で表示される -->
-          <form id="s-form" class="d-flex d-lg-block d-none ms-lg-5">
-            <input id="s-box" class="form-control me-2" placeholder="キーワードで検索" aria-label="Search">
+          <form action="{{ route('search') }}" method="post" id="s-form" class="d-flex d-lg-block d-none ms-lg-5">
+            @csrf
+            <input id="s-box" type="text" name="school_name" class="form-control me-2" placeholder="スクールの名前で検索" aria-label="Search">
             <button id="s-btn" type="submit"><i class="fas fa-search fa-lg"></i></button>
           </form>
 
@@ -100,7 +102,6 @@
           </li>
           @endif
         </ul>
-
       </div>
     </div>
   </nav>
@@ -119,16 +120,19 @@
     <div class="container-fluid d-flex justify-content-sm-start justify-content-center">
       <a class="footer-logo" href="{{ route('top') }}">ロゴ</a>  
       <a class="ms-5" href="#">サイト概要</a>
-      <a class="ms-5" href="#">お問い合わせ</a>
+      <a class="ms-5" href="{{ route('contact') }}">お問い合わせ</a>
     </div>
   </footer>
   
   <!-- Scripts -->
-    @if(app('env')=='local')
-      <script src="{{ asset('js/app.js') }}" defer></script>
-    @endif
-    @if(app('env')=='production')
-      <script src="{{ secure_asset('js/app.js') }}" defer></script>
-    @endif
+  @if(app('env')=='local')
+  <script src="{{ mix('js/app.js') }}" defer></script>
+  @endif
+  @if(app('env')=='production')
+  <script src="{{ mix('js/app.js') }}" defer></script>
+  @endif
+
+  <!-- Bootstrap5 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 </html>
