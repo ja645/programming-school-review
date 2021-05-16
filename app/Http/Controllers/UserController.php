@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Session;
-use App\Models\User;
-use App\Http\Requests\UserFormRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserFormRequest;
+use Illuminate\Support\Facades\Session;
+use App\Models\Following;
+use App\Models\Review;
+use App\Models\Like;
 
 class UserController extends Controller
 {
@@ -20,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        $user = User::find(Auth::id());
 
         return view('auth.user.mypage', ['profile_form' => $user]);
     }
@@ -67,7 +68,7 @@ class UserController extends Controller
     public function edit()
     {
         //現在認証されているユーザーの情報を取得
-        $user = Auth::user();
+        $user = User::find(Auth::id());
        
        return view('auth.user.edit', ['profile_form' => $user]); 
     }
@@ -79,14 +80,14 @@ class UserController extends Controller
     */
     public function update(UserFormRequest $request)
     {
-        $user = Auth::user();
+        $user = User::find(Auth::id());
 
         $editedField = $request->all();
         $user->fill($editedField)->save();
 
         Session::flash('flash_message', '会員情報の変更が完了しました！');
 
-        return view('auth.user.mypage', ['profile_form' => $user]);
+        return redirect(route('mypage'));
     }
 
     /**
@@ -109,9 +110,11 @@ class UserController extends Controller
      */
     public function showMyReview()
     {
-        $user = Auth::user();
+        $user_id = Auth::id();
 
-        return view('auth.user.myreview', ['user' => $user]);
+        $reviews = Review::where('user_id', $user_id)->paginate(10);
+
+        return view('auth.user.myreview', ['reviews' => $reviews]);
     }
 
     /**
@@ -119,9 +122,11 @@ class UserController extends Controller
      */
     public function showFollowingsList()
     {
-        $user = Auth::user();
+        $user_id = Auth::id();
 
-        return view('auth.user.followings-list', ['user' => $user]);
+        $followings = Following::where('user_id', $user_id)->paginate(10);
+
+        return view('auth.user.followings-list', ['followings' => $followings]);
     }
 
     /**
@@ -129,8 +134,10 @@ class UserController extends Controller
      */
     public function showLikesList()
     {
-        $user = Auth::user();
+        $user_id = Auth::id();
 
-        return view('auth.user.likes-list', ['user' => $user]);
+        $likes = Like::where('user_id', $user_id)->paginate(10);
+
+        return view('auth.user.likes-list', ['likes' => $likes]);
     }
 }

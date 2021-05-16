@@ -25,7 +25,7 @@ class UserFormRequest extends FormRequest
      */
     public function rules() :array
     {
-        // $route = $this->route()->getName();
+        $route = $this->route()->getName();
 
         $rules = [
             'user_name' => 'required|string|max:30',
@@ -33,23 +33,23 @@ class UserFormRequest extends FormRequest
             'sex'=> 'required|integer|min:0|max:2',
             'former_job' => 'nullable',
             'job' => 'nullable',
-            'email' => 'required|email:strict,dns,spoof|max:256|unique:users,email',
-            'password' => 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed',
+            // 'email' => 'required|email:strict,dns,spoof|max:256|unique:users,email',
+            // 'password' => 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed',
         ];
         
-        // switch ($route) {
-        //     case 'signup' :
-        //         $rules['email'] = 'required|email:strict,dns,spoof|max:256|unique:users,email';
-        //         //パスワードの正規表現は半角英数字をそれぞれ1つ以上使い8字以上100字以下
-        //         $rules['password'] = 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed';
-        //         break;
+        switch ($route) {
+            case 'signup' :
+                $rules['email'] = 'required|email:strict,dns,spoof|max:256|unique:users,email';
+                //パスワードの正規表現は半角英数字をそれぞれ1つ以上使い8字以上100字以下
+                $rules['password'] = 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed';
+                break;
             
-        //     case 'email' :
-        //         $rules = [
-        //             'new_email' => 'required|email:strict,dns,spoof|max:256|unique:users,email'
-        //         ];
-        //         break;
-        // }
+            case 'email' :
+                $rules = [
+                    'new_email' => 'required|email:strict,dns,spoof|max:256|unique:users,email'
+                ];
+                break;
+        }
 
         return $rules;
     }

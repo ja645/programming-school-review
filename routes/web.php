@@ -33,18 +33,24 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', [HomeController::class, 'index'])->name('top');
 
-Route::get('/signup', [UserController::class, 'add'])->name('signup');
-Route::post('/users/create', [UserController::class, 'create']);
+Route::get('/signup', [UserController::class, 'add']);
+Route::post('/users/create', [UserController::class, 'create'])->name('signup');
 
 Route::get('/contacts', [HomeController::class, 'showContactForm']);
 Route::post('/contacts', [HomeController::class, 'receiveContact']);
 
 Route::middleware(['auth'])->group(function() {
   Route::get('/users', [UserController::class, 'index'])->name('mypage');
-  Route::get('/users/edit', [UserController::class, 'edit'])->name('user-edit');
-  Route::post('/users/update', [UserController::class, 'update'])->name('user-update');
-  Route::delete('/users/delete', [UserController::class, 'delete']);
-  Route::get('/users/reviews', [UserController::class, 'showMyReview'])->name('myreview');
+  Route::get('/users/edit', [UserController::class, 'edit'])->name('user.edit');
+  Route::post('/users/update', [UserController::class, 'update'])->name('user.update');
+  Route::delete('/users/delete', [UserController::class, 'delete'])->name('user.delete');
+  Route::get('/users/reviews', [UserController::class, 'showMyReview'])->name('user.review');
+  Route::get('/users/followings', [UserController::class, 'showFollowingsList'])->name('user.followings');
+  Route::get('/users/likes', [UserController::class, 'showLikesList'])->name('user.likes');
+
+  Route::get('/email/edit', [ChangeEmailController::class, 'showChangeEmailForm'])->name('email.edit');
+  Route::post('/email', [ChangeEmailController::class, 'sendChangeEmailLink'])->name('email');
+  Route::post('/email/reset', [ChangeEmailController::class, 'reset']);
   
   Route::get('/reviews/school/{school_id}', [ReviewController::class, 'showList']);
   Route::get('/reviews/review/{id}', [ReviewController::class, 'showReview']);
@@ -66,9 +72,6 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/password/change', [ChangePasswordController::class, 'showChangePasswordView']);
   Route::post('/password', [ChangePasswordController::class, 'changePassword']);
   
-  Route::get('/email/edit', [ChangeEmailController::class, 'showChangeEmailForm']);
-  Route::post('/email', [ChangeEmailController::class, 'sendChangeEmailLink'])->name('email');
-  Route::post('/email/reset', [ChangeEmailController::class, 'reset']);
 
   Route::get('/admin', [AdminController::class, 'showSchoolList'])->name('school-list');
   Route::get('/admin/add', [AdminController::class, 'showAddSchool']);

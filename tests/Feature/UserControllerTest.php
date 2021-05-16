@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Tests\TestCase;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 
 class UserControllerTest extends TestCase
 {
@@ -17,6 +17,8 @@ class UserControllerTest extends TestCase
 
     public function setUp(): void
     {
+        parent::setUp();
+
         $this->user = User::factory()->create();
     }
     /**
@@ -28,7 +30,7 @@ class UserControllerTest extends TestCase
         // Auth::login($user = User::factory()->create());
         Auth::login($this->user);
 
-        $response = $this->actingAs($this->user)->get('/users');
+        $response = $this->actingAs($this->user)->get(route('mypage'));
 
         $response->assertStatus(200)->assertViewIs('auth.user.mypage');
     }
@@ -69,7 +71,7 @@ class UserControllerTest extends TestCase
 
         $this->assertDatabaseHas('users', ['email' => 'test@gmail.com']);
 
-        $response->assertViewIs('auth.user.mypage')->assertSessionHas('flash_message', '会員登録が完了しました！');
+        $response->assertRedirect(route('mypage'))->assertSessionHas('flash_message', '会員登録が完了しました！');
     }
 
     /**
@@ -123,7 +125,7 @@ class UserControllerTest extends TestCase
 
         $this->assertDatabaseHas('users', $editedForm);
 
-        $response->assertViewIs('auth.user.mypage')->assertSessionHas('flash_message', '会員情報の変更が完了しました！');
+        $response->assertRedirect(route('mypage'))->assertSessionHas('flash_message', '会員情報の変更が完了しました！');
     }
 
     /**
@@ -172,8 +174,34 @@ class UserControllerTest extends TestCase
     {
         Auth::login($this->user);
 
-        $response = $this->get(route('myreview'));
+        $response = $this->get(route('user.review'));
 
         $response->assertStatus(200)->assertViewIs('auth.user.myreview');
+    }
+
+    /**
+     * ユーザーの投稿したレビュー一覧が表示されることをテスト
+     * @return void
+     */
+    public function test_canShowFollowingsList()
+    {
+        Auth::login($this->user);
+
+        $response = $this->get(route('user.followings'));
+
+        $response->assertStatus(200)->assertViewIs('auth.user.followings-list');
+    }
+
+    /**
+     * ユーザーの投稿したレビュー一覧が表示されることをテスト
+     * @return void
+     */
+    public function test_canShowLikesList()
+    {
+        Auth::login($this->user);
+
+        $response = $this->get(route('user.likes'));
+
+        $response->assertStatus(200)->assertViewIs('auth.user.likes-list');
     }
 }

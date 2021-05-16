@@ -11,16 +11,16 @@
     <div class="card px-0">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
-          <a href="#"><i class="fas fa-user"></i>{{ $profile_form->user_name }}</a>
+          <p><i class="fas fa-user"></i>{{ $profile_form->user_name }}</p>
         </li>
         <li class="list-group-item">
-          <a href="#"><i class="far fa-file-alt"></i>投稿したレビュー</a>
+          <a href="{{ route('user.review') }}"><i class="far fa-file-alt"></i>投稿したレビュー</a>
         </li>
         <li class="list-group-item">
-          <a href="#"><i class="fas fa-heart"></i>お気に入り</a>
+          <a href="{{ route('user.likes') }}"><i class="fas fa-heart"></i>お気に入り</a>
         </li>
         <li class="list-group-item">
-          <a href="#"><i class="far fa-thumbs-up"></i>評価したレビュー</a>
+          <a href="{{ route('user.followings') }}"><i class="far fa-thumbs-up"></i>評価したレビュー</a>
         </li>
       </ul>
     </div>
@@ -32,7 +32,7 @@
       <div class="card-body text-secondary">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            メールアドレス<span>{{ $profile_form->email }}</span><a href="{{ url('/email/edit') }}">メールアドレスを変更</a>
+            メールアドレス<span>{{ $profile_form->email }}</span><a href="{{ route('email.edit') }}">メールアドレスを変更</a>
           </li>
           <li class="list-group-item">
             パスワード<span>パスワードは表示出来ません。</span><a href="{{ url('/password/change') }}">パスワードを変更</a>
@@ -46,8 +46,6 @@
       <div class="card-body text-secondary">
         <ul class="list-group list-group-flush">
 
-        <form action="{{ url('/users/edit') }}" method="get">
-        @csrf
           <li class="list-group-item">ニックネーム<span>{{ $profile_form->user_name }}</span></li>
           <li class="list-group-item">生年月日<span>{{ $profile_form->birthday }}</span></li>
           
@@ -61,8 +59,7 @@
           
           <li class="list-group-item">以前のご職業<span>{{ $profile_form->former_job }}</span></li>
           <li class="list-group-item">現在のご職業<span>{{ $profile_form->job }}</span></li>
-          <li class="list-group-item"><a type="submit">プロフィールを変更</a></li>
-        </form>
+          <li class="list-group-item"><a href="{{ route('user.edit') }}">プロフィールを変更</a></li>
       </ul>
     </div>
   </div>
