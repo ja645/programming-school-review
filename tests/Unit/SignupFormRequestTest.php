@@ -2,15 +2,11 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase; //変更
-use App\Http\Requests\UserFormRequest;
+use Tests\TestCase;
 use Illuminate\Support\Facades\Validator;
-use Mockery\MockInterface;
-use App\Models\User;
-use Illuminate\Http\Client\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\SignupFormRequest;
 
-class UserFormRequestTest extends TestCase
+class SignupFormRequestTest extends TestCase
 {
     /**
      * UserFormRequestのバリデーションが正しく機能するかテスト
@@ -20,14 +16,10 @@ class UserFormRequestTest extends TestCase
      * @dataProvider dataUserForm
      */
     public function testWorkUserFormRequest(array $keys, array $values, bool $expected) :void
-    {   
-        $mock = $this->mock(Request::class, function (MockInterface $mock) {
-            $mock->shouldReceive('getName')->andReturn('signup');
-        });
-
+    {
         $dataList = array_combine($keys, $values);
         
-        $request = new UserFormRequest();
+        $request = new SignupFormRequest();
         $rules = $request->rules();
         $validator = Validator::make($dataList, $rules);
         $result = $validator->passes();
