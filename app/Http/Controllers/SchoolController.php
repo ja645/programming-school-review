@@ -10,6 +10,17 @@ use App\Services\SchoolService;
 class SchoolController extends Controller
 {
     /**
+     * スクール一覧を表示
+     * @return view
+     */
+    public function index()
+    {
+        $schools = School::orderBy('created_at', 'desc');
+
+        return view('auth.school.school-list', ['schools' => $schools]);
+    }
+
+    /**
      * スクールページを表示
      * @return
      */
@@ -34,7 +45,7 @@ class SchoolController extends Controller
 
 
         //総合評価のランキングとレビュー総数を表示
-        return view('auth.school', [
+        return view('auth.school.school', [
             'school' => $school,
             'satisfactions' => $satisfactions,
             'tuition_average' => $tuition_average,
