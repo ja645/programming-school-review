@@ -453,6 +453,11 @@ footer a:hover {
 }
 
 .card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18rem;
+  height: 20rem;
   border: solid 2px #003366;
   border-radius: 0;
   box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.5);
@@ -503,6 +508,10 @@ footer a:hover {
   width: calc(100px + 10.0vw);
   height: 40px;
   margin: 5% 0;
+}
+
+.swiper-button-prev::after, .swiper-button-next::after {
+  content: "";
 }
 
 /* -----------------------------

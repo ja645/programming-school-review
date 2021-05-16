@@ -2,10 +2,6 @@
 
 @section('title', 'top')
 
-<!-- @push('css')
-  <link href="{{ secure_asset('css/top.css') }}" rel="stylesheet">
-@endpush -->
-
 @section('content')
 <div class="container-fluid p-0">
   
@@ -85,112 +81,71 @@
     </div>
   </div>
 
-
-  <!-- カルーセル -->
-  <div id="carouselExampleControls" class="carousel slide d-flex justify-content-between" data-bs-ride="carousel">
-
-    <!-- ボタン（前へ） -->
-    <div class="prev">
-      <div class="dummy"></div>
-      <a class="carousel-btn" href="#carouselExampleControls" role="button" data-bs-slide="prev">
-        <i class="fas fa-chevron-right fa-4x fa-flip-horizontal"></i>
-      </a>
-      <div class="dummy"></div>
-    </div>
-
-    <!-- カルーセル本体 -->
-    <div class="carousel-inner mx-auto" style="width: 80vw;">
-
-      <div class="carousel-item active px-5">
-        <div class="row">
-          <div class="col-xl-4 col-md-6 col-12">
-            <div class="card mx-auto" style="width: 18rem;">
-              <a href="#" class="card-link">
-              <div class="card-body" style="text-align: center;">
-                <h1 class="card-title" style="font-size: 20px;">Card title</h5>
-              </div>
-            </a>
-            </div>  
-          </div>
-          <div class="col-xl-4 col-md-6 d-md-block d-none">
-            <div class="card mx-auto" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>  
-          </div>
-          <div class="col-xl-4 d-xl-block d-none">
-            <div class="card mx-auto" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>  
-          </div>
-        </div>
+  
+  <!-- Slider main container -->
+  <div class="swiper-container mx-auto" style="width: 90%;">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper my-5">
+      <!-- Slides -->
+      @foreach ($schools as $school)
+      <div class="swiper-slide">
+        <div class="card mx-auto">
+          <a href="#" class="card-link">
+            <div class="card-body">
+                <h1 class="card-title" style="font-size: 20px;">{{ $school->school_name }}</h1>
+            </div>
+          </a>
+        </div>  
       </div>
-
-      <div class="carousel-item px-5">
-        <div class="row">
-          <div class="col-xl-4 col-md-6 col-12">
-            <div class="card mx-auto" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>  
-          </div>
-          <div class="col-xl-4 col-md-6 d-md-block d-none">
-            <div class="card mx-auto" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>  
-          </div>
-          <div class="col-xl-4 d-xl-block d-none">
-            <div class="card mx-auto" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>  
-          </div>
-        </div>
-      </div>
-
+      @endforeach
     </div>
-
-    <!-- ボタン（次へ） -->
-    <div class="next">
-      <div class="dummy"></div>
-      <a class="carousel-btn" href="#carouselExampleControls" role="button" data-bs-slide="next">
-        <i class="fas fa-chevron-right fa-4x"></i>
-      </a>
-      <div class="dummy"></div>
-    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"><i class="fas fa-chevron-right fa-4x fa-flip-horizontal"></i></div>
+    <div class="swiper-button-next"><i class="fas fa-chevron-right fa-4x"></i></div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.5.8/swiper-bundle.min.js" integrity="sha512-sAHYBRXSgMOV2axInO6rUzuKKM5SkItFLlLHQ8YjRD+FBwowtATOs4njP9oim3/MzyAGrB52SLDjpAOLcOT9TA==" crossorigin="anonymous"></script>
+  <script>
+    const carouselModule = (() => {
+      return {
+        configure: () => {
+          const mySwiper = new Swiper('.swiper-container', {
+            // ここからはオプションを記述していきます
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 0,
+            pagination: {
+              el: '.swiper-pagination',
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+              1200: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 0,
+              }
+            }
+          })
+        }
+      }
+    })()
+
+    carouselModule.configure()
+  </script>
 
   <!-- 投稿募集 -->
   <div class="recruit">
-    <h1>あなたの体験を聞きたがっている人がいます。</h1>
-    <p>共有することで貴重な</p>
+    <h1>あなたの体験で人がいます。</h1>
+    <p>貴重な</p>
+    <button onclick="window.location='{{ route("signup") }}'" type="button" class="btn btn-danger btn-lg">アカウントを作成してレビューを投稿する</button>
   </div>
   <div class="row pattern-niagara-bottom m-0">
     <div class="col d-flex p-0">

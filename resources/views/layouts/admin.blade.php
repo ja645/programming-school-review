@@ -13,9 +13,15 @@
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
   
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   
+  <!-- swiper css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.5.8/swiper-bundle.min.css" integrity="sha512-eeBbzvdY28BPYqEsAv4GU/Mv48zr7l0cI6yhWyqhgRoNG3sr+Q2Fr6751bA04Cw8SGUawtVZlugHm5H1GOU/TQ==" crossorigin="anonymous" />
+
   <!-- Styles -->
   <!-- ローカルではsecure_assetを使わない -->
   @if(app('env')=='local')
@@ -26,11 +32,8 @@
     <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
   @endif
-  <!-- 個別のcssを読み込む -->
-  @stack('css')
 
-  <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
 </head>
 <body>
 
@@ -121,14 +124,11 @@
   </footer>
   
   <!-- Scripts -->
-  @if(app('env')=='local')
-  <script src="{{ asset('js/app.js') }}" defer></script>
-  @endif
-  @if(app('env')=='production')
-  <script src="{{ secure_asset('js/app.js') }}" defer></script>
-  @endif
-  
-  <!-- Bootstrap Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    @if(app('env')=='local')
+      <script src="{{ asset('js/app.js') }}" defer></script>
+    @endif
+    @if(app('env')=='production')
+      <script src="{{ secure_asset('js/app.js') }}" defer></script>
+    @endif
 </body>
 </html>
