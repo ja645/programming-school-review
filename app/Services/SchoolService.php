@@ -8,10 +8,10 @@ class SchoolService
 {
   protected $school;
  
-  public function __construct(School $school)
-  {
-    $this->school = $school;
-  }
+  // public function __construct(School $school)
+  // {
+  //   $this->school = $school;
+  // }
 
 
   /**

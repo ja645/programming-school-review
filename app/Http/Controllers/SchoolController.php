@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\School;
 use App\Models\Review;
 use App\Services\SchoolService;
+use Illuminate\Support\Facades\Auth;
 
 class SchoolController extends Controller
 {
@@ -13,9 +14,9 @@ class SchoolController extends Controller
      * スクール一覧を表示
      * @return view
      */
-    public function index()
-    {
-        $schools = School::orderBy('created_at', 'desc');
+    public function showSchoolList()
+    {   
+        $schools = School::orderByDesc('created_at')->paginate(10);
 
         return view('auth.school.school-list', ['schools' => $schools]);
     }
@@ -29,8 +30,15 @@ class SchoolController extends Controller
         // 指定したidのスクールを取得
         $school = School::find($id);
 
-        $SchoolService = new SchoolService($school);
+        app()->bind(SchoolService::class, function(School $school) {
+            return new SchoolService($school);
+        });
 
+        $SchoolService = app()->make(SchoolServiece::class);
+        
+        // $SchoolService = new SchoolService($school);
+
+        dump($SchoolService->getSatisfactions());
         // スクールの満足度を取得
         $satisfactions = $SchoolService->getSatisfactions();
 
@@ -43,7 +51,7 @@ class SchoolController extends Controller
         // スクールの順位を取得
         $school_rank = $SchoolService->getRank();
 
-
+        // dump($school_rank);
         //総合評価のランキングとレビュー総数を表示
         return view('auth.school.school', [
             'school' => $school,
@@ -66,14 +74,15 @@ class SchoolController extends Controller
 
         if($school_name != '') {
             $schools = School::where('school_name', 'like', '%'.$school_name.'%')
-                        ->orderBy('created_at', 'desc')->paginate(10);
+                        ->orderByDesc('created_at')->paginate(10);
         } else {
 
             // 検索ボックスに何も入力されなければ全てのスクールを返す
-            $schools = School::orderBy('created_at', 'desc')->paginate(10);
+            $schools = School::orderByDesc('created_at')->paginate(10);
 
         }
 
+        // dump(key($schools));
         return view('auth.school.school-list', ['schools' => $schools]);
     }
 }

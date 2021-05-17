@@ -55,8 +55,8 @@ Route::middleware(['auth'])->group(function() {
   Route::post('/reviews/create', [ReviewController::class, 'create']);
   Route::delete('/reviews/delete', [ReviewController::class, 'delete']);
   
-  Route::get('/schools/{id}', [SchoolController::class, 'showSchool'])->name('school');
-  Route::get('/schools', [SchoolController::class, 'index'])->name('school.list');
+  Route::get('/schools/{id}', [SchoolController::class, 'showSchool']);
+  Route::get('/schools', [SchoolController::class, 'showSchoolList'])->name('school.list');
   Route::post('/schools/search', [SchoolController::class, 'search'])->name('search');
 
   Route::get('/rankings', [RankingController::class, 'index'])->name('ranking');
