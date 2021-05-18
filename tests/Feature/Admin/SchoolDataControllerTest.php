@@ -13,19 +13,6 @@ class SchoolDataControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $isAdmin;
-
-    private $isNotAdmin;
-
-    public function setUp():void
-    {
-        parent::setUp();
-
-        $this->isAdmin = User::factory(['id' => 1])->create();
-
-        $this->isNotAdmin = User::factory()->create();
-    }
-
     /**
      * 管理者としてログイン済みのユーザーが
      * スクールリストページにアクセス出来ることをテスト
@@ -223,7 +210,7 @@ class SchoolDataControllerTest extends TestCase
     {
         $school = School::factory()->create();
 
-        $response = $this->actingAs($this->isNotAdmin)->post('/admin/delete', ['id' => $school->id]);
+        $response = $this->post('/admin/delete', ['id' => $school->id]);
 
         $response->assertRedirect(route('admin.login'));
     }

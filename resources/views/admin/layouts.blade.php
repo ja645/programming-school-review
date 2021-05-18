@@ -56,7 +56,7 @@
 
           <li class="nav-item my-auto">
             <div class="nav-icon">
-              <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <a href="{{ route('admin.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-door-open fa-2x"></i>
                 <span>ログアウト</span>
               </a>

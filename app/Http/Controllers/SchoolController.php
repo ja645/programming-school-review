@@ -72,6 +72,7 @@ class SchoolController extends Controller
             $schools = School::orderByDesc('created_at')->paginate(10);
         }
 
+        dump($schools);
         return view('auth.school.school-list', ['schools' => $schools]);
     }
 }

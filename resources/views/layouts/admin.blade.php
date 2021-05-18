@@ -60,6 +60,11 @@
               <a href="{{ route('ranking') }}"><i class="fas fa-crown fa-2x"></i><span>ランキング</span></a>
             </div>
           </li>
+          <li class="nav-item my-auto">
+            <div class="nav-icon">
+              <a href="{{ route('school.list') }}"><i class="fas fa-school fa-2x"></i><span>スクール一覧</span></a>
+            </div>
+          </li>
         </ul>
           <!-- 画面幅xl以上で表示される -->
           <form action="{{ route('search') }}" method="post" id="s-form" class="d-flex d-lg-block d-none ms-lg-5">

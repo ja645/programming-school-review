@@ -156,7 +156,6 @@ class UserControllerTest extends TestCase
      */
     public function testDelete_正常系()
     {
-        // Auth::login($user = User::factory()->create());
         Auth::login($this->user);
 
         $response = $this->actingAs($this->user)->delete('/users/delete');
