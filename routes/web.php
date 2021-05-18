@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function() {
   
   Route::get('/reviews/school/{school_id}', [ReviewController::class, 'showList']);
   Route::get('/reviews/review/{id}', [ReviewController::class, 'showReview']);
-  Route::get('/reviews', [ReviewController::class, 'add']);
+  Route::get('/reviews/add', [ReviewController::class, 'add'])->name('review.add');
   Route::post('/reviews/create', [ReviewController::class, 'create']);
   Route::delete('/reviews/delete', [ReviewController::class, 'delete']);
   
