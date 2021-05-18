@@ -3,8 +3,6 @@
 @section('title', 'school-list')
 
 @section('content')
-
-@can('idAdmin')
 <div class="container-xl">
   <div class="review-list">
     @foreach ($schools as $school)
@@ -19,8 +17,5 @@
     @endforeach
   </div>
 </div>
-@else
-<p>管理者のみ閲覧出来ます。</p>
-@endcan
 
 @endsection

@@ -3,8 +3,6 @@
 @section('title', 'edit-school')
 
 @section('content')
-
-@can('idAdmin')
 <div class="container-xl">
 
     <div class="row d-flex justify-content-center">
@@ -59,8 +57,4 @@
     </div>
 
 </div>
-@else
-<p>管理者のみ閲覧出来ます。</p>
-@endcan
-
 @endsection
