@@ -18,7 +18,7 @@
           <div class="tab-pane fade show active" id="total" role="tabpanel" aria-labelledby="total-tab">
 
               @foreach ($reviews as $review)
-              <a href="{{ url('/reviews/review/' . $review->id) }}" class="list-group-item list-group-item-action">{{ $review->title }}</a>
+               <a href="{{ url('/reviews/review/' . $review->id) }}" class="list-group-item list-group-item-action">{{ $review->title }}</a>
               @endforeach
             
           </div>

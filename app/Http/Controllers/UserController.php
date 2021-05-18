@@ -93,7 +93,8 @@ class UserController extends Controller
 
     /**
      * ユーザーの退会処理
-     * @return view
+     * 
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function delete()
     {
@@ -101,13 +102,13 @@ class UserController extends Controller
 
         User::find($user_id)->delete();
 
-        Session::flash('flash_message', '退会手続きが完了しました！');
-
-        return view('layouts.top');
+        return redirect(route('top'))->with(['flash_message' => '退会手続きが完了しました！']);
     }
 
     /**
      * 自分の投稿したレビュー一覧を表示
+     * 
+     * @return view
      */
     public function showMyReview()
     {
@@ -120,6 +121,8 @@ class UserController extends Controller
 
     /**
      * 自分のフォローしたレビュー一覧を表示
+     * 
+     * @return view
      */
     public function showFollowingsList()
     {
@@ -132,6 +135,8 @@ class UserController extends Controller
 
     /**
      * 自分のいいねしたスクール一覧を表示
+     * 
+     * @return view
      */
     public function showLikesList()
     {

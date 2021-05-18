@@ -162,7 +162,7 @@ class UserControllerTest extends TestCase
 
         $this->assertDatabaseMissing('users', ['id' => $this->user->id]);
 
-        $response->assertViewIs('layouts.top')->assertSessionHas('flash_message', '退会手続きが完了しました！');
+        $response->assertRedirect(route('top'))->assertSessionHas('flash_message', '退会手続きが完了しました！');
     }
 
     /**
