@@ -21,7 +21,7 @@ class ReviewController extends Controller
      * @param integer $school_id
      * @return view
      */
-    public function showList($school_id)
+    public function showList(int $school_id)
     {
         $reviews = Review::where('school_id', $school_id)->paginate(10);
 
@@ -33,7 +33,7 @@ class ReviewController extends Controller
      * @param integer $id
      * @return view
      */
-    public function showReview($id)
+    public function showReview(int $id)
     {
         $review = Review::find($id);
 
@@ -63,7 +63,7 @@ class ReviewController extends Controller
         $requestFields['user_id'] = $user_id;
         $review = Review::create($requestFields);
     
-        return redirect('reviews/review/' . $review->id);
+        return redirect('/reviews/review/' . $review->id);
     }
 
     
@@ -81,23 +81,5 @@ class ReviewController extends Controller
         Review::find($review_id)->delete();
 
         return redirect(route('user.review'));
-    }
-
-    /**
-     * コメント欄にメッセージを送信
-     * @param \Illuminate\Http\Request $request
-     * @return void
-     */
-    public function sendMessage(Request $request)
-    {
-        $user = Auth::user();
-
-        $message = $user->messages()->create([
-            'message' => $request->message
-        ]);
-        
-        event(new MessageSent($user, $message));
-
-        session()->flash('flash_message', 'メッセージを送りました！');
     }
 }

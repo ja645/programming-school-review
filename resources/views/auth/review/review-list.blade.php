@@ -7,7 +7,7 @@
        
   <div>{{ $reviews->first()->school->school_name }}に寄せられたレビュー</div>
   
-  @if($reviews->idEmpty())
+  @if($reviews->isEmpty())
     <p class="is-empty">{{ $reviews->first()->school->school_name }}に寄せられたレビューはありません</p>
   @else
 

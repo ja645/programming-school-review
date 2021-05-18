@@ -24,12 +24,11 @@ class ChangePasswordControllerTest extends TestCase
 
     /**
      * パスワード変更ページが表示されることをテスト
+     * 
      * @return void
      */
-    public function testCanRedirectPasswordEdit()
+    public function test_users_can_visit_passwordEdit()
     {
-        // Auth::login($this->user);
-
         $response = $this->actingAs($this->user)->get('/password/change');
 
         $response->assertStatus(200)->assertViewIs('auth.user.editPassword');
@@ -37,9 +36,10 @@ class ChangePasswordControllerTest extends TestCase
 
     /**
      * ログイン前にパスワード変更ページにアクセスするとログインページにリダイレクトされることをテスト
+     * 
      * @return void
      */
-    public function testCanRedirectPasswordEdit_異常系_未ログイン()
+    public function test_unauthenticated_users_can_not_visit_passwordEdit()
     {
         $response = $this->get('/password/change');
 
@@ -48,12 +48,11 @@ class ChangePasswordControllerTest extends TestCase
 
     /**
      * パスワードの変更が成功することをテスト
+     * 
      * @return void
      */
-    public function testUpdatePassword_正常系()
+    public function test_users_can_update_Password()
     {
-        Auth::login($this->user);
-
         $response = $this->actingAs($this->user)->post('/password', [
             //factoryで作られたユーザーはパスワードの値が'password1'
             'current_password' => 'password1', 'new_password' => 'password2', 'new_password_confirmation' => 'password2'
@@ -62,14 +61,15 @@ class ChangePasswordControllerTest extends TestCase
         //ユーザーのパスワードが指定の値に変更されているか検証
         $this->assertTrue(Hash::check('password2', User::find($this->user->id)->password));
 
-        $response->assertStatus(200)->assertViewIs('auth.user.mypage');
+        $response->assertRedirect(route('mypage'));
     }
 
     /**
      * 認証されていないユーザーのアクセスでログインページにリダイレクトされることをテスト
+     * 
      * @return void
      */
-    public function testUpdatePassword_異常系_認証されていないユーザー()
+    public function test_unauthenticated_users_can_not_update_password()    
     {
         $response = $this->post('/password', [
             //factoryで作られたユーザーはパスワードの値が'password1'
@@ -84,12 +84,11 @@ class ChangePasswordControllerTest extends TestCase
 
     /**
      * 確認用のパスワードが一致せず、パスワードの更新が失敗することをテスト
+     * 
      * @return void
      */
-    public function testUpdatePassword_異常系_確認用パスワードの不一致()
+    public function test_users_can_not_update_password_due_to_mismatching_in_confirmation()
     {
-        Auth::login($this->user);
-
         $response = $this->actingAs($this->user)->post('/password', [
             //factoryで作られたユーザーはパスワードの値が'password1'
             'current_password' => 'password1', 'new_password' => 'password2', 'new_password_confirmation' => 'password3'
