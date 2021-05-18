@@ -31,7 +31,8 @@ class UserFactory extends Factory
             'job' => $this->faker->jobTitle,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-            'password' => Hash::make('password1'), // password
+            // 'password' => Hash::make('password1'), // password
+            'password' => 'password1',
             'remember_token' => Str::random(10),
         ];
     }

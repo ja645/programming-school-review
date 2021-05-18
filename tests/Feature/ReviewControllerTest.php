@@ -15,24 +15,35 @@ class ReviewControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    private $user;
+    private $school;
+    private $review;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->user = User::factory()->create();
+
+        $this->school = School::factory()->create();
+
+        $this->review = Review::factory()->for($this->user)->for($this->school)->create();
+    }
+
     /**
      * レビューページが、そのレビューに紐付いたメッセージ履歴と共に表示されることをテスト
+     * 
      * @return void
      */
-    public function testIndex_正常系(): void
+    public function test_users_can_visit_review(): void
     {   
-        $user = User::factory()->create();
-        $school = School::create(['school_name' => 'hoge', 'school_url' => 'hoge', 'address' => 'hoge', 'features' => 'hoge']);
-        $review = Review::factory(['user_id' => $user->id])->create();
-
         $message = 'こんにちは';
-        $message = Message::create(['user_id' => $user->id, 'review_id' => $review->id, 'message' => $message]);
 
-        Auth::login($user);
+        $message = Message::create(['user_id' => $this->user->id, 'review_id' => $this->review->id, 'message' => $message]);
 
-        $response = $this->actingAs($user)->get('/reviews');
+        $response = $this->actingAs($this->user)->get('/reviews/review/' . $this->review->id);
 
-        $response->assertViewIs('auth.review.review')->assertSee($message);
+        $response->assertViewIs('auth.review.review')->assertViewHas('review', $this->review)->assertSee($message);
     }
 
     /**
@@ -40,104 +51,64 @@ class ReviewControllerTest extends TestCase
      *
      * @return void
      */
-    // public function testAdd_正常系(): void
-    // {
-    //     $user = User::factory()->make();
+    public function test_users_can_visit_addReview(): void
+    {
+        $response = $this->actingAs($this->user)->get('/reviews/add');
 
-    //     $response = $this->actingAs($user)->get('/reviews/add');
-
-    //     $response->assertStatus(200)->assertViewIs('auth.review.create');
-    // }
+        $response->assertStatus(200)->assertViewIs('auth.review.create');
+    }
 
     /**
      * レビュー投稿が成功することをテスト
      * 
      * @return void
      */
-    // public function testCreate_正常系()
-    // {
-    //     //認証済みユーザーつくる
-    //     Auth::login($user = User::factory()->create());
+    public function test_users_can_create_review()
+    {
+        //サンプルレビューデータ作る
+        // $review = [
+        //     'school_id' => rand(0,20),
+        //     'course' => 'hogehoge',
+        //     'tuition' => 560000,
+        //     'purpose' => rand(0,4),
+        //     'when_start' => '2018-04-01',
+        //     'when_end' => '2018-06-30',
+        //     'at_school' => true,
+        //     'achievement' => rand(0,4),
+        //     'st_tuition' => rand(0,4),
+        //     'st_term' => rand(0,4),
+        //     'st_curriculum' => rand(0,4),
+        //     'st_mentor' => rand(0,4),
+        //     'st_support' => rand(0,4),
+        //     'st_staff' => rand(0,4),
+        //     'total_judg' => rand(0,4),
+        //     'title' => str_repeat('a test title', 2),
+        //     'report' => str_repeat('a test', 20),
+        // ];
 
-    //     //サンプルレビューデータ作る
-    //     $review = [
-    //         'school_id' => rand(0,20),
-    //         'course' => 'hogehoge',
-    //         'tuition' => 560000,
-    //         'purpose' => rand(0,4),
-    //         'when_start' => '2018-04-01',
-    //         'when_end' => '2018-06-30',
-    //         'at_school' => true,
-    //         'achievement' => rand(0,4),
-    //         'st_tuition' => rand(0,4),
-    //         'st_term' => rand(0,4),
-    //         'st_curriculum' => rand(0,4),
-    //         'st_mentor' => rand(0,4),
-    //         'st_support' => rand(0,4),
-    //         'st_staff' => rand(0,4),
-    //         'total_judg' => rand(0,4),
-    //         'title' => str_repeat('a test title', 2),
-    //         'report' => str_repeat('a test', 20),
-    //     ];
+        $review = Review::factory()->for($this->user)->for($this->school)->make()->toArray();
 
-    //     //ユーザーとしてpostで送る
-    //     $response = $this->actingAs($user)->post('/reviews/create', $review);
+        //ユーザーとしてpostで送る
+        $response = $this->actingAs($this->user)->post('/reviews/create', $review);
 
-    //     //dbにあるか確認
-    //     $this->assertDatabaseHas('reviews', $review);
+        //dbにあるか確認
+        $this->assertDatabaseHas('reviews', $review);
 
-    //     //リダイレクトを確認
-    //     $response->assertStatus(200)->assertViewIs('auth.review.review');
-    // }
+        //レビューページが表示されることを確認
+        $response->assertViewIs('auth.review.review');
+    }
 
     /**
      * レビューの削除が成功することをテスト
      * @return void
      */
-    // public function testDelete()
-    // {
-    //     //認証済みのユーザーを作成
-    //     Auth::login($user = User::factory()->create());
+    public function test_users_can_delete_review()
+    {
+        $response = $this->actingAs($this->user)->delete('/reviews/delete', ['id' => $this->review->id]);
 
-    //     //schoolsテーブルにデータを作る
-    //     School::create([
-    //         'name' => 'hogehoge',
-    //         'image_path' => 'hogehoge',
-    //         'school_url' => 'Hogehoge', 
-    //         'address' => 'hogehoge',
-    //         'learning_style' => 0,
-    //         'features' => 'hogehoge'
-    //     ]);
+        //dbに存在しないことを確認
+        $this->assertDatabaseMissing('reviews', $this->review->toArray());
 
-    //     //作成したユーザーに紐付くサンプルレビューデータ作る
-    //     $reviewForm = [
-    //         'user_id' => $user->id,
-    //         'school_id' => 1,
-    //         'course' => 'hogehoge',
-    //         'tuition' => 560000,
-    //         'purpose' => rand(0,4),
-    //         'when_start' => '2018-04-01',
-    //         'when_end' => '2018-06-30',
-    //         'at_school' => true,
-    //         'achievement' => rand(0,4),
-    //         'st_tuition' => rand(0,4),
-    //         'st_term' => rand(0,4),
-    //         'st_curriculum' => rand(0,4),
-    //         'st_mentor' => rand(0,4),
-    //         'st_support' => rand(0,4),
-    //         'st_staff' => rand(0,4),
-    //         'total_judg' => rand(0,4),
-    //         'title' => str_repeat('a test title', 2),
-    //         'report' => str_repeat('a test', 20),
-    //     ];
-
-    //     $review = Review::create($reviewForm);
-
-    //     $response = $this->actingAs($user)->delete('/reviews/delete', ['id' => $review->id]);
-
-    //     //dbに存在しないことを確認
-    //     $this->assertDatabaseMissing('reviews', $reviewForm);
-
-    //     $response->assertStatus(200)->assertViewIs('auth.review.review');
-    // }
+        $response->assertRedirect(route('user.review'));
+    }
 }

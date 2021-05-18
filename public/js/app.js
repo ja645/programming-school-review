@@ -18686,7 +18686,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //htmlリクエストを送り、レスポンスであるresponse.dataをthis.messageに代入
-    axios.get('/reviews').then(function (response) {
+    axios.get('/message').then(function (response) {
       return _this.messages = response.data;
     });
     window.Echo.channel('chat').listen('MessageSent', function (response) {
@@ -18697,7 +18697,7 @@ __webpack_require__.r(__webpack_exports__);
     addMessage: function addMessage() {
       var _this2 = this;
 
-      axios.post('/reviews/message', {
+      axios.post('/message/send', {
         reviewId: this.review.id,
         message: this.newMessage
       }).then(function (response) {

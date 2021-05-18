@@ -13,6 +13,9 @@ use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\Admin\AuthenticationController;
 use App\Http\Controllers\Admin\SchoolDataController;
 use App\Models\School;
+use App\Models\Message;
+use App\Events\MessageSent;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +77,18 @@ Route::middleware(['auth'])->group(function() {
   
   Route::get('/password/change', [ChangePasswordController::class, 'showChangePasswordView']);
   Route::post('/password', [ChangePasswordController::class, 'changePassword']);
+
+  Route::get('/message', function() {
+    return Message::all();
+    });
+    
+  Route::post('/message/send', function() {
+    $message = Message::create(['user_id' => Auth::id(), 'review_id' => request()->reviewId, 'message' => request()->message]);
+
+    event((new MessageSent($message))->dontBroadcastToCurrentUser());
+
+    return $message;
+  });
 });
 
 Route::group(['middleware' => ['auth.admin']], function () {

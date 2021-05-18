@@ -28,9 +28,9 @@ class ChangePasswordControllerTest extends TestCase
      */
     public function testCanRedirectPasswordEdit()
     {
-        Auth::login($this->user);
+        // Auth::login($this->user);
 
-        $response = $this->actingAs($this->user)->get('/password/edit');
+        $response = $this->actingAs($this->user)->get('/password/change');
 
         $response->assertStatus(200)->assertViewIs('auth.user.editPassword');
     }
@@ -41,7 +41,7 @@ class ChangePasswordControllerTest extends TestCase
      */
     public function testCanRedirectPasswordEdit_異常系_未ログイン()
     {
-        $response = $this->get('/password/edit');
+        $response = $this->get('/password/change');
 
         $response->assertRedirect('login');
     }
@@ -54,7 +54,7 @@ class ChangePasswordControllerTest extends TestCase
     {
         Auth::login($this->user);
 
-        $response = $this->actingAs($this->user)->patch('/password', [
+        $response = $this->actingAs($this->user)->post('/password', [
             //factoryで作られたユーザーはパスワードの値が'password1'
             'current_password' => 'password1', 'new_password' => 'password2', 'new_password_confirmation' => 'password2'
         ]);
@@ -71,7 +71,7 @@ class ChangePasswordControllerTest extends TestCase
      */
     public function testUpdatePassword_異常系_認証されていないユーザー()
     {
-        $response = $this->patch('/password', [
+        $response = $this->post('/password', [
             //factoryで作られたユーザーはパスワードの値が'password1'
             'current_password' => 'password1', 'new_password' => 'password2', 'new_password_confirmation' => 'password2'
         ]);
@@ -79,7 +79,7 @@ class ChangePasswordControllerTest extends TestCase
         //ユーザーのパスワードが指定の値に変更されていないことを検証
         $this->assertFalse(Hash::check('password2', User::find($this->user->id)->password));
 
-        $response->assertRedirect('login');
+        $response->assertRedirect(route('login'));
     }
 
     /**
@@ -90,7 +90,7 @@ class ChangePasswordControllerTest extends TestCase
     {
         Auth::login($this->user);
 
-        $response = $this->actingAs($this->user)->patch('/password', [
+        $response = $this->actingAs($this->user)->post('/password', [
             //factoryで作られたユーザーはパスワードの値が'password1'
             'current_password' => 'password1', 'new_password' => 'password2', 'new_password_confirmation' => 'password3'
         ]);

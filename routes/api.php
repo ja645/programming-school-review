@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Events\MessageSent;
-
+use App\Models\Message;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,11 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::middleware('api')->get('/reviews', function() {
-    return \App\Models\Message::all();
+    return Message::all();
     });
     
 Route::middleware('api')->post('/reviews/message', function() {
-    $message = \App\Models\Message::create(['user_id' => Auth::id(), 'review_id' => request()->reviewId, 'message' => request()->message]);
+    $message = Message::create(['user_id' => Auth::id(), 'review_id' => request()->reviewId, 'message' => request()->message]);
 
     event((new MessageSent($message))->dontBroadcastToCurrentUser());
 

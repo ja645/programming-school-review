@@ -61,31 +61,26 @@ class ReviewController extends Controller
         $requestFields = $request->all();
         
         $requestFields['user_id'] = $user_id;
-        Review::create($requestFields);
+        $review = Review::create($requestFields);
     
-        return view('auth.review.review');
+        return redirect('reviews/review/' . $review->id);
     }
 
     
     /**
      * レビューを削除
+     * 
      * @param \Illuminate\Http\Request $request
      * @return view | RedirectResponse
      */
     public function delete(Request $request)
     {
         //リクエストからレビューのidを取得
-        $reviewId = $request->id;
+        $review_id = $request->id;
 
-        //ユーザーの指定したレビューをユーザーが持っているか確認
-        if (Review::find($reviewId)->user_id !== Auth::id()) {
-            return redirect(403);
-        } else {
-            Review::find($reviewId)->delete();
+        Review::find($review_id)->delete();
 
-            return view('auth.review.review');
-        }
-        
+        return redirect(route('user.review'));
     }
 
     /**

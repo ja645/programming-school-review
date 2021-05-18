@@ -29,6 +29,6 @@ class ChangePasswordController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        return view('auth.user.mypage');
+        return redirect(route('mypage'));
     }
 }
