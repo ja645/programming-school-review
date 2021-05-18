@@ -32,7 +32,7 @@ class AuthenticationController extends Controller
 
             return redirect(route('school-list'));
         } else {
-            return redirect('admin/login')->withSession([
+            return redirect(route('admin.login'))->withSession([
                 'flash_message' => 'ユーザーIDまたはパスワードが違います。'
             ]);
         }

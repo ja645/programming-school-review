@@ -17,7 +17,7 @@ class AdminAuth
     public function handle(Request $request, Closure $next)
     {
         if(false == $request->session()->get('admin_auth')) {
-            return redirect('admin/login');
+            return redirect(route('admin.login'));
         }
         return $next($request);
     }
