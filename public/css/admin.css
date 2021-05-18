@@ -27,6 +27,9 @@ p, h1, h2, h3, h4, h5, h6 {
 footer {
   padding: 10px 0;
   background-color: #EEEEEE;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 footer a {

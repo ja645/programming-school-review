@@ -79,7 +79,7 @@ Route::middleware(['auth'])->group(function() {
 Route::group(['middleware' => ['auth.admin']], function () {
   // 管理者としてスクールのデータを操作する
   Route::get('/admin', [SchoolDataController::class, 'showSchoolList'])->name('school-list');
-  Route::get('/admin/add', [SchoolDataController::class, 'showAddSchool']);
+  Route::get('/admin/add', [SchoolDataController::class, 'showAddSchool'])->name('admin.add');
   Route::post('/admin/create', [SchoolDataController::class, 'addSchool']);
   Route::get('/admin/edit/{id}', [SchoolDataController::class, 'showEditSchool']);
   Route::post('/admin/update', [SchoolDataController::class, 'updateSchool']);
