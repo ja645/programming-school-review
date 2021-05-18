@@ -14,9 +14,6 @@ class SchoolDataController extends Controller
      */
     public function showSchoolList()
     {
-        // 管理者以外のアクセスには403を返す
-        // Gate::authorize('isAdmin');
-
         $schools = School::all();
 
         return view('admin.school-list', ['schools' => $schools]);
@@ -29,9 +26,6 @@ class SchoolDataController extends Controller
      */
     public function showAddSchool()
     {
-        // 管理者以外のアクセスには403を返す
-        // Gate::authorize('isAdmin');
-
         return view('admin.add-school');
     }
 
@@ -42,8 +36,6 @@ class SchoolDataController extends Controller
      */
     public function addSchool(Request $request)
     {
-        // Gate::authorize('isAdmin');
-
         $school_form = $request->all();
        
         $school = School::create($school_form);
@@ -57,8 +49,6 @@ class SchoolDataController extends Controller
     */
    public function showEditSchool(int $id)
    {
-        // Gate::authorize('isAdmin');
-
         $school = School::find($id);
 
         return view('admin.edit-school', ['school' => $school]);
@@ -70,9 +60,7 @@ class SchoolDataController extends Controller
     * @return Illuminate\Support\Facades\Redirect
     */
     public function updateSchool(Request $request)
-    {
-        // Gate::authorize('isAdmin');
-       
+    {  
         $school = School::find($request->id);
 
        $school->fill($request->except('id'))->save();
@@ -87,8 +75,6 @@ class SchoolDataController extends Controller
      */
     public function deleteSchool(Request $request)
     {
-        // Gate::authorize('isAdmin');
-
         $school = School::find($request->id)->delete();
 
         return redirect(route('school-list'));

@@ -27,70 +27,64 @@ class SchoolDataControllerTest extends TestCase
     }
 
     /**
-     * 管理者のアクセスで
-     * スクールリストが表示されることをテスト
+     * 管理者としてログイン済みのユーザーが
+     * スクールリストページにアクセス出来ることをテスト
+     * 
      * @return void
      */
-    public function test_canShowSchoolList()
+    public function test_administrator_can_visit_schoolList()
     {
-        Auth::login($this->isAdmin);
-
-        $response = $this->actingAs($this->isAdmin)->get('/admin');
+        $response = $this->withSession(['admin_auth' => true])->get('/admin');
 
         $response->assertStatus(200)->assertViewIs('admin.school-list');
     }
 
     /**
-     * 管理者以外のユーザーが
-     * スクールリストにアクセスすると403にリダイレクトされることをテスト
+     * 管理者としてログインしていないユーザーがスクールリストにアクセスすると
+     * 管理者ログインページにリダイレクトされることをテスト
+     * 
      * @return void
      */
-    public function test_nonAdministoratorCanNotShowSchoolList()
+    public function test_non_administorator_can_not_visit_schoolList()
     {
-        Auth::login($this->isNotAdmin);
+        $response = $this->get('/admin');
 
-        $response = $this->actingAs($this->isNotAdmin)->get('/admin');
-
-        $response->assertStatus(403);
+        $response->assertRedirect(route('admin.login'));
     }
 
     /**
-     * 管理者のアクセスで
-     * スクール追加ページが表示されることをテスト
+     * 管理者としてログイン済みのユーザーが
+     * スクール追加ページにアクセス出来ることをテスト
+     * 
      * @return void
      */
-    public function test_canShowAddSchool()
+    public function test_administrator_can_visit_addSchool()
     {
-        Auth::login($this->isAdmin);
-
-        $response = $this->actingAs($this->isAdmin)->get('/admin/add');
+        $response = $this->withSession(['admin_auth' => true])->get('/admin/add');
 
         $response->assertStatus(200)->assertViewIs('admin.add-school');
     }
 
     /**
-     * 管理者以外のユーザーが
-     * スクール追加ページにアクセスすると403にリダイレクトされることをテスト
+     * 管理者としてログインしていないユーザーがスクール追加ページにアクセスすると
+     * 管理者ログインページにリダイレクトされることをテスト
+     * 
      * @return void
      */
-    public function test_nonAdministoratorCanNotShowAddSchool()
+    public function test_non_administorator_can_not_visit_addSchool()
     {
-        Auth::login($this->isNotAdmin);
+        $response = $this->get('/admin/add');
 
-        $response = $this->actingAs($this->isNotAdmin)->get('/admin/add');
-
-        $response->assertStatus(403);
+        $response->assertRedirect(route('admin.login'));
     }
 
     /**
-     * 管理者が
+     * 管理者としてログイン済みのユーザーが
      * スクールを追加出来ることをテスト
      * @return void
      */
-    public function test_canAddSchool()
+    public function test_administrator_can_add_school()
     {
-        Auth::login($this->isAdmin);
-
         $school_form = [
             'school_name' => 'test',
             'school_url' => 'test_url',
@@ -98,7 +92,7 @@ class SchoolDataControllerTest extends TestCase
             'features' => 'test_features',
         ];
 
-        $response = $this->actingAs($this->isAdmin)->post('/admin/create', $school_form);
+        $response = $this->withSession(['admin_auth' => true])->post('/admin/create', $school_form);
         
         $this->assertDatabaseHas('schools', $school_form);
         
@@ -106,14 +100,13 @@ class SchoolDataControllerTest extends TestCase
     }
 
     /**
-     * 管理者以外のユーザーが
-     * 新規スクールを追加しようとすると403にリダイレクトされることをテスト
+     * 管理者としてログインしていないユーザーが新規スクールを追加しようとすると
+     * 管理者ログインページにリダイレクトされることをテスト
+     * 
      * @return void
      */
-    public function test_nonAdministoratorCanNotCreateSchool()
+    public function test_non_administorator_can_not_add_School()
     {
-        Auth::login($this->isNotAdmin);
-
         $school_form = [
             'school_name' => 'test',
             'school_url' => 'test_url',
@@ -121,53 +114,49 @@ class SchoolDataControllerTest extends TestCase
             'features' => 'test_features',
         ];
 
-        $response = $this->actingAs($this->isNotAdmin)->post('/admin/create', $school_form);
+        $response = $this->post('/admin/create', $school_form);
 
-        $response->assertStatus(403);
+        $response->assertRedirect(route('admin.login'));
     }
 
     /**
-     * 管理者のアクセスで
-     * スクール編集ページが表示されることをテスト
+     * 管理者としてログイン済みのユーザーが
+     * スクール編集ページにアクセス出来ることをテスト
+     * 
      * @return void
      */
-    public function test_canShowEditSchool()
+    public function test_administrator_can_visit_editSchool()
     {
         $school = School::factory()->create();
 
-        Auth::login($this->isAdmin);
-
-        $response = $this->actingAs($this->isAdmin)->get('/admin/edit/' . $school->id);
+        $response = $this->withSession(['admin_auth' => true])->get('/admin/edit/' . $school->id);
 
         $response->assertStatus(200)->assertViewIs('admin.edit-school');
     }
 
     /**
-     * 管理者以外のユーザーが
-     * スクール編集ページにアクセスすると403にリダイレクトされることをテスト
+     * 管理者としてログインしていないユーザーがスクール編集ページにアクセスすると
+     * 管理者ログインページにリダイレクトされることをテスト
+     * 
      * @return void
      */
-    public function test_nonAdministoratorCanNotShowEditSchool()
+    public function test_non_administorator_can_not_visit_editSchool()
     {
         $school = School::factory()->create();
 
-        Auth::login($this->isNotAdmin);
+        $response = $this->get('/admin/edit/' . $school->id);
 
-        $response = $this->actingAs($this->isNotAdmin)->get('/admin/edit/' . $school->id);
-
-        $response->assertStatus(403);
+        $response->assertRedirect(route('admin.login'));
     }
 
     /**
-     * 管理者が
+     * 管理者としてログイン済みのユーザーが
      * スクールを編集出来ることをテスト
      * @return void
      */
-    public function test_canEditSchool()
+    public function test_administrator_can_update_school()
     {
         $school = School::factory()->create();
-
-        Auth::login($this->isAdmin);
 
         $school_form = [
             'id' => $school->id,
@@ -177,7 +166,7 @@ class SchoolDataControllerTest extends TestCase
             'features' => 'edited_features',
         ];
 
-        $response = $this->actingAs($this->isAdmin)->post('/admin/update', $school_form);
+        $response = $this->withSession(['admin_auth' => true])->post('/admin/update', $school_form);
 
         $this->assertDatabaseHas('schools', $school_form);
 
@@ -185,15 +174,14 @@ class SchoolDataControllerTest extends TestCase
     }
 
     /**
-     * 管理者以外のユーザーが
-     * スクールデータを更新しようとすると403にリダイレクトされることをテスト
+     * 管理者としてログインしていないユーザーがスクールデータを更新しようとすると
+     * 管理者ログインページにリダイレクトされることをテスト
+     * 
      * @return void
      */
-    public function test_nonAdministoratorCanNotUpdateSchool()
+    public function test_non_administorator_can_not_update_school()
     {
         $school = School::factory()->create();
-
-        Auth::login($this->isNotAdmin);
 
         $school_form = [
             'id' => $school->id,
@@ -203,23 +191,22 @@ class SchoolDataControllerTest extends TestCase
             'features' => 'edited_features',
         ];
 
-        $response = $this->actingAs($this->isNotAdmin)->post('/admin/update', $school_form);
+        $response = $this->post('/admin/update', $school_form);
 
-        $response->assertStatus(403);
+        $response->assertRedirect(route('admin.login'));
     }
 
     /**
-     * 管理者が
+     * 管理者としてログイン済みのユーザーが
      * スクールを削除出来ることをテスト
+     * 
      * @return void
      */
-    public function test_canDeleteSchool()
+    public function test_administrator_can_delete_school()
     {
         $school = School::factory()->create();
 
-        Auth::login($this->isAdmin);
-
-        $response = $this->actingAs($this->isAdmin)->post('/admin/delete', ['id' => $school->id]);
+        $response = $this->withSession(['admin_auth' => true])->post('/admin/delete', ['id' => $school->id]);
 
         $this->assertDatabaseMissing('schools', ['id' => $school->id]);
 
@@ -227,18 +214,17 @@ class SchoolDataControllerTest extends TestCase
     }
 
      /**
-     * 管理者以外のユーザーが
-     * スクールデータを削除しようとすると403にリダイレクトされることをテスト
+     * 管理者としてログインしていないユーザーがスクールデータを削除しようとすると
+     * 管理者ログインページにリダイレクトされることをテスト
+     * 
      * @return void
      */
-    public function test_nonAdministoratorCanNotDeleteSchool()
+    public function test_non_sdministorator_can_not_delete_school()
     {
         $school = School::factory()->create();
 
-        Auth::login($this->isNotAdmin);
-
         $response = $this->actingAs($this->isNotAdmin)->post('/admin/delete', ['id' => $school->id]);
 
-        $response->assertStatus(403);
+        $response->assertRedirect(route('admin.login'));
     }
 }
