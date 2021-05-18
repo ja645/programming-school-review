@@ -14,6 +14,8 @@ use Mockery\MockInterface;
 
 class SchoolControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     private $user;
 
     public function setUp(): void
@@ -45,24 +47,56 @@ class SchoolControllerTest extends TestCase
      */
     public function test_canShowSchool(): void
     {
-        // スクールの中から1つピックアップ
-        $school = School::first();
+        
+        
+     // スクールの中から1つピックアップ
+     $school = School::first();
+        
+        $mock = $this->partialMock(School::class, function (MockInterface $mock) {
+        // $mock = Mockery::mock('\App\Models\School');
 
-        $mock = $this->mock(SchoolService::class, function (MockInterface $mock) {
-            $mock->shouldReceive('getSatisfactions')->once()->andReturn(4.3);
-            $mock->shouldReceive('getTuitionAverage')->once()->andReturn(3.2);
-            $mock->shouldReceive('getTermAverage')->once()->andReturn(2.1);
-            $mock->shouldReceive('getRank')->once()->andReturn(1.0);
+            // インスタンスに対してメソッドを2回呼び出したときの、2回目のメソッドをモックする
+            // $mock->shouldReceive('getSatisfactions')->once()->andReturn([
+            //     'st_tuition' => 1,
+            //     'st_term' => 1,
+            //     'st_curriculum' => 1,
+            //     'st_mentor' => 1,
+            //     'st_support' => 1,
+            //     'st_staff' => 1,
+            //     'total_judg' => 1,
+            // ]);
+            $mock->shouldReceive(['find' => School::first(), 'find->getSatisfactions' => [
+                'st_tuition' => 1,
+                'st_term' => 1,
+                'st_curriculum' => 1,
+                'st_mentor' => 1,
+                'st_support' => 1,
+                'st_staff' => 1,
+                'total_judg' => 1,
+            ]]);
+            $mock->shouldReceive('find->getTuitionAverage')->once()->andReturn(2);
+            $mock->shouldReceive('find->getTermAverage')->once()->andReturn(3);
+            $mock->shouldReceive('find->getRank')->once()->andReturn(4);
         });
+
+       
 
         $response = $this->actingAs($this->user)->get('/schools/' . $school->id);
 
         $expected = [
             'school' => $school,
-            'satisfactions' => 4.3,
-            'tuition_average' => 3.2,
-            'term_average' => 2.1,
-            'school_rank' => 1.0,
+            'satisfactions' => [
+                'st_tuition' => 1,
+                'st_term' => 1,
+                'st_curriculum' => 1,
+                'st_mentor' => 1,
+                'st_support' => 1,
+                'st_staff' => 1,
+                'total_judg' => 1,
+            ],
+            'tuition_average' => 2,
+            'term_average' => 3,
+            'school_rank' => 4,
         ];
 
         $response->assertViewIs('auth.school.school')->assertViewHas($expected);

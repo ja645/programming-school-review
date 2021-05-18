@@ -19,7 +19,7 @@ class SchoolServiceTest extends TestCase
 
     private $schoolService;
 
-    private $school;
+    private $id;
 
     public function setUp(): void
     {
@@ -27,9 +27,11 @@ class SchoolServiceTest extends TestCase
  
         $user = User::factory()->create();
 
-        $this->school = School::factory()->create();
+        $school = School::factory()->create();
 
-        Review::factory()->for($user)->for($this->school)->create([
+        $this->id = $school->id;
+
+        Review::factory()->for($user)->for($school)->create([
             'tuition' => 380000,
             'when_start' => date('Y-m-d'),
             'when_end' => date('Y-m-d', strtotime('90day')),
@@ -42,7 +44,7 @@ class SchoolServiceTest extends TestCase
             'total_judg' => 0,
         ]);
 
-        Review::factory()->for($user)->for($this->school)->create([
+        Review::factory()->for($user)->for($school)->create([
             'tuition' => 560000,
             'when_start' => date('Y-m-d'),
             'when_end' => date('Y-m-d', strtotime('120day')),
@@ -55,7 +57,7 @@ class SchoolServiceTest extends TestCase
             'total_judg' => 0,
         ]);
 
-        Review::factory()->for($user)->for($this->school)->create([
+        Review::factory()->for($user)->for($school)->create([
             'tuition' => 420000,
             'when_start' => date('Y-m-d'),
             'when_end' => date('Y-m-d', strtotime('40day')),
@@ -68,7 +70,7 @@ class SchoolServiceTest extends TestCase
             'total_judg' => 0,
         ]);
 
-        $this->schoolService = new SchoolService($this->school);
+        $this->schoolService = new SchoolService;
     }
 
     /**
@@ -91,7 +93,7 @@ class SchoolServiceTest extends TestCase
             'total_judg' => 0,
         ];
 
-        $satisfactions = $this->schoolService->getSatisfactions();
+        $satisfactions = $this->schoolService->getSatisfactions($this->id);
 
         assertSame($expected, $satisfactions);
     }
@@ -103,7 +105,7 @@ class SchoolServiceTest extends TestCase
      */
     public function testCanGetTuitionAverage()
     {
-        $tuitionAverage = $this->schoolService->getTuitionAverage();
+        $tuitionAverage = $this->schoolService->getTuitionAverage($this->id);
 
         assertSame(453333, $tuitionAverage);
     }
@@ -115,7 +117,7 @@ class SchoolServiceTest extends TestCase
      */
     public function testCanGetTermAverage()
     {
-        $termAverage = $this->schoolService->getTermAverage();
+        $termAverage = $this->schoolService->getTermAverage($this->id);
 
         assertSame(83, $termAverage);
     }
@@ -133,13 +135,11 @@ class SchoolServiceTest extends TestCase
     {
         $schoolHasNoReview = School::factory()->create();
 
-        $schoolService = new SchoolService($schoolHasNoReview);
+        $satisfactions = $this->schoolService->getSatisfactions($schoolHasNoReview->id);
 
-        $satisfactions = $schoolService->getSatisfactions();
+        $tuitionAverage = $this->schoolService->getTuitionAverage($schoolHasNoReview->id);
 
-        $tuitionAverage = $schoolService->getTuitionAverage();
-
-        $termAverage = $schoolService->getTermAverage();
+        $termAverage = $this->schoolService->getTermAverage($schoolHasNoReview->id);
 
         $expected = [
             'st_tuition' => 0,
@@ -169,15 +169,15 @@ class SchoolServiceTest extends TestCase
         $mock = $this->mock(RankingService::class, function (MockInterface $mock) {
             // $this->schoolが2位となるダミーのスクールリストを作成
             $schoolList = [
-                ['school_id' => $this->school->id, 'school_name' => 'hoge', 'column' => 5],
-                ['school_id' => $this->school->id + 1, 'school_name' => 'fuga', 'column' => 4],
-                ['school_id' => $this->school->id + 2, 'school_name' => 'hogehoge', 'column' => 6],
+                ['school_id' => $this->id, 'school_name' => 'hoge', 'column' => 5],
+                ['school_id' => $this->id + 1, 'school_name' => 'fuga', 'column' => 4],
+                ['school_id' => $this->id + 2, 'school_name' => 'hogehoge', 'column' => 6],
             ];
             
             $mock->shouldReceive('getSchoolList')->once()->andReturn($schoolList);
         });
 
-        $rank = $this->schoolService->getRank();
+        $rank = $this->schoolService->getRank($this->id);
         
         assertSame(2, $rank);
     }

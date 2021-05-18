@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\School;
 use App\Models\Review;
-use App\Services\SchoolService;
 use Illuminate\Support\Facades\Auth;
 
 class SchoolController extends Controller
 {
+    // private $school;
+
+    // public function __construct(School $school)
+    // {
+    //     $this->school = $school;
+    // }
     /**
      * スクール一覧を表示
      * @return view
@@ -17,6 +22,7 @@ class SchoolController extends Controller
     public function showSchoolList()
     {   
         $schools = School::orderByDesc('created_at')->paginate(10);
+        // $schools = $this->school->orderByDesc('created_at')->paginate(10);
 
         return view('auth.school.school-list', ['schools' => $schools]);
     }
@@ -28,30 +34,24 @@ class SchoolController extends Controller
     public function showSchool($id)
     {
         // 指定したidのスクールを取得
-        $school = School::find($id);
+        // $school = $this->school->find($id);
+        $school = app(School::class);
+        $school = $school->find($id);
 
-        app()->bind(SchoolService::class, function(School $school) {
-            return new SchoolService($school);
-        });
-
-        $SchoolService = app()->make(SchoolServiece::class);
-        
-        // $SchoolService = new SchoolService($school);
-
-        dump($SchoolService->getSatisfactions());
+        dump($school);
         // スクールの満足度を取得
-        $satisfactions = $SchoolService->getSatisfactions();
+        $satisfactions = $school->getSatisfactions();
 
+        // dump($satisfactions);
         // スクールの平均受講期間を取得
-        $tuition_average = $SchoolService->getTuitionAverage();
+        $tuition_average = $school->getTuitionAverage();
 
         // スクールの平均受講料を取得
-        $term_average = $SchoolService->getTermAverage();
+        $term_average = $school->getTermAverage();
 
         // スクールの順位を取得
-        $school_rank = $SchoolService->getRank();
+        $school_rank = $school->getRank();
 
-        // dump($school_rank);
         //総合評価のランキングとレビュー総数を表示
         return view('auth.school.school', [
             'school' => $school,
@@ -82,7 +82,6 @@ class SchoolController extends Controller
 
         }
 
-        // dump(key($schools));
         return view('auth.school.school-list', ['schools' => $schools]);
     }
 }

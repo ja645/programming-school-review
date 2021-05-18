@@ -6,21 +6,16 @@ use App\Models\School;
 
 class SchoolService
 {
-  protected $school;
- 
-  // public function __construct(School $school)
-  // {
-  //   $this->school = $school;
-  // }
-
-
   /**
    * スクールに紐付いたレビューから満足度の平均値を取得し、配列にして返す
+   * @param integer $id
    * @return array
    */
-  public function getSatisfactions(): array
+  public function getSatisfactions($id): array
   {
-    $reviews = $this->school->reviews;
+    $school = School::find($id);
+
+    $reviews = $school->reviews;
 
     $coloums = ['st_tuition', 'st_term', 'st_curriculum', 'st_mentor', 'st_support', 'st_staff', 'total_judg'];
 
@@ -53,9 +48,11 @@ class SchoolService
    * スクールに紐付いたレビューから受講料の平均を返す
    * @return integer
    */
-  public function getTuitionAverage()
+  public function getTuitionAverage($id)
   {
-    $reviews = $this->school->reviews;
+    $school = School::find($id);
+
+    $reviews = $school->reviews;
 
     $number_of_reviews = $reviews->count();
 
@@ -72,11 +69,14 @@ class SchoolService
 
   /**
    * スクールに紐付いたレビューから受講期間の平均を返す
+   * @param integer $id
    * @return double
    */
-  public function getTermAverage()
+  public function getTermAverage(int $id)
   {
-    $reviews = $this->school->reviews;
+    $school = School::find($id);
+
+    $reviews = $school->reviews;
 
     $number_of_reviews = $reviews->count();
 
@@ -106,9 +106,10 @@ class SchoolService
   /**
    * スクールのidを指定し
    * 総合評価の中での、そのスクールの順位を取得する
+   * @param integer $id
    * @return integer
    */
-  public function getRank()
+  public function getRank(int $id)
   {
     // 総合評価についてスクールリストを取得する
     $schoolList = app(RankingService::class)->getSchoolList('total_judg');
@@ -120,7 +121,7 @@ class SchoolService
     array_multisort($sort, SORT_DESC, $schoolList);
 
     // 指定したスクールが配列の何番目かを取得
-    $rank = array_search($this->school->id, array_column($schoolList, 'school_id')) + 1;
+    $rank = array_search($id, array_column($schoolList, 'school_id')) + 1;
 
     return $rank;
   }
