@@ -10,7 +10,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RankingController;
 use App\Http\Controllers\SchoolController;
-use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AuthenticationController;
 use App\Http\Controllers\Admin\SchoolDataController;
 use App\Models\School;
 
@@ -35,8 +35,8 @@ Route::get('/contacts', [HomeController::class, 'showContactForm'])->name('conta
 Route::post('/contacts', [HomeController::class, 'receiveContact']);
 
 // 管理者としてログインする
-Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/admin/login', [AdminController::class, 'login']);
+Route::get('/admin/login', [AuthenticationController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AuthenticationController::class, 'login']);
 
 // ログイン後に閲覧可能
 Route::middleware(['auth'])->group(function() {
@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
   Route::get('/admin/edit/{id}', [SchoolDataController::class, 'showEditSchool']);
   Route::post('/admin/update', [SchoolDataController::class, 'updateSchool']);
   Route::post('/admin/delete', [SchoolDataController::class, 'deleteSchool']);
+  Route::post('/admin/logout', [AuthenticationController::class, 'logout'])->name('admin.logout');
 });
 
 require __DIR__.'/auth.php';

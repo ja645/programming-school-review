@@ -32,7 +32,7 @@ class AuthenticationController extends Controller
 
             return redirect(route('school-list'));
         } else {
-            return redirect(route('admin.login'))->withSession([
+            return redirect(route('admin.login'))->with([
                 'flash_message' => 'ユーザーIDまたはパスワードが違います。'
             ]);
         }
@@ -47,6 +47,6 @@ class AuthenticationController extends Controller
     public function logout(Request $request)
     {
         $request->session()->forget('admin_auth');
-        return redirect('top');
+        return redirect(route('top'));
     }
 }
