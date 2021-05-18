@@ -31,8 +31,8 @@ class SignupFormRequest extends FormRequest
             'sex'=> 'required|integer|min:0|max:2',
             'former_job' => 'nullable',
             'job' => 'nullable',
-            'email' => 'required|email:strict,dns,spoof|max:256|unique:users,email',
-            'password' => 'required|regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i|confirmed',
+            'email' => ['required', 'string', 'email:strict,spoof,dns', 'max:256', 'unique:users,email'],
+            'password' => ['required', 'regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i', 'confirmed'],
         ];
         
         // switch ($route) {
