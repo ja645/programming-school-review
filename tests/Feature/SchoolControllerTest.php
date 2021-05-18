@@ -47,25 +47,8 @@ class SchoolControllerTest extends TestCase
      */
     public function test_canShowSchool(): void
     {
-        
-        
-     // スクールの中から1つピックアップ
-     $school = School::first();
-        
-        $mock = $this->partialMock(School::class, function (MockInterface $mock) {
-        // $mock = Mockery::mock('\App\Models\School');
-
-            // インスタンスに対してメソッドを2回呼び出したときの、2回目のメソッドをモックする
-            // $mock->shouldReceive('getSatisfactions')->once()->andReturn([
-            //     'st_tuition' => 1,
-            //     'st_term' => 1,
-            //     'st_curriculum' => 1,
-            //     'st_mentor' => 1,
-            //     'st_support' => 1,
-            //     'st_staff' => 1,
-            //     'total_judg' => 1,
-            // ]);
-            $mock->shouldReceive(['find' => School::first(), 'find->getSatisfactions' => [
+        $mock = $this->mock(SchoolService::class, function (MockInterface $mock) {
+            $mock->shouldReceive('getSatisfactions')->once()->andReturn([
                 'st_tuition' => 1,
                 'st_term' => 1,
                 'st_curriculum' => 1,
@@ -73,14 +56,16 @@ class SchoolControllerTest extends TestCase
                 'st_support' => 1,
                 'st_staff' => 1,
                 'total_judg' => 1,
-            ]]);
-            $mock->shouldReceive('find->getTuitionAverage')->once()->andReturn(2);
-            $mock->shouldReceive('find->getTermAverage')->once()->andReturn(3);
-            $mock->shouldReceive('find->getRank')->once()->andReturn(4);
+            ]);
+            $mock->shouldReceive('getTuitionAverage')->once()->andReturn(2);
+            $mock->shouldReceive('getTermAverage')->once()->andReturn(3);
+            $mock->shouldReceive('getRank')->once()->andReturn(4);
         });
-
-       
-
+            
+        // スクールの中から1つピックアップ
+        $school = School::first();
+        
+            
         $response = $this->actingAs($this->user)->get('/schools/' . $school->id);
 
         $expected = [
@@ -112,6 +97,6 @@ class SchoolControllerTest extends TestCase
 
         $response = $this->actingAs($this->user)->post(route('search'), ['school_name' => 'searching']);
 
-        $response->assertViewIs('auth.school.school-list')->assertViewHas('schools');
+        $response->assertViewIs('auth.school.school-list')->assertSee('test searching school');
     }
 }

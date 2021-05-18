@@ -5,16 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\School;
 use App\Models\Review;
+use App\Services\SchoolService;
 use Illuminate\Support\Facades\Auth;
 
 class SchoolController extends Controller
 {
-    // private $school;
-
-    // public function __construct(School $school)
-    // {
-    //     $this->school = $school;
-    // }
     /**
      * スクール一覧を表示
      * @return view
@@ -22,7 +17,6 @@ class SchoolController extends Controller
     public function showSchoolList()
     {   
         $schools = School::orderByDesc('created_at')->paginate(10);
-        // $schools = $this->school->orderByDesc('created_at')->paginate(10);
 
         return view('auth.school.school-list', ['schools' => $schools]);
     }
@@ -34,23 +28,21 @@ class SchoolController extends Controller
     public function showSchool($id)
     {
         // 指定したidのスクールを取得
-        // $school = $this->school->find($id);
-        $school = app(School::class);
-        $school = $school->find($id);
+        $school = School::find($id);
 
-        dump($school);
+        $schoolService = app(SchoolService::class);
+
         // スクールの満足度を取得
-        $satisfactions = $school->getSatisfactions();
+        $satisfactions = $schoolService->getSatisfactions($id);
 
-        // dump($satisfactions);
         // スクールの平均受講期間を取得
-        $tuition_average = $school->getTuitionAverage();
+        $tuition_average = $schoolService->getTuitionAverage($id);
 
         // スクールの平均受講料を取得
-        $term_average = $school->getTermAverage();
+        $term_average = $schoolService->getTermAverage($id);
 
         // スクールの順位を取得
-        $school_rank = $school->getRank();
+        $school_rank = $schoolService->getRank($id);
 
         //総合評価のランキングとレビュー総数を表示
         return view('auth.school.school', [
@@ -76,10 +68,8 @@ class SchoolController extends Controller
             $schools = School::where('school_name', 'like', '%'.$school_name.'%')
                         ->orderByDesc('created_at')->paginate(10);
         } else {
-
             // 検索ボックスに何も入力されなければ全てのスクールを返す
             $schools = School::orderByDesc('created_at')->paginate(10);
-
         }
 
         return view('auth.school.school-list', ['schools' => $schools]);
