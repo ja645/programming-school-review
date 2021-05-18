@@ -10,7 +10,8 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RankingController;
 use App\Http\Controllers\SchoolController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\SchoolDataController;
 use App\Models\School;
 
 /*
@@ -34,8 +35,8 @@ Route::get('/contacts', [HomeController::class, 'showContactForm'])->name('conta
 Route::post('/contacts', [HomeController::class, 'receiveContact']);
 
 // 管理者としてログインする
-Route::get('/admin/login', [Admin\AdminController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/admin/login', [Admin\AdminController::class, 'login']);
+Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'login']);
 
 // ログイン後に閲覧可能
 Route::middleware(['auth'])->group(function() {
@@ -77,12 +78,12 @@ Route::middleware(['auth'])->group(function() {
 
 Route::group(['middleware' => ['auth.admin']], function () {
   // 管理者としてスクールのデータを操作する
-  Route::get('/admin', [AdminController::class, 'showSchoolList'])->name('school-list');
-  Route::get('/admin/add', [AdminController::class, 'showAddSchool']);
-  Route::post('/admin/create', [AdminController::class, 'addSchool']);
-  Route::get('/admin/edit/{id}', [AdminController::class, 'showEditSchool']);
-  Route::post('/admin/update', [AdminController::class, 'updateSchool']);
-  Route::post('/admin/delete', [AdminController::class, 'deleteSchool']);
+  Route::get('/admin', [SchoolDataController::class, 'showSchoolList'])->name('school-list');
+  Route::get('/admin/add', [SchoolDataController::class, 'showAddSchool']);
+  Route::post('/admin/create', [SchoolDataController::class, 'addSchool']);
+  Route::get('/admin/edit/{id}', [SchoolDataController::class, 'showEditSchool']);
+  Route::post('/admin/update', [SchoolDataController::class, 'updateSchool']);
+  Route::post('/admin/delete', [SchoolDataController::class, 'deleteSchool']);
 });
 
 require __DIR__.'/auth.php';
