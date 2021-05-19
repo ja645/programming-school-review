@@ -23,6 +23,15 @@ class School extends Model
     ];
 
     /**
+     * featuresカラムを取得するときに配列にキャスト
+     * 
+     * @var array
+     */
+    protected $casts = [
+        'features' => 'array'
+    ];
+
+    /**
      * スクールに投稿されたレビューを取得
      */
     public function reviews()

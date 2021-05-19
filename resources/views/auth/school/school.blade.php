@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-sm-1 col-2"></div>
         <div class="col-sm-11 col-10 total-rank">
-          <p>総合ランキング{{ $school_rank }}位&emsp;レビュー件数{{ $school->reviews->count() }}件</p>
+          <p>総合ランキング{{ $school_rank }}位&emsp;レビュー件数{{ $school->reviews->count() }}件&emsp;<button class="btn btn-success" href="{{ $school->school_url }}">公式ページを見る</button></p>
         </div>
       </div>
     </div>
@@ -111,14 +111,11 @@
       <div class="row">
         <div class="col-sm-1 d-none d-sm-block"></div>
         <div class="col-12 col-md school-address py-5">
-          <p>所在地：東京都hogehoge区hogehoge　hogehogeビル1F</p>
-          <p>url</p>
+          <p></p>
         </div>
         <div class="col-12 col-md school-feature py-5">
           <ul>
-            <li>オンラインのみ</li>
-            <li>Mac必須</li>
-            <li>転職成功で受講料キャッシュバック</li>
+            <li>{{ $school->features }}</li>
           </ul>
         </div>
       </div>

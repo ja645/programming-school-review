@@ -17,7 +17,11 @@
           {{ $school->school_name }}
         </a>
           <div class="d-flex">
-            <a href="/admin/edit">編集</a>
+            <form id="admin-edit" action="/admin/edit" method="post">
+            @csrf
+              <input type="hidden" name="id" value="{{ $school->id }}">
+              <a href="/admin/edit" onclick="event.preventDefault(); document.getElementById('admin-edit').submit();">編集</a>
+            </form>
             <form id="admin-delete" action="/admin/delete" method="post">
             @csrf
               <input type="hidden" name="id" value="{{ $school->id }}">

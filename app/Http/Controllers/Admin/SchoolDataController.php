@@ -47,9 +47,9 @@ class SchoolDataController extends Controller
     * スクールの更新ページを表示する
     *@return view
     */
-   public function showEditSchool(int $id)
+   public function showEditSchool(Request $request)
    {
-        $school = School::find($id);
+        $school = School::find($request->id);
 
         return view('admin.edit-school', ['school' => $school]);
    }

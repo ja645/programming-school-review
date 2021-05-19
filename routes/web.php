@@ -96,7 +96,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
   Route::get('/admin', [SchoolDataController::class, 'showSchoolList'])->name('school-list');
   Route::get('/admin/add', [SchoolDataController::class, 'showAddSchool'])->name('admin.add');
   Route::post('/admin/create', [SchoolDataController::class, 'addSchool']);
-  Route::get('/admin/edit/{id}', [SchoolDataController::class, 'showEditSchool']);
+  Route::post('/admin/edit', [SchoolDataController::class, 'showEditSchool']);
   Route::post('/admin/update', [SchoolDataController::class, 'updateSchool']);
   Route::post('/admin/delete', [SchoolDataController::class, 'deleteSchool']);
   Route::post('/admin/logout', [AuthenticationController::class, 'logout'])->name('admin.logout');

@@ -75,8 +75,7 @@ class SchoolDataControllerTest extends TestCase
         $school_form = [
             'school_name' => 'test',
             'school_url' => 'test_url',
-            'address' => 'test_address',
-            'features' => 'test_features',
+            'features' => "['test1', 'test2', 'test3', 'test4']",
         ];
 
         $response = $this->withSession(['admin_auth' => true])->post('/admin/create', $school_form);
@@ -97,8 +96,7 @@ class SchoolDataControllerTest extends TestCase
         $school_form = [
             'school_name' => 'test',
             'school_url' => 'test_url',
-            'address' => 'test_address',
-            'features' => 'test_features',
+            'features' => ['test1', 'test2', 'test3', 'test4'],
         ];
 
         $response = $this->post('/admin/create', $school_form);
@@ -116,7 +114,7 @@ class SchoolDataControllerTest extends TestCase
     {
         $school = School::factory()->create();
 
-        $response = $this->withSession(['admin_auth' => true])->get('/admin/edit/' . $school->id);
+        $response = $this->withSession(['admin_auth' => true])->post('/admin/edit', ['id' => $school->id]);
 
         $response->assertStatus(200)->assertViewIs('admin.edit-school');
     }
@@ -131,7 +129,7 @@ class SchoolDataControllerTest extends TestCase
     {
         $school = School::factory()->create();
 
-        $response = $this->get('/admin/edit/' . $school->id);
+        $response = $this->post('/admin/edit', ['id' => $school->id]);
 
         $response->assertRedirect(route('admin.login'));
     }
@@ -149,8 +147,7 @@ class SchoolDataControllerTest extends TestCase
             'id' => $school->id,
             'school_name' => 'edited',
             'school_url' => 'edited_url',
-            'address' => 'edited_address',
-            'features' => 'edited_features',
+            'features' => "['test1', 'test2', 'test3', 'test4']",
         ];
 
         $response = $this->withSession(['admin_auth' => true])->post('/admin/update', $school_form);
@@ -174,8 +171,7 @@ class SchoolDataControllerTest extends TestCase
             'id' => $school->id,
             'school_name' => 'edited',
             'school_url' => 'edited_url',
-            'address' => 'edited_address',
-            'features' => 'edited_features',
+            'features' => ['test1', 'test2', 'test3', 'test4'],
         ];
 
         $response = $this->post('/admin/update', $school_form);
