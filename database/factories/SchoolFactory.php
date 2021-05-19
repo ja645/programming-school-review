@@ -24,7 +24,6 @@ class SchoolFactory extends Factory
         return [
             'school_name' => 'test_school',
             'school_url' => 'test_url',
-            'address' => 'test_address',
             'features' => 'test_features'
         ];
     }

@@ -17,7 +17,6 @@ class CreateSchoolsTable extends Migration
             $table->id();
             $table->string('school_name');
             $table->string('school_url');
-            $table->string('address');
             $table->string('features');
             $table->timestamp('created_at');
             $table->timestamp('updated_at');

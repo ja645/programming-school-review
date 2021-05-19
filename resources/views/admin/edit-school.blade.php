@@ -31,11 +31,6 @@
                       <label for="user_name">スクールURL</label>
                       <input type="text" name="school_url" value="{{ old('school_url', $school->school_url) }}" placeholder="スクールの公式ページURLを入力してください。">
                   </li>
-                  
-                  <li class="list-group-item">
-                      <label for="former_job">スクール住所</label>
-                      <input type="text" name="address" value="{{ old('address', $school->address) }}" placeholder="スクールの住所を入力してください。">
-                  </li>
 
                   <li class="list-group-item">
                       <label for="former_job">スクールの特徴</label>
