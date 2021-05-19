@@ -18,8 +18,9 @@
         </a>
           <div class="d-flex">
             <a href="/admin/edit">編集</a>
-            <form id="admin-delete" action="'/admin/delete" method="post">
+            <form id="admin-delete" action="/admin/delete" method="post">
             @csrf
+              <input type="hidden" name="id" value="{{ $school->id }}">
               <a href="/admin/delete" onclick="event.preventDefault(); document.getElementById('admin-delete').submit();">削除</a>
             </form>
           </div>
