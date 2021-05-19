@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-sm-1 col-2"></div>
         <div class="col-sm-11 col-10 total-rank">
-          <p>総合ランキング{{ $school_rank }}位&emsp;レビュー件数{{ $school->reviews->count() }}件&emsp;<button class="btn btn-success" href="{{ $school->school_url }}">公式ページを見る</button></p>
+          <p>総合ランキング{{ $school_rank }}位&emsp;レビュー件数{{ $school->reviews->count() }}件</p>
         </div>
       </div>
     </div>
@@ -108,27 +108,34 @@
     </div>
 
     <div class="school-info-card col-11 mx-auto">
-      <div class="row">
-        <div class="col-sm-1 d-none d-sm-block"></div>
-        <div class="col-12 col-md school-address py-5">
-          <p></p>
-        </div>
-        <div class="col-12 col-md school-feature py-5">
+      <div class="p-5">
+        <div>{{ $school->school_name }}の特徴</div>
           <ul>
-            <li>{{ $school->features }}</li>
+            @foreach($school->features as $feature)
+              <li>{{ $feature }}</li>
+            @endforeach
           </ul>
+        <div class="d-flex justify-content-end">
+          <a href="{{ $school->school_url }}">公式ページを見る<i class="fas fa-angle-double-right"></i></a>
         </div>
       </div>
     </div>
       
-    <div class="col-11 mx-auto school-reviews-card p-5">
+    <div class="col-11 school-reviews-card p-5">
       <p>{{ $school->school_name }}に寄せられたレビュー</p>
-      <div class="review-list">
-        @foreach ($school->reviews as $review)
-        <a href="{{ url('/review/' . $review->id) }}"  class="list-group-item list-group-item-action">{{ $review->title }}</a>
-        @endforeach
+      @if($school->reviews->isEmpty())
+        <p>まだレビューがありません</p>
+      @else
+        <div class="review-list">
+          @foreach ($school->reviews as $review)
+          <a href="{{ url('/review/' . $review->id) }}"  class="list-group-item list-group-item-action">{{ $review->title }}</a>
+          @endforeach
+        </div>
+      @endif
+
+      <div class="d-flex justify-content-end">
+        <a href="{{ url('/reviews/' . $school->id) }}" class="text-align: center;">他のレビューを見る<i class="fas fa-angle-double-right"></i></a>
       </div>
-      <a href="{{ url('/reviews/' . $school->id) }}">他のレビューを見る<i class="fas fa-angle-double-right"></i></a>
     </div>
   </div>
 </div>

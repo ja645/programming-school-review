@@ -779,10 +779,14 @@ footer a:hover {
   border-radius: 2px;
 }
 
+.school-info-card li {
+  list-style: square;
+}
+
 .school-reviews-card {
   background-color: rgba(238, 238, 238, 1);
   box-shadow: 10px 10px 5px 0 black;
-  margin-top: 40px;
+  margin: 40px auto;
   border-radius: 2px;
 }
 
