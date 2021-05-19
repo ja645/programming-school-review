@@ -33,7 +33,8 @@
 
                   <li class="list-group-item">
                       <label for="former_job">スクールの特徴</label>
-                      <input type="text" name="features" value="{{ old('features') }}" placeholder="スクールの特徴を入力してください。">
+                      <input type="text" name="features_[]" value="{{ old('features') }}" placeholder="スクールの特徴を入力してください。">
+                      <a id="add" type="button" onclick="addInput()" style="margin-top: 20px;>特徴を追加&emsp;<i class="fas fa-plus fa-2x"></i></a>
                   </li>
 
                   <li class="list-group-item">
@@ -51,4 +52,17 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+    function addInput(){
+        var add = document.getElementById('add');
+
+        var new_input = document.createElement('input');
+        new_input.setAttribute('type', 'text');
+        new_input.setAttribute('name', 'features_[]');
+        new_input.setAttribute('placeholder', 'スクールの特徴を入力してください。');
+
+        add.before(new_input);
+    };
+</script>
 @endsection
