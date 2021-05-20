@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
+   sodipodi:docname="paddle.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="29.909509"
+     inkscape:cy="206.85468"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1020"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="レイヤー 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#003366;stroke-width:0.267269"
+       d="m -91.956156,207.3538 c 0,-0.1349 1.693431,-4.91569 3.76318,-10.62396 2.069749,-5.70827 6.110262,-16.87332 8.978919,-24.81123 13.153399,-36.39697 19.007194,-50.98982 26.320758,-65.61467 C -35.483845,71.490484 -15.887497,51.95971 40.475894,13.2472 48.89039,7.4678035 77.831639,-11.846629 77.9299,-11.748365 c 0.03682,0.03682 -0.773578,3.1306768 -1.800879,6.8752479 C 56.631307,66.197304 31.788721,108.30113 -15.408177,150.2664 c -17.719554,15.7554 -39.210348,32.07211 -69.108812,52.47029 -3.919862,2.67432 -7.197255,4.8624 -7.283095,4.8624 -0.08584,0 -0.156072,-0.11037 -0.156072,-0.24529 z"
+       id="path843" />
+  </g>
+</svg>

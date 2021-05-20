@@ -37,14 +37,14 @@
 </head>
 <body>
   
-  <nav class="navbar navbar-expand-lg py-3">
+  <nav class="navbar navbar-expand-lg pt-5 pb-3">
     <div class="container-xl">
       <a class="navbar-brand me-5" href="{{ route('top') }}">ロゴ</a>
       
       <!-- 画面幅lg以下で表示される -->
       <form action="{{ route('search') }}" method="post" id="s-form" class="d-flex d-lg-none">
         @csrf
-        <input id="s-box" type="text" name="school_name" class="form-control me-2" placeholder="スクールの名前で検索" aria-label="Search">
+        <input id="s-box" type="text" name="school_name" class="feedback-input" placeholder="スクールの名前で検索" aria-label="Search">
         <button id="s-btn" type="submit"><i class="fas fa-search fa-lg"></i></button>
       </form>
 
@@ -55,33 +55,38 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
-          <li class="nav-item my-auto">
+
+          <li class="nav-item">
             <div class="nav-icon">
               <a href="{{ route('ranking') }}"><i class="fas fa-crown fa-2x"></i><span>ランキング</span></a>
             </div>
           </li>
-          <li class="nav-item my-auto">
+
+          <li class="nav-item">
             <div class="nav-icon">
               <a href="{{ route('school.list') }}"><i class="fas fa-school fa-2x"></i><span>スクール一覧</span></a>
             </div>
           </li>
-        </ul>
-          <!-- 画面幅xl以上で表示される -->
-          <form action="{{ route('search') }}" method="post" id="s-form" class="d-flex d-lg-block d-none ms-lg-5">
+          
+        <!-- 画面幅xl以上で表示される -->
+        <div class="search-box d-flex d-lg-block d-none">
+          <form action="{{ route('search') }}" method="post" id="s-form">
             @csrf
-            <input id="s-box" type="text" name="school_name" class="form-control me-2" placeholder="スクールの名前で検索" aria-label="Search">
+            <input type="text" name="school_name" class="feedback-input" placeholder="スクールの名前で検索" aria-label="Search">
             <button id="s-btn" type="submit"><i class="fas fa-search fa-lg"></i></button>
           </form>
+        </div>
 
-        <ul class="navbar-nav ms-auto">
+        <!-- <ul class="navbar-nav ms-auto"> -->
           <!-- ログイン後 -->
           @if (Auth::check())
-          <li class="nav-item my-auto">
+          <li class="nav-item">
             <div class="nav-icon">
               <a href="{{ route('mypage') }}"><i class="fas fa-user fa-2x"></i><span>マイページ</span></a>
             </div>
           </li>
-          <li class="nav-item my-auto">
+
+          <li class="nav-item">
             <div class="nav-icon">
               <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-door-open fa-2x"></i>
@@ -95,18 +100,19 @@
 
           <!-- ログイン前 -->
           @else
-          <li class="nav-item my-auto">
+          <li class="nav-item">
             <div class="nav-icon d-lg-block d-inline">
               <a href="{{ route('signup') }}"><i class="fas fa-user-plus fa-2x"></i><span>新規登録</span></a>
             </div>
           </li>
-          <li class="nav-item my-auto">
+          <li class="nav-item">
             <div class="nav-icon">
               <a href="{{ route('login') }}"><i class="fas fa-door-open fa-2x fa-flip-horizontal"></i><span>ログイン</span></a>
             </div>
           </li>
           @endif
         </ul>
+
       </div>
     </div>
   </nav>

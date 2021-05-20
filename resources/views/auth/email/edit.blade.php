@@ -41,47 +41,31 @@
 
 <div class="container-xl">
 
-  <div class="row d-flex justify-content-center">
-
-    <div class="col-md-8">
-
-        <div name="logo">
-            <a href="/">
-                ロゴ
-            </a>
-        </div>
-
-        <!-- Session Status -->
-        <div class="mb-4" :status="session('status')"></div>
-
-        <!-- Validation Errors -->
-        <div class="mb-4" :errors="$errors"></div>
-
-        <form method="POST" action="{{ url('/email/edit') }}">
-          @csrf
-
-          <div id="user-prof" class="card" style="margin: 10.0rem 0;">
-            <div class="card-header">メールアドレス変更</div>
-            <div class="card-body text-secondary">
-              <ul class="list-group list-group-flush">
-                
-                <li class="list-group-item">
-                    <label for="new_email">新しいメールアドレス</label>
-                    <input type="email" name="new_email" value="{{ old('new_email', '新しいメールアドレスを入力してください。') }}">
-                </li>
-               
-                <li class="list-group-item">
-                  <button type="submit" class="btn btn-success" data-bs-container="body">
-                      メールアドレスを変更する
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-        </form>
-    </div>
+  <div name="logo">
+    <a href="/">
+      ロゴ
+    </a>
   </div>
+
+  <div class="form-title">
+    <p>スクール編集</p>
+  </div>
+
+  <form method="POST" action="{{ url('/email/edit') }}">
+  @if (count($errors) > 0)
+    <ul>
+      @foreach($errors->all() as $e)
+        <li>{{ $e }}</li>
+      @endforeach
+    </ul>
+  @endif
+  @csrf            
+                
+    <input type="email" name="new_email" class="feedback-input add-input" value="{{ old('new_email') }}" placeholder="新しいメールアドレス">
+                
+    <input type="submit" value="変更"/>
+  </form>
+
 </div>
 
 <!-- Scripts -->

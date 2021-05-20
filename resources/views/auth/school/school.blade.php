@@ -110,11 +110,13 @@
     <div class="school-info-card col-11 mx-auto">
       <div class="p-5">
         <div>{{ $school->school_name }}の特徴</div>
+        <div class="p-4">
           <ul>
             @foreach($school->features as $feature)
               <li>{{ $feature }}</li>
             @endforeach
           </ul>
+        </div>
         <div class="d-flex justify-content-end">
           <a href="{{ $school->school_url }}">公式ページを見る<i class="fas fa-angle-double-right"></i></a>
         </div>
@@ -124,18 +126,18 @@
     <div class="col-11 school-reviews-card p-5">
       <p>{{ $school->school_name }}に寄せられたレビュー</p>
       @if($school->reviews->isEmpty())
-        <p>まだレビューがありません</p>
+        <p class="py-4">まだレビューがありません</p>
       @else
         <div class="review-list">
           @foreach ($school->reviews as $review)
           <a href="{{ url('/review/' . $review->id) }}"  class="list-group-item list-group-item-action">{{ $review->title }}</a>
           @endforeach
         </div>
+        
+        <div class="d-flex justify-content-end">
+          <a href="{{ url('/reviews/' . $school->id) }}" class="text-align: center;">他のレビューを見る<i class="fas fa-angle-double-right"></i></a>
+        </div>
       @endif
-
-      <div class="d-flex justify-content-end">
-        <a href="{{ url('/reviews/' . $school->id) }}" class="text-align: center;">他のレビューを見る<i class="fas fa-angle-double-right"></i></a>
-      </div>
     </div>
   </div>
 </div>

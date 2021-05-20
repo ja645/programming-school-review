@@ -39,55 +39,33 @@
 </head>
 <body>
 
-<div class="container-xl">
-
-  <div class="row d-flex justify-content-center">
-
-    <div class="col-md-8">
-
-        <div name="logo">
-            <a href="/">
-                ロゴ
-            </a>
-        </div>
-
-        <!-- Session Status -->
-        <div class="mb-4" :status="session('status')"></div>
-
-        <!-- Validation Errors -->
-        <div class="mb-4" :errors="$errors"></div>
-
-        <form method="POST" action="{{ route('admin.login') }}">
-          @csrf
-
-          <div id="user-prof" class="card" style="margin: 10.0rem 0;">
-            <div class="card-header">管理者ログイン</div>
-            <div class="card-body text-secondary">
-              <ul class="list-group list-group-flush">
-                
-                <li class="list-group-item">
-                    <label for="user_id">ユーザーID</label>
-                    <input type="text" name="user_id" value="{{ old('user_id') }}" placeholder="ユーザーIDを入力してください。">
-                </li>
-                
-                <li class="list-group-item">
-                  <label for="password">パスワード</label>
-                  <input type="password" name="password" required autocomplete="current-password" placeholder="管理者ログイン用パスワードを入力してください。">
-                </li>
-            
-                <li class="list-group-item">
-                  <button type="submit" class="btn btn-success" data-bs-container="body">
-                      ログイン
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-        </form>
-    </div>
+  <div name="logo">
+      <a href="/">
+          ロゴ
+      </a>
   </div>
-</div>
+
+  
+  <div class="form-title">
+    <h1>管理者用ログイン</h1>
+  </div>
+  
+  <form method="POST" action="{{ route('admin.login') }}"　enctype="multipart/form-data">
+  @if (count($errors) > 0)
+    <ul>
+        @foreach($errors->all() as $e)
+        <li>{{ $e }}</li>
+        @endforeach
+    </ul>
+    @endif
+    @csrf
+             
+    <input name="user_id" type="text" class="feedback-input" value="{{ old('user_id') }}" placeholder="ユーザーID" />
+    <input name="password" type="password" class="feedback-input" placeholder="管理者パスワード" />
+    
+    <input type="submit" value="ログイン"/>
+  
+  </form>                 
 
 <!-- Scripts -->
 @if(app('env')=='local')

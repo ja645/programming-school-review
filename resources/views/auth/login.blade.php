@@ -38,63 +38,47 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
 <body>
+  <div id="has-no-header" class="container-fluid p-0">
 
-<div class="container-xl">
-
-  <div class="row d-flex justify-content-center">
-
-    <div class="col-md-8">
-
-        <div name="logo">
-            <a href="/">
-                ロゴ
-            </a>
-        </div>
-
-        <!-- Session Status -->
-        <div class="mb-4" :status="session('status')"></div>
-
-        <!-- Validation Errors -->
-        <div class="mb-4" :errors="$errors"></div>
-
-        <form method="POST" action="{{ route('login') }}">
-          @csrf
-
-          <div id="user-prof" class="card" style="margin: 10.0rem 0;">
-            <div class="card-header">ログイン</div>
-            <div class="card-body text-secondary">
-              <ul class="list-group list-group-flush">
-                
-                <li class="list-group-item">
-                    <label for="email">メールアドレス</label>
-                    <input type="email" name="email" value="{{ old('email') }}" placeholder="メールアドレスを入力してください。">
-                </li>
-                
-                <li class="list-group-item">
-                  <label for="password">パスワード</label>
-                  @if (Route::has('password.request'))
-                  <a href="{{ route('password.request') }}" style="border-bottom: solid 2px;">
-                    パスワードをお忘れですか？
-                  </a>
-                  @endif
-                  <input type="password" name="password" required autocomplete="current-password" placeholder="半角英数字をそれぞれ1字使い、8~100字で入力してください。">
-                </li>
-            
-                <li class="list-group-item">
-                  <button type="submit" class="btn btn-success" data-bs-container="body">
-                      ログイン
-                  </button>
-                  <div class="d-flex justify-content-start" style="padding-top: 10px;">
-                    <input id="remember_me" type="radio" name="remember" style="width: 30px; margin: auto;"><label for="remember_me">ログイン状態を保存する</label>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-        </form>
+    <div name="logo">
+        <a href="/">
+            ロゴ
+        </a>
     </div>
-  </div>
+
+    <div class="form-title">
+      <h1>ログイン</h1>
+    </div>
+
+    <form action="{{ route('login') }} " method="post" enctype="multipart/form-data">
+    @if (count($errors) > 0)
+    <ul>
+        @foreach($errors->all() as $e)
+        <li>{{ $e }}</li>
+        @endforeach
+    </ul>
+    @endif
+    @csrf
+
+      <input name="email" type="text" class="feedback-input" value="{{ old('email') }}" placeholder="メールアドレス" />
+      <input name="password" type="password" class="feedback-input" placeholder="パスワード" />
+      @if (Route::has('password.request'))
+        <div class="under-input">
+          <a href="{{ route('password.request') }}" style="border-bottom: solid 2px;">
+            パスワードをお忘れですか？
+          </a>
+        </div>
+      @endif
+      <input type="submit" value="ログイン"/>
+      <!-- Remember Me -->
+      <div class="under-input">
+        <label for="remember_me" class="inline-flex items-center">
+          <input id="remember_me" type="checkbox" name="remember">
+          <span>ログイン状態を保存する</span>
+        </label>
+      </div>
+    </form>
+
 </div>
 
 <!-- Scripts -->

@@ -3,16 +3,19 @@
 @section('title', 'review-list')
 
 @section('content')
-<div class="container-md">
+<div id="top-container" class="container-fluid p-0" style="height: 100vh;">
        
-  <div>{{ $reviews->first()->school->school_name }}に寄せられたレビュー</div>
+  <div class="form-title">
+    <h1>{{ $reviews->first()->school->school_name }}に寄せられたレビュー</h1>
+  </div>
   
-  @if($reviews->isEmpty())
-    <p class="is-empty">{{ $reviews->first()->school->school_name }}に寄せられたレビューはありません</p>
-  @else
+  <div class="col-md-8 col-10">
+    @if($reviews->isEmpty())
+      <p class="is-empty">{{ $reviews->first()->school->school_name }}に寄せられたレビューはありません</p>
+    @else
+  </div>
 
-    <div class="ranking">
-
+    <div class="ranking col-md-8 col-10">
       <div class="ranking-order d-flex justify-content-end">
         <label for="並べ替え">並べ替え：</label>
         <select class="form-select" aria-label="並べ替え">
@@ -29,20 +32,20 @@
         </ul>
 
 
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="total" role="tabpanel" aria-labelledby="total-tab">
-              @foreach ($reviews as $review)
-              <a href="{{ url('/review/' . $review->id) }}" class="list-group-item list-group-item-action">{{ $review->title }}</a>
-              @endforeach
-            </div>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="total" role="tabpanel" aria-labelledby="total-tab">
+            @foreach ($reviews as $review)
+            <a href="{{ url('/review/' . $review->id) }}" class="list-group-item list-group-item-action">{{ $review->title }}</a>
+            @endforeach
           </div>
+        </div>
 
       </div>
 
       <nav aria-label="Page navigation example">
           {{ $reviews->links() }}
       </nav>
+      @endif
     </div>
-  @endif
 </div>
 @endsection

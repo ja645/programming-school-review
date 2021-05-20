@@ -3,14 +3,15 @@
 @section('title', 'mypage')
 
 @section('content')
-<div class="container-xl">
+<div id="top-container" class="container-fluid p-0">
 
-  <div class="page-title">
+  <div class="form-title">
     <h1>{{ $profile_form->user_name }}さんのマイページ</h1>
   </div>
-  <div class="row d-flex">
 
-    <div class="user-nav col-md-3 mx-md-4 mb-auto" style="margin-top: 6.0rem;">
+  <div class="row d-flex justify-content-between m-0">
+    <div class="col-md-1"></div>
+    <div class="user-nav col-md-3" style="margin-top: 6.0rem;">
       <div class="card px-0">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
@@ -29,7 +30,9 @@
       </div>
     </div>
 
-    <div class="col-md-8 me-auto">
+    <div class="col-md-1"></div>
+
+    <div class="col-md-6">
       <div id="user-info" class="card p-0" style="margin-top: 6.0rem;">
         <div class="card-header">会員情報</div>
         <div class="card-body text-secondary">
@@ -62,14 +65,18 @@
             
             <li class="list-group-item">以前のご職業<span>{{ $profile_form->former_job }}</span></li>
             <li class="list-group-item">現在のご職業<span>{{ $profile_form->job }}</span></li>
-            <li class="list-group-item"><a href="{{ route('user.edit') }}">プロフィールを変更</a></li>
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
     
-    </div>
-
+    <div class="col-md-1"></div>
+    
+    
   </div>
-
+  
+  <form action="{{ route('user.edit') }}" method="get">
+    <input type="submit" value="プロフィールを変更"/>
+  </form>
 </div>
 @endsection
