@@ -16,7 +16,7 @@ class ReviewSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 20; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             $user = User::find($i);
     
             $school = School::find($i);

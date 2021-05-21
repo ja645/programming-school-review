@@ -157,7 +157,7 @@ footer a {
 }
 
 footer a:hover {
-  color: cadetblue;
+  color: darkorange;
 }
 
 /* --------------------------------
@@ -555,6 +555,14 @@ footer a:hover {
   border: solid 2px darkorange;
 }
 
+.link-to-contacts {
+  color: darkorange;
+}
+
+.link-to-contacts:hover {
+  color: white;
+}
+
 /* -----------------------------
 -----トップページここまで-----
 ---------------------------- */
@@ -835,6 +843,10 @@ footer a:hover {
   outline: solid 2px #FFD700;
   outline-offset: -10px;
   border-radius: 2px;
+}
+
+.review-list {
+  margin-bottom: 70px;
 }
 
 .review-list .list-group-item {

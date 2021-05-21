@@ -78,9 +78,9 @@ Route::middleware(['auth'])->group(function() {
   Route::get('/password/change', [ChangePasswordController::class, 'showChangePasswordView']);
   Route::post('/password', [ChangePasswordController::class, 'changePassword']);
 
-  Route::get('/message', function() {
-    return Message::all();
-    });
+  Route::get('/message/{id}', function(int $id) {
+    return Message::where('review_id', $id)->get();
+  });
     
   Route::post('/message/send', function() {
     $message = Message::create(['user_id' => Auth::id(), 'review_id' => request()->reviewId, 'message' => request()->message]);

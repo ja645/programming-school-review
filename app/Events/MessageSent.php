@@ -36,6 +36,6 @@ class MessageSent implements ShouldBroadcast
     public function broadcastOn()
     {
         // return new PrivateChannel('chat');
-        return new Channel('chat', $this->message);
+        return new PrivateChannel('chat.' . $this->message->review_id);
     }
 }

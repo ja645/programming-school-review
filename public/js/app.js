@@ -18686,10 +18686,10 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     //htmlリクエストを送り、レスポンスであるresponse.dataをthis.messageに代入
-    axios.get('/message').then(function (response) {
+    axios.get('/message/' + this.review.id).then(function (response) {
       return _this.messages = response.data;
     });
-    window.Echo.channel('chat').listen('MessageSent', function (response) {
+    window.Echo["private"]('chat.' + this.review.id).listen('MessageSent', function (response) {
       _this.messages.push(response.message);
     });
   },
@@ -18703,7 +18703,6 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         return _this2.messages.push(response.data);
       });
-      console.log(this.review.id);
       this.newMessage = '';
     }
   }
@@ -18933,7 +18932,13 @@ var _hoisted_3 = {
   "class": "review-list"
 };
 var _hoisted_4 = {
-  "class": "list-group-item"
+  "class": "list-group-item",
+  style: {
+    "height": "40px",
+    "font-size": "18px",
+    "border": "solid 2px darkorange",
+    "padding": "5px 10px"
+  }
 };
 var _hoisted_5 = {
   "class": "col-11 mx-auto reviews-card p-5"
@@ -18954,10 +18959,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text",
     style: {
       "width": "100%",
-      "height": "48px",
-      "font-size": "24px",
+      "height": "40px",
+      "font-size": "18px",
       "border": "solid 2px #FF5192",
-      "padding": "15px 10px",
+      "padding": "10px 10px",
       "background-color": "#fff",
       "outline": "none"
     },
@@ -19089,7 +19094,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", {
       href: '/schools/' + school.school_id,
       "class": "list-group-item list-group-item-action"
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(school), 9
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(school['school_name']) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(school['column']), 9
     /* TEXT, PROPS */
     , ["href"]);
   }), 256

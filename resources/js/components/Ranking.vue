@@ -20,7 +20,7 @@
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="total_judg" role="tabpanel" aria-labelledby="total_judg">
-        <a v-bind:href="'/schools/' +school.school_id" class="list-group-item list-group-item-action" v-for="school in schoolList">{{ school[school_name] }}</a>
+        <a v-bind:href="'/schools/' +school.school_id" class="list-group-item list-group-item-action" v-for="school in schoolList">{{ school['school_name'] }}{{ school['column'] }}</a>
       </div>
     </div>
   </div>

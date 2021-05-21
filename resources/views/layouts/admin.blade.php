@@ -132,7 +132,7 @@
   <footer class="mt-auto">
     <div class="container-fluid d-flex justify-content-sm-start justify-content-center">
       <a class="footer-logo" href="{{ route('top') }}">ロゴ</a>  
-      <a class="ms-5" href="#">サイト概要</a>
+      <!-- <a class="ms-5" href="#">サイト概要</a> -->
       <a class="ms-5" href="{{ route('contact') }}">お問い合わせ</a>
     </div>
   </footer>

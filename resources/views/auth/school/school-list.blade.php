@@ -3,7 +3,7 @@
 @section('title', 'school-list')
 
 @section('content')
-<div id="top-container" class="container-fluid p-0" style="height: 100vh;">
+<div id="top-container" class="container-fluid p-0">
        
   <div class="form-title">
     <h1>スクール一覧</h1>

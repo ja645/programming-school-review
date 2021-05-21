@@ -45,7 +45,7 @@
         <h1>プログラミングスクール</h1>
       </div>
       <p>crawlで評価出来るプログラミングスクールは20以上あります。</p>
-      <p>ここにないスクールが気になるという方は、<a href="{{ route('contact') }}" style="color: darkorange;">お問い合わせフォーム</a>からご要望ください。</p>
+      <p>ここにないスクールが気になるという方は、<a href="{{ route('contact') }}" class="link-to-contacts">お問い合わせフォーム</a>からご要望ください。</p>
       <form action="{{ route('ranking') }}" method="get">
         <input type="submit" value="スクール一覧を見る" style="margin-top: 30px;"/>
       </form>
