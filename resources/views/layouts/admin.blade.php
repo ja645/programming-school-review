@@ -40,8 +40,8 @@
 <body>
   
   <nav class="navbar navbar-expand-lg pt-5 pb-3">
-    <div class="container-xl">
-      <a class="navbar-brand me-5" href="{{ route('top') }}">ロゴ</a>
+    <div class="container-fluid mx-5">
+      <a class="header-logo navbar-brand" href="{{ route('top') }}">Crawl</a>
       
       <!-- 画面幅lg以下で表示される -->
       <form action="{{ route('search') }}" method="post" id="s-form" class="d-flex d-lg-none">
@@ -56,7 +56,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
+        <ul class="wrap-icons navbar-nav">
 
           <li class="nav-item">
             <div class="nav-icon">
@@ -92,7 +92,7 @@
             <div class="nav-icon">
               <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-door-open fa-2x"></i>
-                <span>Logout</span>
+                <span>ログアウト</span>
               </a>
               <form id="logout-form" method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -131,7 +131,7 @@
 
   <footer class="mt-auto">
     <div class="container-fluid d-flex justify-content-sm-start justify-content-center">
-      <a class="footer-logo" href="{{ route('top') }}">ロゴ</a>  
+      <a class="footer-logo" href="{{ route('top') }}">Crawl</a>  
       <!-- <a class="ms-5" href="#">サイト概要</a> -->
       <a class="ms-5" href="{{ route('contact') }}">お問い合わせ</a>
     </div>

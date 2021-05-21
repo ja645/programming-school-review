@@ -1,6 +1,6 @@
 <template>
   <div class="ranking-order d-flex justify-content-end">
-    <label for="並べ替え">並べ替え：</label>
+    <label for="並べ替え" style="color: white;">並べ替え：</label>
     <select class="form-select" aria-label="並べ替え" @change="sortSchools(sortType)" v-model="sortType">
       <option v-for="item in sortOptions" :value="item.value">{{ item.text }}</option>
     </select>
@@ -17,10 +17,19 @@
       <li class="nav-item" role="presentation">
         <a class="nav-link" id="st_curriculum" data-bs-toggle="tab" href="#st_curriculum" role="tab" aria-controls="st_curriculum" aria-selected="false" @click="showSchoolList('st_curriculum')">カリキュラム</a>
       </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="st_mentor" data-bs-toggle="tab" href="#st_mentor" role="tab" aria-controls="st_mentor" aria-selected="false" @click="showSchoolList('st_mentor')">メンター</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="st_support" data-bs-toggle="tab" href="#st_support" role="tab" aria-controls="st_support" aria-selected="false" @click="showSchoolList('st_support')">転職支援</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="st_staff" data-bs-toggle="tab" href="#st_staff" role="tab" aria-controls="st_staff" aria-selected="false" @click="showSchoolList('st_staff')">スタッフ</a>
+      </li>
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="total_judg" role="tabpanel" aria-labelledby="total_judg">
-        <a v-bind:href="'/schools/' +school.school_id" class="list-group-item list-group-item-action" v-for="school in schoolList">{{ school['school_name'] }}{{ school['column'] }}</a>
+        <a v-bind:href="'/schools/' +school.school_id" class="list-group-item list-group-item-action" v-for="school in schoolList">{{ school['school_name'] }}&emsp;{{ school['column'] }}</a>
       </div>
     </div>
   </div>

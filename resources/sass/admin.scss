@@ -85,7 +85,7 @@ textarea {
 }
 
 [type="submit"] {
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  font-family: 'corpo';
   width: 100%;
   background: #CCC;
   border-radius:5px;
@@ -202,6 +202,26 @@ footer a:hover {
   background-color: rgba(0, 100, 150, 0.7);
   height: 100vh;
 }
+
+.wrap-icons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-logo {
+  color: darkorange;
+  font-size: calc(1.6rem + 1vw);
+  filter: drop-shadow(3px 2px 1px black);
+}
+
+.header-logo:hover {
+  color: white;
+}
+
+.header-logo:active {
+  filter: drop-shadow(0 0 0 black);
+}
 /* ----------------------------
  --ヘッダーのアイコンここまで--
 -------------------------- */
@@ -234,6 +254,7 @@ footer a:hover {
   border: none;
   outline: none;
   box-shadow: none;
+  margin-bottom: 0;
 }
 
 #s-btn:hover {
@@ -432,10 +453,11 @@ footer a:hover {
   font-size: calc(1.0rem + 1.0vw);
   display: inline-block;
   width: 90vw;
+  color: azure;
 }
 
 .sub-text {
-  color: white;
+  color: azure;
 }
 
 #top-container {
@@ -576,11 +598,6 @@ footer a:hover {
   padding: 15px 10px;
   border: solid 2px darkorange;
   border-top: none;
-  opacity: 0.6;
-}
-
-.ranking-list .list-group-item:hover {
-  background-color: #CCCCCC;
 }
 
 /* -----------リストのタブ----------------- */
@@ -599,6 +616,10 @@ footer a:hover {
 .nav-tabs .nav-link {
   color: darkorange;
   border-radius: 0;
+}
+
+.nav-tabs .nav-link:hover {
+  border-color: darkorange;
 }
 /* ----リストのタブここまで---------- */
 
@@ -764,22 +785,6 @@ footer a:hover {
 .star-rate {
   font-size: calc(1.6rem + 2.0rem);
 }
-
-// .star::before, .star::after {
-//   content: "★★★★★";
-// }
-
-// .star::before {
-//   color: #CCCCCC;
-// }
-
-// .star::after {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   color: yellow;
-//   overflow: hidden;
-// }
 
 .star-after {
   position: absolute;

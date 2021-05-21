@@ -18936,7 +18936,7 @@ var _hoisted_4 = {
   style: {
     "height": "40px",
     "font-size": "18px",
-    "border": "solid 2px darkorange",
+    "border": "solid 2px #FF5192",
     "padding": "5px 10px"
   }
 };
@@ -19002,7 +19002,10 @@ var _hoisted_1 = {
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "for": "並べ替え"
+  "for": "並べ替え",
+  style: {
+    "color": "white"
+  }
 }, "並べ替え：", -1
 /* HOISTED */
 );
@@ -19028,10 +19031,22 @@ var _hoisted_7 = {
   role: "presentation"
 };
 var _hoisted_8 = {
+  "class": "nav-item",
+  role: "presentation"
+};
+var _hoisted_9 = {
+  "class": "nav-item",
+  role: "presentation"
+};
+var _hoisted_10 = {
+  "class": "nav-item",
+  role: "presentation"
+};
+var _hoisted_11 = {
   "class": "tab-content",
   id: "myTabContent"
 };
-var _hoisted_9 = {
+var _hoisted_12 = {
   "class": "tab-pane fade show active",
   id: "total_judg",
   role: "tabpanel",
@@ -19090,11 +19105,44 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[5] || (_cache[5] = function ($event) {
       return $options.showSchoolList('st_curriculum');
     })
-  }, "カリキュラム")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.schoolList, function (school) {
+  }, "カリキュラム")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+    "class": "nav-link",
+    id: "st_mentor",
+    "data-bs-toggle": "tab",
+    href: "#st_mentor",
+    role: "tab",
+    "aria-controls": "st_mentor",
+    "aria-selected": "false",
+    onClick: _cache[6] || (_cache[6] = function ($event) {
+      return $options.showSchoolList('st_mentor');
+    })
+  }, "メンター")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+    "class": "nav-link",
+    id: "st_support",
+    "data-bs-toggle": "tab",
+    href: "#st_support",
+    role: "tab",
+    "aria-controls": "st_support",
+    "aria-selected": "false",
+    onClick: _cache[7] || (_cache[7] = function ($event) {
+      return $options.showSchoolList('st_support');
+    })
+  }, "転職支援")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("li", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+    "class": "nav-link",
+    id: "st_staff",
+    "data-bs-toggle": "tab",
+    href: "#st_staff",
+    role: "tab",
+    "aria-controls": "st_staff",
+    "aria-selected": "false",
+    onClick: _cache[8] || (_cache[8] = function ($event) {
+      return $options.showSchoolList('st_staff');
+    })
+  }, "スタッフ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.schoolList, function (school) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", {
       href: '/schools/' + school.school_id,
       "class": "list-group-item list-group-item-action"
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(school['school_name']) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(school['column']), 9
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(school['school_name']) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(school['column']), 9
     /* TEXT, PROPS */
     , ["href"]);
   }), 256
