@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
 <body>
-  <div id="has-no-header" class="container-fluid p-0">
+  <div id="has-no-header" class="container-fluid p-0" style="height: 100vh;">
 
     <div name="logo">
         <a href="/">
@@ -69,7 +69,7 @@
           </a>
         </div>
       @endif
-      <input type="submit" value="ログイン"/>
+      <input type="submit" value="ログイン" style="margin-bottom: 15px;"/>
       <!-- Remember Me -->
       <div class="under-input">
         <label for="remember_me" class="inline-flex items-center">

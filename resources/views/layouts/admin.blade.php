@@ -13,6 +13,8 @@
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
   
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
@@ -44,7 +46,7 @@
       <!-- 画面幅lg以下で表示される -->
       <form action="{{ route('search') }}" method="post" id="s-form" class="d-flex d-lg-none">
         @csrf
-        <input id="s-box" type="text" name="school_name" class="feedback-input" placeholder="スクールの名前で検索" aria-label="Search">
+        <input id="s-box" type="text" name="school_name" class="feedback-input" placeholder="スクールの名前を検索" aria-label="Search">
         <button id="s-btn" type="submit"><i class="fas fa-search fa-lg"></i></button>
       </form>
 
@@ -64,7 +66,7 @@
 
           <li class="nav-item">
             <div class="nav-icon">
-              <a href="{{ route('school.list') }}"><i class="fas fa-school fa-2x"></i><span>スクール一覧</span></a>
+              <a href="{{ route('school.list') }}"><i class="fas fa-school fa-2x"></i><span>スクール</span></a>
             </div>
           </li>
           
@@ -72,7 +74,7 @@
         <div class="search-box d-flex d-lg-block d-none">
           <form action="{{ route('search') }}" method="post" id="s-form">
             @csrf
-            <input type="text" name="school_name" class="feedback-input" placeholder="スクールの名前で検索" aria-label="Search">
+            <input type="text" name="school_name" class="feedback-input" placeholder="スクールの名前を検索" aria-label="Search">
             <button id="s-btn" type="submit"><i class="fas fa-search fa-lg"></i></button>
           </form>
         </div>
@@ -90,7 +92,7 @@
             <div class="nav-icon">
               <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-door-open fa-2x"></i>
-                <span>ログアウト</span>
+                <span>Logout</span>
               </a>
               <form id="logout-form" method="POST" action="{{ route('logout') }}">
                 @csrf

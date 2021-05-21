@@ -18922,7 +18922,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "col-11 mx-auto school-reviews-card p-5"
+  "class": "col-11 mx-auto reviews-card p-5"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, "コメント", -1
@@ -18936,7 +18936,7 @@ var _hoisted_4 = {
   "class": "list-group-item"
 };
 var _hoisted_5 = {
-  "class": "col-11 mx-auto school-reviews-card p-5"
+  "class": "col-11 mx-auto reviews-card p-5"
 };
 var _hoisted_6 = {
   "class": "review-list"
@@ -18952,9 +18952,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
     type: "text",
-    "class": "message-text",
     style: {
-      "border": "solid 2px rgba(0, 51, 102, 0.6)",
+      "width": "100%",
+      "height": "48px",
+      "font-size": "24px",
+      "border": "solid 2px #FF5192",
       "padding": "15px 10px",
       "background-color": "#fff",
       "outline": "none"

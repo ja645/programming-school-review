@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container-fluid school-container">
-      <div class="col-11 mx-auto py-3 school-head-card">
+      <div class="col-11 mx-auto py-3 review-head-card">
         <div class="row school-head">
           <div class="col-sm-1 d-none d-sm-block"></div>
           <div class="review-title col text-sm-start text-center px-0">{{ $review->title }}<span id="follow"><follow-component :review="{{ json_encode($review) }}"  style="display: inline-block;"></follow-component></span></div>

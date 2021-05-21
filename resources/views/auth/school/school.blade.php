@@ -130,7 +130,7 @@
       @else
         <div class="review-list">
           @foreach ($school->reviews as $review)
-          <a href="{{ url('/review/' . $review->id) }}"  class="list-group-item list-group-item-action">{{ $review->title }}</a>
+          <a href="{{ url('/reviews/review/' . $review->id) }}"  class="list-group-item list-group-item-action">{{ $review->title }}</a>
           @endforeach
         </div>
         

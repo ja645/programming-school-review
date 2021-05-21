@@ -1,14 +1,14 @@
 <template>
-  <div class="col-11 mx-auto school-reviews-card p-5">
+  <div class="col-11 mx-auto reviews-card p-5">
     <p>コメント</p>
     <div class="review-list">
       <p class="list-group-item" v-for="message in messages">{{ message['message'] }}</p>
     </div>
   </div>
-  <div class="col-11 mx-auto school-reviews-card p-5">
+  <div class="col-11 mx-auto reviews-card p-5">
     <p>{{ review.user.user_name }}さんに質問してみましょう！</p>
     <div class="review-list">
-      <textarea type="text" class="message-text" style="border: solid 2px rgba(#003366, 0.6); padding: 15px 10px; background-color: #fff;border: solid 2px rgba(0, 51, 102, 0.6); outline: none" v-model="newMessage"></textarea>
+      <textarea type="text" style="width: 100%; height: 48px; font-size: 24px; border: solid 2px #FF5192; padding: 15px 10px; background-color: #fff; outline: none" v-model="newMessage"></textarea>
       <button type="button" class="btn btn-success message-send" @click="addMessage">送信</button>
     </div>
   </div>
