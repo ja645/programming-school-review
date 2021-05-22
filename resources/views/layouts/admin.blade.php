@@ -43,22 +43,22 @@
     <div class="container-fluid mx-5">
       <a class="header-logo navbar-brand" href="{{ route('top') }}">Crawl</a>
       
-      <!-- 画面幅lg以下で表示される -->
-      <form action="{{ route('search') }}" method="post" id="s-form" class="d-flex d-lg-none">
-        @csrf
-        <input id="s-box" type="text" name="school_name" class="feedback-input" placeholder="スクールの名前を検索" aria-label="Search">
-        <button id="s-btn" type="submit"><i class="fas fa-search fa-lg"></i></button>
-      </form>
-
       <!-- 画面幅が小さいときハンバーガーメニュー -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars fa-3x"></i>
       </button>
-
+      
+      
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="wrap-icons navbar-nav">
-
-
+          
+          <!-- 画面幅sm以下で表示される -->
+          <form action="{{ route('search') }}" method="post" id="s-form" class="d-flex d-md-none mt-5">
+            @csrf
+            <input id="s-box" type="text" name="school_name" class="feedback-input" placeholder="スクールの名前を検索" aria-label="Search">
+            <button id="s-btn" type="submit"><i class="fas fa-search fa-lg"></i></button>
+          </form>
+          
         <!-- ログイン後 -->
         @if(Auth::check())
           <li class="nav-item">

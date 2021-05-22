@@ -23,7 +23,8 @@
             <p>いくつものネットサーフィンを続け、疲れ果てていませんか？</p>
             <p>crawlには、プログラミングスクール受講者の正直な評価が寄せられてます。</p>
             <p>投稿者とコメントで会話が出来るため、</p>
-            <p>Web上の記事からはわからない詳細や、自分のレベルに合っているかなどいろいろ質問してみましょう！</p>
+            <p>Web上の膨大な情報に目を通すよりも、ダイレクトに知りたいことに触れられます。</p>
+            <p>投稿者にいろいろ質問して、忖度のない生の意見を聞いてみましょう！</p>
           </div>
         </div>
       </div>
@@ -31,24 +32,26 @@
 
     <div style="color: white; width: 90%; margin: auto; margin-top: 50px; text-align:center;"> 
       <div class="form-title">
+        <i class="fas fa-crown fa-2x"></i>
         <h1>ランキング</h1>
       </div>
       <p>crawlは、寄せられたレビューからプログラミングスクールをランキング化しています。</p>
-      <p>正直な受講生の声が反映されるため、</p>
-      <form action="{{ route('ranking') }}" method="get">
-        <input type="submit" value="ランキングを見る" style="margin-top: 30px;"/>
-      </form>
+      <p>ランキングは、受講者の率直な評価から得られた統計を表示します。</p>
+      <p>それによって、ありのままのプログラミングスクールの印象を描き出します。</p>
+      <!-- <form action="{{ route('ranking') }}" method="get">
+        <input type="submit" value="アカウントを作成し" style="margin-top: 30px;"/>
+      </form> -->
     </div>
     
     <div style="color: white; width: 90%; margin:auto; margin-top: 50px; text-align:center;">
       <div class="form-title">
-        <h1>プログラミングスクール</h1>
+        <i class="fas fa-school fa-2x"></i><h1>プログラミングスクール</h1>
       </div>
       <p>crawlで評価出来るプログラミングスクールは20以上あります。</p>
       <p>ここにないスクールが気になるという方は、<a href="{{ route('contact') }}" class="link-to-contacts">お問い合わせフォーム</a>からご要望ください。</p>
-      <form action="{{ route('ranking') }}" method="get">
+      <!-- <form action="{{ route('ranking') }}" method="get">
         <input type="submit" value="スクール一覧を見る" style="margin-top: 30px;"/>
-      </form>
+      </form> -->
     </div>
 
 
