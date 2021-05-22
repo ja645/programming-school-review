@@ -145,6 +145,21 @@ textarea {
   color: white;
 }
 
+.logo {
+  padding: 30px;
+}
+
+.logo a {
+  color: darkorange;
+  font-size: 30px;
+  filter: drop-shadow(3px 2px 1px black);
+}
+
+.logo a:hover {
+  color: white;
+  filter: drop-shadow(0 0 0 black);
+}
+
 /*--------------------------------
  ------- 共通部分ここまで--------
 ------------------------------*/
@@ -256,6 +271,10 @@ footer a:hover {
   position: relative;
   width: 50vw;
   margin: 0 auto;
+}
+
+#s-form input {
+  margin-bottom: 0;
 }
 
 #s-box {

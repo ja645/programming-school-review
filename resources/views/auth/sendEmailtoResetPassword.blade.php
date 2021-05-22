@@ -47,10 +47,10 @@
     </div>
 
     <div class="form-title">
-      <h1>ログイン</h1>
+      <h1>パスワード変更用メールを送信</h1>
     </div>
 
-    <form action="{{ route('login') }} " method="post" enctype="multipart/form-data">
+    <form action="{{ route('password.email') }} " method="post" enctype="multipart/form-data">
     @if (count($errors) > 0)
     <ul>
         @foreach($errors->all() as $e)
@@ -61,22 +61,7 @@
     @csrf
 
       <input name="email" type="text" class="feedback-input" value="{{ old('email') }}" placeholder="メールアドレス" />
-      <input name="password" type="password" class="feedback-input" placeholder="パスワード" />
-      @if (Route::has('password.request'))
-        <div class="under-input">
-          <a href="{{ route('password.request') }}" style="border-bottom: solid 2px;">
-            パスワードをお忘れですか？
-          </a>
-        </div>
-      @endif
-      <input type="submit" value="ログイン" style="margin-bottom: 15px;"/>
-      <!-- Remember Me -->
-      <div class="under-input">
-        <label for="remember_me" class="inline-flex items-center">
-          <input id="remember_me" type="checkbox" name="remember">
-          <span>ログイン状態を保存する</span>
-        </label>
-      </div>
+      <input type="submit" value="認証メールを送信" style="margin-bottom: 15px;"/>
     </form>
 
 </div>
