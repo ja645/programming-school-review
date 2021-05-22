@@ -14,7 +14,7 @@ class SchoolDataController extends Controller
      */
     public function showSchoolList()
     {
-        $schools = School::all()->paginate(10);
+        $schools = School::paginate(10);
 
         return view('admin.school-list', ['schools' => $schools]);
     }
