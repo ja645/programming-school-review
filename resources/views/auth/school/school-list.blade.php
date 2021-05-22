@@ -9,7 +9,7 @@
     <h1>スクール一覧</h1>
   </div>
 
-  <div class="row d-flex justify-content-center">
+  <div class="row d-flex justify-content-center mx-0">
 
     <div class="col-md-8 col-10">
       @if($schools->isEmpty())

@@ -12,22 +12,19 @@
   <div class="row d-flex justify-content-between m-0">
     <div class="col-md-1"></div>
     <div class="user-nav col-md-3" style="margin-top: 6.0rem;">
-      <div class="card px-0">
+      
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <a href="{{ route('user.review') }}"><i class="far fa-file-alt"></i>投稿したレビュー</a>
-          </li>
-          <li class="list-group-item">
-            <a href="{{ route('review.add') }}"><i class="fas fa-pen-nib"></i>レビューを投稿する</a>
-          </li>
-          <li class="list-group-item">
-            <a href="{{ route('user.likes') }}"><i class="fas fa-heart"></i>お気に入り</a>
-          </li>
-          <li class="list-group-item">
-            <a href="{{ route('user.followings') }}"><i class="far fa-thumbs-up"></i>評価したレビュー</a>
-          </li>
+          
+          <a href="{{ route('user.review') }}" class="list-group-item"><i class="far fa-file-alt"></i>投稿したレビュー</a>
+        
+          <a href="{{ route('review.add') }}" class="list-group-item"><i class="fas fa-pen-nib"></i>レビューを投稿する</a>
+        
+          <a href="{{ route('user.likes') }}" class="list-group-item"><i class="fas fa-heart"></i>いいねしたスクール</a>
+        
+          <a href="{{ route('user.followings') }}" class="list-group-item"><i class="far fa-thumbs-up"></i>評価したレビュー</a>
+        
         </ul>
-      </div>
+      
     </div>
 
     <div class="col-md-1"></div>

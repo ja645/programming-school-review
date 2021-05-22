@@ -3,32 +3,29 @@
 @section('title', 'myreview')
 
 @section('content')
-<div class="container-md">
+<div id="top-container" class="container-fluid p-0">
        
-  <div>あなたの投稿したレビュー</div>
+  <div class="form-title">
+    <h1>あなたの投稿したレビュー</h1>
+  </div>
 
-  @if($reviews->isEmpty())
-    <p class="is-empty">投稿したレビューはありません</p>
-  @else
+  <div class="row d-flex justify-content-center mx-0">
 
-    <div class="ranking">
-
-      <div class="ranking-list">
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="total" role="tabpanel" aria-labelledby="total-tab">
-
-              @foreach ($reviews as $review)
-               <a href="{{ url('/reviews/review/' . $review->id) }}" class="list-group-item list-group-item-action">{{ $review->title }}</a>
-              @endforeach
-            
-          </div>
-        </div>
-      </div>
-
-      <nav aria-label="Page navigation example">
-          {{ $reviews->links() }}
-      </nav>
+    @if($reviews->isEmpty())
+      <p class="is-empty">投稿したレビューはありません</p>
+    @else
+  
+    <div class="review-list col-md-8 col-10">
+      @foreach ($reviews as $review)
+        <a href="{{ url('/reviews/review/' . $review->id) }}" class="list-group-item" style="border-color: #FF5192">{{ $review->title }}</a>
+      @endforeach 
     </div>
-  @endif
+  
+    <nav aria-label="Page navigation example">
+        {{ $reviews->links() }}
+    </nav>
+  
+    @endif
+  </div>
 </div>
 @endsection

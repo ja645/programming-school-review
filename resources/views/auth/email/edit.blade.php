@@ -43,12 +43,12 @@
 
   <div name="logo">
     <a href="/">
-      ロゴ
+      Crawl
     </a>
   </div>
 
   <div class="form-title">
-    <p>スクール編集</p>
+    <h1>メールアドレス変更</h1>
   </div>
 
   <form method="POST" action="{{ url('/email/edit') }}">

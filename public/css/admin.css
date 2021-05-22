@@ -15,6 +15,7 @@ body {
   height: 100%;
   min-height: 100vh;
   position: relative;
+  background-color: rgba(0, 116, 150, 0.7);
 }
 
 p, h1, h2, h3, h4, h5, h6 {
@@ -135,6 +136,15 @@ textarea {
   color: white;
 }
 
+.list-group-item:hover {
+  color: darkorange;
+}
+
+.is-empty {
+  text-align: center;
+  color: white;
+}
+
 /*--------------------------------
  ------- 共通部分ここまで--------
 ------------------------------*/
@@ -143,7 +153,6 @@ textarea {
 -------------------------------*/
 footer {
   padding: 10px 0;
-  background-color: rgba(0, 100, 150, 0.7);
   position: absolute;
   bottom: -40px;
   width: 100%;
@@ -163,10 +172,6 @@ footer a:hover {
 /* --------------------------------
  -----ヘッダーのアイコンのcss------
 --------------------------------- */
-.navbar {
-  background-color: rgba(0, 100, 150, 0.7);
-}
-
 .fa-bars {
   color: white;
 }
@@ -214,7 +219,6 @@ footer a:hover {
 }
 /* ログインフォームのコンテナ */
 #has-no-header {
-  background-color: rgba(0, 100, 150, 0.7);
   height: 100vh;
 }
 
@@ -306,15 +310,21 @@ footer a:hover {
   padding-top: 3rem;
 }
 
-.user-nav .card {
-  border-color: white;
-  border-radius: 0;
-}
-
 .user-nav .list-group-item {
   background-color: #EEEEEE;
-  border-color: white;
-  border-radius: 0;
+  border: none;
+  margin-bottom: 3px;
+  padding: 20px 10px;
+  text-align: center;
+  box-shadow: 10px 10px 5px 0 black;
+}
+
+.user-nav .list-group-item:hover {
+  color: darkorange;
+}
+
+.user-nav .list-group-item:active {
+  box-shadow: none;
 }
 
 .user-nav .list-group-item .fa-user {
@@ -390,6 +400,10 @@ footer a:hover {
   float: right;
   text-decoration: none;
   color: cadetblue;
+}
+
+#user-info a:hover, #user-prof a:hover {
+  color: darkorange;
 }
 
 .card {
@@ -474,10 +488,6 @@ footer a:hover {
 
 .sub-text {
   color: azure;
-}
-
-#top-container {
-  background-color: rgba(0, 100, 150, 0.7);
 }
 
 #wrap {
@@ -882,7 +892,6 @@ footer a:hover {
 
 .school-container {
   padding: 40px 0;
-  background-color: rgba(0, 100, 150, 0.7);
 }
 
 /* ---------------------------------------------

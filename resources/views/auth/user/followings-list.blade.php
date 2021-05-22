@@ -3,32 +3,29 @@
 @section('title', 'following-list')
 
 @section('content')
-<div class="container-md">
-       
-  <div>あなたのフォローしたレビュー</div>
+<div id="top-container" class="container-fluid p-0">
 
-  @if($followings->isEmpty())
-    <p class="is-empty">フォローしたレビューがありません</p>
-  @else
+  <div class="form-title">
+    <h1>あなたのフォローしたレビュー</h1>
+  </div>
 
-    <div class="ranking">
+  <div class="row d-flex justify-content-center mx-0">
 
-      <div class="ranking-list">
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="total" role="tabpanel" aria-labelledby="total-tab">
+    @if($followings->isEmpty())
+      <p class="is-empty">フォローしたレビューがありません</p>
+    @else
 
-              @foreach ($followings as $following)
-              <a href="{{ url('/reviews/review/' . $following->review->id) }}" class="list-group-item list-group-item-action">{{ $following->review->title }}</a>
-              @endforeach
-            
-          </div>
-        </div>
-      </div>
-
-      <nav aria-label="Page navigation example">
-          {{ $followings->links() }}
-      </nav>
+    <div class="review-list">
+    
+      @foreach ($followings as $following)
+      <a href="{{ url('/reviews/review/' . $following->review->id) }}" class="list-group-item" style="border-color: #FF5192">{{ $following->review->title }}</a>
+      @endforeach
+          
     </div>
+
+    <nav aria-label="Page navigation example">
+        {{ $followings->links() }}
+    </nav>
   @endif
 </div>
 @endsection
