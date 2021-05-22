@@ -58,6 +58,9 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="wrap-icons navbar-nav">
 
+
+        <!-- ログイン後 -->
+        @if(Auth::check())
           <li class="nav-item">
             <div class="nav-icon">
               <a href="{{ route('ranking') }}"><i class="fas fa-crown fa-2x"></i><span>ランキング</span></a>
@@ -69,7 +72,19 @@
               <a href="{{ route('school.list') }}"><i class="fas fa-school fa-2x"></i><span>スクール</span></a>
             </div>
           </li>
-          
+        @else  
+          <li class="nav-item" style="visibility: hidden;">
+            <div class="nav-icon">
+              <a><i class="fas fa-crown fa-2x"></i><span>ダミー</span></a>
+            </div>
+          </li>
+          <li class="nav-item" style="visibility: hidden;">
+            <div class="nav-icon">
+              <a><i class="fas fa-crown fa-2x"></i><span>ダミー</span></a>
+            </div>
+          </li>
+        @endif
+
         <!-- 画面幅xl以上で表示される -->
         <div class="search-box d-flex d-lg-block d-none">
           <form action="{{ route('search') }}" method="post" id="s-form">
@@ -79,7 +94,6 @@
           </form>
         </div>
 
-        <!-- <ul class="navbar-nav ms-auto"> -->
           <!-- ログイン後 -->
           @if (Auth::check())
           <li class="nav-item">
