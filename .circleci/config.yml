@@ -63,11 +63,12 @@ jobs:
       - run:
           name: Run tests
           command: |
-            php artisan test
-
-      - store_artifacts:
-          path: ./storage/logs
-          destination: /tmp/artifacts/laravel.log
+            mkdir -p ~/phpunit
+            vendor/bin/phpunit --log-junit ~/phpunit/junit.xml tests
+          when: always
 
       - store_test_results:
-          path: ./phpunit.xml
+          path: ~/phpunit
+
+      - store_artifacts:
+          path: ~/phpunit
