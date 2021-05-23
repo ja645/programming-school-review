@@ -7,7 +7,7 @@ jobs:
           - TZ=Asia/Tokyo
           - LOCALE=ja
           - LANG=ja_JP.UTF-8
-          - DB_TESTING_HOST=db-testing
+          - DB_TESTING_HOST=127.0.0.1
           - DB_TESTING_DATABASE=review_schools_testing
           - DB_TESTING_USERNAME=root
           - DB_TESTING_PASSWORD=root
@@ -21,7 +21,7 @@ jobs:
         command: |
           mysqld --default-authentication-plugin=mysql_native_password
         environment:
-          - MYSQL_DATABASE=learning_laravel_tdd_testing
+          - MYSQL_DATABASE=review_schools_testing
           - MYSQL_ROOT_PASSWORD=root
           - MYSQL_ROOT_HOST=%
           - TZ=Asia/Tokyo
