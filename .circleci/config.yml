@@ -20,7 +20,6 @@ jobs:
       - image: circleci/mysql:8.0-ram
         command: |
           mysqld --default-authentication-plugin=mysql_native_password
-          [--max_allowed_packet=32M]
         environment:
           - MYSQL_DATABASE=learning_laravel_tdd_testing
           - MYSQL_ROOT_PASSWORD=root
@@ -71,4 +70,3 @@ jobs:
           destination: /tmp/artifacts/laravel.log
 
       - store_test_results:
-          path: test-results
