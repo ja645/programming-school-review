@@ -70,3 +70,4 @@ jobs:
           destination: /tmp/artifacts/laravel.log
 
       - store_test_results:
+          path: ./
