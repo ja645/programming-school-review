@@ -41,7 +41,7 @@
 
 <div class="container-xl">
 
-  <div name="logo">
+  <div class="logo">
     <a href="/">
       Crawl
     </a>
@@ -51,7 +51,7 @@
     <h1>メールアドレス変更</h1>
   </div>
 
-  <form method="POST" action="{{ url('/email/edit') }}">
+  <form method="POST" action="{{ route('email') }}">
   @if (count($errors) > 0)
     <ul>
       @foreach($errors->all() as $e)

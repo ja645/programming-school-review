@@ -54,7 +54,7 @@ Route::middleware(['auth'])->group(function() {
 
   Route::get('/email/edit', [ChangeEmailController::class, 'showChangeEmailForm'])->name('email.edit');
   Route::post('/email', [ChangeEmailController::class, 'sendChangeEmailLink'])->name('email');
-  Route::post('/email/reset', [ChangeEmailController::class, 'reset']);
+  Route::get('/email/reset/{token}', [ChangeEmailController::class, 'reset']);
   
   Route::get('/reviews/school/{school_id}', [ReviewController::class, 'showList']);
   Route::get('/reviews/review/{id}', [ReviewController::class, 'showReview']);
