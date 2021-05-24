@@ -72,12 +72,11 @@ class ChangeEmailController extends Controller
     /**
      * 新しいメールアドレスでDBを更新
      * @param Request $request
+     * @param [type] $token
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function reset(Request $request)
+    public function reset(Request $request, $token)
     {
-        $token = $request->token;
-
         $email_resets = DB::table('email_resets')
             ->where('token', $token)
             ->first();
