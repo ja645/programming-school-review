@@ -160,6 +160,10 @@ textarea {
   filter: drop-shadow(0 0 0 black);
 }
 
+.error-message {
+  color: red;
+}
+
 /*--------------------------------
  ------- 共通部分ここまで--------
 ------------------------------*/
@@ -238,6 +242,7 @@ footer a:hover {
 
 .wrap-icons {
   width: 93%;
+  margin-left: 4%;
   display: flex;
   justify-content: space-between;
 }

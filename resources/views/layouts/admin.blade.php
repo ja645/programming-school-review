@@ -135,7 +135,7 @@
 
   <!-- フラッシュメッセージ -->
   @if (session('flash_message'))
-    <div class="flash_message">
+    <div class="flash_message text-center" style="color: white;">
       {{ session('flash_message') }}
     </div>
   @endif

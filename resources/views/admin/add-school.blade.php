@@ -19,7 +19,7 @@
     @if (count($errors) > 0)
     <ul>
         @foreach($errors->all() as $e)
-        <li>{{ $e }}</li>
+        <li  class="error-message">{{ $e }}</li>
         @endforeach
     </ul>
     @endif
