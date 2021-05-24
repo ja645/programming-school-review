@@ -85,7 +85,7 @@ class ChangeEmailControllerTest extends TestCase
         $token = EmailReset::latest()->first()->toArray()['token'];
 
         //送信されたメール内のリンクにトークンを渡してアクセス
-        $response = $this->actingAs($this->user)->post('/email/reset', ['token' =>$token]);
+        $response = $this->actingAs($this->user)->get('/email/reset/' . $token);
 
         //メールアドレスが変更されたかデータベースを確認
         $this->assertDatabaseHas('users', ['id' => $this->user->id, 'email' =>  $new_email]);
@@ -174,7 +174,7 @@ class ChangeEmailControllerTest extends TestCase
         $wrongToken = 'wrongtoken';
 
         //送信されたメール内のリンクに間違ったトークンを渡してアクセス
-        $response = $this->actingAs($this->user)->post('/email/reset', ['token' =>$wrongToken]);
+        $response = $this->actingAs($this->user)->get('/email/reset/' . $wrongToken);
 
         //データベースからレコードが削除されることを確認
         $this->assertDatabaseMissing('users', ['id' => $this->user->id, 'email' =>  $new_email]);
@@ -212,7 +212,7 @@ class ChangeEmailControllerTest extends TestCase
         $this->travel(1)->hours();
 
         //送信されたメール内のリンクにトークンを渡してアクセス
-        $response = $this->actingAs($this->user)->post('/email/reset', ['token' =>$token]);
+        $response = $this->actingAs($this->user)->get('/email/reset/' . $token);
 
         //データベースからレコードが削除されることを確認
         $this->assertDatabaseMissing('users', ['id' => $this->user->id, 'email' =>  $new_email]);
