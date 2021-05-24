@@ -21,7 +21,7 @@
           <p class="sub-title d-none d-md-block">crawlは、プログラミングスクールのレビューサービスです。</p>
           <div class="sub-text d-none d-md-block">
             <p>いくつものネットサーフィンを続け、疲れ果てていませんか？<br>
-            crawlには、プログラミングスクール受講者の正直な評価が寄せられてます。<br>
+            crawlには、プログラミングスクール受講者の正直な評価が寄せられています。<br>
             投稿者とコメントで会話が出来るため、<br>
             Web上の膨大な情報に目を通すよりも、ダイレクトに知りたいことに触れられます。<br>
             投稿者にいろいろ質問して、忖度のない生の意見を聞いてみましょう！</p>
@@ -30,20 +30,31 @@
       </div>
     </div>
 
-    <div style="color: white; width: 90%; margin: auto; margin-top: 50px; text-align:center;"> 
+    <!-- 画面幅が768px未満のとき表示 -->
+    <div class="d-md-none mt-5" style="padding: 0 5%;">
+      <div class="sub-title">crawlは、プログラミングスクールのレビューサービスです。</div>
+      <div class="sub-text">
+        <p>いくつものネットサーフィンを続け、疲れ果てていませんか？<br>
+        crawlには、プログラミングスクール受講者の正直な評価が寄せられています。<br>
+        投稿者とコメントで会話が出来るため、
+        Web上の膨大な情報に目を通すよりも、ダイレクトに知りたいことに触れられます。<br>
+        投稿者にいろいろ質問して、忖度のない生の意見を聞いてみましょう！</p>
+      </div>
+    </div>
+
+    <div class="text-sm-center" style="color: white; width: 90%; margin: auto; margin-top: 50px;"> 
       <div class="form-title">
         <i class="fas fa-crown fa-2x"></i>
         <h1>ランキング</h1>
       </div>
       <p>crawlは、寄せられたレビューからプログラミングスクールをランキング化しています。</p>
-      <p>ランキングは、受講者の率直な評価から得られた統計を表示します。</p>
-      <p>それによって、ありのままのプログラミングスクールの印象を描き出します。</p>
+      <p>ランキングは、受講者の率直な評価から得られた統計を表示することで、ありのままのプログラミングスクールの印象を描き出します。</p>
       <!-- <form action="{{ route('ranking') }}" method="get">
         <input type="submit" value="アカウントを作成し" style="margin-top: 30px;"/>
       </form> -->
     </div>
     
-    <div style="color: white; width: 90%; margin:auto; margin-top: 50px; text-align:center;">
+    <div class="text-sm-center" style="color: white; width: 90%; margin:auto; margin-top: 50px;">
       <div class="form-title">
         <i class="fas fa-school fa-2x"></i><h1>プログラミングスクール</h1>
       </div>
