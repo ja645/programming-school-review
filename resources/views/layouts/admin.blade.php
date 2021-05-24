@@ -52,8 +52,8 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="wrap-icons navbar-nav">
           
-          <!-- 画面幅sm以下で表示される -->
-          <form action="{{ route('search') }}" method="post" id="s-form" class="d-flex d-md-none mt-5">
+          <!-- 画面幅lg以下で表示される -->
+          <form action="{{ route('search') }}" method="post" id="s-form" class="d-lg-none my-5" style="width: 100%; margin: 0;">
             @csrf
             <input id="s-box" type="text" name="school_name" class="feedback-input" placeholder="スクールの名前を検索" aria-label="Search">
             <button id="s-btn" type="submit"><i class="fas fa-search fa-lg"></i></button>
@@ -73,12 +73,12 @@
             </div>
           </li>
         @else  
-          <li class="nav-item" style="visibility: hidden;">
+          <li class="nav-item d-none d-lg-block" style="visibility: hidden;">
             <div class="nav-icon">
               <a><i class="fas fa-crown fa-2x"></i><span>ダミー</span></a>
             </div>
           </li>
-          <li class="nav-item" style="visibility: hidden;">
+          <li class="nav-item d-none d-lg-block" style="visibility: hidden;">
             <div class="nav-icon">
               <a><i class="fas fa-crown fa-2x"></i><span>ダミー</span></a>
             </div>
