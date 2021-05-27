@@ -39,6 +39,6 @@
 - グラフ描画
 - ランキング形式での表示
 ### テスト
-Unitテスト
-Featureテスト
-git push時にCircleCiによるテストの自動化
+- Unitテスト
+- Featureテスト
+- git push時にCircleCiによるテストの自動化
