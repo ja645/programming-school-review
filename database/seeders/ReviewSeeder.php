@@ -20,7 +20,7 @@ class ReviewSeeder extends Seeder
             $user = User::find($i);
     
             $school = School::find($i);
-            Review::factory()->for($user)->for($school)->count(10)->create();
+            Review::factory()->for($user)->for($school)->count(20)->create();
         }
     }
 }
