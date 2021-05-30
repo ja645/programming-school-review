@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
 <body>
+  
   <div id="has-no-header" class="container-xxl p-0">
 
     <div class="logo">
@@ -43,6 +44,12 @@
           Crawl
       </a>
     </div>
+
+    @if (session('flash_message'))
+    <div class="flash_message text-center" style="color: white;">
+      {{ session('flash_message') }}
+    </div>
+    @endif
 
     <div class="form-title">
       <h1>ログイン</h1>
