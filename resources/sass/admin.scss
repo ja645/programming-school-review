@@ -775,7 +775,7 @@ footer {
 --------スクールページここから------
 ------------------------------- */
 .school-name {
-  font-size: calc(3.0rem + 2.0vw);
+  font-size: min(calc(3.0rem + 2.0vw), 56.4px);
   margin: 2vw 0;
 }
 
@@ -783,15 +783,20 @@ footer {
   margin-bottom: 2vw;
 }
 
+@media screen and (min-width: 1320px) {
+  .school-name {
+    margin: 26.4px;
+  }
+  .total-rank p {
+    margin-bottom: 26.4px;
+  }
+}
+
 .star {
   position: relative;
   display: inline-block;
   font-size: calc(1.6rem + 2.0rem);
   color: #CCCCCC;
-}
-
-.star-rate {
-  font-size: calc(1.6rem + 2.0rem);
 }
 
 .star-after {
@@ -810,6 +815,8 @@ footer {
 .left-contents {
   width: 40vw;
   height: 40vw;
+  max-width: 528px;
+  max-height: 528px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -825,17 +832,25 @@ footer {
 }
 
 .right-contents {
+  width: 40vw;
+  height: 40vw;
+  max-width: 528px;
+  max-height: 528px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40vw;
-  height: 40vw;
   color: white;
   outline: solid 2px white;
   outline-offset: -10px;
   background-color: #003366;
   box-shadow: 10px 10px 4px 0 gray;
   border-radius: 2px;
+  p {
+    font-size: min(calc(1.6rem + 0.5vw), 22.6px);
+  }
+  h1 {
+    font-size: min(calc(1.6rem + 2.0vw), 32.4px);
+  }
 }
 
 @media screen and (max-width: 767px) {

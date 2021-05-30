@@ -77,12 +77,12 @@
         <div class="right-contents-inner">
           <div class="tuition text-center pb-5">
               <p>{{ $school->school_name }}の平均受講料</p>
-              <h1>約{{ $tuition_average }}円</h1>
+              <h1>約{{ number_format($tuition_average) }}円</h1>
           </div>
     
           <div class="term text-center pb-5">
             <p>{{ $school->school_name }}の平均受講期間</p>
-            <h1>{{ $term_average }}ヶ月</h1>
+            <h1>約{{ $term_average }}ヶ月</h1>
           </div>
     
           <div class="overall-satisfaction text-center">
@@ -98,7 +98,7 @@
                   };
                 </script>
               </div>
-              <div class="star-rate">{{ $satisfactions['total_judg'] }}</div>
+              <h1>{{ $satisfactions['total_judg'] }}</h1>
             </div>
           </div>
         </div>
