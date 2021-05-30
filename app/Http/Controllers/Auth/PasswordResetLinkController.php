@@ -30,18 +30,23 @@ class PasswordResetLinkController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
+            'email' => ['required', 'string', 'email:strict,spoof,dns', 'max:256'],
+            // 'email' => 'required|email',
         ]);
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
+        // パスワードリセット用リンクをメール送信する
         $status = Password::sendResetLink(
             $request->only('email')
         );
-
+    
         return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
+                    // ? back()->with('status', __($status))
+                    // 送信に成功したらマイページにリダイレクトし、フラッシュメッセージを表示する
+                    ? redirect(route('mypage'))->with('flash_message', 'パスワード再設定用メールを送信しました！')
+                    // 送信に失敗したら、パスワードリセットページにリダイレクトし、エラーを表示
                     : back()->withInput($request->only('email'))
                             ->withErrors(['email' => __($status)]);
     }
