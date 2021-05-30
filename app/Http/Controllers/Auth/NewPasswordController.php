@@ -35,8 +35,10 @@ class NewPasswordController extends Controller
     {
         $request->validate([
             'token' => 'required',
-            'email' => 'required|email',
-            'password' => ['required', 'confirmed', Rules\Password::min(8)],
+            // 'email' => 'required|email',
+            // 'password' => ['required', 'confirmed', Rules\Password::min(8)],
+            'email' => ['required', 'string', 'email:strict,spoof,dns', 'max:256'],
+            'password' => ['required', 'regex:/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i'],
         ]);
 
         // Here we will attempt to reset the user's password. If it is successful we
