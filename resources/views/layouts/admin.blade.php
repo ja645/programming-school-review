@@ -140,7 +140,7 @@
     </div>
   @endif
   <main>
-  <div class="container-xxl" style="padding: 6vw 0;">
+  <div id="main-container" class="container-xxl">
     @yield('content')
   </div>
   </main>

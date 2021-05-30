@@ -33,6 +33,15 @@ a:hover {
   color: darkorange;
 }
 
+#main-container {
+  padding: 6vw 0;
+}
+
+@media screen and (min-width: 1320px) {
+  #main-container {
+    padding: 79.2px 0;
+  }
+}
 /* inputタグ */
 [type=text]:focus, [type=email]:focus, [type=url]:focus, [type=password]:focus, [type=number]:focus, [type=date]:focus, [type=datetime-local]:focus, [type=month]:focus, [type=search]:focus, [type=tel]:focus, [type=time]:focus, [type=week]:focus, [multiple]:focus, textarea:focus, select:focus {
   outline: none;
@@ -339,7 +348,7 @@ footer a:hover {
   margin-bottom: 3px;
   padding: 20px 10px;
   text-align: center;
-  box-shadow: 10px 10px 5px 0 black;
+  box-shadow: 10px 10px 4px 0 gray;
 }
 
 .user-nav .list-group-item:hover {
@@ -439,54 +448,6 @@ footer a:hover {
 /*------------------------------
  -------トップページ-----------
 ----------------------------*/
-.top-icons {
-  background-color: #003366;
-}
-
-.top-signup, .top-login {
-  margin-top: 5%;
-  margin-right: 5rem;
-  margin-left: 5rem;
-}
-
-.top-signup a, .top-login a {
-  text-decoration: none;
-}
-
-.top-signup:hover i {
-  color: rgba(0, 0, 0, 0.5);
-  text-shadow: 2px 2px 1px #eee, 0 0 #000;
-}
-
-.top-login:hover i {
-  color: rgba(0, 0, 0, 0.5);
-  text-shadow: -2px 2px 1px #eee, 0 0 #000;
-}
-
-.top-signup:hover span, .top-login:hover span {
-  color: rgba(0, 0, 0, 0.5);
-  text-shadow: 2px 2px 1px #eee, 0 0 #000;
-}
-
-.top-signup i {
-  color: rgba(255, 255, 255, 0.5);
-  text-shadow: 2px 2px 1px #eee, 0 0 #000;
-}
-
-.top-login i {
-  color: rgba(255, 255, 255, 0.5);
-  text-shadow: -2px 2px 1px #eee, 0 0 #000;
-}
-
-.top-login span, .top-signup span {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: calc(1.4rem + 0.1vw);
-  text-shadow: 1px 1px 1px #eee, 0 0 #000;
-  text-decoration: none;
-  text-align: center;
-  list-style: none;
-}
-
 .top-text {
   width: 90%;
   position: absolute;
@@ -605,16 +566,6 @@ footer a:hover {
   color: white;
   font-size: calc(1.2rem + 0.8vw);
   margin: 20%, 0;
-}
-
-.top-buttons {
-  text-align: center;
-}
-.top-buttons .btn {
-  box-shadow: 10px 10px 5px 0 black;
-  width: calc(100px + 10.0vw);
-  height: 40px;
-  margin: 5% 0;
 }
 
 .swiper-button-prev::after, .swiper-button-next::after {
@@ -807,7 +758,7 @@ footer a:hover {
 
 .review-head-card {
   background-color: #eeeeee;
-  box-shadow: 10px 10px 5px 0 black;
+  box-shadow: 10px 10px 4px 0 gray;
   outline: solid 2px #FF5192;
   outline-offset: -10px;
   border-radius: 2px;
@@ -815,7 +766,7 @@ footer a:hover {
 
 .reviews-card {
   background-color: #eeeeee;
-  box-shadow: 10px 10px 5px 0 black;
+  box-shadow: 10px 10px 4px 0 gray;
   margin: 40px auto;
   outline: solid 2px #FF5192;
   outline-offset: -10px;
@@ -868,7 +819,7 @@ footer a:hover {
   justify-content: center;
   align-items: center;
   background-color: #eeeeee;
-  box-shadow: 10px 10px 5px 0 black;
+  box-shadow: 10px 10px 4px 0 gray;
   outline: solid 2px #003366;
   outline-offset: -10px;
   border-radius: 2px;
@@ -888,7 +839,7 @@ footer a:hover {
   outline: solid 2px white;
   outline-offset: -10px;
   background-color: #003366;
-  box-shadow: 10px 10px 5px 0 black;
+  box-shadow: 10px 10px 4px 0 gray;
   border-radius: 2px;
 }
 
@@ -900,7 +851,7 @@ footer a:hover {
 }
 .school-head-card, .school-info-card {
   background-color: #eeeeee;
-  box-shadow: 10px 10px 5px 0 black;
+  box-shadow: 10px 10px 4px 0 gray;
   outline: solid 2px #FFD700;
   outline-offset: -10px;
   border-radius: 2px;
@@ -912,7 +863,7 @@ footer a:hover {
 
 .school-reviews-card {
   background-color: #eeeeee;
-  box-shadow: 10px 10px 5px 0 black;
+  box-shadow: 10px 10px 4px 0 gray;
   margin: 40px auto;
   outline: solid 2px #FFD700;
   outline-offset: -10px;
@@ -959,7 +910,7 @@ footer a:hover {
 
 .review-text-card {
   background-color: #eeeeee;
-  box-shadow: 10px 10px 5px 0 black;
+  box-shadow: 10px 10px 4px 0 gray;
   border-radius: 2px;
 }
 

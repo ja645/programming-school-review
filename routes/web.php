@@ -74,9 +74,6 @@ Route::middleware(['auth'])->group(function() {
   
   Route::get('/like/{id}', [LikeController::class, 'current']);
   Route::post('/like', [LikeController::class, 'switchLike']);
-  
-  // Route::get('/password/change', [ChangePasswordController::class, 'showChangePasswordView']);
-  // Route::post('/password', [ChangePasswordController::class, 'changePassword']);
 
   Route::get('/message/{id}', function(int $id) {
     return Message::where('review_id', $id)->get();

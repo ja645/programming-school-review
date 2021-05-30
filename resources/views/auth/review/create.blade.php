@@ -3,7 +3,6 @@
 @section('title', 'create-review')
 
 @section('content')
-<div class="container-fluid p-0">
 
   <div class="form-title">
     <h1>レビュー作成</h1>
@@ -136,7 +135,5 @@
     <textarea name="report" class="feedback-input" value="{{ old('report') }}" placeholder="レビュー本文（率直な印象をお聞かせください。）"></textarea>
 
     <input type="submit" value="投稿する"/>
-</form>
-  
-</div>
+  </form>
 @endsection

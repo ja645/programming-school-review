@@ -3,7 +3,6 @@
 @section('title', 'school-list')
 
 @section('content')
-<div id="top-container" class="container-fluid p-0">
        
   <div class="form-title">
     <h1>スクール一覧</h1>
@@ -23,11 +22,9 @@
       @endforeach
     </div>
     
-    <nav aria-label="Page navigation example">
-      {{ $schools->links() }}
-    </nav>
+    {{ $schools->links() }}
+
     @endif
   </div>
   
-</div>
 @endsection

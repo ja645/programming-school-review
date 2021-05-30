@@ -3,8 +3,7 @@
 @section('title', 'school')
 
 @section('content')
-<div class="school-background">
-  <div class="container-fluid school-container">
+
     <div class="col-11 mx-auto school-head-card">
       <div class="row school-head">
         <div class="col-sm-1 d-none d-sm-block"></div>
@@ -129,17 +128,15 @@
         <p class="py-4">まだレビューがありません</p>
       @else
         <div class="review-list">
-          @foreach ($school->reviews as $review)
+          @foreach ($school->reviews->take(5) as $review)
           <a href="{{ url('/reviews/review/' . $review->id) }}"  class="list-group-item list-group-item-action">{{ $review->title }}</a>
           @endforeach
         </div>
         
         <div class="d-flex justify-content-end">
-          <a href="{{ url('/reviews/' . $school->id) }}" class="text-align: center;">他のレビューを見る<i class="fas fa-angle-double-right"></i></a>
+          <a href="{{ url('/reviews/school/' . $school->id) }}" class="text-align: center;">他のレビューを見る<i class="fas fa-angle-double-right"></i></a>
         </div>
       @endif
     </div>
-  </div>
-</div>
 
 @endsection
