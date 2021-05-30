@@ -140,7 +140,9 @@
     </div>
   @endif
   <main>
+  <div class="container-xxl" style="padding: 6vw 0;">
     @yield('content')
+  </div>
   </main>
 
   <footer class="mt-auto">

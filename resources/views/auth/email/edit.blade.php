@@ -39,7 +39,7 @@
 </head>
 <body>
 
-<div class="container-xl">
+<div class="container-xxl">
 
   <div class="logo">
     <a href="/">

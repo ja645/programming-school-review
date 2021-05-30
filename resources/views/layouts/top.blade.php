@@ -3,9 +3,6 @@
 @section('title', 'top')
 
 @section('content')
-
-  <div id="top-container" class="container-xxl p-0">
-    
     <div id="wrap">
       <div id="gray">
         <div id="white"></div>
@@ -144,5 +141,4 @@
         </form>
       @endif
     </div>
-  </div>
 @endsection

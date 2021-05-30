@@ -3,7 +3,6 @@
 @section('title', 'mypage')
 
 @section('content')
-<div id="top-container" class="container-fluid p-0">
 
   <div class="form-title">
     <h1>{{ $profile_form->user_name }}さんのマイページ</h1>
@@ -38,7 +37,7 @@
               メールアドレス<span>{{ $profile_form->email }}</span><a href="{{ route('email.edit') }}">メールアドレスを変更</a>
             </li>
             <li class="list-group-item">
-              パスワード<span>パスワードは表示出来ません。</span><a href="{{ url('/password/change') }}">パスワードを変更</a>
+              パスワード<span>パスワードは表示出来ません。</span><a href="{{ route('password.request') }}">パスワードを変更</a>
             </li>
           </ul>
         </div>
@@ -75,5 +74,5 @@
   <form action="{{ route('user.edit') }}" method="get">
     <input type="submit" value="プロフィールを変更"/>
   </form>
-</div>
+
 @endsection

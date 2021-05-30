@@ -676,33 +676,39 @@ footer {
 
 
 /* -------ページネーション-------- */
-.page-item {
-  border-radius: none;
-  margin: 0 10px;
+.pagination {
+  justify-content: center;
 }
 
-.page-item a {
-  color: white;
-  background-color: darkorange;
+.page-link {
+  border: 2px solid darkorange;
 }
 
-.page-chevron {
-  color: white;
-}
-
-.page-item a:hover {
+.page-item.disabled .page-link {
   color: darkorange;
-  background: none;
   border-color: darkorange;
 }
 
-.page-item a:hover .page-chevron {
-  color: darkorange;
+.page-item {
+  border-radius: none;
+  margin: 0 10px;
+  a {
+    color: white;
+    background-color: darkorange;
+    &:hover {
+      color: darkorange;
+      background: none;
+      border-color: darkorange;
+    }
+    &:focus {
+      color: darkorange;
+    }
+  }
 }
 
 .page-item.active .page-link {
   color: darkorange;
-  background: none;
+  background-color: white;
   border-color: darkorange;
 }
 /* ----ページネーションここまで------ */
@@ -910,7 +916,7 @@ footer {
 }
 
 .review-list {
-  margin-bottom: 70px;
+  padding-bottom: 40px;
 }
 
 .review-list .list-group-item {

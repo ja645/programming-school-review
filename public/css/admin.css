@@ -153,11 +153,11 @@ textarea {
 .logo a {
   color: darkorange;
   font-size: 30px;
-  filter: drop-shadow(3px 2px 1px black);
+  filter: drop-shadow(2px 2px 0px white);
 }
 .logo a:hover {
   color: white;
-  filter: drop-shadow(0 0 0 black);
+  filter: drop-shadow(2px 2px 0px darkorange);
 }
 
 .error-message {
@@ -242,7 +242,7 @@ footer a:hover {
 }
 
 .wrap-icons {
-  width: 100%;
+  width: 95%;
   margin: 0;
   display: flex;
   justify-content: space-between;
@@ -683,33 +683,39 @@ footer a:hover {
 
 /* ----リストのタブここまで---------- */
 /* -------ページネーション-------- */
+.pagination {
+  justify-content: center;
+}
+
+.page-link {
+  border: 2px solid darkorange;
+}
+
+.page-item.disabled .page-link {
+  color: darkorange;
+  border-color: darkorange;
+}
+
 .page-item {
   border-radius: none;
   margin: 0 10px;
 }
-
 .page-item a {
   color: white;
   background-color: darkorange;
 }
-
-.page-chevron {
-  color: white;
-}
-
 .page-item a:hover {
   color: darkorange;
   background: none;
   border-color: darkorange;
 }
-
-.page-item a:hover .page-chevron {
+.page-item a:focus {
   color: darkorange;
 }
 
 .page-item.active .page-link {
   color: darkorange;
-  background: none;
+  background-color: white;
   border-color: darkorange;
 }
 
@@ -914,7 +920,7 @@ footer a:hover {
 }
 
 .review-list {
-  margin-bottom: 70px;
+  padding-bottom: 40px;
 }
 
 .review-list .list-group-item {
