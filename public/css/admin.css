@@ -7,15 +7,17 @@
 html {
   font-size: 62.5%;
   font-family: "corpo";
+  width: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
   height: 100%;
   min-height: 100vh;
   position: relative;
-  background-color: rgba(0, 116, 150, 0.7);
+  background-color: rgba(0, 131, 165, 0.7);
 }
 
 p, h1, h2, h3, h4, h5, h6 {
@@ -50,7 +52,7 @@ form {
 
 .form-title {
   text-align: center;
-  font-size: calc(2.4rem + 1.6vw);
+  font-size: min(calc(2.4rem + 1.6vw), 45px);
   color: white;
   width: 100%;
   padding: 30px 0;
@@ -113,7 +115,7 @@ textarea {
   margin-top: -4px;
   margin-bottom: 50px;
   font-weight: 700;
-  box-shadow: 10px 10px 5px 0 black;
+  box-shadow: 10px 10px 4px 0 gray;
 }
 
 [type=submit]:hover {
@@ -148,13 +150,11 @@ textarea {
 .logo {
   padding: 30px;
 }
-
 .logo a {
   color: darkorange;
   font-size: 30px;
   filter: drop-shadow(3px 2px 1px black);
 }
-
 .logo a:hover {
   color: white;
   filter: drop-shadow(0 0 0 black);
@@ -177,20 +177,21 @@ footer {
   width: 100%;
   height: 40px;
 }
-
 footer a {
   font-size: calc(1.2rem + 0.3vw);
   color: white;
   text-decoration: none;
 }
-
 footer a:hover {
   color: darkorange;
 }
 
+/*---------------------------------
+ ------ フッターここまで ----------
+--------------------------------*/
 /* --------------------------------
- -----ヘッダーのアイコンのcss------
---------------------------------- */
+ --------ヘッダーのアイコン--------
+------------------------------- */
 .fa-bars {
   color: white;
 }
@@ -202,24 +203,20 @@ footer a:hover {
 .nav-icon {
   width: 65px;
   text-align: center;
-  filter: drop-shadow(4px 4px 1px black);
+  filter: drop-shadow(4px 4px 0px gray);
 }
-
+.nav-icon:active {
+  filter: drop-shadow(0 0 0 black);
+}
 .nav-icon span {
   font-size: 1.3rem;
   display: inline-block;
 }
-
 .nav-icon a {
   color: white;
 }
-
 .nav-icon a:hover {
   color: darkorange;
-}
-
-.nav-icon:active {
-  filter: drop-shadow(0 0 0 black);
 }
 
 @media screen and (max-width: 991px) {
@@ -228,7 +225,6 @@ footer a:hover {
     display: inline;
     text-align: center;
   }
-
   .nav-icon span {
     font-size: 2rem;
     display: inline-block;
@@ -240,9 +236,14 @@ footer a:hover {
   height: 100vh;
 }
 
+.navbar {
+  width: 97%;
+  margin: 0 auto;
+}
+
 .wrap-icons {
-  width: 93%;
-  margin-left: 4%;
+  width: 100%;
+  margin: 0;
   display: flex;
   justify-content: space-between;
 }
@@ -250,13 +251,12 @@ footer a:hover {
 .header-logo {
   color: darkorange;
   font-size: calc(1.6rem + 1vw);
-  filter: drop-shadow(3px 2px 1px black);
+  filter: drop-shadow(2px 2px 0px white);
 }
-
 .header-logo:hover {
   color: white;
+  filter: drop-shadow(2px 2px 0px darkorange);
 }
-
 .header-logo:active {
   filter: drop-shadow(0 0 0 black);
 }
@@ -430,7 +430,7 @@ footer a:hover {
 }
 
 .card {
-  box-shadow: 10px 10px 5px 0 black;
+  box-shadow: 10px 10px 4px 0 gray;
 }
 
 /*------------------------------
@@ -488,6 +488,7 @@ footer a:hover {
 }
 
 .top-text {
+  width: 90%;
   position: absolute;
   top: 9%;
   left: 5%;
@@ -495,17 +496,16 @@ footer a:hover {
 }
 
 .catch {
-  font-size: calc(1.0rem + 6.0vw);
   color: darkorange;
+  font-size: min(calc(1.0rem + 6.0vw), 89.2px);
   display: inline-block;
-  width: 90vw;
   filter: drop-shadow(2px 2px 0px white);
 }
 
 .sub-title {
-  font-size: calc(1.0rem + 1.0vw);
   display: inline-block;
   width: 90vw;
+  font-size: min(calc(1.0rem + 1.0vw), 23.2px);
   color: azure;
 }
 
@@ -514,14 +514,15 @@ footer a:hover {
 }
 
 #wrap {
-  height: 46vw;
+  height: 45vw;
+  max-height: 594px;
   position: relative;
   background: none;
 }
 
 #gray {
   width: 90%;
-  height: 40vw;
+  height: 94%;
   position: absolute;
   top: 13%;
   left: 6%;
@@ -532,7 +533,7 @@ footer a:hover {
 
 #white {
   width: 40%;
-  height: 16vw;
+  height: 40%;
   position: absolute;
   right: 4%;
   top: 12%;
@@ -540,19 +541,12 @@ footer a:hover {
   box-shadow: inset 10px 10px 5px 0 rgba(0, 0, 0, 0.5);
 }
 
-.wave, .swimmer {
+.wave {
   width: 100%;
-  height: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
 }
-
-.swimmer img {
-  position: relative;
-  top: -70%;
-  left: 25%;
-  width: 45%;
-  filter: drop-shadow(3px 6px 2px black);
-}
-
 .wave img {
   position: relative;
   max-width: 102%;
@@ -562,12 +556,31 @@ footer a:hover {
   filter: drop-shadow(18px 8px 1px black);
 }
 
+.swimmer {
+  width: 100%;
+  position: absolute;
+  bottom: -14%;
+  z-index: 1;
+}
+.swimmer img {
+  position: relative;
+  top: -70%;
+  left: 25%;
+  width: 45%;
+  filter: drop-shadow(3px 6px 2px black);
+}
+
 .box-w p, .box-b p {
   margin: 0 auto;
 }
 
 .card-body {
   border-radius: 0;
+}
+
+.card-title {
+  font-size: 20px;
+  text-align: center;
 }
 
 #school-card {
@@ -584,6 +597,9 @@ footer a:hover {
 .recruit {
   text-align: center;
 }
+.recruit h1 {
+  font-size: min(calc(2.4rem + 1.6vw), 45px);
+}
 
 .btn-signup p, .btn-login p {
   color: white;
@@ -594,7 +610,6 @@ footer a:hover {
 .top-buttons {
   text-align: center;
 }
-
 .top-buttons .btn {
   box-shadow: 10px 10px 5px 0 black;
   width: calc(100px + 10.0vw);
@@ -607,13 +622,12 @@ footer a:hover {
 }
 
 .slider-card {
-  border: solid 2px darkorange;
+  border: solid 4px darkorange;
 }
 
 .link-to-contacts {
-  color: darkorange;
+  color: #ffbe20;
 }
-
 .link-to-contacts:hover {
   color: white;
 }

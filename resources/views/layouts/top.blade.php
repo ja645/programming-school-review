@@ -4,7 +4,7 @@
 
 @section('content')
 
-  <div id="top-container" class="container-fluid p-0">
+  <div id="top-container" class="container-xxl p-0">
     
     <div id="wrap">
       <div id="gray">
@@ -76,7 +76,7 @@
           <div class="card slider-card mx-auto" style="width: 18rem;">
             <a href="{{ url('/schools/' . $school->id) }}" class="card-link">
             <div id="school-card" class="card-body">
-              <h1 class="card-title" style="font-size: 20px;">{{ $school->school_name }}</h1>
+              <h1 class="card-title">{{ $school->school_name }}</h1>
             </div>
           </a>
           </div>  
@@ -130,12 +130,19 @@
 
     <!-- 投稿募集 -->
     <div class="recruit" style="color: white; margin-top: 70px;">
-      <p class="sub-title">あなたの体験は貴重な財産です。</p>
+      <!-- <p class="sub-title">あなたの体験は貴重な財産です。</p> -->
+      <h1>あなたの体験は貴重な財産です。</h1>
       <p>すでにプログラミングスクールを受講された方は、ぜひレビューを書いてみましょう！</p>
       <p>あなたの声を待っている人がたくさんいます！</p>
-      <form action="{{ route('signup') }}" method="get">
-        <input type="submit" value="アカウントを作成" style="margin-top: 30px;"/>
-      </form>
+      @if(Auth::check())
+        <form action="{{ route('review.add') }}" method="get">
+          <input type="submit" value="レビューを作成" style="margin-top: 30px;"/>
+        </form>
+      @else
+        <form action="{{ route('signup') }}" method="get">
+          <input type="submit" value="アカウントを作成" style="margin-top: 30px;"/>
+        </form>
+      @endif
     </div>
   </div>
 @endsection

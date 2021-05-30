@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
 <body>
-  <div id="has-no-header" class="container-fluid p-0">
+  <div id="has-no-header" class="container-xxl p-0">
 
     <div class="logo">
       <a href="/">

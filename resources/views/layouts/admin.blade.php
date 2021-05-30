@@ -40,7 +40,7 @@
 <body>
   
   <nav class="navbar navbar-expand-lg pt-5 pb-3">
-    <div class="container-fluid mx-5">
+    <div class="container-xxl">
       <a class="header-logo navbar-brand" href="{{ route('top') }}">Crawl</a>
       
       <!-- 画面幅が小さいときハンバーガーメニュー -->
@@ -49,7 +49,7 @@
       </button>
       
       
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="wrap-icons navbar-nav">
           
           <!-- 画面幅lg以下で表示される -->
@@ -144,7 +144,7 @@
   </main>
 
   <footer class="mt-auto">
-    <div class="container-fluid d-flex justify-content-sm-start justify-content-center">
+    <div class="container-xxl d-flex justify-content-sm-start justify-content-center">
       <a class="footer-logo" href="{{ route('top') }}">Crawl</a>  
       <!-- <a class="ms-5" href="#">サイト概要</a> -->
       <a class="ms-5" href="{{ route('contact') }}">お問い合わせ</a>
