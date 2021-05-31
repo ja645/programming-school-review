@@ -38,6 +38,7 @@ class PasswordResetLinkController extends Controller
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
         // パスワードリセット用リンクをメール送信する
+        dump('hoge');
         $status = Password::sendResetLink(
             $request->only('email')
         );
