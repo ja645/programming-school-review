@@ -3,7 +3,6 @@
 @section('title', 'create-user')
 
 @section('content')
-<div id="top-container" class="container-fluid p-0">
 
     <div class="form-title">
         <h1>アカウント作成</h1>
@@ -35,5 +34,4 @@
 
     </form>
             
-</div>
 @endsection

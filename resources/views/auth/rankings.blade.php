@@ -3,7 +3,6 @@
 @section('title', 'rankings')
 
 @section('content')
-<div id="top-container" class="container-fluid p-0">
        
   <div class="form-title">
     <h1>ランキング一覧</h1>
@@ -17,5 +16,5 @@
       </div>
     </div>
   </div>
-</div>
+
 @endsection

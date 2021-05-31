@@ -50,6 +50,13 @@
       <h1>パスワード変更用メールを送信</h1>
     </div>
 
+    <!-- フラッシュメッセージ -->
+    @if (session('flash_message'))
+      <div class="flash_message text-center" style="color: white;">
+        {{ session('flash_message') }}
+      </div>
+    @endif
+    
     <form action="{{ route('password.email') }} " method="post" enctype="multipart/form-data">
     @if (count($errors) > 0)
     <ul>

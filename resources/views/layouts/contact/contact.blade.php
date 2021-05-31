@@ -3,7 +3,6 @@
 @section('title', 'contact')
 
 @section('content')
-<div class="container-xxl">
 
   <div class="form-title">
     <h1>お問い合わせ</h1>
@@ -37,5 +36,4 @@
 
   </form>
   
-</div>
 @endsection

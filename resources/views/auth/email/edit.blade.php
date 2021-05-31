@@ -51,6 +51,13 @@
     <h1>メールアドレス変更</h1>
   </div>
 
+   <!-- フラッシュメッセージ -->
+   @if (session('flash_message'))
+    <div class="flash_message text-center" style="color: white;">
+      {{ session('flash_message') }}
+    </div>
+  @endif
+  
   <form method="POST" action="{{ route('email') }}">
   @if (count($errors) > 0)
     <ul>

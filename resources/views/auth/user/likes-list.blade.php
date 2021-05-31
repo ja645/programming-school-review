@@ -3,7 +3,6 @@
 @section('title', 'myreview')
 
 @section('content')
-<div id="top-container" class="container-fluid p-0">
        
   <div class="form-title">
     <h1>あなたのいいねしたスクール</h1>
@@ -22,9 +21,9 @@
 
     </div>
 
-    <nav aria-label="Page navigation example">
-        {{ $likes->links() }}
-    </nav>
+
+    {{ $likes->links() }}
+
   @endif
-</div>
+
 @endsection

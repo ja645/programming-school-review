@@ -787,6 +787,9 @@ footer a:hover {
 .total-rank p {
   margin-bottom: 2vw;
 }
+.total-rank span {
+  color: gray;
+}
 
 @media screen and (min-width: 1320px) {
   .school-name {
@@ -852,10 +855,10 @@ footer a:hover {
   border-radius: 2px;
 }
 .right-contents p {
-  font-size: min(calc(1.6rem + 0.5vw), 22.6px);
+  font-size: min(calc(1.4rem + 0.5vw), 22.6px);
 }
 .right-contents h1 {
-  font-size: min(calc(1.6rem + 2.0vw), 32.4px);
+  font-size: min(calc(1.0rem + 2.0vw), 32.4px);
 }
 
 @media screen and (max-width: 767px) {
@@ -915,12 +918,14 @@ footer a:hover {
   background-color: #fff;
 }
 
+.message-form {
+  padding-bottom: 0;
+}
+
 .message-send {
   display: block;
   margin-top: 10px;
   margin-left: auto;
-  width: 150px;
-  height: 40px;
 }
 
 .review-text-card {

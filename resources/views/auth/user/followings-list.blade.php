@@ -3,7 +3,6 @@
 @section('title', 'following-list')
 
 @section('content')
-<div id="top-container" class="container-fluid p-0">
 
   <div class="form-title">
     <h1>あなたのフォローしたレビュー</h1>
@@ -23,9 +22,8 @@
           
     </div>
 
-    <nav aria-label="Page navigation example">
-        {{ $followings->links() }}
-    </nav>
+    {{ $followings->links() }}
+    
   @endif
-</div>
+
 @endsection

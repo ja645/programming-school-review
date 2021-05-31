@@ -24,6 +24,10 @@ class ReviewFactory extends Factory
         // when_startに挿入する日付を生成
         $start_at = $this->faker->dateTime();
 
+        $subject = ['料金が', '運営の対応が', 'カリキュラムは', 'メンターの質が', '思ったよりも', '転職支援は'];
+
+        $predicate = ['良かった', '悪かった', '最悪だった、、、', '物足りない', '最高だった！', 'イマイチ、、、'];
+
         return [
             'school_id' => 1,
             'course' => $this->faker->name(),
@@ -40,8 +44,8 @@ class ReviewFactory extends Factory
             'st_support' => rand(0,4),
             'st_staff' => rand(0,4),
             'total_judg' => rand(0,4),
-            'title' => str_repeat('a test title', 2),
-            'report' => str_repeat('a test', 20),
+            'title' => $subject[array_rand($subject)] . $predicate[array_rand($predicate)],
+            'report' => $this->faker->realText(),
         ];
     }
 }

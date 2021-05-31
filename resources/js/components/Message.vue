@@ -7,9 +7,9 @@
   </div>
   <div class="col-11 mx-auto reviews-card p-5">
     <p>{{ review.user.user_name }}さんに質問してみましょう！</p>
-    <div class="review-list">
+    <div class="review-list message-form">
       <textarea type="text" style="width: 100%; height: 40px; font-size: 18px; border: solid 2px #FF5192; padding: 10px 10px; background-color: #fff; outline: none" v-model="newMessage"></textarea>
-      <button type="button" class="btn btn-success message-send" @click="addMessage">送信</button>
+      <button type="button" class="btn btn-success message-send" @click="addMessage"><i class="fas fa-2x fa-paper-plane"></i></button>
     </div>
   </div>
 </template>

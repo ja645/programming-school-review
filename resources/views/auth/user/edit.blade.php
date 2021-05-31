@@ -3,7 +3,6 @@
 @section('title', 'edit-user')
 
 @section('content')
-<div id="top-container" class="container-fluid p-0">
         
     <div class="form-title">
         <h1>プロフィール編集</h1>
@@ -18,7 +17,7 @@
     </ul>
     @endif
     @csrf
-           
+            
         <input name="user_name" type="text" class="feedback-input" value="{{ old('user_name', $profile_form->user_name) }}" placeholder="ニックネーム">
         <input type="date" name="birthday" class="feedback-input" value="{{ old('birthday', $profile_form->use_name) }}">
         <select name="sex" class="feedback-input" value="{{ old('sex', $profile_form->sex) }}">
@@ -32,5 +31,4 @@
 
     </form>
 
-</div>
 @endsection

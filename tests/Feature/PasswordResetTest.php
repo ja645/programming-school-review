@@ -23,7 +23,7 @@ class PasswordResetTest extends TestCase
     {
         Notification::fake();
 
-        $user = User::factory()->create();
+        $user = User::factory()->create(['email' => 'sample@gmail.com']);
 
         $this->post('/forgot-password', ['email' => $user->email]);
 

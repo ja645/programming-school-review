@@ -779,8 +779,13 @@ footer {
   margin: 2vw 0;
 }
 
-.total-rank p {
-  margin-bottom: 2vw;
+.total-rank {
+  p {
+    margin-bottom: 2vw;
+  }
+  span {
+    color: gray;
+  }
 }
 
 @media screen and (min-width: 1320px) {
@@ -846,10 +851,10 @@ footer {
   box-shadow: 10px 10px 4px 0 gray;
   border-radius: 2px;
   p {
-    font-size: min(calc(1.6rem + 0.5vw), 22.6px);
+    font-size: min(calc(1.4rem + 0.5vw), 22.6px);
   }
   h1 {
-    font-size: min(calc(1.6rem + 2.0vw), 32.4px);
+    font-size: min(calc(1.0rem + 2.0vw), 32.4px);
   }
 }
 
@@ -912,12 +917,14 @@ footer {
   background-color: #fff;
 }
 
+.message-form {
+  padding-bottom: 0;
+}
+
 .message-send {
   display: block;
   margin-top: 10px;
   margin-left: auto;
-  width: 150px;
-  height: 40px;
 }
 
 .review-text-card {
