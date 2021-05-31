@@ -46,7 +46,8 @@ class ReviewController extends Controller
      */
     public function add()
     {
-        return view('auth.review.create');
+        $schools = School::all();
+        return view('auth.review.create', ['schools' => $schools]);
     }
 
     /**
@@ -57,7 +58,6 @@ class ReviewController extends Controller
     public function create(ReviewFormRequest $request)
     {
         $user_id = Auth::id();
-
         $requestFields = $request->all();
         
         $requestFields['user_id'] = $user_id;

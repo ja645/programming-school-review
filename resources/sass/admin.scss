@@ -120,6 +120,10 @@ textarea {
 
 [type="submit"]:focus { box-shadow: none; }
 
+option {
+  color: black;
+}
+
 .feedback-radio:focus-within  {
   border-color: darkorange;
 }

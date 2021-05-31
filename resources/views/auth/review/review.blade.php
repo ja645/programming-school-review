@@ -12,7 +12,9 @@
     <div class="row">
       <div class="col-sm-1 col-2"></div>
       <div class="col-sm-11 col-10 total-rank">
-        <p><span>投稿したユーザー</span>&emsp;<i class="fas fa-user"></i>{{ $review->user->user_name }}&emsp;<span>受講したスクール</span>&emsp;<a href="{{ url('/schools/' . $review->school->id) }}"><i class="fas fa-school"></i>{{ $review->school->school_name }}</a></p>
+        <p><span>投稿したユーザー</span>&emsp;<i class="fas fa-user"></i>{{ $review->user->user_name }}
+        &emsp;<br class="d-block d-lg-none"><span>受講したスクール</span>&emsp;<a href="{{ url('/schools/' . $review->school->id) }}"><i class="fas fa-school"></i>{{ $review->school->school_name }}</a>
+        &emsp;<br class="d-block d-lg-none"><span>受講したコース</span>&emsp;{{ $review->course }}</p>
       </div>
     </div>
   </div>

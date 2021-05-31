@@ -20,12 +20,9 @@
 
     <p class="form-item">受講したスクールを教えてください。<br>(※ここにないスクールの場合は、お問い合わせください。)</p>
     <select name="school_id" class="feedback-input">
-      <option value=1 selected　@if(old('school_id') == 1) selected  @endif>Tech::hogehoge</option>
-      <option value=2 @if(old('school_name') == 2) selected  @endif>Tech::hogehoge</option>
-      <option value=3 @if(old('school_name') == 3) selected  @endif>Tech::hogehoge</option>
-      <option value=4 @if(old('school_name') == 4) selected  @endif>Tech::hogehoge</option>
-      <option value=5 @if(old('school_name') == 5) selected  @endif>Tech::hogehoge</option>
-      <option value=6 @if(old('school_name') == 6) selected  @endif>Tech::hogehoge</option>
+      @foreach($schools as $school)
+        <option value="{{ $school->id }}" selected　@if(old('school_id') == $school->id) selected  @endif>{{ $school->school_name }}</option>
+      @endforeach
     </select>
 
     <input type="text" name="course" class="feedback-input" value="{{ old('cource') }}" placeholder="受講したコース名を教えてください。">
@@ -48,85 +45,85 @@
 
     <p class="form-item">受講スタイルを教えてください。</p>
     <div class="feedback-input feedback-radio d-flex justify-content-between">
-      <label for=""><input type="radio" name="at_school" value=0 @if(old('purpose') === 0) checked="true" @endif>オンライン</label>
-      <label for=""><input type="radio" name="at_school" value=1 @if(old('purpose') === 1) checked="true" @endif>通学</label>
+      <label for=""><input type="radio" name="at_school" value=0 @if(old('purpose') == 0) checked="true" @endif>オンライン</label>
+      <label for=""><input type="radio" name="at_school" value=1 @if(old('purpose') == 1) checked="true" @endif>通学</label>
     </div>
 
     
     <p class="form-item">受講料に対する満足度</p>
     <div class="feedback-input feedback-radio d-flex justify-content-between">
       <label>不満足</label>
-      <label><input type="radio" name="st_tuition" value=0 @if(old('purpose') === 0) checked="true" @endif>1</label>
-      <label><input type="radio" name="st_tuition" value=1 @if(old('purpose') === 1) checked="true" @endif>2</label>
-      <label><input type="radio" name="st_tuition" value=2 @if(old('purpose') === 2) checked="true" @endif>3</label>
-      <label><input type="radio" name="st_tuition" value=3 @if(old('purpose') === 3) checked="true" @endif>4</label>
-      <label><input type="radio" name="st_tuition" value=4 @if(old('purpose') === 4) checked="true" @endif>5</label>
+      <label><input type="radio" name="st_tuition" value=0 @if(old('purpose') == 0) checked="true" @endif>1</label>
+      <label><input type="radio" name="st_tuition" value=1 @if(old('purpose') == 1) checked="true" @endif>2</label>
+      <label><input type="radio" name="st_tuition" value=2 @if(old('purpose') == 2) checked="true" @endif>3</label>
+      <label><input type="radio" name="st_tuition" value=3 @if(old('purpose') == 3) checked="true" @endif>4</label>
+      <label><input type="radio" name="st_tuition" value=4 @if(old('purpose') == 4) checked="true" @endif>5</label>
       <label>満足</label>
     </div>
 
     <p class="form-item">受講期間に対する満足度</p>
     <div class="feedback-input feedback-radio d-flex justify-content-between">
       <label>不満足</label>
-      <label><input type="radio" name="st_term" value=0 @if(old('purpose') === 0) checked="true" @endif>1</label>
-      <label><input type="radio" name="st_term" value=1 @if(old('purpose') === 1) checked="true" @endif>2</label>
-      <label><input type="radio" name="st_term" value=2 @if(old('purpose') === 2) checked="true" @endif>3</label>
-      <label><input type="radio" name="st_term" value=3 @if(old('purpose') === 3) checked="true" @endif>4</label>
-      <label><input type="radio" name="st_term" value=4 @if(old('purpose') === 4) checked="true" @endif>5</label>
+      <label><input type="radio" name="st_term" value=0 @if(old('purpose') == 0) checked="true" @endif>1</label>
+      <label><input type="radio" name="st_term" value=1 @if(old('purpose') == 1) checked="true" @endif>2</label>
+      <label><input type="radio" name="st_term" value=2 @if(old('purpose') == 2) checked="true" @endif>3</label>
+      <label><input type="radio" name="st_term" value=3 @if(old('purpose') == 3) checked="true" @endif>4</label>
+      <label><input type="radio" name="st_term" value=4 @if(old('purpose') == 4) checked="true" @endif>5</label>
       <label>満足</label>
     </div>
 
     <p class="form-item">教材に対する満足度</p>
     <div class="feedback-input feedback-radio d-flex justify-content-between">
       <label>不満足</label>
-      <label><input type="radio" name="st_curriculum" value=0 @if(old('purpose') === 0) checked="true" @endif>1</label>
-      <label><input type="radio" name="st_curriculum" value=1 @if(old('purpose') === 1) checked="true" @endif>2</label>
-      <label><input type="radio" name="st_curriculum" value=2 @if(old('purpose') === 2) checked="true" @endif>3</label>
-      <label><input type="radio" name="st_curriculum" value=3 @if(old('purpose') === 3) checked="true" @endif>4</label>
-      <label><input type="radio" name="st_curriculum" value=4 @if(old('purpose') === 4) checked="true" @endif>5</label>
+      <label><input type="radio" name="st_curriculum" value=0 @if(old('purpose') == 0) checked="true" @endif>1</label>
+      <label><input type="radio" name="st_curriculum" value=1 @if(old('purpose') == 1) checked="true" @endif>2</label>
+      <label><input type="radio" name="st_curriculum" value=2 @if(old('purpose') == 2) checked="true" @endif>3</label>
+      <label><input type="radio" name="st_curriculum" value=3 @if(old('purpose') == 3) checked="true" @endif>4</label>
+      <label><input type="radio" name="st_curriculum" value=4 @if(old('purpose') == 4) checked="true" @endif>5</label>
       <label>満足</label>
     </div>
 
     <p class="form-item">メンター(講師)に対する満足度</p>
     <div class="feedback-input feedback-radio d-flex justify-content-between">
       <label>不満足</label>
-      <label><input type="radio" name="st_mentor" value=0 @if(old('purpose') === 0) checked="true" @endif>1</label>
-      <label><input type="radio" name="st_mentor" value=1 @if(old('purpose') === 1) checked="true" @endif>2</label>
-      <label><input type="radio" name="st_mentor" value=2 @if(old('purpose') === 2) checked="true" @endif>3</label>
-      <label><input type="radio" name="st_mentor" value=3 @if(old('purpose') === 3) checked="true" @endif>4</label>
-      <label><input type="radio" name="st_mentor" value=4 @if(old('purpose') === 4) checked="true" @endif>5</label>
+      <label><input type="radio" name="st_mentor" value=0 @if(old('purpose') == 0) checked="true" @endif>1</label>
+      <label><input type="radio" name="st_mentor" value=1 @if(old('purpose') == 1) checked="true" @endif>2</label>
+      <label><input type="radio" name="st_mentor" value=2 @if(old('purpose') == 2) checked="true" @endif>3</label>
+      <label><input type="radio" name="st_mentor" value=3 @if(old('purpose') == 3) checked="true" @endif>4</label>
+      <label><input type="radio" name="st_mentor" value=4 @if(old('purpose') == 4) checked="true" @endif>5</label>
       <label>満足</label>
     </div>
 
     <p class="form-item">転職支援などのサポートに対する満足度</p>
     <div class="feedback-input feedback-radio d-flex justify-content-between">
       <label>不満足</label>
-      <label><input type="radio" name="st_support" value=0 @if(old('purpose') === 0) checked="true" @endif>1</label>
-      <label><input type="radio" name="st_support" value=1 @if(old('purpose') === 1) checked="true" @endif>2</label>
-      <label><input type="radio" name="st_support" value=2 @if(old('purpose') === 2) checked="true" @endif>3</label>
-      <label><input type="radio" name="st_support" value=3 @if(old('purpose') === 3) checked="true" @endif>4</label>
-      <label><input type="radio" name="st_support" value=4 @if(old('purpose') === 4) checked="true" @endif>5</label>
+      <label><input type="radio" name="st_support" value=0 @if(old('purpose') == 0) checked="true" @endif>1</label>
+      <label><input type="radio" name="st_support" value=1 @if(old('purpose') == 1) checked="true" @endif>2</label>
+      <label><input type="radio" name="st_support" value=2 @if(old('purpose') == 2) checked="true" @endif>3</label>
+      <label><input type="radio" name="st_support" value=3 @if(old('purpose') == 3) checked="true" @endif>4</label>
+      <label><input type="radio" name="st_support" value=4 @if(old('purpose') == 4) checked="true" @endif>5</label>
       <label>満足</label>
     </div>
 
     <p class="form-item">運営に対する満足度</p>
     <div class="feedback-input feedback-radio d-flex justify-content-between">
       <label>不満足</label>
-      <label><input type="radio" name="st_staff" value=0 @if(old('purpose') === 0) checked="true" @endif>1</label>
-      <label><input type="radio" name="st_staff" value=1 @if(old('purpose') === 1) checked="true" @endif>2</label>
-      <label><input type="radio" name="st_staff" value=2 @if(old('purpose') === 2) checked="true" @endif>3</label>
-      <label><input type="radio" name="st_staff" value=3 @if(old('purpose') === 3) checked="true" @endif>4</label>
-      <label><input type="radio" name="st_staff" value=4 @if(old('purpose') === 4) checked="true" @endif>5</label>
+      <label><input type="radio" name="st_staff" value=0 @if(old('purpose') == 0) checked="true" @endif>1</label>
+      <label><input type="radio" name="st_staff" value=1 @if(old('purpose') == 1) checked="true" @endif>2</label>
+      <label><input type="radio" name="st_staff" value=2 @if(old('purpose') == 2) checked="true" @endif>3</label>
+      <label><input type="radio" name="st_staff" value=3 @if(old('purpose') == 3) checked="true" @endif>4</label>
+      <label><input type="radio" name="st_staff" value=4 @if(old('purpose') == 4) checked="true" @endif>5</label>
       <label>満足</label>
     </div>
 
     <p class="form-item">総合的な満足度</p>
     <div class="feedback-input feedback-radio d-flex justify-content-between">
       <label>不満足</label>
-      <label><input type="radio" name="total_judg" value=0 @if(old('purpose') === 0) checked="true" @endif>1</label>
-      <label><input type="radio" name="total_judg" value=1 @if(old('purpose') === 1) checked="true" @endif>2</label>
-      <label><input type="radio" name="total_judg" value=2 @if(old('purpose') === 2) checked="true" @endif>3</label>
-      <label><input type="radio" name="total_judg" value=3 @if(old('purpose') === 3) checked="true" @endif>4</label>
-      <label><input type="radio" name="total_judg" value=4 @if(old('purpose') === 4) checked="true" @endif>5</label>
+      <label><input type="radio" name="total_judg" value=0 @if(old('purpose') == 0) checked="true" @endif>1</label>
+      <label><input type="radio" name="total_judg" value=1 @if(old('purpose') == 1) checked="true" @endif>2</label>
+      <label><input type="radio" name="total_judg" value=2 @if(old('purpose') == 2) checked="true" @endif>3</label>
+      <label><input type="radio" name="total_judg" value=3 @if(old('purpose') == 3) checked="true" @endif>4</label>
+      <label><input type="radio" name="total_judg" value=4 @if(old('purpose') == 4) checked="true" @endif>5</label>
       <label>満足</label>
     </div>
 
