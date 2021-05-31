@@ -73,13 +73,13 @@ class ReviewControllerTest extends TestCase
      */
     public function test_users_can_create_review()
     {
-        $review = Review::factory()->for($this->user)->for($this->school)->make(['email' => 'test@gmail.com', 'course' => 'test'])->toArray();
+        $review = Review::factory()->for($this->user)->for($this->school)->make(['course' => 'test'])->toArray();
 
         //ユーザーとしてpostで送る
         $response = $this->actingAs($this->user)->post('/reviews/create', $review);
 
         //新規レビューがDBに存在することを確認
-        // $this->assertDatabaseHas('reviews', ['course' => 'test']);
+        $this->assertDatabaseHas('reviews', ['course' => 'test']);
         
         $review_id = Review::max('id');
         

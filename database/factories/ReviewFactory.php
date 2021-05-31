@@ -22,7 +22,8 @@ class ReviewFactory extends Factory
     public function definition()
     {
         // when_startに挿入する日付を生成
-        $start_at = $this->faker->dateTime();
+        $start_at = $this->faker->dateTime()->format('Y-m-d');
+        $end_at = date('Y-m-d', strtotime($start_at . '+' . rand(1, 12) . 'month'));
 
         $subject = ['料金が', '運営の対応が', 'カリキュラムは', 'メンターの質が', '思ったよりも', '転職支援は'];
 
@@ -35,7 +36,7 @@ class ReviewFactory extends Factory
             'purpose' => rand(0,4),
             'when_start' => $start_at,
             // when_atから1~12ヶ月後のランダムな日付を挿入
-            'when_end' => $this->faker->dateTimeInInterval($start_at, '+' . rand(31, 365) . 'days'),
+            'when_end' => $end_at,
             'at_school' => $this->faker->boolean(),
             'st_tuition' => rand(0,4),
             'st_term' => rand(0,4),

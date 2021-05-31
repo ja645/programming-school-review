@@ -44,7 +44,7 @@ class ReviewFormRequest extends FormRequest
                 //半角、全角スペースを含めずに20字以内か検証
                 function ($attrubutes, $value, $fail) {
                     $removeSpace = preg_replace("/( |　)/", "", $value);
-                    if (strlen($removeSpace) > 20) {
+                    if (mb_strlen($removeSpace) > 20) {
                         return $fail('タイトルは20文字以内で入力してください。');
                     }
                 },
@@ -55,9 +55,9 @@ class ReviewFormRequest extends FormRequest
                 //半角、全角スペースを含めずに100字以上か検証
                 function ($attrubutes, $value, $fail) {
                     $removeSpace = preg_replace("/( |　)/", "", $value);
-                    if (strlen($removeSpace) < 100) {
+                    if (mb_strlen($removeSpace) < 100) {
                         return $fail('100文字以上で入力してください。');
-                    } elseif (strlen($removeSpace) > 10000) {
+                    } elseif (mb_strlen($removeSpace) > 10000) {
                         return $fail('1万文字以内で入力してください。');
                     }
                 }
