@@ -49,6 +49,14 @@ class Review extends Model
     }
 
     /**
+     * レビューに対して寄せられたメッセージを取得
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    /**
      * 現在認証中のユーザーが
      * レビューをフォローしているか判定する
      */

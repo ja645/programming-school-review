@@ -1,8 +1,11 @@
 <template>
   <div class="col-11 mx-auto reviews-card p-5">
     <p>コメント</p>
-    <div class="review-list">
-      <p class="list-group-item" style="height: 40px; font-size: 18px; border: solid 2px #FF5192; padding: 5px 10px;" v-for="message in messages">{{ message['message'] }}</p>
+    <div class="review-list" style="padding-bottom: 0;">
+      <p style="font-size: 18px; border: solid 2px #FF5192; padding: 5px 10px; background-color: white;" v-for="message in messages">
+        <span style="font-size: 14px; color: gray;">{{ message.user.user_name }}さん:</span>
+        <br>{{ message.message }}
+      </p>
     </div>
   </div>
   <div class="col-11 mx-auto reviews-card p-5">
@@ -27,7 +30,7 @@ export default {
   mounted() {
     //htmlリクエストを送り、レスポンスであるresponse.dataをthis.messageに代入
     axios.get('/message/' + this.review.id).then(response => (this.messages = response.data));
-
+    
     window.Echo.private('chat.' + this.review.id).listen('MessageSent', response => {
       this.messages.push(response.message);
     });

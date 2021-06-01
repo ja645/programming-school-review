@@ -12,6 +12,8 @@ use App\Http\Controllers\RankingController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\Admin\AuthenticationController;
 use App\Http\Controllers\Admin\SchoolDataController;
+use App\Models\User;
+use App\Models\Review;
 use App\Models\School;
 use App\Models\Message;
 use App\Events\MessageSent;
@@ -76,7 +78,9 @@ Route::middleware(['auth'])->group(function() {
   Route::post('/like', [LikeController::class, 'switchLike']);
 
   Route::get('/message/{id}', function(int $id) {
-    return Message::where('review_id', $id)->get();
+    $messages = Message::where('review_id', $id)->with('user')->get();
+
+    return $messages;
   });
     
   Route::post('/message/send', function() {
