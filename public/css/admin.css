@@ -784,12 +784,13 @@ footer a:hover {
 --------スクールページここから------
 ------------------------------- */
 .school-name {
-  font-size: min(calc(3.0rem + 2.0vw), 56.4px);
-  margin: 2vw 0;
+  font-size: min(calc(1.6rem + 2.8vw), 56.4px);
+  margin: 3vw 0;
 }
 
 .total-rank p {
-  margin-bottom: 2vw;
+  margin-bottom: 3vw;
+  font-size: calc(1.6rem + 0.1vw);
 }
 .total-rank span {
   color: gray;
@@ -939,8 +940,8 @@ footer a:hover {
 }
 
 .review-title {
-  font-size: calc(1.0rem + 3.0vw);
-  margin: 2vw 0;
+  font-size: min(calc(1.0rem + 2.8vw), 47px);
+  margin: 3vw 0;
 }
 
 /* --------------------------------------------
