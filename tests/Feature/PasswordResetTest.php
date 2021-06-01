@@ -35,7 +35,7 @@ class PasswordResetTest extends TestCase
         Notification::fake();
 
         $user = User::factory()->create();
-        dump($user->email);
+        
         $this->post('/forgot-password', ['email' => $user->email]);
 
         Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
