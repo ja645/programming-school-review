@@ -28,9 +28,9 @@
     <input type="text" name="course" class="feedback-input" value="{{ old('cource') }}" placeholder="受講したコース名を教えてください。">
 
     <p class="form-item">受講した時期</p>
-    <input type="month" name="when_start" class="feedback-input" value="{{ old('when_start') }}">
+    <input type="date" name="when_start" class="feedback-input" value="{{ old('when_start') }}">
     <p class="form-item">から</p>
-    <input type="month" name="when_end" class="feedback-input" value="{{ old('when_end') }}">
+    <input type="date" name="when_end" class="feedback-input" value="{{ old('when_end') }}">
 
     <input type="number" name="tuition" class="feedback-input" value="{{ old('tuition') }}" placeholder="受講料(半角英数字のみで入力)">
 

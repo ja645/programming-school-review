@@ -83,7 +83,7 @@ class SchoolService
     $sum = 0;
 
     foreach($reviews as $review) {
-      
+      // 始まりの日付と終わりの日付の差分を月数で取得
       $start = $review->when_start;
 
       $end = $review->when_end;
@@ -94,13 +94,14 @@ class SchoolService
     }
 
     if ($number_of_reviews !== 0) {
-      $average = round($sum / $number_of_reviews);
+      // 小数点第二位を四捨五入
+      $average = round($sum / $number_of_reviews / 30, 1);
       
     } else {
       $average = 0;
     }
 
-    return (int)$average;
+    return $average;
   }
 
   /**

@@ -119,7 +119,7 @@ class SchoolServiceTest extends TestCase
     {
         $termAverage = $this->schoolService->getTermAverage($this->id);
 
-        assertSame(83, $termAverage);
+        assertSame(2.8, $termAverage);
     }
 
 
