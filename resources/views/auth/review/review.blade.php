@@ -117,7 +117,19 @@
 </div>
 
   <div id="app">
-      <message-component :review="{{ json_encode($review) }}">></message-component>
+      <message-component :review="{{ json_encode($review) }}" :auth="{{ json_encode(Auth::id()) }}">></message-component>
   </div>
+
+  <style lang="scss" module>
+  .message-list {
+    font-size: 18px;
+    border: solid 2px #FF5192;
+    padding: 5px 10px;
+    background-color: white;
+  }
+  .message-list:last-child {
+      border-top: none;
+    }
+  </style>
 
 @endsection
