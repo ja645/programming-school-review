@@ -3,37 +3,68 @@
 @section('title', 'top')
 
 @section('content')
-    <div id="wrap">
-      <div id="gray">
-        <div id="white"></div>
-        <div class="wave">
+
+  <div id="wrap">
+    <div class="top-text">
+      <h1 class="catch">情報の波を<span class="d-block d-"></span>泳ぎ切る。</h1>
+    </div>
+      <!-- <div id="gray"> -->
+        <!-- <div id="white"></div> -->
+        <!-- <div class="wave">
           <img src="{{ asset('/images/波.svg') }}" alt="">
-        </div>
-        <div class="swimmer">
+        </div> -->
+        <!-- <div class="swimmer">
           <img src="{{ asset('/images/swimmer.svg') }}" alt="">
+        </div> -->
+        <div class="code-wave-top">
+          <img src="{{ asset('/images/code-wave-top.svg') }}" alt="">
+        </div>
+        <div class="code-wave-bottom">
+          <img src="{{ asset('/images/code-wave-bottom.svg') }}" alt="">
+        </div>
+        <div class="body">
+          <img src="{{ asset('/images/body.svg') }}" alt="">
+        </div>
+        <div class="head">
+          <img src="{{ asset('/images/head.svg') }}" alt="">
+        </div>
+        <div class="parts">
+          <img src="{{ asset('/images/parts.svg') }}" alt="">
         </div>
         
-        <div class="top-text">
-          <h1 class="catch">情報の波に<span class="d-block d-"></span>溺れない。</h1>
-          <p class="sub-title d-none d-md-block">crawlは、プログラミングスクールのレビューサービスです。</p>
-          <div class="sub-text d-none d-md-block">
-            <p>いくつものネットサーフィンを続け、疲れ果てていませんか？<br>
-            crawlには、プログラミングスクール受講者の正直な評価が寄せられています。<br>
-            投稿者とコメントで会話が出来るため、<br>
-            Web上の膨大な情報に目を通すよりも、ダイレクトに知りたいことに触れられます。<br>
-            投稿者にいろいろ質問して、忖度のない生の意見を聞いてみましょう！</p>
-          </div>
-        </div>
+
+      <!-- </div> -->
+  </div>
+
+    <!-- <div class="top-text">
+      <p class="sub-title d-none d-md-block">crawlは、プログラミングスクールのレビューサービスです。</p>
+      <div class="sub-text d-none d-md-block">
+        <p>いくつものネットサーフィンを続け、疲れ果てていませんか？<br>
+        crawlには、プログラミングスクール受講者の正直な評価が寄せられています。<br>
+        投稿者とコメントで会話が出来るため、<br>
+        Web上の膨大な情報に目を通すよりも、ダイレクトに知りたいことに触れられます。<br>
+        投稿者にいろいろ質問して、忖度のない生の意見を聞いてみましょう！</p>
       </div>
-    </div>
+    </div> -->
 
     <!-- 画面幅が768px未満のとき表示 -->
     <div class="d-md-none mt-5" style="padding: 0 5%;">
-      <div class="sub-title">crawlは、プログラミングスクールのレビューサービスです。</div>
+      <div class="sub-title">crawlは、プログラミングスクールのレビューサイトです。</div>
       <div class="sub-text">
         <p>いくつものネットサーフィンを続け、疲れ果てていませんか？<br>
         crawlには、プログラミングスクール受講者の正直な評価が寄せられています。<br>
         投稿者とコメントで会話が出来るため、
+        Web上の膨大な情報に目を通すよりも、ダイレクトに知りたいことに触れられます。<br>
+        投稿者にいろいろ質問して、忖度のない生の意見を聞いてみましょう！</p>
+      </div>
+    </div>
+
+    <div class="text-sm-center" style="color: white; width: 90%; margin: auto; margin-top: 50px;"> 
+      <p class="sub-title d-none d-md-block">crawlは、プログラミングスクールのレビューサービスです。</p>
+      <div class="sub-text d-none d-md-block">
+        <p>いくつものネットサーフィンを続け、疲れ果てていませんか？<br>
+        crawlには、プログラミングスクール受講者の正直な評価が寄せられています。<br>
+        投稿者とコメントで会話が出来るため、<br>
         Web上の膨大な情報に目を通すよりも、ダイレクトに知りたいことに触れられます。<br>
         投稿者にいろいろ質問して、忖度のない生の意見を聞いてみましょう！</p>
       </div>
