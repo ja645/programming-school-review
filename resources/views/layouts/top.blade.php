@@ -17,19 +17,19 @@
           <img src="{{ asset('/images/swimmer.svg') }}" alt="">
         </div> -->
         <div class="code-wave-top">
-          <img src="{{ asset('/images/code-wave-top.svg') }}" alt="">
+          <img src="{{ asset('storage/images/code-wave-top.svg') }}" alt="">
         </div>
         <div class="code-wave-bottom">
-          <img src="{{ asset('/images/code-wave-bottom.svg') }}" alt="">
+          <img src="{{ asset('storage/images/code-wave-bottom.svg') }}" alt="">
         </div>
         <div class="body">
-          <img src="{{ asset('/images/body.svg') }}" alt="">
+          <img src="{{ asset('storage/images/body.svg') }}" alt="">
         </div>
         <div class="head">
-          <img src="{{ asset('/images/head.svg') }}" alt="">
+          <img src="{{ asset('storage/images/head.svg') }}" alt="">
         </div>
         <div class="parts">
-          <img src="{{ asset('/images/parts.svg') }}" alt="">
+          <img src="{{ asset('storage/images/parts.svg') }}" alt="">
         </div>
         
 
