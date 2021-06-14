@@ -573,7 +573,7 @@ footer a:hover {
 .head img {
   position: relative;
   left: 57%;
-  width: 11%;
+  width: 10%;
   filter: drop-shadow(2px 8px 1px gray);
 }
 
@@ -586,7 +586,7 @@ footer a:hover {
 }
 .parts img {
   position: relative;
-  left: 61%;
+  left: 60%;
   width: 8%;
   filter: drop-shadow(2px 8px 1px gray);
 }
