@@ -16,20 +16,29 @@
         <!-- <div class="swimmer">
           <img src="{{ asset('/images/swimmer.svg') }}" alt="">
         </div> -->
+
         <div class="code-wave-top">
-          <img src="{{ asset('storage/images/code-wave-top.svg') }}" alt="">
+          <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/code-wave-top.svg">
+          <!-- <img src="{{ asset('/images/code-wave-top.svg') }}"> -->
         </div>
+
         <div class="code-wave-bottom">
-          <img src="{{ asset('storage/images/code-wave-bottom.svg') }}" alt="">
+          <!-- <img src="{{ asset('/images/code-wave-bottom.svg') }}"> -->
+          <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/code-wave-bottom.svg">
         </div>
+
         <div class="body">
-          <img src="{{ asset('storage/images/body.svg') }}" alt="">
+          <!-- <img src="{{ asset('/images/body.svg') }}"> -->
+          <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/body.svg">
         </div>
+
         <div class="head">
-          <img src="{{ asset('storage/images/head.svg') }}" alt="">
+          <!-- <img src="{{ asset('/images/head.svg') }}"> -->
+          <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/head.svg">
         </div>
         <div class="parts">
-          <img src="{{ asset('storage/images/parts.svg') }}" alt="">
+          <!-- <img src="{{ asset('/images/parts.svg') }}"> -->
+          <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/parts.svg">
         </div>
         
 
