@@ -3,60 +3,32 @@
 @section('title', 'top')
 
 @section('content')
-
+<!--
   <div id="wrap">
     <div class="top-text">
       <h1 class="catch">情報の波を<span class="d-block d-"></span>泳ぎ切る。</h1>
     </div>
-      <!-- <div id="gray"> -->
-        <!-- <div id="white"></div> -->
-        <!-- <div class="wave">
-          <img src="{{ asset('/images/波.svg') }}" alt="">
-        </div> -->
-        <!-- <div class="swimmer">
-          <img src="{{ asset('/images/swimmer.svg') }}" alt="">
-        </div> -->
+    <div class="code-wave-top">
+      <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/code-wave-top.svg">
+    </div>
 
-        <div class="code-wave-top">
-          <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/code-wave-top.svg">
-          <!-- <img src="{{ asset('/images/code-wave-top.svg') }}"> -->
-        </div>
+    <div class="code-wave-bottom">
+      <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/code-wave-bottom.svg">
+    </div>
 
-        <div class="code-wave-bottom">
-          <!-- <img src="{{ asset('/images/code-wave-bottom.svg') }}"> -->
-          <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/code-wave-bottom.svg">
-        </div>
+    <div class="body">
+      <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/body.svg">
+    </div>
 
-        <div class="body">
-          <!-- <img src="{{ asset('/images/body.svg') }}"> -->
-          <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/body.svg">
-        </div>
-
-        <div class="head">
-          <!-- <img src="{{ asset('/images/head.svg') }}"> -->
-          <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/head.svg">
-        </div>
-        <div class="parts">
-          <!-- <img src="{{ asset('/images/parts.svg') }}"> -->
-          <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/parts.svg">
-        </div>
-        
-
-      <!-- </div> -->
+    <div class="head">
+      <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/head.svg">
+    </div>
+    <div class="parts">
+      <img src="https://crawl-background-images.s3.ap-northeast-1.amazonaws.com/parts.svg">
+    </div>
   </div>
-
-    <!-- <div class="top-text">
-      <p class="sub-title d-none d-md-block">crawlは、プログラミングスクールのレビューサービスです。</p>
-      <div class="sub-text d-none d-md-block">
-        <p>いくつものネットサーフィンを続け、疲れ果てていませんか？<br>
-        crawlには、プログラミングスクール受講者の正直な評価が寄せられています。<br>
-        投稿者とコメントで会話が出来るため、<br>
-        Web上の膨大な情報に目を通すよりも、ダイレクトに知りたいことに触れられます。<br>
-        投稿者にいろいろ質問して、忖度のない生の意見を聞いてみましょう！</p>
-      </div>
-    </div> -->
-
-    <!-- 画面幅が768px未満のとき表示 -->
+-->
+  <!-- 画面幅が768px未満のとき表示 -->
     <div class="d-md-none mt-5" style="padding: 0 5%;">
       <div class="sub-title">crawlは、プログラミングスクールのレビューサイトです。</div>
       <div class="sub-text">
