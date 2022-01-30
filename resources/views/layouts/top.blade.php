@@ -3,6 +3,7 @@
 @section('title', 'top')
 
 @section('content')
+
 <!--
   <div id="wrap">
     <div class="top-text">
